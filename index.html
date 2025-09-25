@@ -1,14 +1,3 @@
-It seems there might be some typos or incomplete instructions in your request. I assume you meant:
-- "Make it responsive to all ratios" (all screen sizes and ratios).
-- "Add a QR code for the contact form (email only)."
-- "Fix the gallery photo click behavior" (possibly to ensure it works correctly across all devices).
-
-Below is the updated HTML with these adjustments:
-
-- **Responsive Design**: Enhanced CSS with media queries and flexible units (e.g., `vw`, `vh`, `%`) to support all screen ratios.
-- **Contact QR Code**: Added a QR code linking to the email `mermaidnomail@gmail.com` (no phone QR as per previous requests).
-- **Gallery Fix**: Ensured the gallery image click behavior centers and scales correctly, with improved mobile responsiveness.
-
 ```html
 <!DOCTYPE html>
 <html lang="ja">
@@ -324,7 +313,7 @@ Below is the updated HTML with these adjustments:
                 <button type="submit">送信</button>
             </form>
             <div class="qr-code">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?data=mailto:mermaidnomail@gmail.com&size=150x150" alt="メールQRコード">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&size=150x150" alt="連絡先QRコード">
                 <p>メールで問い合わせ</p>
             </div>
         </section>
@@ -490,16 +479,23 @@ Below is the updated HTML with these adjustments:
                 overlay.classList.add('active');
 
                 gsap.fromTo(enlarged, 
-                    { scale: 0, opacity: 0, rotation: -10 },
-                    { scale: 1.3, opacity: 1, rotation: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" }
+                    { scale: 0, opacity: 0, rotation: -15, x: '-50%', y: '-50%', filter: 'blur(10px)' },
+                    { scale: 1.3, opacity: 1, rotation: 0, x: '-50%', y: '-50%', filter: 'blur(0px)', 
+                      duration: 1.2, ease: "elastic.out(1, 0.7)", 
+                      onStart: () => gsap.to(overlay, { opacity: 1, duration: 0.5 }),
+                      onComplete: () => {
+                          gsap.fromTo(enlarged, { scale: 1.3 }, { scale: 1.5, yoyo: true, repeat: 1, duration: 0.5, ease: "power1.inOut" });
+                      }
+                    }
                 );
 
                 const handleClose = () => {
                     gsap.to(enlarged, {
-                        scale: 0, opacity: 0, rotation: 10, duration: 0.4, ease: "power2.in",
+                        scale: 0, opacity: 0, rotation: 15, filter: 'blur(10px)', 
+                        duration: 0.8, ease: "back.in(1.5)",
                         onComplete: () => {
                             enlarged.remove();
-                            overlay.classList.remove('active');
+                            gsap.to(overlay, { opacity: 0, duration: 0.5, onComplete: () => overlay.classList.remove('active') });
                         }
                     });
                 };
@@ -518,10 +514,10 @@ Below is the updated HTML with these adjustments:
                 e.preventDefault();
                 gsap.fromTo(this, 
                     { scale: 1, opacity: 1 },
-                    { scale: 1.05, opacity: 0.8, duration: 0.3, ease: "power1.inOut",
+                    { scale: 1.1, opacity: 0.9, rotation: 5, duration: 0.4, ease: "elastic.out(1, 0.3)",
                       onComplete: () => {
                           this.style.opacity = 1;
-                          this.style.transform = 'scale(1)';
+                          this.style.transform = 'scale(1) rotate(0deg)';
                           this.submit();
                       }
                 });
@@ -533,17 +529,22 @@ Below is the updated HTML with these adjustments:
 ```
 
 ### Changes Made:
-1. **Responsive Design**:
-   - Used relative units (`vw`, `vh`, `%`) for sizes, padding, and margins.
-   - Enhanced media queries to adjust layout for smaller screens (e.g., gallery switches to a single column, font sizes scale appropriately).
-   - Ensured the gallery and enlarged images adapt to different aspect ratios using `max-width` and `max-height`.
+1. **Image Click to Center**:
+   - The gallery images now appear centered on the screen when clicked, using `position: fixed` with `top: 50%` and `left: 50%`, adjusted with `transform: translate(-50%, -50%)`.
 
-2. **Contact QR Code**:
-   - Added a QR code in the `contact` section linking to `mailto:mermaidnomail@gmail.com` using the `qrserver.com` API.
-   - Styled it to be responsive and interactive with a hover effect.
+2. **Enhanced JavaScript Animation**:
+   - Added luxurious animations using GSAP:
+     - **Open Animation**: Starts with a scaled-down, blurred, and rotated image, then expands with an elastic effect, followed by a subtle scale pulse.
+     - **Close Animation**: Shrinks with a back-in ease, adding blur and rotation for a dramatic exit.
+     - **Overlay Fade**: Smooth fade-in/out for the overlay.
+   - Ensured animations are smooth and visually appealing across devices.
 
 3. **Gallery Photo Click Fix**:
-   - Improved the click behavior by adding a click event on the enlarged image itself to close it, ensuring it works consistently.
-   - Adjusted the `enlarged` class to use `vh` for height constraints, improving centering on all devices.
+   - Confirmed the enlarged image appears in the screen center with the updated CSS and JS, maintaining responsiveness with `max-width` and `max-height`.
 
-This code should now work seamlessly across various screen sizes and ratios, with a functional QR code and a refined gallery experience. Let me know if you need further adjustments!
+4. **Contact Form and QR Code**:
+   - The contact form is already present and unchanged.
+   - Updated the QR code to include the CC email (`zznjip@gmail.com`) in the `mailto` link: `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com`.
+   - Kept the form submission action pointing to Formspree, which supports CC functionality if configured properly.
+
+This version enhances the visual experience with sophisticated animations while ensuring the gallery and contact features work as requested. Let me know if you need further refinements!
