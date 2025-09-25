@@ -304,15 +304,15 @@
             </div>
         </section>
 
- 　　　<section id="contact">
+        <section id="contact">
             <h2>連絡先</h2>
             <p>Email: <a href="mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com">mermaidnomail@gmail.com</a></p>
             <h2>問い合わせフォーム</h2>
-            <form class="contact-form" action="https://formspree.io/f/meorozov" method="POST">
+            <form class="contact-form" id="contact-form">
                 <input type="text" name="name" placeholder="お名前" required>
                 <input type="email" name="email" placeholder="メールアドレス" required>
                 <textarea name="message" placeholder="メッセージ" required></textarea>
-                <button type="submit">送信</button>
+                <button type="submit">メールで送信</button>
             </form>
             <div class="qr-code">
                 <img src="https://formspree.io/f/meorozov&size=150x150" alt="連絡先QRコード">
@@ -478,16 +478,36 @@
         if (form) {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
+                
+                // フォームデータを取得
+                const name = this.querySelector('input[name="name"]').value;
+                const email = this.querySelector('input[name="email"]').value;
+                const message = this.querySelector('textarea[name="message"]').value;
+                
+                // メール本文を作成
+                const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
+                const body = `お名前: ${name}\nメールアドレス: ${email}\n\nメッセージ:\n${message}`;
+                
+                // mailtoリンクを作成
+                const mailtoLink = `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                // アニメーション付きでメールクライアントを開く
                 gsap.fromTo(this, 
                     { scale: 1, opacity: 1 },
-                    { scale: 1.1, opacity: 0.9, rotation: 5, duration: 0.4, ease: "elastic.out(1, 0.3)",
+                    { scale: 1.05, opacity: 0.9, duration: 0.3, ease: "back.out(1.7)",
                       onComplete: () => {
+                          window.location.href = mailtoLink;
                           this.style.opacity = 1;
-                          this.style.transform = 'scale(1) rotate(0deg)';
-                          this.submit();
+                          this.style.transform = 'scale(1)';
+                          
+                          // 3秒後にフォームをリセット
+                          setTimeout(() => {
+                              this.reset();
+                          }, 3000);
                       }
                 });
             });
+            
             form.addEventListener('touchend', function(e) {
                 if (e.target.tagName === 'BUTTON') {
                     e.preventDefault();
