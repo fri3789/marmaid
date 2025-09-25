@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -162,6 +163,45 @@
         .overlay.active {
             display: block;
         }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            border: 2px solid #e0f4ff;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #15416b;
+            background: #f9fcff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+            outline: none;
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .contact-form button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #4a90e2;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .contact-form button:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+        }
         .terms {
             background: #f0f9ff;
             color: #15416b;
@@ -184,6 +224,7 @@
             .gallery { grid-template-columns: 1fr; }
             .gallery img { height: 180px; }
             .gallery img.enlarged { max-width: 90%; max-height: 90%; }
+            .contact-form button { width: 100%; }
         }
     </style>
 </head>
@@ -242,6 +283,13 @@
         <section id="contact">
             <h2>連絡先</h2>
             <p>Email: <a href="mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com">mermaidnomail@gmail.com</a></p>
+            <h2>問い合わせフォーム</h2>
+            <form class="contact-form" action="https://formspree.io/f/mnqyqrvb" method="POST">
+                <input type="text" name="name" placeholder="お名前" required>
+                <input type="email" name="email" placeholder="メールアドレス" required>
+                <textarea name="message" placeholder="メッセージ" required></textarea>
+                <button type="submit">送信</button>
+            </form>
         </section>
 
         <section id="terms" class="terms">
@@ -424,6 +472,24 @@
                 img.ondragstart = () => false;
             });
         });
+
+        // Form submission animation
+        const form = document.querySelector('.contact-form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                gsap.fromTo(this, 
+                    { scale: 1, opacity: 1 },
+                    { scale: 1.05, opacity: 0.8, duration: 0.3, ease: "power1.inOut",
+                      onComplete: () => {
+                          this.style.opacity = 1;
+                          this.style.transform = 'scale(1)';
+                          this.submit();
+                      }
+                });
+            });
+        }
     </script>
 </body>
 </html>
+```
