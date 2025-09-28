@@ -96,7 +96,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         h2 {
-            font-size: 4vw;
+            font-size: 6.4vw;
             font-weight: 600;
             color: #4a90e2;
             margin-top: 0;
@@ -201,7 +201,7 @@
             appearance: none;
         }
         .contact-form button:hover {
-560            background: #357abd;
+            background: #357abd;
             transform: translateY(-0.2vw);
         }
         .qr-code {
@@ -232,8 +232,8 @@
             font-size: 0.95vw;
             box-shadow: 0 -0.2vw 1vw rgba(0, 0, 0, 0.05);
         }
-        #register-btn {
-            width: 20vw;
+        #register-btn-1004, #register-btn-1018, #register-btn-1122 {
+            width: 30vw;
             height: auto;
             border-radius: 1vw;
             cursor: pointer;
@@ -241,7 +241,7 @@
             display: block;
             margin: 2vw auto;
         }
-        #register-btn:hover {
+        #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1122:hover {
             transform: scale(1.05);
         }
         .modal {
@@ -371,7 +371,7 @@
             .contact-form button { font-size: 7vw; padding: 6vw 12vw; }
             .qr-code img { width: 25vw; height: 25vw; }
             footer { font-size: 3vw; padding: 4vw; }
-            #register-btn { width: 30vw; }
+            #register-btn-1004, #register-btn-1018, #register-btn-1122 { width: 45vw; }
             .modal-content { max-width: 80vw; }
             .status-btn { font-size: 3.5vw; padding: 3vw; }
             .event-form label { font-size: 3.5vw; }
@@ -436,17 +436,52 @@
         </section>
         <section id="events">
             <h2>イベント情報</h2>
-            <p>10/04 バレーボール練習会</p>
-            <img id="register-btn" src="https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1" alt="10/04練習会登録ボタン">
-           <img id="register-btn" src="https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1" alt="10/04練習会登録ボタン"> <div class="modal-content">
+            <h3>10/04 バレーボール練習会</h3>
+            <p>次回練習は10/04に開催予定。詳細はLINEグループで確認してください。</p>
+            <img id="register-btn-1004" src="https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1" alt="10/04練習会登録ボタン">
+            <h3>10/18 バレーボール練習会</h3>
+            <p>次回練習は10/18に開催予定。詳細はLINEグループで確認してください。</p>
+            <img id="register-btn-1018" src="https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1" alt="10/18練習会登録ボタン">
+            <h3>11/22 バレーボール練習会</h3>
+            <p>次回練習は11/22に開催予定。詳細はLINEグループで確認してください。</p>
+            <img id="register-btn-1122" src="https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1" alt="11/22練習会登録ボタン">
+            <div id="status-modal" class="modal">
                 <div class="modal-content">
                     <span class="modal-close">&times;</span>
-                     <button class="status-btn" onclick="showForm('参加')">参加日</button>
+                    <h3 id="status-title">練習会参加状況を選択</h3>
                     <button class="status-btn" onclick="showForm('参加')">参加</button>
                     <button class="status-btn" onclick="showForm('不参加')">不参加</button>
                     <button class="status-btn" onclick="showForm('未定')">未定</button>
                 </div>
-         </section>
+            </div>
+            <div id="form-modal" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close">&times;</span>
+                    <h3 id="form-title">練習会登録情報入力</h3>
+                    <form id="register-form" class="event-form">
+                        <div>
+                            <label>名前:</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div>
+                            <label>メールアドレス:</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div>
+                            <label>電話番号:</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div>
+                            <label>LINE名:</label>
+                            <input type="text" id="line">
+                        </div>
+                        <input type="hidden" id="status">
+                        <input type="hidden" id="event-date">
+                        <button type="submit">送信</button>
+                    </form>
+                </div>
+            </div>
+        </section>
         <section id="contact">
             <h2>連絡先</h2>
             <p>Email: <a href="mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com">mermaidnomail@gmail.com</a></p>
@@ -590,6 +625,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOMContentLoaded - 初期化開始');
+
+            // スムーススクロール
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -605,6 +642,7 @@
                 });
             });
 
+            // 連絡フォームの送信処理
             const contactForm = document.querySelector('#contact-form');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
@@ -614,31 +652,48 @@
                     const email = this.querySelector('input[name="email"]').value;
                     const message = this.querySelector('textarea[name="message"]').value;
                     const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
-                    const body = `お名前: ${name}\nメールアドレス: ${email}\n\nメッセージ:\n${message}`;
-                    window.location.href = `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                    this.reset();
+                    const body = `お名前: ${name}\nメールアドレス: ${email}\nメッセージ:\n${message}`;
+                    try {
+                        window.location.href = `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                        console.log('連絡フォーム: メールリンク生成成功');
+                        this.reset();
+                    } catch (error) {
+                        console.error('連絡フォーム: メール送信エラー', error);
+                        alert('メール送信に失敗しました。メールクライアントを確認してください。');
+                    }
                 });
             }
 
-            const registerBtn = document.getElementById('register-btn');
+            // イベント登録ボタンとモーダルの処理
+            const registerButtons = {
+                '1004': document.getElementById('register-btn-1004'),
+                '1018': document.getElementById('register-btn-1018'),
+                '1122': document.getElementById('register-btn-1122')
+            };
             const statusModal = document.getElementById('status-modal');
             const formModal = document.getElementById('form-modal');
             const registerForm = document.getElementById('register-form');
             const closes = document.querySelectorAll('.modal-close');
+            let currentEventDate = '';
 
-            if (registerBtn) {
-                registerBtn.addEventListener('click', function() {
-                    console.log('10/04練習会登録ボタンがクリックされました');
-                    if (statusModal) {
-                        statusModal.style.display = 'block';
-                        console.log('ステータスモーダル表示');
-                    } else {
-                        console.error('エラー: status-modalが見つかりません');
-                    }
-                });
-            } else {
-                console.error('エラー: register-btnが見つかりません');
-            }
+            Object.keys(registerButtons).forEach(date => {
+                if (registerButtons[date]) {
+                    registerButtons[date].addEventListener('click', function() {
+                        console.log(`${date.replace(/(\d{2})(\d{2})/, '$1/$2')}練習会登録ボタンがクリックされました`);
+                        currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
+                        if (statusModal) {
+                            document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
+                            statusModal.style.display = 'block';
+                            console.log('ステータスモーダル表示');
+                        } else {
+                            console.error('エラー: status-modalが見つかりません');
+                            alert('モーダル表示に失敗しました。ページを更新してください。');
+                        }
+                    });
+                } else {
+                    console.error(`エラー: register-btn-${date}が見つかりません`);
+                }
+            });
 
             if (closes) {
                 closes.forEach(close => {
@@ -651,6 +706,7 @@
                 });
             }
 
+            // モーダル外クリックで閉じる
             window.addEventListener('click', function(e) {
                 if (e.target === statusModal) {
                     console.log('ステータスモーダル外がクリックされました');
@@ -663,31 +719,50 @@
                 }
             });
 
+            // Escキーによるモーダル閉鎖
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    console.log('Escキーが押されました - モーダルを閉じます');
+                    if (statusModal) statusModal.style.display = 'none';
+                    if (formModal) formModal.style.display = 'none';
+                    if (registerForm) registerForm.reset();
+                }
+            });
+
+            // 参加状況選択後のフォーム表示
             window.showForm = function(status) {
                 console.log('ステータス選択: ' + status);
                 if (document.getElementById('status')) document.getElementById('status').value = status;
-                if (document.getElementById('form-title')) document.getElementById('form-title').textContent = status + 'の10/04練習会登録情報入力';
+                if (document.getElementById('event-date')) document.getElementById('event-date').value = currentEventDate;
+                if (document.getElementById('form-title')) document.getElementById('form-title').textContent = `${status}の${currentEventDate}練習会登録情報入力`;
                 if (statusModal) statusModal.style.display = 'none';
                 if (formModal) formModal.style.display = 'block';
                 console.log('フォームモーダル表示');
             };
 
+            // 登録フォームの送信処理
             if (registerForm) {
                 registerForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    console.log('フォーム送信 - 10/04練習会登録');
+                    console.log(`フォーム送信 - ${currentEventDate}練習会登録`);
                     const status = document.getElementById('status').value;
+                    const eventDate = document.getElementById('event-date').value;
                     const name = document.getElementById('name').value;
                     const email = document.getElementById('email').value;
-                    const phone = document.getElementById('phone').value;
-                    const line = document.getElementById('line').value;
-                    const subject = `10/04練習会登録: ${status} - ${name}`;
+                    const phone = document.getElementById('phone').value || '未入力';
+                    const line = document.getElementById('line').value || '未入力';
+                    const subject = `${eventDate}練習会登録: ${status} - ${name}`;
                     const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
-                    window.location.href = `mailto:zznjip@gmail.com,mermaidnomail1125@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                    alert('登録完了！メールクライアントが開きます。');
-                    console.log('メール送信リンク生成: ' + subject);
-                    if (formModal) formModal.style.display = 'none';
-                    if (registerForm) registerForm.reset();
+                    try {
+                        window.location.href = `mailto:zznjip@gmail.com,mermaidnomail1125@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                        console.log('メール送信リンク生成: ' + subject);
+                        alert('登録完了！メールクライアントが開きます。');
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                    } catch (error) {
+                        console.error('登録フォーム: メール送信エラー', error);
+                        alert('メール送信に失敗しました。メールクライアントを確認してください。');
+                    }
                 });
             } else {
                 console.error('エラー: register-formが見つかりません');
