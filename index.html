@@ -368,7 +368,7 @@
             .gallery { grid-template-columns: 1fr; }
             .gallery img { height: 50vw; }
             .contact-form input, .contact-form textarea { font-size: 3.5vw; padding: 3vw; }
-            .contact-form button { font-size: 3.5vw; padding: 3vw 6vw; }
+            .contact-form button { font-size: 7vw; padding: 6vw 12vw; }
             .qr-code img { width: 25vw; height: 25vw; }
             footer { font-size: 3vw; padding: 4vw; }
             #register-btn { width: 30vw; }
@@ -435,7 +435,7 @@
             </div>
         </section>
         <section id="events">
-            <h2>イベント情報10/04 バレーボール練習会</h2>
+            <h2>イベント情報</h2>
             <p>10/04 バレーボール練習会</p>
             <img id="register-btn" src="https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1" alt="10/04練習会登録ボタン">
             <div id="status-modal" class="modal">
@@ -445,12 +445,21 @@
                     <button class="status-btn" onclick="showForm('参加')">参加</button>
                     <button class="status-btn" onclick="showForm('不参加')">不参加</button>
                     <button class="status-btn" onclick="showForm('未定')">未定</button>
+            <p>10/18 バレーボール練習会</p>
+            <img id="register-btn" src="https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1" alt="10/18練習会登録ボタン">
+            <div id="status-modal" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close">&times;</span>
+                    <h3>10/18練習会参加状況を選択</h3>
+                    <button class="status-btn" onclick="showForm('参加')">参加</button>
+                    <button class="status-btn" onclick="showForm('不参加')">不参加</button>
+                    <button class="status-btn" onclick="showForm('未定')">未定</button>
                 </div>
             </div>
             <div id="form-modal" class="modal">
                 <div class="modal-content">
                     <span class="modal-close">&times;</span>
-                    <h3 id="form-title">10/04練習会登録情報入力</h3>
+                    <h3 id="form-title">10/18練習会登録情報入力</h3>
                     <form id="register-form" class="event-form">
                         <div>
                             <label>名前:</label>
