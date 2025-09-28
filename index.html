@@ -96,12 +96,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
         h2 {
-            font-size: 2.5vw;
+            font-size: 4vw;
             font-weight: 600;
-            color: #15416b;
+            color: #4a90e2;
             margin-top: 0;
             margin-bottom: 2vw;
             position: relative;
+            animation: textPulse 1.5s infinite alternate;
+        }
+        @keyframes textPulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.03); }
         }
         h2::after {
             content: '';
@@ -228,7 +233,7 @@
             box-shadow: 0 -0.2vw 1vw rgba(0, 0, 0, 0.05);
         }
         #register-btn {
-            width: 15vw;
+            width: 20vw;
             height: auto;
             border-radius: 1vw;
             cursor: pointer;
@@ -335,9 +340,10 @@
         .event-form h3 {
             font-size: 2.5vw;
             font-weight: 600;
-            color: #15416b;
+            color: #4a90e2;
             margin: 0 0 2vw;
             position: relative;
+            animation: textPulse 1.5s infinite alternate;
         }
         .event-form h3::after {
             content: '';
@@ -357,7 +363,7 @@
             nav a { font-size: 3.5vw; padding: 2vw; }
             nav ul { gap: 2vw; }
             section { padding: 5vw; margin-bottom: 5vw; }
-            h2 { font-size: 5vw; }
+            h2 { font-size: 6vw; }
             p { font-size: 3.5vw; }
             .gallery { grid-template-columns: 1fr; }
             .gallery img { height: 50vw; }
@@ -395,8 +401,8 @@
             <li><a href="#home">ホーム</a></li>
             <li><a href="#about">チーム紹介</a></li>
             <li><a href="#members">メンバー</a></li>
-            <li><a href="#events">イベント</a></li>
             <li><a href="#gallery">ギャラリー</a></li>
+            <li><a href="#events">イベント</a></li>
             <li><a href="#contact">連絡先</a></li>
             <li><a href="#terms">利用規約</a></li>
         </ul>
@@ -414,10 +420,24 @@
             <h2>メンバー紹介</h2>
             <p>現在21名で活動中。プライバシー保護のため詳細は非公開です。</p>
         </section>
+        <section id="gallery">
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <img src="https://www.dropbox.com/scl/fi/fp9flze5wl9danunhap0o/LINE_ALBUM_20250602_250925_1.jpg?rlkey=qtgtzr9oipg0qb2zlpd71mvcs&st=tbhbjmgf&dl=1" alt="チーム練習風景1" draggable="false" oncontextmenu="return false;">
+                <img src="https://www.dropbox.com/scl/fi/60xshw8c29v8u4iv9sl01/LINE_ALBUM_20250602_250925_3.jpg?rlkey=4piglqv4zg99jemgmvfsyiohg&st=y14ystfm&dl=1" alt="チーム練習風景2" draggable="false" oncontextmenu="return false;">
+                <img src="https://www.dropbox.com/scl/fi/tl9lspyrynnxcrftc7c14/LINE_ALBUM_20250623_250925_12.jpg?rlkey=7mksa7h56o8x81nt0sxp1ro23&st=1xiu3tf7&dl=1" alt="チーム練習風景3" draggable="false" oncontextmenu="return false;">
+                <img src="https://www.dropbox.com/scl/fi/xyzrfgdvlfl25b6718hoi/LINE_ALBUM_20250623_250925_14.jpg?rlkey=sqs3yd4h9p360luh91ckug83n&st=zmmjdwf7&dl=1" alt="チーム練習風景4" draggable="false" oncontextmenu="return false;">
+                <img src="https://www.dropbox.com/scl/fi/gvi74xsm34byy769i55c8/LINE_ALBUM_20250906-_250925_3.jpg?rlkey=m81paoovvt8kz7vd1izxgvx02&st=tizfjl60&dl=1" alt="チーム練習風景5" draggable="false" oncontextmenu="return false;">
+                <img src="https://www.dropbox.com/scl/fi/0z547g8p9rj93zuluunc6/LINE_ALBUM_20250906-_250925_22.jpg?rlkey=w7p8k1ksvbybqwr7i93lpweze&st=zz45aa2x&dl=1" alt="チーム練習風景6" draggable="false" oncontextmenu="return false;">
+                <img src="https://www.dropbox.com/scl/fi/4w0jarkfgafnkwtgfkdhm/LINE_ALBUM_20250906-_250925_25.jpg?rlkey=q9j32po38l4ro6428270efxrf&st=b6wk2w91&dl=1" alt="チーム練習風景7" draggable="false" oncontextmenu="return false;">
+                <img src="https://www.dropbox.com/scl/fi/kabmuixpbusul2dbqpkyd/LINE_ALBUM_20250906-_250925_28.jpg?rlkey=eg349s752le93o951phnyyzaa&st=d9uo27s2&dl=1" alt="チーム練習風景8" draggable="false" oncontextmenu="return false;">
+                <img src="https://www.dropbox.com/scl/fi/7i3foll35o99dfvpkrjjd/LINE_ALBUM_20250906-_250925_5.jpg?rlkey=u684hqo6xmv8dhx0g4r1ha0sa&st=4ymxlzlc&dl=1" alt="チーム練習風景9" draggable="false" oncontextmenu="return false;">
+            </div>
+        </section>
         <section id="events">
-            <h2>イベント情報</h2>
+            <h2>10/04 バレーボール練習会</h2>
             <p>次回練習は10/04に開催予定。詳細はLINEグループで確認してください。</p>
-            <img id="register-btn" src="https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1" alt="10/04練習会登録ボタン" style="width: 15vw; height: auto; border-radius: 1vw; cursor: pointer; display: block; margin: 2vw auto; transition: transform 0.3s ease;">
+            <img id="register-btn" src="https://via.placeholder.com/200x50?text=10/04練習会登録" alt="10/04練習会登録ボタン">
             <div id="status-modal" class="modal">
                 <div class="modal-content">
                     <span class="modal-close">&times;</span>
@@ -452,20 +472,6 @@
                         <button type="submit">送信</button>
                     </form>
                 </div>
-            </div>
-        </section>
-        <section id="gallery">
-            <h2>ギャラリー</h2>
-            <div class="gallery">
-                <img src="https://www.dropbox.com/scl/fi/fp9flze5wl9danunhap0o/LINE_ALBUM_20250602_250925_1.jpg?rlkey=qtgtzr9oipg0qb2zlpd71mvcs&st=tbhbjmgf&dl=1" alt="チーム練習風景1" draggable="false" oncontextmenu="return false;">
-                <img src="https://www.dropbox.com/scl/fi/60xshw8c29v8u4iv9sl01/LINE_ALBUM_20250602_250925_3.jpg?rlkey=4piglqv4zg99jemgmvfsyiohg&st=y14ystfm&dl=1" alt="チーム練習風景2" draggable="false" oncontextmenu="return false;">
-                <img src="https://www.dropbox.com/scl/fi/tl9lspyrynnxcrftc7c14/LINE_ALBUM_20250623_250925_12.jpg?rlkey=7mksa7h56o8x81nt0sxp1ro23&st=1xiu3tf7&dl=1" alt="チーム練習風景3" draggable="false" oncontextmenu="return false;">
-                <img src="https://www.dropbox.com/scl/fi/xyzrfgdvlfl25b6718hoi/LINE_ALBUM_20250623_250925_14.jpg?rlkey=sqs3yd4h9p360luh91ckug83n&st=zmmjdwf7&dl=1" alt="チーム練習風景4" draggable="false" oncontextmenu="return false;">
-                <img src="https://www.dropbox.com/scl/fi/gvi74xsm34byy769i55c8/LINE_ALBUM_20250906-_250925_3.jpg?rlkey=m81paoovvt8kz7vd1izxgvx02&st=tizfjl60&dl=1" alt="チーム練習風景5" draggable="false" oncontextmenu="return false;">
-                <img src="https://www.dropbox.com/scl/fi/0z547g8p9rj93zuluunc6/LINE_ALBUM_20250906-_250925_22.jpg?rlkey=w7p8k1ksvbybqwr7i93lpweze&st=zz45aa2x&dl=1" alt="チーム練習風景6" draggable="false" oncontextmenu="return false;">
-                <img src="https://www.dropbox.com/scl/fi/4w0jarkfgafnkwtgfkdhm/LINE_ALBUM_20250906-_250925_25.jpg?rlkey=q9j32po38l4ro6428270efxrf&st=b6wk2w91&dl=1" alt="チーム練習風景7" draggable="false" oncontextmenu="return false;">
-                <img src="https://www.dropbox.com/scl/fi/kabmuixpbusul2dbqpkyd/LINE_ALBUM_20250906-_250925_28.jpg?rlkey=eg349s752le93o951phnyyzaa&st=d9uo27s2&dl=1" alt="チーム練習風景8" draggable="false" oncontextmenu="return false;">
-                <img src="https://www.dropbox.com/scl/fi/7i3foll35o99dfvpkrjjd/LINE_ALBUM_20250906-_250925_5.jpg?rlkey=u684hqo6xmv8dhx0g4r1ha0sa&st=4ymxlzlc&dl=1" alt="チーム練習風景9" draggable="false" oncontextmenu="return false;">
             </div>
         </section>
         <section id="contact">
