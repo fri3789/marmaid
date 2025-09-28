@@ -157,7 +157,6 @@
         .contact-form {
             display: flex;
             flex-direction: column;
-me-0;
             gap: 1.5vw;
         }
         .contact-form input,
@@ -300,6 +299,12 @@ me-0;
             flex-direction: column;
             gap: 1.5vw;
         }
+        .event-form label {
+            font-size: 1.1vw;
+            color: #15416b;
+            text-align: left;
+            margin-bottom: 0.5vw;
+        }
         .event-form input {
             padding: 1.2vw;
             border: 0.2vw solid #e0f4ff;
@@ -329,6 +334,26 @@ me-0;
             background: #357abd;
             transform: translateY(-0.2vw);
         }
+        .event-form h3 {
+            font-size: 2.5vw;
+            font-weight: 600;
+            color: #15416b;
+            margin: 0 0 2vw;
+            position: relative;
+        }
+        .event-form h3::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5vw;
+            left: 0;
+            width: 5vw;
+            height: 0.3vw;
+            background: #4a90e2;
+            transition: width 0.3s ease;
+        }
+        .event-form h3:hover::after {
+            width: 10vw;
+        }
         @media (max-width: 768px) {
             h1 { font-size: 6vw; }
             nav a { font-size: 3.5vw; padding: 2vw; }
@@ -345,8 +370,10 @@ me-0;
             #register-btn { width: 30vw; }
             .modal-content { max-width: 80vw; }
             .status-btn { font-size: 3.5vw; padding: 3vw; }
+            .event-form label { font-size: 3.5vw; }
             .event-form input { font-size: 3.5vw; padding: 3vw; }
             .event-form button { font-size: 3.5vw; padding: 3vw; }
+            .event-form h3 { font-size: 5vw; }
         }
         @media (max-width: 480px) {
             nav ul { flex-direction: column; align-items: center; }
@@ -392,25 +419,41 @@ me-0;
         <section id="events">
             <h2>イベント情報</h2>
             <p>次回練習は体育館の空き状況により決定。詳細はLINEグループで確認してください。</p>
-            <!-- 画像の代わりにボタンを使用（画像URLを後で設定） -->
-            <button id="register-btn" class="contact-form button">イベント登録</button>
+            <!-- 画像ボタン -->
+            <img id="register-btn" src="https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=pae7cw45&dl=1" alt="登録ボタン">
+            <!-- ステータス選択モーダル -->
             <div id="status-modal" class="modal">
                 <div class="modal-content">
                     <span class="modal-close">&times;</span>
+                    <h3>参加状況を選択</h3>
                     <button class="status-btn" onclick="showForm('参加')">参加</button>
                     <button class="status-btn" onclick="showForm('不参加')">不参加</button>
                     <button class="status-btn" onclick="showForm('未定')">未定</button>
                 </div>
             </div>
+            <!-- 入力フォームモーダル -->
             <div id="form-modal" class="modal">
                 <div class="modal-content">
                     <span class="modal-close">&times;</span>
-                    <form id="event-form" class="event-form">
-                        <input id="name" placeholder="名前" required>
-                        <input id="email" type="email" placeholder="メールアドレス" required>
-                        <input id="phone" type="tel" placeholder="電話番号">
-                        <input id="line" placeholder="LINE名">
-                        <input id="status" type="hidden">
+                    <h3 id="form-title">登録情報入力</h3>
+                    <form id="register-form" class="event-form">
+                        <div>
+                            <label>名前:</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div>
+                            <label>メールアドレス:</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div>
+                            <label>電話番号:</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div>
+                            <label>LINE名:</label>
+                            <input type="text" id="line">
+                        </div>
+                        <input type="hidden" id="status">
                         <button type="submit">送信</button>
                     </form>
                 </div>
@@ -621,7 +664,7 @@ me-0;
         const registerBtn = document.getElementById('register-btn');
         const statusModal = document.getElementById('status-modal');
         const formModal = document.getElementById('form-modal');
-        const eventForm = document.getElementById('event-form');
+        const registerForm = document.getElementById('register-form');
         const closes = document.querySelectorAll('.modal-close');
 
         if (registerBtn) {
@@ -644,7 +687,7 @@ me-0;
                     statusModal.style.display = 'none';
                     formModal.style.display = 'none';
                 }
-                if (eventForm) eventForm.reset();
+                if (registerForm) registerForm.reset();
             });
         });
 
@@ -664,13 +707,14 @@ me-0;
                 } else {
                     formModal.style.display = 'none';
                 }
-                if (eventForm) eventForm.reset();
+                if (registerForm) registerForm.reset();
             }
         });
 
         function showForm(status) {
             console.log('Showing form for status:', status); // デバッグ用
             document.getElementById('status').value = status;
+            document.getElementById('form-title').textContent = status + 'の登録情報入力';
             if (typeof gsap !== 'undefined') {
                 gsap.to(statusModal, { autoAlpha: 0, duration: 0.3 });
                 gsap.to(formModal, { autoAlpha: 1, duration: 0.3, delay: 0.3 });
@@ -680,8 +724,8 @@ me-0;
             }
         }
 
-        if (eventForm) {
-            eventForm.addEventListener('submit', (e) => {
+        if (registerForm) {
+            registerForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 console.log('Form submitted'); // デバッグ用
                 const status = document.getElementById('status').value;
@@ -700,14 +744,14 @@ me-0;
                               gsap.to(formModal, { scale: 1, opacity: 1, duration: 0.3 });
                               setTimeout(() => {
                                   gsap.to(formModal, { autoAlpha: 0, duration: 0.3 });
-                                  eventForm.reset();
+                                  registerForm.reset();
                               }, 3000);
                           }
                     });
                 } else {
                     window.location.href = mailtoLink;
                     formModal.style.display = 'none';
-                    eventForm.reset();
+                    registerForm.reset();
                 }
             });
         }
