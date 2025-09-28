@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>チームマーメイド - Soft Volleyball Mermaid</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -228,7 +227,6 @@
             font-size: 0.95vw;
             box-shadow: 0 -0.2vw 1vw rgba(0, 0, 0, 0.05);
         }
-        /* イベント登録ボタンとモーダルのスタイル */
         #register-btn {
             width: 15vw;
             height: auto;
@@ -418,24 +416,21 @@
         </section>
         <section id="events">
             <h2>イベント情報</h2>
-            <p>次回練習は体育館の空き状況により決定。詳細はLINEグループで確認してください。</p>
-            <!-- 画像ボタン -->
-            <img id="register-btn" src="https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1" alt="登録ボタン">
-            <!-- ステータス選択モーダル -->
+            <p>次回練習は10/04に開催予定。詳細はLINEグループで確認してください。</p>
+            <img id="register-btn" src="https://via.placeholder.com/200x50?text=10/04練習会登録" alt="10/04練習会登録ボタン" style="width: 15vw; height: auto; border-radius: 1vw; cursor: pointer; display: block; margin: 2vw auto; transition: transform 0.3s ease;">
             <div id="status-modal" class="modal">
                 <div class="modal-content">
                     <span class="modal-close">&times;</span>
-                    <h3>参加状況を選択</h3>
+                    <h3>10/04練習会参加状況を選択</h3>
                     <button class="status-btn" onclick="showForm('参加')">参加</button>
                     <button class="status-btn" onclick="showForm('不参加')">不参加</button>
                     <button class="status-btn" onclick="showForm('未定')">未定</button>
                 </div>
             </div>
-            <!-- 入力フォームモーダル -->
             <div id="form-modal" class="modal">
                 <div class="modal-content">
                     <span class="modal-close">&times;</span>
-                    <h3 id="form-title">登録情報入力</h3>
+                    <h3 id="form-title">10/04練習会登録情報入力</h3>
                     <form id="register-form" class="event-form">
                         <div>
                             <label>名前:</label>
@@ -614,149 +609,111 @@
     </footer>
     <div class="overlay"></div>
     <script>
-        // スムーススクロール
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-            anchor.addEventListener('touchend', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // 連絡フォーム
-        const contactForm = document.querySelector('#contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = this.querySelector('input[name="name"]').value;
-                const email = this.querySelector('input[name="email"]').value;
-                const message = this.querySelector('textarea[name="message"]').value;
-                const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
-                const body = `お名前: ${name}\nメールアドレス: ${email}\n\nメッセージ:\n${message}`;
-                const mailtoLink = `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                gsap.fromTo(this, 
-                    { scale: 1, opacity: 1 },
-                    { scale: 1.05, opacity: 0.9, duration: 0.3, ease: "back.out(1.7)",
-                      onComplete: () => {
-                          window.location.href = mailtoLink;
-                          this.style.opacity = 1;
-                          this.style.transform = 'scale(1)';
-                          setTimeout(() => this.reset(), 3000);
-                      }
-                });
-            });
-            contactForm.addEventListener('touchend', function(e) {
-                if (e.target.tagName === 'BUTTON') {
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded - 初期化開始');
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    this.querySelector('button').click();
-                }
-            });
-        }
-
-        // イベント登録モーダル
-        const registerBtn = document.getElementById('register-btn');
-        const statusModal = document.getElementById('status-modal');
-        const formModal = document.getElementById('form-modal');
-        const registerForm = document.getElementById('register-form');
-        const closes = document.querySelectorAll('.modal-close');
-
-        if (registerBtn) {
-            registerBtn.addEventListener('click', () => {
-                console.log('Register button clicked'); // デバッグ用
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(statusModal, { autoAlpha: 1, duration: 0.3 });
-                } else {
-                    statusModal.style.display = 'block';
-                }
-            });
-        }
-
-        closes.forEach(close => {
-            close.addEventListener('click', () => {
-                console.log('Close button clicked'); // デバッグ用
-                if (typeof gsap !== 'undefined') {
-                    gsap.to([statusModal, formModal], { autoAlpha: 0, duration: 0.3 });
-                } else {
-                    statusModal.style.display = 'none';
-                    formModal.style.display = 'none';
-                }
-                if (registerForm) registerForm.reset();
-            });
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === statusModal) {
-                console.log('Clicked outside status modal'); // デバッグ用
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(statusModal, { autoAlpha: 0, duration: 0.3 });
-                } else {
-                    statusModal.style.display = 'none';
-                }
-            }
-            if (e.target === formModal) {
-                console.log('Clicked outside form modal'); // デバッグ用
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(formModal, { autoAlpha: 0, duration: 0.3 });
-                } else {
-                    formModal.style.display = 'none';
-                }
-                if (registerForm) registerForm.reset();
-            }
-        });
-
-        function showForm(status) {
-            console.log('Showing form for status:', status); // デバッグ用
-            document.getElementById('status').value = status;
-            document.getElementById('form-title').textContent = status + 'の登録情報入力';
-            if (typeof gsap !== 'undefined') {
-                gsap.to(statusModal, { autoAlpha: 0, duration: 0.3 });
-                gsap.to(formModal, { autoAlpha: 1, duration: 0.3, delay: 0.3 });
-            } else {
-                statusModal.style.display = 'none';
-                formModal.style.display = 'block';
-            }
-        }
-
-        if (registerForm) {
-            registerForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                console.log('Form submitted'); // デバッグ用
-                const status = document.getElementById('status').value;
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const line = document.getElementById('line').value;
-                const subject = `イベント登録: ${status} - ${name}`;
-                const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
-                const mailtoLink = `mailto:zznjip@gmail.com,mermaidnomail1125@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(formModal, 
-                        { scale: 1.05, opacity: 0.9, duration: 0.3, ease: "back.out(1.7)",
-                          onComplete: () => {
-                              window.location.href = mailtoLink;
-                              alert('登録完了！メールクライアントが開きます。');
-                              gsap.to(formModal, { scale: 1, opacity: 1, duration: 0.3 });
-                              setTimeout(() => {
-                                  gsap.to(formModal, { autoAlpha: 0, duration: 0.3 });
-                                  registerForm.reset();
-                              }, 3000);
-                          }
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
                     });
-                } else {
-                    window.location.href = mailtoLink;
-                    alert('登録完了！メールクライアントが開きます。');
+                });
+                anchor.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            const contactForm = document.querySelector('#contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('連絡フォーム送信');
+                    const name = this.querySelector('input[name="name"]').value;
+                    const email = this.querySelector('input[name="email"]').value;
+                    const message = this.querySelector('textarea[name="message"]').value;
+                    const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
+                    const body = `お名前: ${name}\nメールアドレス: ${email}\n\nメッセージ:\n${message}`;
+                    window.location.href = `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    this.reset();
+                });
+            }
+
+            const registerBtn = document.getElementById('register-btn');
+            const statusModal = document.getElementById('status-modal');
+            const formModal = document.getElementById('form-modal');
+            const registerForm = document.getElementById('register-form');
+            const closes = document.querySelectorAll('.modal-close');
+
+            if (registerBtn) {
+                registerBtn.addEventListener('click', function() {
+                    console.log('10/04練習会登録ボタンがクリックされました');
+                    if (statusModal) {
+                        statusModal.style.display = 'block';
+                        console.log('ステータスモーダル表示');
+                    } else {
+                        console.error('エラー: status-modalが見つかりません');
+                    }
+                });
+            } else {
+                console.error('エラー: register-btnが見つかりません');
+            }
+
+            if (closes) {
+                closes.forEach(close => {
+                    close.addEventListener('click', function() {
+                        console.log('モーダル閉じるボタンがクリックされました');
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                    });
+                });
+            }
+
+            window.addEventListener('click', function(e) {
+                if (e.target === statusModal) {
+                    console.log('ステータスモーダル外がクリックされました');
+                    statusModal.style.display = 'none';
+                }
+                if (e.target === formModal) {
+                    console.log('フォームモーダル外がクリックされました');
                     formModal.style.display = 'none';
-                    registerForm.reset();
+                    if (registerForm) registerForm.reset();
                 }
             });
-        }
+
+            window.showForm = function(status) {
+                console.log('ステータス選択: ' + status);
+                if (document.getElementById('status')) document.getElementById('status').value = status;
+                if (document.getElementById('form-title')) document.getElementById('form-title').textContent = status + 'の10/04練習会登録情報入力';
+                if (statusModal) statusModal.style.display = 'none';
+                if (formModal) formModal.style.display = 'block';
+                console.log('フォームモーダル表示');
+            };
+
+            if (registerForm) {
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('フォーム送信 - 10/04練習会登録');
+                    const status = document.getElementById('status').value;
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const line = document.getElementById('line').value;
+                    const subject = `10/04練習会登録: ${status} - ${name}`;
+                    const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
+                    window.location.href = `mailto:zznjip@gmail.com,mermaidnomail1125@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    alert('登録完了！メールクライアントが開きます。');
+                    console.log('メール送信リンク生成: ' + subject);
+                    if (formModal) formModal.style.display = 'none';
+                    if (registerForm) registerForm.reset();
+                });
+            } else {
+                console.error('エラー: register-formが見つかりません');
+            }
+        });
     </script>
 </body>
 </html>
