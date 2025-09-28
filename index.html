@@ -741,6 +741,7 @@
                         { scale: 1.05, opacity: 0.9, duration: 0.3, ease: "back.out(1.7)",
                           onComplete: () => {
                               window.location.href = mailtoLink;
+                              alert('登録完了！メールクライアントが開きます。');
                               gsap.to(formModal, { scale: 1, opacity: 1, duration: 0.3 });
                               setTimeout(() => {
                                   gsap.to(formModal, { autoAlpha: 0, duration: 0.3 });
@@ -750,6 +751,7 @@
                     });
                 } else {
                     window.location.href = mailtoLink;
+                    alert('登録完了！メールクライアントが開きます。');
                     formModal.style.display = 'none';
                     registerForm.reset();
                 }
