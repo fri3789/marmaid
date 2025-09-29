@@ -232,7 +232,7 @@
             font-size: 0.95vw;
             box-shadow: 0 -0.2vw 1vw rgba(0, 0, 0, 0.05);
         }
-        #register-btn-1004, #register-btn-1018, #register-btn-1122 {
+        #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 {
             width: 30vw;
             height: auto;
             border-radius: 1vw;
@@ -241,7 +241,7 @@
             display: block;
             margin: 2vw auto;
         }
-        #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1122:hover {
+        #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover {
             transform: scale(1.05);
         }
         .modal {
@@ -371,7 +371,7 @@
             .contact-form button { font-size: 7vw; padding: 6vw 12vw; }
             .qr-code img { width: 25vw; height: 25vw; }
             footer { font-size: 3vw; padding: 4vw; }
-            #register-btn-1004, #register-btn-1018, #register-btn-1122 { width: 45vw; }
+            #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 45vw; }
             .modal-content { max-width: 80vw; }
             .status-btn { font-size: 3.5vw; padding: 3vw; }
             .event-form label { font-size: 3.5vw; }
@@ -442,6 +442,9 @@
             <h3>10/18 バレーボール練習会</h3>
             <p>次回練習は10/18に開催予定。詳細はLINEグループで確認してください。</p>
             <img id="register-btn-1018" src="https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1" alt="10/18練習会登録ボタン">
+            <h3>11/08 バレーボール練習会</h3>
+            <p>次回練習は11/08に開催予定。詳細はLINEグループで確認してください。</p>
+            <img id="register-btn-1108" src="https://www.dropbox.com/scl/fi/gd7hk8095kgji9093ityt/11_08.jpg?rlkey=savp3wv2zgrw8ickm6nqev7c1&st=698y8ugq&dl=1" alt="11/08練習会登録ボタン">
             <h3>11/22 バレーボール練習会</h3>
             <p>次回練習は11/22に開催予定。詳細はLINEグループで確認してください。</p>
             <img id="register-btn-1122" src="https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1" alt="11/22練習会登録ボタン">
@@ -668,6 +671,7 @@
             const registerButtons = {
                 '1004': document.getElementById('register-btn-1004'),
                 '1018': document.getElementById('register-btn-1018'),
+                '1108': document.getElementById('register-btn-1108'),
                 '1122': document.getElementById('register-btn-1122')
             };
             const statusModal = document.getElementById('status-modal');
