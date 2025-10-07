@@ -13,14 +13,12 @@
             color: #1e3a8a;
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
         header {
             text-align: center;
             padding: 10vw 5vw;
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
             position: relative;
-            overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         header::before {
@@ -43,11 +41,6 @@
             font-size: 5.5vw;
             color: #ffffff;
             text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         .wave {
             position: absolute;
@@ -57,8 +50,8 @@
             height: 8vw;
             background: url('https://svgwave.in/random/1') repeat-x;
             animation: wave 12s linear infinite;
-            z-index: 1;
             opacity: 0.8;
+            z-index: 1;
         }
         @keyframes wave {
             0% { background-position-x: 0; }
@@ -66,7 +59,7 @@
         }
         nav {
             background: rgba(255, 255, 255, 0.95);
-            padding: 1.5vw 0;
+            padding: 1.5vw;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -87,7 +80,6 @@
             font-weight: 600;
             font-size: 1.2vw;
             padding: 1vw;
-            transition: all 0.3s ease;
             position: relative;
         }
         nav a::after {
@@ -105,7 +97,6 @@
         }
         nav a:hover {
             color: #0284c7;
-            transform: translateY(-2px);
         }
         .nav-toggle {
             display: none;
@@ -129,9 +120,7 @@
             margin-bottom: 4vw;
             border-radius: 1.5vw;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            animation: slideUp 0.8s ease-out;
             position: relative;
-            overflow: hidden;
         }
         section::before {
             content: '';
@@ -143,16 +132,11 @@
             background: linear-gradient(45deg, rgba(14, 165, 233, 0.05), rgba(255, 255, 255, 0.05));
             z-index: -1;
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
         h2 {
             font-family: 'Lora', serif;
             font-size: 4.5vw;
             color: #0284c7;
             margin: 0 0 2vw;
-            text-shadow: 0 0 5px rgba(14, 165, 233, 0.3);
             position: relative;
         }
         h2::after {
@@ -184,12 +168,11 @@
             object-fit: cover;
             border-radius: 1.2vw;
             border: 0.2vw solid #0284c7;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
             cursor: pointer;
         }
         .gallery img:hover, .gallery img:active {
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
         .lightbox {
             position: fixed;
@@ -202,21 +185,14 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            animation: fadeIn 0.5s ease-out;
         }
         .lightbox img {
             max-width: 90%;
             max-height: 90%;
             border-radius: 1vw;
-            box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
-            animation: zoomIn 0.5s ease-out;
         }
         .lightbox.active {
             display: flex;
-        }
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
         }
         .contact-form {
             display: flex;
@@ -231,12 +207,11 @@
             font-size: 1.1vw;
             color: #1e3a8a;
             background: #f0f9ff;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
         }
         .contact-form input:focus,
         .contact-form textarea:focus {
             border-color: #0284c7;
-            box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
         }
         .contact-form textarea {
@@ -251,30 +226,14 @@
             color: #ffffff;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
             font-size: 1.1vw;
             position: relative;
             overflow: hidden;
         }
-        .contact-form button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease;
-        }
-        .contact-form button:hover::after, .contact-form button:active::after {
-            width: 200%;
-            height: 200%;
-        }
         .contact-form button:hover, .contact-form button:active {
             background: #1e40af;
             transform: scale(1.05);
+            font-size: 1.32vw;
         }
         .qr-code {
             text-align: center;
@@ -285,11 +244,10 @@
             height: 10vw;
             border-radius: 1vw;
             border: 0.2vw solid #0284c7;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
         .qr-code img:hover, .qr-code img:active {
             transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
         .terms {
             background: #e0f4ff;
@@ -304,14 +262,13 @@
             background: #1e3a8a;
             color: #ffffff;
             font-size: 0.95vw;
-            box-shadow: 0 -0.2vw 1vw rgba(0, 0, 0, 0.2);
         }
         #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 {
             width: 30vw;
             height: auto;
             border-radius: 1vw;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
             display: block;
             margin: 2vw auto;
             border: 0.2vw solid #0284c7;
@@ -319,7 +276,6 @@
         #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover,
         #register-btn-1004:active, #register-btn-1018:active, #register-btn-1108:active, #register-btn-1122:active {
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
         .modal {
             display: none;
@@ -339,29 +295,22 @@
             width: 80%;
             max-width: 30vw;
             border-radius: 1.5vw;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            position: relative;
             text-align: center;
-            animation: slideIn 0.5s ease-out;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         .modal-close {
             position: absolute;
             top: 1vw;
             right: 1vw;
-            font-size: 2vw;
+            font-size: 2.5vw;
             color: #1e3a8a;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
         .modal-close:hover, .modal-close:active {
             color: #0284c7;
+            font-size: 3vw;
         }
         .status-btn {
-            display: block;
             width: 100%;
             padding: 1.2vw;
             margin: 1vw 0;
@@ -373,28 +322,11 @@
             border-radius: 1vw;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .status-btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease;
-        }
-        .status-btn:hover::after, .status-btn:active::after {
-            width: 200%;
-            height: 200%;
         }
         .status-btn:hover, .status-btn:active {
             background: #1e40af;
             transform: scale(1.05);
+            font-size: 1.44vw;
         }
         .event-form {
             display: flex;
@@ -414,11 +346,10 @@
             font-size: 1.1vw;
             color: #1e3a8a;
             background: #f0f9ff;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
         }
         .event-form input:focus {
             border-color: #0284c7;
-            box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
         }
         .event-form button {
@@ -429,50 +360,19 @@
             color: #ffffff;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
             font-size: 1.1vw;
-            position: relative;
-            overflow: hidden;
-        }
-        .event-form button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease;
-        }
-        .event-form button:hover::after, .event-form button:active::after {
-            width: 200%;
-            height: 200%;
+            transition: all 0.3s ease;
         }
         .event-form button:hover, .event-form button:active {
             background: #1e40af;
             transform: scale(1.05);
+            font-size: 1.32vw;
         }
         .event-form h3 {
             font-family: 'Lora', serif;
             font-size: 2.5vw;
             color: #0284c7;
             margin: 0 0 2vw;
-            text-shadow: 0 0 5px rgba(14, 165, 233, 0.3);
-        }
-        .event-form h3::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5vw;
-            left: 0;
-            width: 5vw;
-            height: 0.3vw;
-            background: #0284c7;
-            transition: width 0.3s ease;
-        }
-        .event-form h3:hover::after {
-            width: 10vw;
         }
         @media (max-width: 768px) {
             h1 { font-size: 7vw; }
@@ -488,13 +388,8 @@
                 width: 100%;
                 padding: 2vw 0;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-                animation: slideDown 0.3s ease-out;
             }
             nav ul.active { display: flex; }
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
             nav a { font-size: 4vw; padding: 2vw; }
             nav ul { gap: 2vw; }
             section { padding: 6vw; margin-bottom: 6vw; }
@@ -504,23 +399,20 @@
             .gallery img { height: 50vw; }
             .contact-form input, .contact-form textarea { font-size: 3.5vw; padding: 3vw; }
             .contact-form button { font-size: 3.5vw; padding: 3vw; }
+            .contact-form button:active { font-size: 4.2vw; }
             .qr-code img { width: 25vw; height: 25vw; }
             footer { font-size: 3vw; padding: 4vw; }
             #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 50vw; }
             .modal-content { max-width: 80vw; }
             .status-btn { font-size: 3.5vw; padding: 3vw; }
+            .status-btn:active { font-size: 4.2vw; }
             .event-form label { font-size: 3.5vw; }
             .event-form input { font-size: 3.5vw; padding: 3vw; }
             .event-form button { font-size: 3.5vw; padding: 3vw; }
+            .event-form button:active { font-size: 4.2vw; }
             .event-form h3 { font-size: 5vw; }
-            .gallery img:active, .qr-code img:active, .contact-form button:active, .status-btn:active, .event-form button:active {
-                animation: bounce 0.2s ease;
-            }
-            @keyframes bounce {
-                0% { transform: scale(1); }
-                50% { transform: scale(0.95); }
-                100% { transform: scale(1); }
-            }
+            .modal-close { font-size: 3vw; }
+            .modal-close:active { font-size: 3.6vw; }
         }
         @media (max-width: 480px) {
             nav ul { padding: 4vw 0; }
@@ -653,7 +545,120 @@
             <p>制定日: 2025年6月27日（適宜改訂あり）</p>
             <h2>第1条（目的）</h2>
             <p>障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指します。障害者スポーツの普及を推進。</p>
-            <!-- 規約内容は変更なしのため省略 -->
+            <h2>第2条（チーム概要）</h2>
+            <ol>
+                <li>名称: マーメイド</li>
+                <li>設立: 2025年1月12日</li>
+                <li>活動拠点: 千葉県内</li>
+                <li>競技種目: ソフトバレーボール（男女混合）</li>
+            </ol>
+            <h2>第3条（会員資格）</h2>
+            <h3>1. 加入条件:</h3>
+            <ul>
+                <li>18歳以上の障害者および健常者。</li>
+                <li>ソフトバレーを楽しむ意欲とチーム目的への賛同。</li>
+                <li>本規約とLINEルールに同意し、LINEに従う。</li>
+            </ul>
+            <h3>2. 入会手続き:</h3>
+            <ul>
+                <li>代表者に申告し、健康・障害情報を提供。</li>
+            </ul>
+            <h3>3. 退会:</h3>
+            <ul>
+                <li>代表者に通知。規約違反時は退会手続きが制限される場合あり。</li>
+            </ul>
+            <h2>第4条（活動内容）</h2>
+            <h3>1. 練習:</h3>
+            <ul>
+                <li>日程: 随時決定</li>
+                <li>場所: 随時決定</li>
+                <li>内容: 基本練習、試合形式、障害調整</li>
+            </ul>
+            <h3>2. 試合: 未定</h3>
+            <h2>第5条（会費）</h2>
+            <h3>1. 会費:</h3>
+            <ul>
+                <li>1回400円（変動あり）</li>
+                <li>入館時現金支払い</li>
+            </ul>
+            <h3>2. 使途:</h3>
+            <ul>
+                <li>施設使用料、備品購入など</li>
+            </ul>
+            <h3>3. 遅延対応:</h3>
+            <ul>
+                <li>未納時は参加不可</li>
+            </ul>
+            <h2>第6条（組織と役割）</h2>
+            <h3>1. 運営体制:</h3>
+            <ul>
+                <li>幹事、副幹事（財務・情報発信）</li>
+            </ul>
+            <h3>2. 連絡体制:</h3>
+            <ul>
+                <li>LINEグループ、メール、電話</li>
+                <li>障害に配慮した連絡</li>
+            </ul>
+            <h2>第7条（ルールとマナー）</h2>
+            <h3>1. 練習ルール:</h3>
+            <ul>
+                <li>出席確認、遅刻・欠席連絡</li>
+                <li>施設ルール遵守</li>
+                <li>障害に配慮</li>
+            </ul>
+            <h3>2. 禁止事項:</h3>
+            <ul>
+                <li>暴力、飲酒、喫煙、規約違反</li>
+            </ul>
+            <h2>第8条（安全と健康管理）</h2>
+            <h3>1. 健康管理:</h3>
+            <ul>
+                <li>健康・障害情報を提供</li>
+                <li>体調不良時は参加控え</li>
+            </ul>
+            <h3>2. 保険: 検討中</h3>
+            <h3>3. 怪我対応:</h3>
+            <ul>
+                <li>119番通報、応急処置</li>
+            </ul>
+            <h2>第9条（大会参加）</h2>
+            <h3>1. 参加資格:</h3>
+            <ul>
+                <li>大会ルールに従う</li>
+            </ul>
+            <h3>2. 費用:</h3>
+            <ul>
+                <li>1大会5,000円（事前徴収）</li>
+            </ul>
+            <h2>第10条（規約違反）</h2>
+            <h3>1. 違反行為:</h3>
+            <ul>
+                <li>会費未納、マナー違反</li>
+            </ul>
+            <h3>2. 懲戒:</h3>
+            <ul>
+                <li>警告、停止、除名</li>
+            </ul>
+            <h2>第11条（個人情報保護）</h2>
+            <h3>1. 情報管理:</h3>
+            <ul>
+                <li>幹事・副幹事が管理</li>
+                <li>運営目的以外使用禁止</li>
+            </ul>
+            <h2>第12条（解散）</h2>
+            <h3>1. 解散条件:</h3>
+            <ul>
+                <li>財政難や目的達成不能時</li>
+            </ul>
+            <h3>2. 資産処理:</h3>
+            <ul>
+                <li>寄付または分配</li>
+            </ul>
+            <h2>附則</h2>
+            <ol>
+                <li>施行: 2025年6月17日</li>
+                <li>未定事項は4名以上で決定</li>
+            </ol>
         </section>
     </main>
     <footer>
@@ -663,83 +668,68 @@
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOMContentLoaded - 初期化開始');
-
+        document.addEventListener('DOMContentLoaded', () => {
             // スムーススクロール
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
+                const handler = e => {
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-                anchor.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    target?.scrollIntoView({ behavior: 'smooth' });
+                };
+                anchor.addEventListener('click', handler);
+                anchor.addEventListener('touchend', handler);
             });
 
             // モバイルナビゲーショントグル
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('nav ul');
             if (navToggle && navMenu) {
-                navToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                });
-                navToggle.addEventListener('touchend', function(e) {
+                const toggleHandler = e => {
                     e.preventDefault();
                     navMenu.classList.toggle('active');
-                });
+                };
+                navToggle.addEventListener('click', toggleHandler);
+                navToggle.addEventListener('touchend', toggleHandler);
             }
 
             // ライトボックス機能
             const galleryImages = document.querySelectorAll('.gallery img');
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            galleryImages.forEach(img => {
-                img.addEventListener('click', function() {
-                    lightboxImg.src = this.src;
-                    lightbox.classList.add('active');
+            if (galleryImages.length && lightbox && lightboxImg) {
+                galleryImages.forEach(img => {
+                    const handler = e => {
+                        e.preventDefault();
+                        lightboxImg.src = img.src;
+                        lightbox.classList.add('active');
+                    };
+                    img.addEventListener('click', handler);
+                    img.addEventListener('touchend', handler);
                 });
-                img.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    lightboxImg.src = this.src;
-                    lightbox.classList.add('active');
-                });
-            });
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) {
-                    lightbox.classList.remove('active');
-                }
-            });
-            lightbox.addEventListener('touchend', function(e) {
-                if (e.target === lightbox) {
-                    lightbox.classList.remove('active');
-                }
-            });
+                const closeLightbox = e => {
+                    if (e.target === lightbox) lightbox.classList.remove('active');
+                };
+                lightbox.addEventListener('click', closeLightbox);
+                lightbox.addEventListener('touchend', closeLightbox);
+            }
 
             // 連絡フォームの送信処理
             const contactForm = document.querySelector('#contact-form');
             if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+                contactForm.addEventListener('submit', e => {
                     e.preventDefault();
-                    console.log('連絡フォーム送信');
-                    const name = this.querySelector('input[name="name"]').value;
-                    const email = this.querySelector('input[name="email"]').value;
-                    const message = this.querySelector('textarea[name="message"]').value;
+                    const name = contactForm.querySelector('input[name="name"]').value;
+                    const email = contactForm.querySelector('input[name="email"]').value;
+                    const message = contactForm.querySelector('textarea[name="message"]').value;
                     const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
                     const body = `お名前: ${name}\nメールアドレス: ${email}\nメッセージ:\n${message}`;
                     try {
                         window.location.href = `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                        console.log('連絡フォーム: メールリンク生成成功');
-                        this.reset();
+                        contactForm.reset();
                         alert('問い合わせ送信完了！メールクライアントが開きます。');
                     } catch (error) {
-                        console.error('連絡フォーム: メール送信エラー', error);
-                        alert('メール送信に失敗しました。メールクライアントを確認してください。');
+                        console.error('連絡フォームエラー:', error);
+                        alert('メール送信に失敗しました。');
                     }
                 });
             }
@@ -758,92 +748,67 @@
             let currentEventDate = '';
 
             Object.keys(registerButtons).forEach(date => {
-                if (registerButtons[date]) {
-                    registerButtons[date].addEventListener('click', function() {
-                        console.log(`${date.replace(/(\d{2})(\d{2})/, '$1/$2')}練習会登録ボタンがクリックされました`);
-                        currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
-                        if (statusModal) {
-                            document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
-                            statusModal.style.display = 'block';
-                            console.log('ステータスモーダル表示');
-                        } else {
-                            console.error('エラー: status-modalが見つかりません');
-                            alert('モーダル表示に失敗しました。ページを更新してください。');
-                        }
-                    });
-                    registerButtons[date].addEventListener('touchend', function(e) {
+                const btn = registerButtons[date];
+                if (btn) {
+                    const handler = e => {
                         e.preventDefault();
-                        console.log(`${date.replace(/(\d{2})(\d{2})/, '$1/$2')}練習会登録ボタンがタッチされました`);
                         currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
                         if (statusModal) {
                             document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
                             statusModal.style.display = 'block';
-                            console.log('ステータスモーダル表示');
+                        } else {
+                            alert('モーダル表示に失敗しました。');
                         }
-                    });
-                } else {
-                    console.error(`エラー: register-btn-${date}が見つかりません`);
+                    };
+                    btn.addEventListener('click', handler);
+                    btn.addEventListener('touchend', handler);
                 }
             });
 
             if (closes) {
                 closes.forEach(close => {
-                    close.addEventListener('click', function() {
-                        console.log('モーダル閉じるボタンがクリックされました');
-                        if (statusModal) statusModal.style.display = 'none';
-                        if (formModal) formModal.style.display = 'none';
-                        if (registerForm) registerForm.reset();
-                    });
-                    close.addEventListener('touchend', function(e) {
+                    const handler = e => {
                         e.preventDefault();
-                        console.log('モーダル閉じるボタンがタッチされました');
-                        if (statusModal) statusModal.style.display = 'none';
-                        if (formModal) formModal.style.display = 'none';
-                        if (registerForm) registerForm.reset();
-                    });
+                        statusModal.style.display = 'none';
+                        formModal.style.display = 'none';
+                        registerForm?.reset();
+                    };
+                    close.addEventListener('click', handler);
+                    close.addEventListener('touchend', handler);
                 });
             }
 
-            // モーダル外クリックで閉じる
-            window.addEventListener('click', function(e) {
-                if (e.target === statusModal) {
-                    console.log('ステータスモーダル外がクリックされました');
-                    statusModal.style.display = 'none';
-                }
+            window.addEventListener('click', e => {
+                if (e.target === statusModal) statusModal.style.display = 'none';
                 if (e.target === formModal) {
-                    console.log('フォームモーダル外がクリックされました');
                     formModal.style.display = 'none';
-                    if (registerForm) registerForm.reset();
+                    registerForm?.reset();
                 }
             });
 
-            // Escキーによるモーダル閉鎖
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', e => {
                 if (e.key === 'Escape') {
-                    console.log('Escキーが押されました - モーダルを閉じます');
-                    if (statusModal) statusModal.style.display = 'none';
-                    if (formModal) formModal.style.display = 'none';
-                    if (registerForm) registerForm.reset();
-                    if (lightbox) lightbox.classList.remove('active');
+                    statusModal.style.display = 'none';
+                    formModal.style.display = 'none';
+                    registerForm?.reset();
+                    lightbox?.classList.remove('active');
                 }
             });
 
-            // 参加状況選択後のフォーム表示
-            window.showForm = function(status) {
-                console.log('ステータス選択: ' + status);
-                if (document.getElementById('status')) document.getElementById('status').value = status;
-                if (document.getElementById('event-date')) document.getElementById('event-date').value = currentEventDate;
-                if (document.getElementById('form-title')) document.getElementById('form-title').textContent = `${status}の${currentEventDate}練習会登録情報入力`;
-                if (statusModal) statusModal.style.display = 'none';
-                if (formModal) formModal.style.display = 'block';
-                console.log('フォームモーダル表示');
+            window.showForm = status => {
+                const statusInput = document.getElementById('status');
+                const eventDateInput = document.getElementById('event-date');
+                const formTitle = document.getElementById('form-title');
+                if (statusInput) statusInput.value = status;
+                if (eventDateInput) eventDateInput.value = currentEventDate;
+                if (formTitle) formTitle.textContent = `${status}の${currentEventDate}練習会登録情報入力`;
+                statusModal.style.display = 'none';
+                formModal.style.display = 'block';
             };
 
-            // 登録フォームの送信処理
             if (registerForm) {
-                registerForm.addEventListener('submit', function(e) {
+                registerForm.addEventListener('submit', e => {
                     e.preventDefault();
-                    console.log(`フォーム送信 - ${currentEventDate}練習会登録`);
                     const status = document.getElementById('status').value;
                     const eventDate = document.getElementById('event-date').value;
                     const name = document.getElementById('name').value;
@@ -853,18 +818,15 @@
                     const subject = `${eventDate}練習会登録: ${status} - ${name}`;
                     const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
                     try {
-                        window.location.href = `mailto:zznjip@gmail.com,mermaidnomail1125@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                        console.log('メール送信リンク生成: ' + subject);
+                        window.location.href = `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                         alert('登録完了！メールクライアントが開きます。');
-                        if (formModal) formModal.style.display = 'none';
-                        if (registerForm) registerForm.reset();
+                        formModal.style.display = 'none';
+                        registerForm.reset();
                     } catch (error) {
-                        console.error('登録フォーム: メール送信エラー', error);
-                        alert('メール送信に失敗しました。メールクライアントを確認してください。');
+                        console.error('登録フォームエラー:', error);
+                        alert('メール送信に失敗しました。');
                     }
                 });
-            } else {
-                console.error('エラー: register-formが見つかりません');
             }
         });
     </script>
