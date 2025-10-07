@@ -41,6 +41,11 @@
             font-size: 5.5vw;
             color: #ffffff;
             text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
+            animation: fadeIn 1.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .wave {
             position: absolute;
@@ -81,6 +86,7 @@
             font-size: 1.2vw;
             padding: 1vw;
             position: relative;
+            transition: color 0.3s ease;
         }
         nav a::after {
             content: '';
@@ -121,6 +127,11 @@
             border-radius: 1.5vw;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             position: relative;
+            animation: slideIn 0.8s ease-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         section::before {
             content: '';
@@ -168,11 +179,12 @@
             object-fit: cover;
             border-radius: 1.2vw;
             border: 0.2vw solid #0284c7;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
         .gallery img:hover, .gallery img:active {
             transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
         .lightbox {
             position: fixed;
@@ -185,11 +197,17 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
+            animation: fadeIn 0.5s ease-out;
         }
         .lightbox img {
             max-width: 90%;
             max-height: 90%;
             border-radius: 1vw;
+            animation: zoomIn 0.5s ease-out;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         .lightbox.active {
             display: flex;
@@ -207,11 +225,12 @@
             font-size: 1.1vw;
             color: #1e3a8a;
             background: #f0f9ff;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .contact-form input:focus,
         .contact-form textarea:focus {
             border-color: #0284c7;
+            box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
         }
         .contact-form textarea {
@@ -229,6 +248,23 @@
             font-size: 1.1vw;
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .contact-form button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+        .contact-form button:hover::after, .contact-form button:active::after {
+            width: 200%;
+            height: 200%;
         }
         .contact-form button:hover, .contact-form button:active {
             background: #1e40af;
@@ -244,10 +280,11 @@
             height: 10vw;
             border-radius: 1vw;
             border: 0.2vw solid #0284c7;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .qr-code img:hover, .qr-code img:active {
             transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
         .terms {
             background: #e0f4ff;
@@ -268,7 +305,7 @@
             height: auto;
             border-radius: 1vw;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: block;
             margin: 2vw auto;
             border: 0.2vw solid #0284c7;
@@ -276,6 +313,7 @@
         #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover,
         #register-btn-1004:active, #register-btn-1018:active, #register-btn-1108:active, #register-btn-1122:active {
             transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
         .modal {
             display: none;
@@ -287,6 +325,7 @@
             background: rgba(0, 0, 0, 0.7);
             z-index: 1000;
             backdrop-filter: blur(5px);
+            animation: fadeIn 0.5s ease-out;
         }
         .modal-content {
             background: #ffffff;
@@ -295,20 +334,24 @@
             width: 80%;
             max-width: 30vw;
             border-radius: 1.5vw;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             text-align: center;
+            animation: slideIn 0.5s ease-out;
         }
         .modal-close {
             position: absolute;
             top: 1vw;
             right: 1vw;
-            font-size: 2.5vw;
-            color: #1e3a8a;
+            font-size: 3vw;
+            color: #0284c7;
             cursor: pointer;
             transition: all 0.3s ease;
+            pointer-events: auto;
+            text-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
         }
         .modal-close:hover, .modal-close:active {
-            color: #0284c7;
-            font-size: 3vw;
+            color: #1e40af;
+            font-size: 3.6vw;
         }
         .status-btn {
             width: 100%;
@@ -322,6 +365,24 @@
             border-radius: 1vw;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .status-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+        .status-btn:hover::after, .status-btn:active::after {
+            width: 200%;
+            height: 200%;
         }
         .status-btn:hover, .status-btn:active {
             background: #1e40af;
@@ -346,10 +407,11 @@
             font-size: 1.1vw;
             color: #1e3a8a;
             background: #f0f9ff;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .event-form input:focus {
             border-color: #0284c7;
+            box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
         }
         .event-form button {
@@ -362,6 +424,24 @@
             cursor: pointer;
             font-size: 1.1vw;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .event-form button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+        .event-form button:hover::after, .event-form button:active::after {
+            width: 200%;
+            height: 200%;
         }
         .event-form button:hover, .event-form button:active {
             background: #1e40af;
@@ -411,8 +491,8 @@
             .event-form button { font-size: 3.5vw; padding: 3vw; }
             .event-form button:active { font-size: 4.2vw; }
             .event-form h3 { font-size: 5vw; }
-            .modal-close { font-size: 3vw; }
-            .modal-close:active { font-size: 3.6vw; }
+            .modal-close { font-size: 5vw; }
+            .modal-close:hover, .modal-close:active { font-size: 6vw; }
         }
         @media (max-width: 480px) {
             nav ul { padding: 4vw 0; }
@@ -490,7 +570,7 @@
             <img id="register-btn-1122" src="https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1" alt="11/22練習会登録ボタン">
             <div id="status-modal" class="modal">
                 <div class="modal-content">
-                    <span class="modal-close">&times;</span>
+                    <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
                     <h3 id="status-title">練習会参加状況を選択</h3>
                     <button class="status-btn" onclick="showForm('参加')">参加</button>
                     <button class="status-btn" onclick="showForm('不参加')">不参加</button>
@@ -499,23 +579,23 @@
             </div>
             <div id="form-modal" class="modal">
                 <div class="modal-content">
-                    <span class="modal-close">&times;</span>
+                    <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
                     <h3 id="form-title">練習会登録情報入力</h3>
                     <form id="register-form" class="event-form">
                         <div>
-                            <label>名前:</label>
+                            <label for="name">名前:</label>
                             <input type="text" id="name" required>
                         </div>
                         <div>
-                            <label>メールアドレス:</label>
+                            <label for="email">メールアドレス:</label>
                             <input type="email" id="email" required>
                         </div>
                         <div>
-                            <label>電話番号:</label>
+                            <label for="phone">電話番号:</label>
                             <input type="tel" id="phone">
                         </div>
                         <div>
-                            <label>LINE名:</label>
+                            <label for="line">LINE名:</label>
                             <input type="text" id="line">
                         </div>
                         <input type="hidden" id="status">
@@ -674,7 +754,7 @@
                 const handler = e => {
                     e.preventDefault();
                     const target = document.querySelector(anchor.getAttribute('href'));
-                    target?.scrollIntoView({ behavior: 'smooth' });
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
                 };
                 anchor.addEventListener('click', handler);
                 anchor.addEventListener('touchend', handler);
@@ -718,9 +798,13 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', e => {
                     e.preventDefault();
-                    const name = contactForm.querySelector('input[name="name"]').value;
-                    const email = contactForm.querySelector('input[name="email"]').value;
-                    const message = contactForm.querySelector('textarea[name="message"]').value;
+                    const name = contactForm.querySelector('input[name="name"]').value.trim();
+                    const email = contactForm.querySelector('input[name="email"]').value.trim();
+                    const message = contactForm.querySelector('textarea[name="message"]').value.trim();
+                    if (!name || !email || !message) {
+                        alert('すべての必須フィールドを入力してください。');
+                        return;
+                    }
                     const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
                     const body = `お名前: ${name}\nメールアドレス: ${email}\nメッセージ:\n${message}`;
                     try {
@@ -728,7 +812,6 @@
                         contactForm.reset();
                         alert('問い合わせ送信完了！メールクライアントが開きます。');
                     } catch (error) {
-                        console.error('連絡フォームエラー:', error);
                         alert('メール送信に失敗しました。');
                     }
                 });
@@ -756,6 +839,7 @@
                         if (statusModal) {
                             document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
                             statusModal.style.display = 'block';
+                            statusModal.focus();
                         } else {
                             alert('モーダル表示に失敗しました。');
                         }
@@ -769,29 +853,37 @@
                 closes.forEach(close => {
                     const handler = e => {
                         e.preventDefault();
-                        statusModal.style.display = 'none';
-                        formModal.style.display = 'none';
-                        registerForm?.reset();
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
                     };
                     close.addEventListener('click', handler);
                     close.addEventListener('touchend', handler);
+                    close.addEventListener('keydown', e => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            handler(e);
+                        }
+                    });
                 });
             }
 
             window.addEventListener('click', e => {
-                if (e.target === statusModal) statusModal.style.display = 'none';
+                if (e.target === statusModal) {
+                    statusModal.style.display = 'none';
+                }
                 if (e.target === formModal) {
                     formModal.style.display = 'none';
-                    registerForm?.reset();
+                    if (registerForm) registerForm.reset();
                 }
             });
 
             document.addEventListener('keydown', e => {
                 if (e.key === 'Escape') {
-                    statusModal.style.display = 'none';
-                    formModal.style.display = 'none';
-                    registerForm?.reset();
-                    lightbox?.classList.remove('active');
+                    if (statusModal) statusModal.style.display = 'none';
+                    if (formModal) formModal.style.display = 'none';
+                    if (registerForm) registerForm.reset();
+                    if (lightbox) lightbox.classList.remove('active');
                 }
             });
 
@@ -802,8 +894,11 @@
                 if (statusInput) statusInput.value = status;
                 if (eventDateInput) eventDateInput.value = currentEventDate;
                 if (formTitle) formTitle.textContent = `${status}の${currentEventDate}練習会登録情報入力`;
-                statusModal.style.display = 'none';
-                formModal.style.display = 'block';
+                if (statusModal) statusModal.style.display = 'none';
+                if (formModal) {
+                    formModal.style.display = 'block';
+                    formModal.focus();
+                }
             };
 
             if (registerForm) {
@@ -811,10 +906,14 @@
                     e.preventDefault();
                     const status = document.getElementById('status').value;
                     const eventDate = document.getElementById('event-date').value;
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    const phone = document.getElementById('phone').value || '未入力';
-                    const line = document.getElementById('line').value || '未入力';
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim() || '未入力';
+                    const line = document.getElementById('line').value.trim() || '未入力';
+                    if (!name || !email) {
+                        alert('名前とメールアドレスは必須です。');
+                        return;
+                    }
                     const subject = `${eventDate}練習会登録: ${status} - ${name}`;
                     const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
                     try {
@@ -823,7 +922,6 @@
                         formModal.style.display = 'none';
                         registerForm.reset();
                     } catch (error) {
-                        console.error('登録フォームエラー:', error);
                         alert('メール送信に失敗しました。');
                     }
                 });
