@@ -6,17 +6,21 @@
     <title>チームマーメイド - Soft Volleyball Mermaid</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+        }
+        body {
             font-family: 'Poppins', sans-serif;
-            background: #f0f9ff;
+            background: linear-gradient(135deg, #e0f4ff, #f0f9ff);
             color: #1e3a8a;
             line-height: 1.6;
             overflow-x: hidden;
         }
         header {
             text-align: center;
-            padding: 10vw 5vw;
+            padding: 12vw 5vw;
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
             position: relative;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -28,7 +32,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.4), rgba(56, 189, 248, 0.4));
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(56, 189, 248, 0.5));
             z-index: 1;
         }
         .header-content {
@@ -36,9 +40,8 @@
             z-index: 2;
         }
         h1 {
-            margin: 0;
             font-family: 'Lora', serif;
-            font-size: 5.5vw;
+            font-size: 6vw;
             color: #ffffff;
             text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
             animation: fadeIn 1.5s ease-out;
@@ -72,7 +75,6 @@
         }
         nav ul {
             list-style: none;
-            padding: 0;
             display: flex;
             justify-content: center;
             gap: 3vw;
@@ -157,7 +159,7 @@
             left: 0;
             width: 5vw;
             height: 0.3vw;
-            background: #0284c7;
+            background: linear-gradient(to right, #0284c7, #1e40af);
             transition: width 0.3s ease;
         }
         h2:hover::after {
@@ -181,10 +183,11 @@
             border: 0.2vw solid #0284c7;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            loading: lazy;
         }
         .gallery img:hover, .gallery img:active {
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
         .lightbox {
             position: fixed;
@@ -201,9 +204,24 @@
         }
         .lightbox img {
             max-width: 90%;
-            max-height: 90%;
+            max-height: 80%;
             border-radius: 1vw;
             animation: zoomIn 0.5s ease-out;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2vw;
+            right: 2vw;
+            font-size: 6vw;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
+            padding: 1vw;
+        }
+        .lightbox-close:hover, .lightbox-close:active {
+            color: #0284c7;
+            font-size: 7.2vw;
         }
         @keyframes zoomIn {
             from { transform: scale(0.8); opacity: 0; }
@@ -241,7 +259,7 @@
             padding: 2vw 4vw;
             border: none;
             border-radius: 1vw;
-            background: #0284c7;
+            background: linear-gradient(135deg, #0284c7, #1e40af);
             color: #ffffff;
             font-weight: 600;
             cursor: pointer;
@@ -267,7 +285,6 @@
             height: 200%;
         }
         .contact-form button:hover, .contact-form button:active {
-            background: #1e40af;
             transform: scale(1.05);
             font-size: 1.32vw;
         }
@@ -281,10 +298,11 @@
             border-radius: 1vw;
             border: 0.2vw solid #0284c7;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            loading: lazy;
         }
         .qr-code img:hover, .qr-code img:active {
             transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
         .terms {
             background: #e0f4ff;
@@ -296,7 +314,7 @@
         footer {
             text-align: center;
             padding: 2.5vw;
-            background: #1e3a8a;
+            background: linear-gradient(135deg, #1e3a8a, #0284c7);
             color: #ffffff;
             font-size: 0.95vw;
         }
@@ -309,11 +327,12 @@
             display: block;
             margin: 2vw auto;
             border: 0.2vw solid #0284c7;
+            loading: lazy;
         }
         #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover,
         #register-btn-1004:active, #register-btn-1018:active, #register-btn-1108:active, #register-btn-1122:active {
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
         .modal {
             display: none;
@@ -342,23 +361,26 @@
             position: absolute;
             top: 1vw;
             right: 1vw;
-            font-size: 3vw;
-            color: #0284c7;
+            font-size: 6vw;
+            color: #1e40af;
+            background: #ffffff;
+            border-radius: 50%;
+            padding: 1vw;
             cursor: pointer;
             transition: all 0.3s ease;
-            pointer-events: auto;
             text-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
         }
         .modal-close:hover, .modal-close:active {
-            color: #1e40af;
-            font-size: 3.6vw;
+            color: #0284c7;
+            font-size: 7.2vw;
+            transform: scale(1.1);
         }
         .status-btn {
             width: 100%;
             padding: 1.2vw;
             margin: 1vw 0;
             border: none;
-            background: #0284c7;
+            background: linear-gradient(135deg, #0284c7, #1e40af);
             color: #ffffff;
             font-size: 1.2vw;
             font-weight: 600;
@@ -385,7 +407,6 @@
             height: 200%;
         }
         .status-btn:hover, .status-btn:active {
-            background: #1e40af;
             transform: scale(1.05);
             font-size: 1.44vw;
         }
@@ -418,7 +439,7 @@
             padding: 1.2vw;
             border: none;
             border-radius: 1vw;
-            background: #0284c7;
+            background: linear-gradient(135deg, #0284c7, #1e40af);
             color: #ffffff;
             font-weight: 600;
             cursor: pointer;
@@ -444,7 +465,6 @@
             height: 200%;
         }
         .event-form button:hover, .event-form button:active {
-            background: #1e40af;
             transform: scale(1.05);
             font-size: 1.32vw;
         }
@@ -455,7 +475,7 @@
             margin: 0 0 2vw;
         }
         @media (max-width: 768px) {
-            h1 { font-size: 7vw; }
+            h1 { font-size: 8vw; }
             .nav-toggle { display: block; }
             nav ul {
                 display: none;
@@ -491,8 +511,10 @@
             .event-form button { font-size: 3.5vw; padding: 3vw; }
             .event-form button:active { font-size: 4.2vw; }
             .event-form h3 { font-size: 5vw; }
-            .modal-close { font-size: 5vw; }
-            .modal-close:hover, .modal-close:active { font-size: 6vw; }
+            .modal-close { font-size: 6vw; padding: 1vw; }
+            .modal-close:hover, .modal-close:active { font-size: 7.2vw; }
+            .lightbox-close { font-size: 6vw; }
+            .lightbox-close:hover, .lightbox-close:active { font-size: 7.2vw; }
         }
         @media (max-width: 480px) {
             nav ul { padding: 4vw 0; }
@@ -543,32 +565,32 @@
         <section id="gallery">
             <h2>ギャラリー</h2>
             <div class="gallery">
-                <img src="https://www.dropbox.com/scl/fi/fp9flze5wl9danunhap0o/LINE_ALBUM_20250602_250925_1.jpg?rlkey=qtgtzr9oipg0qb2zlpd71mvcs&st=tbhbjmgf&dl=1" alt="チーム練習風景1">
-                <img src="https://www.dropbox.com/scl/fi/60xshw8c29v8u4iv9sl01/LINE_ALBUM_20250602_250925_3.jpg?rlkey=4piglqv4zg99jemgmvfsyiohg&st=y14ystfm&dl=1" alt="チーム練習風景2">
-                <img src="https://www.dropbox.com/scl/fi/tl9lspyrynnxcrftc7c14/LINE_ALBUM_20250623_250925_12.jpg?rlkey=7mksa7h56o8x81nt0sxp1ro23&st=1xiu3tf7&dl=1" alt="チーム練習風景3">
-                <img src="https://www.dropbox.com/scl/fi/xyzrfgdvlfl25b6718hoi/LINE_ALBUM_20250623_250925_14.jpg?rlkey=sqs3yd4h9p360luh91ckug83n&st=zmmjdwf7&dl=1" alt="チーム練習風景4">
-                <img src="https://www.dropbox.com/scl/fi/gvi74xsm34byy769i55c8/LINE_ALBUM_20250906-_250925_3.jpg?rlkey=m81paoovvt8kz7vd1izxgvx02&st=tizfjl60&dl=1" alt="チーム練習風景5">
-                <img src="https://www.dropbox.com/scl/fi/0z547g8p9rj93zuluunc6/LINE_ALBUM_20250906-_250925_22.jpg?rlkey=w7p8k1ksvbybqwr7i93lpweze&st=zz45aa2x&dl=1" alt="チーム練習風景6">
-                <img src="https://www.dropbox.com/scl/fi/4w0jarkfgafnkwtgfkdhm/LINE_ALBUM_20250906-_250925_25.jpg?rlkey=q9j32po38l4ro6428270efxrf&st=b6wk2w91&dl=1" alt="チーム練習風景7">
-                <img src="https://www.dropbox.com/scl/fi/kabmuixpbusul2dbqpkyd/LINE_ALBUM_20250906-_250925_28.jpg?rlkey=eg349s752le93o951phnyyzaa&st=d9uo27s2&dl=1" alt="チーム練習風景8">
-                <img src="https://www.dropbox.com/scl/fi/7i3foll35o99dfvpkrjjd/LINE_ALBUM_20250906-_250925_5.jpg?rlkey=u684hqo6xmv8dhx0g4r1ha0sa&st=4ymxlzlc&dl=1" alt="チーム練習風景9">
+                <img src="https://www.dropbox.com/scl/fi/fp9flze5wl9danunhap0o/LINE_ALBUM_20250602_250925_1.jpg?rlkey=qtgtzr9oipg0qb2zlpd71mvcs&st=tbhbjmgf&dl=1" alt="チーム練習風景1" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/60xshw8c29v8u4iv9sl01/LINE_ALBUM_20250602_250925_3.jpg?rlkey=4piglqv4zg99jemgmvfsyiohg&st=y14ystfm&dl=1" alt="チーム練習風景2" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/tl9lspyrynnxcrftc7c14/LINE_ALBUM_20250623_250925_12.jpg?rlkey=7mksa7h56o8x81nt0sxp1ro23&st=1xiu3tf7&dl=1" alt="チーム練習風景3" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/xyzrfgdvlfl25b6718hoi/LINE_ALBUM_20250623_250925_14.jpg?rlkey=sqs3yd4h9p360luh91ckug83n&st=zmmjdwf7&dl=1" alt="チーム練習風景4" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/gvi74xsm34byy769i55c8/LINE_ALBUM_20250906-_250925_3.jpg?rlkey=m81paoovvt8kz7vd1izxgvx02&st=tizfjl60&dl=1" alt="チーム練習風景5" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/0z547g8p9rj93zuluunc6/LINE_ALBUM_20250906-_250925_22.jpg?rlkey=w7p8k1ksvbybqwr7i93lpweze&st=zz45aa2x&dl=1" alt="チーム練習風景6" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/4w0jarkfgafnkwtgfkdhm/LINE_ALBUM_20250906-_250925_25.jpg?rlkey=q9j32po38l4ro6428270efxrf&st=b6wk2w91&dl=1" alt="チーム練習風景7" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/kabmuixpbusul2dbqpkyd/LINE_ALBUM_20250906-_250925_28.jpg?rlkey=eg349s752le93o951phnyyzaa&st=d9uo27s2&dl=1" alt="チーム練習風景8" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/7i3foll35o99dfvpkrjjd/LINE_ALBUM_20250906-_250925_5.jpg?rlkey=u684hqo6xmv8dhx0g4r1ha0sa&st=4ymxlzlc&dl=1" alt="チーム練習風景9" loading="lazy">
             </div>
         </section>
         <section id="events">
             <h2>イベント情報</h2>
             <h3>10/04 バレーボール練習会</h3>
             <p>次回練習は10/04に開催予定。詳細はLINEグループで確認してください。</p>
-            <img id="register-btn-1004" src="https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1" alt="10/04練習会登録ボタン">
+            <img id="register-btn-1004" src="https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1" alt="10/04練習会登録ボタン" loading="lazy">
             <h3>10/18 バレーボール練習会</h3>
             <p>次回練習は10/18に開催予定。詳細はLINEグループで確認してください。</p>
-            <img id="register-btn-1018" src="https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1" alt="10/18練習会登録ボタン">
+            <img id="register-btn-1018" src="https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1" alt="10/18練習会登録ボタン" loading="lazy">
             <h3>11/08 バレーボール練習会</h3>
             <p>次回練習は11/08に開催予定。詳細はLINEグループで確認してください。</p>
-            <img id="register-btn-1108" src="https://www.dropbox.com/scl/fi/gd7hk8095kgji9093ityt/11_08.jpg?rlkey=savp3wv2zgrw8ickm6nqev7c1&st=698y8ugq&dl=1" alt="11/08練習会登録ボタン">
+            <img id="register-btn-1108" src="https://www.dropbox.com/scl/fi/gd7hk8095kgji9093ityt/11_08.jpg?rlkey=savp3wv2zgrw8ickm6nqev7c1&st=698y8ugq&dl=1" alt="11/08練習会登録ボタン" loading="lazy">
             <h3>11/22 バレーボール練習会</h3>
             <p>次回練習は11/22に開催予定。詳細はLINEグループで確認してください。</p>
-            <img id="register-btn-1122" src="https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1" alt="11/22練習会登録ボタン">
-            <div id="status-modal" class="modal">
+            <img id="register-btn-1122" src="https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1" alt="11/22練習会登録ボタン" loading="lazy">
+            <div id="status-modal" class="modal" role="dialog" aria-label="参加状況選択モーダル">
                 <div class="modal-content">
                     <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
                     <h3 id="status-title">練習会参加状況を選択</h3>
@@ -577,18 +599,18 @@
                     <button class="status-btn" onclick="showForm('未定')">未定</button>
                 </div>
             </div>
-            <div id="form-modal" class="modal">
+            <div id="form-modal" class="modal" role="dialog" aria-label="登録フォームモーダル">
                 <div class="modal-content">
                     <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
                     <h3 id="form-title">練習会登録情報入力</h3>
                     <form id="register-form" class="event-form">
                         <div>
                             <label for="name">名前:</label>
-                            <input type="text" id="name" required>
+                            <input type="text" id="name" required aria-required="true">
                         </div>
                         <div>
                             <label for="email">メールアドレス:</label>
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" required aria-required="true">
                         </div>
                         <div>
                             <label for="phone">電話番号:</label>
@@ -610,13 +632,13 @@
             <p>Email: <a href="mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com">mermaidnomail@gmail.com</a></p>
             <h2>問い合わせフォーム</h2>
             <form class="contact-form" id="contact-form">
-                <input type="text" name="name" placeholder="お名前" required>
-                <input type="email" name="email" placeholder="メールアドレス" required>
-                <textarea name="message" placeholder="メッセージ" required></textarea>
+                <input type="text" name="name" placeholder="お名前" required aria-required="true">
+                <input type="email" name="email" placeholder="メールアドレス" required aria-required="true">
+                <textarea name="message" placeholder="メッセージ" required aria-required="true"></textarea>
                 <button type="submit">メールで送信</button>
             </form>
             <div class="qr-code">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?data=mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&size=150x150" alt="連絡先QRコード">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&size=150x150" alt="連絡先QRコード" loading="lazy">
                 <p>メールで問い合わせ</p>
             </div>
         </section>
@@ -744,53 +766,76 @@
     <footer>
         <p>&copy; 2025 チームマーメイド. All rights reserved.</p>
     </footer>
-    <div class="lightbox" id="lightbox">
+    <div class="lightbox" id="lightbox" role="dialog" aria-label="画像拡大モーダル">
+        <span class="lightbox-close" aria-label="ライトボックスを閉じる">&times;</span>
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // スムーススクロール
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                const handler = e => {
+                anchor.addEventListener('click', e => {
                     e.preventDefault();
                     const target = document.querySelector(anchor.getAttribute('href'));
                     if (target) target.scrollIntoView({ behavior: 'smooth' });
-                };
-                anchor.addEventListener('click', handler);
-                anchor.addEventListener('touchend', handler);
+                });
+                anchor.addEventListener('touchstart', e => {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }, { passive: true });
             });
 
             // モバイルナビゲーショントグル
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('nav ul');
             if (navToggle && navMenu) {
-                const toggleHandler = e => {
+                navToggle.addEventListener('click', e => {
                     e.preventDefault();
                     navMenu.classList.toggle('active');
-                };
-                navToggle.addEventListener('click', toggleHandler);
-                navToggle.addEventListener('touchend', toggleHandler);
+                });
+                navToggle.addEventListener('touchstart', e => {
+                    e.preventDefault();
+                    navMenu.classList.toggle('active');
+                }, { passive: true });
             }
 
             // ライトボックス機能
             const galleryImages = document.querySelectorAll('.gallery img');
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            if (galleryImages.length && lightbox && lightboxImg) {
+            const lightboxClose = document.querySelector('.lightbox-close');
+            if (galleryImages.length && lightbox && lightboxImg && lightboxClose) {
                 galleryImages.forEach(img => {
-                    const handler = e => {
+                    img.addEventListener('click', e => {
                         e.preventDefault();
                         lightboxImg.src = img.src;
                         lightbox.classList.add('active');
-                    };
-                    img.addEventListener('click', handler);
-                    img.addEventListener('touchend', handler);
+                        lightboxClose.focus();
+                    });
+                    img.addEventListener('touchstart', e => {
+                        e.preventDefault();
+                        lightboxImg.src = img.src;
+                        lightbox.classList.add('active');
+                        lightboxClose.focus();
+                    }, { passive: true });
                 });
-                const closeLightbox = e => {
-                    if (e.target === lightbox) lightbox.classList.remove('active');
-                };
-                lightbox.addEventListener('click', closeLightbox);
-                lightbox.addEventListener('touchend', closeLightbox);
+                lightbox.addEventListener('click', e => {
+                    if (e.target === lightbox || e.target === lightboxClose) {
+                        lightbox.classList.remove('active');
+                    }
+                });
+                lightbox.addEventListener('touchstart', e => {
+                    if (e.target === lightbox || e.target === lightboxClose) {
+                        lightbox.classList.remove('active');
+                    }
+                }, { passive: true });
+                lightboxClose.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        lightbox.classList.remove('active');
+                    }
+                });
             }
 
             // 連絡フォームの送信処理
@@ -833,7 +878,7 @@
             Object.keys(registerButtons).forEach(date => {
                 const btn = registerButtons[date];
                 if (btn) {
-                    const handler = e => {
+                    btn.addEventListener('click', e => {
                         e.preventDefault();
                         currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
                         if (statusModal) {
@@ -843,26 +888,41 @@
                         } else {
                             alert('モーダル表示に失敗しました。');
                         }
-                    };
-                    btn.addEventListener('click', handler);
-                    btn.addEventListener('touchend', handler);
+                    });
+                    btn.addEventListener('touchstart', e => {
+                        e.preventDefault();
+                        currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
+                        if (statusModal) {
+                            document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
+                            statusModal.style.display = 'block';
+                            statusModal.focus();
+                        } else {
+                            alert('モーダル表示に失敗しました。');
+                        }
+                    }, { passive: true });
                 }
             });
 
             if (closes) {
                 closes.forEach(close => {
-                    const handler = e => {
+                    close.addEventListener('click', e => {
                         e.preventDefault();
                         if (statusModal) statusModal.style.display = 'none';
                         if (formModal) formModal.style.display = 'none';
                         if (registerForm) registerForm.reset();
-                    };
-                    close.addEventListener('click', handler);
-                    close.addEventListener('touchend', handler);
+                    });
+                    close.addEventListener('touchstart', e => {
+                        e.preventDefault();
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                    }, { passive: true });
                     close.addEventListener('keydown', e => {
                         if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
-                            handler(e);
+                            if (statusModal) statusModal.style.display = 'none';
+                            if (formModal) formModal.style.display = 'none';
+                            if (registerForm) registerForm.reset();
                         }
                     });
                 });
@@ -877,6 +937,16 @@
                     if (registerForm) registerForm.reset();
                 }
             });
+
+            window.addEventListener('touchstart', e => {
+                if (e.target === statusModal) {
+                    statusModal.style.display = 'none';
+                }
+                if (e.target === formModal) {
+                    formModal.style.display = 'none';
+                    if (registerForm) registerForm.reset();
+                }
+            }, { passive: true });
 
             document.addEventListener('keydown', e => {
                 if (e.key === 'Escape') {
