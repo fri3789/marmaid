@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>チームマーメイド - Soft Volleyball Mermaid</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1e3a8a, #38bdf8);
-            color: #ffffff;
+            background: #f0f9ff;
+            color: #1e3a8a;
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
@@ -21,7 +21,7 @@
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         header::before {
             content: '';
@@ -30,7 +30,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.5), rgba(56, 189, 248, 0.5));
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.4), rgba(56, 189, 248, 0.4));
             z-index: 1;
         }
         .header-content {
@@ -39,38 +39,38 @@
         }
         h1 {
             margin: 0;
-            font-family: 'Pacifico', cursive;
-            font-size: 6vw;
+            font-family: 'Lora', serif;
+            font-size: 5.5vw;
             color: #ffffff;
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
-            animation: glow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
+            animation: fadeIn 1.5s ease-in-out;
         }
-        @keyframes glow {
-            from { text-shadow: 0 0 10px rgba(56, 189, 248, 0.8); }
-            to { text-shadow: 0 0 20px rgba(56, 189, 248, 1); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .wave {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 10vw;
+            height: 8vw;
             background: url('https://svgwave.in/random/1') repeat-x;
-            animation: wave 10s linear infinite;
+            animation: wave 12s linear infinite;
             z-index: 1;
+            opacity: 0.8;
         }
         @keyframes wave {
             0% { background-position-x: 0; }
             100% { background-position-x: 1000px; }
         }
         nav {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
             padding: 1.5vw 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         nav ul {
             list-style: none;
@@ -82,7 +82,7 @@
             flex-wrap: wrap;
         }
         nav a {
-            color: #ffffff;
+            color: #1e3a8a;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.2vw;
@@ -97,15 +97,26 @@
             left: 0;
             width: 0;
             height: 0.2vw;
-            background: #38bdf8;
+            background: #0284c7;
             transition: width 0.3s ease;
         }
         nav a:hover::after {
             width: 100%;
         }
         nav a:hover {
-            color: #38bdf8;
-            transform: translateY(-2px) scale(1.05);
+            color: #0284c7;
+            transform: translateY(-2px);
+        }
+        .nav-toggle {
+            display: none;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: #1e3a8a;
+            cursor: pointer;
+            position: absolute;
+            top: 1vw;
+            right: 2vw;
         }
         main {
             max-width: 90vw;
@@ -113,13 +124,12 @@
             padding: 0 2vw;
         }
         section {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
+            background: #ffffff;
             padding: 4vw;
             margin-bottom: 4vw;
-            border-radius: 2vw;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 1s ease-out;
+            border-radius: 1.5vw;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease-out;
             position: relative;
             overflow: hidden;
         }
@@ -130,25 +140,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/mermaid.png') repeat;
-            opacity: 0.1;
+            background: linear-gradient(45deg, rgba(14, 165, 233, 0.05), rgba(255, 255, 255, 0.05));
             z-index: -1;
         }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         h2 {
-            font-family: 'Pacifico', cursive;
-            font-size: 4.8vw;
-            color: #38bdf8;
+            font-family: 'Lora', serif;
+            font-size: 4.5vw;
+            color: #0284c7;
             margin: 0 0 2vw;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-            animation: pulse 2s infinite alternate;
-        }
-        @keyframes pulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.03); }
+            text-shadow: 0 0 5px rgba(14, 165, 233, 0.3);
+            position: relative;
         }
         h2::after {
             content: '';
@@ -157,15 +162,15 @@
             left: 0;
             width: 5vw;
             height: 0.3vw;
-            background: #38bdf8;
+            background: #0284c7;
             transition: width 0.3s ease;
         }
         h2:hover::after {
-            width: 15vw;
+            width: 12vw;
         }
         p {
             font-size: 1.2vw;
-            color: #e0f4ff;
+            color: #1e40af;
         }
         .gallery {
             display: grid;
@@ -178,13 +183,13 @@
             height: 22vw;
             object-fit: cover;
             border-radius: 1.2vw;
-            border: 0.2vw solid #38bdf8;
+            border: 0.2vw solid #0284c7;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
-        .gallery img:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        .gallery img:hover, .gallery img:active {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
         .lightbox {
             position: fixed;
@@ -197,15 +202,21 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
+            animation: fadeIn 0.5s ease-out;
         }
         .lightbox img {
             max-width: 90%;
             max-height: 90%;
             border-radius: 1vw;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+            animation: zoomIn 0.5s ease-out;
         }
         .lightbox.active {
             display: flex;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         .contact-form {
             display: flex;
@@ -215,17 +226,17 @@
         .contact-form input,
         .contact-form textarea {
             padding: 1.2vw;
-            border: 0.2vw solid #38bdf8;
+            border: 0.2vw solid #bfdbfe;
             border-radius: 1vw;
             font-size: 1.1vw;
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.1);
+            color: #1e3a8a;
+            background: #f0f9ff;
             transition: all 0.3s ease;
         }
         .contact-form input:focus,
         .contact-form textarea:focus {
-            border-color: #60a5fa;
-            box-shadow: 0 0 1vw rgba(96, 165, 250, 0.5);
+            border-color: #0284c7;
+            box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
         }
         .contact-form textarea {
@@ -233,10 +244,10 @@
             min-height: 10vw;
         }
         .contact-form button {
-            padding: 2.4vw 5vw;
+            padding: 2vw 4vw;
             border: none;
             border-radius: 1vw;
-            background: #38bdf8;
+            background: #0284c7;
             color: #ffffff;
             font-weight: 600;
             cursor: pointer;
@@ -252,18 +263,18 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
+            transition: width 0.5s ease, height 0.5s ease;
         }
-        .contact-form button:hover::after {
+        .contact-form button:hover::after, .contact-form button:active::after {
             width: 200%;
             height: 200%;
         }
-        .contact-form button:hover {
-            background: #2563eb;
-            transform: translateY(-0.2vw) scale(1.05);
+        .contact-form button:hover, .contact-form button:active {
+            background: #1e40af;
+            transform: scale(1.05);
         }
         .qr-code {
             text-align: center;
@@ -273,19 +284,19 @@
             width: 10vw;
             height: 10vw;
             border-radius: 1vw;
-            border: 0.2vw solid #38bdf8;
+            border: 0.2vw solid #0284c7;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .qr-code img:hover {
+        .qr-code img:hover, .qr-code img:active {
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
         .terms {
-            background: rgba(240, 249, 255, 0.2);
-            color: #ffffff;
+            background: #e0f4ff;
+            color: #1e3a8a;
         }
         .terms h2, .terms h3 {
-            color: #38bdf8;
+            color: #0284c7;
         }
         footer {
             text-align: center;
@@ -303,11 +314,12 @@
             transition: all 0.3s ease;
             display: block;
             margin: 2vw auto;
-            border: 0.2vw solid #38bdf8;
+            border: 0.2vw solid #0284c7;
         }
-        #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover,
+        #register-btn-1004:active, #register-btn-1018:active, #register-btn-1108:active, #register-btn-1122:active {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
         .modal {
             display: none;
@@ -316,25 +328,24 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 1000;
             backdrop-filter: blur(5px);
         }
         .modal-content {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            background: #ffffff;
             margin: 10% auto;
             padding: 2vw;
             width: 80%;
             max-width: 30vw;
-            border-radius: 2vw;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-radius: 1.5vw;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             position: relative;
             text-align: center;
             animation: slideIn 0.5s ease-out;
         }
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-50px); }
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .modal-close {
@@ -342,12 +353,12 @@
             top: 1vw;
             right: 1vw;
             font-size: 2vw;
-            color: #ffffff;
+            color: #1e3a8a;
             cursor: pointer;
             transition: color 0.3s ease;
         }
-        .modal-close:hover {
-            color: #38bdf8;
+        .modal-close:hover, .modal-close:active {
+            color: #0284c7;
         }
         .status-btn {
             display: block;
@@ -355,7 +366,7 @@
             padding: 1.2vw;
             margin: 1vw 0;
             border: none;
-            background: #38bdf8;
+            background: #0284c7;
             color: #ffffff;
             font-size: 1.2vw;
             font-weight: 600;
@@ -372,18 +383,18 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
+            transition: width 0.5s ease, height 0.5s ease;
         }
-        .status-btn:hover::after {
+        .status-btn:hover::after, .status-btn:active::after {
             width: 200%;
             height: 200%;
         }
-        .status-btn:hover {
-            background: #2563eb;
-            transform: translateY(-0.2vw) scale(1.05);
+        .status-btn:hover, .status-btn:active {
+            background: #1e40af;
+            transform: scale(1.05);
         }
         .event-form {
             display: flex;
@@ -392,29 +403,29 @@
         }
         .event-form label {
             font-size: 1.1vw;
-            color: #ffffff;
+            color: #1e3a8a;
             text-align: left;
             margin-bottom: 0.5vw;
         }
         .event-form input {
             padding: 1.2vw;
-            border: 0.2vw solid #38bdf8;
+            border: 0.2vw solid #bfdbfe;
             border-radius: 1vw;
             font-size: 1.1vw;
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.1);
+            color: #1e3a8a;
+            background: #f0f9ff;
             transition: all 0.3s ease;
         }
         .event-form input:focus {
-            border-color: #60a5fa;
-            box-shadow: 0 0 1vw rgba(96, 165, 250, 0.5);
+            border-color: #0284c7;
+            box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
         }
         .event-form button {
             padding: 1.2vw;
             border: none;
             border-radius: 1vw;
-            background: #38bdf8;
+            background: #0284c7;
             color: #ffffff;
             font-weight: 600;
             cursor: pointer;
@@ -430,26 +441,25 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
+            transition: width 0.5s ease, height 0.5s ease;
         }
-        .event-form button:hover::after {
+        .event-form button:hover::after, .event-form button:active::after {
             width: 200%;
             height: 200%;
         }
-        .event-form button:hover {
-            background: #2563eb;
-            transform: translateY(-0.2vw) scale(1.05);
+        .event-form button:hover, .event-form button:active {
+            background: #1e40af;
+            transform: scale(1.05);
         }
         .event-form h3 {
-            font-family: 'Pacifico', cursive;
+            font-family: 'Lora', serif;
             font-size: 2.5vw;
-            color: #38bdf8;
+            color: #0284c7;
             margin: 0 0 2vw;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-            animation: pulse 2s infinite alternate;
+            text-shadow: 0 0 5px rgba(14, 165, 233, 0.3);
         }
         .event-form h3::after {
             content: '';
@@ -458,17 +468,36 @@
             left: 0;
             width: 5vw;
             height: 0.3vw;
-            background: #38bdf8;
+            background: #0284c7;
             transition: width 0.3s ease;
         }
         .event-form h3:hover::after {
             width: 10vw;
         }
         @media (max-width: 768px) {
-            h1 { font-size: 8vw; }
-            nav a { font-size: 3.5vw; padding: 2vw; }
+            h1 { font-size: 7vw; }
+            .nav-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                background: #ffffff;
+                position: absolute;
+                top: 4vw;
+                left: 0;
+                width: 100%;
+                padding: 2vw 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                animation: slideDown 0.3s ease-out;
+            }
+            nav ul.active { display: flex; }
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            nav a { font-size: 4vw; padding: 2vw; }
             nav ul { gap: 2vw; }
-            section { padding: 5vw; margin-bottom: 5vw; }
+            section { padding: 6vw; margin-bottom: 6vw; }
             h2 { font-size: 6vw; }
             p { font-size: 3.5vw; }
             .gallery { grid-template-columns: 1fr; }
@@ -477,16 +506,24 @@
             .contact-form button { font-size: 3.5vw; padding: 3vw; }
             .qr-code img { width: 25vw; height: 25vw; }
             footer { font-size: 3vw; padding: 4vw; }
-            #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 45vw; }
+            #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 50vw; }
             .modal-content { max-width: 80vw; }
             .status-btn { font-size: 3.5vw; padding: 3vw; }
             .event-form label { font-size: 3.5vw; }
             .event-form input { font-size: 3.5vw; padding: 3vw; }
             .event-form button { font-size: 3.5vw; padding: 3vw; }
             .event-form h3 { font-size: 5vw; }
+            .gallery img:active, .qr-code img:active, .contact-form button:active, .status-btn:active, .event-form button:active {
+                animation: bounce 0.2s ease;
+            }
+            @keyframes bounce {
+                0% { transform: scale(1); }
+                50% { transform: scale(0.95); }
+                100% { transform: scale(1); }
+            }
         }
         @media (max-width: 480px) {
-            nav ul { flex-direction: column; align-items: center; }
+            nav ul { padding: 4vw 0; }
             .gallery img { height: 60vw; }
             .contact-form { gap: 3vw; }
             .contact-form button { width: 100%; }
@@ -507,6 +544,7 @@
         <div class="wave"></div>
     </header>
     <nav>
+        <button class="nav-toggle" aria-label="メニューを開く">☰</button>
         <ul>
             <li><a href="#home">ホーム</a></li>
             <li><a href="#about">チーム紹介</a></li>
@@ -615,7 +653,7 @@
             <p>制定日: 2025年6月27日（適宜改訂あり）</p>
             <h2>第1条（目的）</h2>
             <p>障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指します。障害者スポーツの普及を推進。</p>
-            <!-- 以下、規約内容は変更なしのため省略 -->
+            <!-- 規約内容は変更なしのため省略 -->
         </section>
     </main>
     <footer>
@@ -644,6 +682,19 @@
                 });
             });
 
+            // モバイルナビゲーショントグル
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('nav ul');
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+                navToggle.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    navMenu.classList.toggle('active');
+                });
+            }
+
             // ライトボックス機能
             const galleryImages = document.querySelectorAll('.gallery img');
             const lightbox = document.getElementById('lightbox');
@@ -653,8 +704,18 @@
                     lightboxImg.src = this.src;
                     lightbox.classList.add('active');
                 });
+                img.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    lightboxImg.src = this.src;
+                    lightbox.classList.add('active');
+                });
             });
             lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+            lightbox.addEventListener('touchend', function(e) {
                 if (e.target === lightbox) {
                     lightbox.classList.remove('active');
                 }
@@ -710,6 +771,16 @@
                             alert('モーダル表示に失敗しました。ページを更新してください。');
                         }
                     });
+                    registerButtons[date].addEventListener('touchend', function(e) {
+                        e.preventDefault();
+                        console.log(`${date.replace(/(\d{2})(\d{2})/, '$1/$2')}練習会登録ボタンがタッチされました`);
+                        currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
+                        if (statusModal) {
+                            document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
+                            statusModal.style.display = 'block';
+                            console.log('ステータスモーダル表示');
+                        }
+                    });
                 } else {
                     console.error(`エラー: register-btn-${date}が見つかりません`);
                 }
@@ -719,6 +790,13 @@
                 closes.forEach(close => {
                     close.addEventListener('click', function() {
                         console.log('モーダル閉じるボタンがクリックされました');
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                    });
+                    close.addEventListener('touchend', function(e) {
+                        e.preventDefault();
+                        console.log('モーダル閉じるボタンがタッチされました');
                         if (statusModal) statusModal.style.display = 'none';
                         if (formModal) formModal.style.display = 'none';
                         if (registerForm) registerForm.reset();
@@ -788,13 +866,6 @@
             } else {
                 console.error('エラー: register-formが見つかりません');
             }
-
-            // パララックス効果
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                const scrollPosition = window.scrollY;
-                header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
-            });
         });
     </script>
 </body>
