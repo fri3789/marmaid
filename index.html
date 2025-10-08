@@ -40,6 +40,7 @@
             text-align: center;
             padding: 12vw 5vw;
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
+            background-attachment: fixed;
             box-shadow: var(--shadow);
         }
 
@@ -72,26 +73,32 @@
             50% { transform: scale(1.03); opacity: 0.95; }
         }
 
-        /* 波アニメーション（多層） */
-        .wave, .wave2 {
+        /* 波アニメーション（3層） */
+        .wave, .wave2, .wave3 {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 8vw;
+            height: 10vw;
             z-index: 1;
         }
 
         .wave {
             background: url('https://svgwave.in/random/1') repeat-x;
-            animation: wave 12s linear infinite;
-            opacity: 0.8;
+            animation: wave 10s linear infinite;
+            opacity: 0.9;
         }
 
         .wave2 {
             background: url('https://svgwave.in/random/2') repeat-x;
-            animation: wave 18s linear infinite reverse;
-            opacity: 0.6;
+            animation: wave 15s linear infinite reverse;
+            opacity: 0.7;
+        }
+
+        .wave3 {
+            background: url('https://svgwave.in/random/3') repeat-x;
+            animation: wave 20s linear infinite;
+            opacity: 0.5;
         }
 
         @keyframes wave {
@@ -158,6 +165,12 @@
         nav a:hover {
             color: var(--primary-color);
             transform: perspective(500px) translateZ(10px);
+            animation: colorPulse 1.5s infinite;
+        }
+
+        @keyframes colorPulse {
+            0%, 100% { color: var(--text-color); }
+            50% { color: var(--primary-color); }
         }
 
         .nav-toggle {
@@ -191,13 +204,14 @@
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             position: relative;
-            animation: slideIn 0.8s ease-out forwards;
+            animation: springInSection 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
             opacity: 0;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes springInSection {
+            0% { opacity: 0; transform: translateY(50px) scale(0.95); }
+            60% { opacity: 1; transform: translateY(-10px) scale(1.02); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         section::before {
@@ -276,8 +290,8 @@
         }
 
         .gallery img:hover, .gallery img:active {
-            transform: perspective(500px) rotateY(5deg) scale(1.05);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+            transform: perspective(500px) rotateY(5deg) translateZ(20px);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.7);
         }
 
         /* ライトボックス */
@@ -401,8 +415,6 @@
         }
 
         .contact-form button:hover::after,
-        .contact-form button:active::after,
-        .event-form button:hover::after,
         .event-form button:active::after,
         .status-btn:hover::after,
         .status-btn:active::after {
@@ -411,13 +423,16 @@
         }
 
         .contact-form button:hover,
-        .contact-form button:active,
         .event-form button:hover,
-        .event-form button:active,
-        .status-btn:hover,
-        .status-btn:active {
+        .status-btn:hover {
             transform: scale(1.05) translateY(-2px);
             font-size: calc(var(--font-size-base) * 1.2);
+            animation: vibrate 0.3s ease-in-out;
+        }
+
+        @keyframes vibrate {
+            0%, 100% { transform: scale(1.05) translateY(-2px); }
+            50% { transform: scale(1.05) translateY(-2px) translateX(2px); }
         }
 
         /* QRコード */
@@ -489,10 +504,15 @@
             loading: lazy;
         }
 
-        #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover,
-        #register-btn-1004:active, #register-btn-1018:active, #register-btn-1108:active, #register-btn-1122:active {
+        #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover {
             transform: perspective(500px) rotateX(5deg) scale(1.05);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.7);
+            animation: glowPulse 1s infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.7); }
+            50% { box-shadow: 0 0 30px rgba(14, 165, 233, 1); }
         }
 
         /* モーダル */
@@ -507,7 +527,7 @@
             z-index: 2000;
             backdrop-filter: blur(5px);
             animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            pointer-events: auto; /* モーダル内クリック有効 */
+            pointer-events: auto;
         }
 
         .modal-content {
@@ -541,6 +561,24 @@
         .modal-close:hover, .modal-close:active {
             color: var(--primary-color);
             transform: scale(1.1) rotate(180deg);
+        }
+
+        /* モーダル表示中の背景無効化 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 1999;
+            display: none;
+            pointer-events: none;
+        }
+
+        .modal-overlay.active {
+            display: block;
+            pointer-events: auto;
         }
 
         /* スクロールアニメーション */
@@ -581,7 +619,7 @@
             .gallery img { height: 50vw; }
             .contact-form input, .contact-form textarea, .event-form input { font-size: var(--font-size-mobile); padding: 3vw; }
             .contact-form button, .event-form button, .status-btn { font-size: var(--font-size-mobile); padding: 3vw; }
-            .contact-form button:active, .event-form button:active, .status-btn:active { font-size: calc(var(--font-size-mobile) * 1.2); }
+            .contact-form button:hover, .event-form button:hover, .status-btn:hover { font-size: calc(var(--font-size-mobile) * 1.2); }
             .qr-code img { width: 25vw; height: 25vw; }
             footer { font-size: 3vw; padding: 4vw; }
             #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 50vw; }
@@ -607,12 +645,14 @@
 </head>
 <body>
     <canvas id="particles"></canvas>
+    <div class="modal-overlay"></div>
     <header>
         <div class="header-content">
             <h1>チームマーメイド<br>Soft Volleyball Mermaid</h1>
         </div>
         <div class="wave"></div>
         <div class="wave2"></div>
+        <div class="wave3"></div>
     </header>
     <nav>
         <button class="nav-toggle" aria-label="メニューを開く">☰</button>
@@ -642,15 +682,15 @@
         <section id="gallery" class="animate-on-scroll">
             <h2>ギャラリー</h2>
             <div class="gallery">
-                <img src="https://www.dropbox.com/scl/fi/fp9flze5wl9danunhap0o/LINE_ALBUM_20250602_250925_1.jpg?rlkey=qtgtzr9oipg0qb2zlpd71mvcs&st=tbhbjmgf&dl=1" alt="チーム練習風景1" loading="lazy">
-                <img src="https://www.dropbox.com/scl/fi/60xshw8c29v8u4iv9sl01/LINE_ALBUM_20250602_250925_3.jpg?rlkey=4piglqv4zg99jemgmvfsyiohg&st=y14ystfm&dl=1" alt="チーム練習風景2" loading="lazy">
-                <img src="https://www.dropbox.com/scl/fi/tl9lspyrynnxcrftc7c14/LINE_ALBUM_20250623_250925_12.jpg?rlkey=7mksa7h56o8x81nt0sxp1ro23&st=1xiu3tf7&dl=1" alt="チーム練習風景3" loading="lazy">
-                <img src="https://www.dropbox.com/scl/fi/xyzrfgdvlfl25b6718hoi/LINE_ALBUM_20250623_250925_14.jpg?rlkey=sqs3yd4h9p360luh91ckug83n&st=zmmjdwf7&dl=1" alt="チーム練習風景4" loading="lazy">
-                <img src="https://www.dropbox.com/scl/fi/gvi74xsm34byy769i55c8/LINE_ALBUM_20250906-_250925_3.jpg?rlkey=m81paoovvt8kz7vd1izxgvx02&st=tizfjl60&dl=1" alt="チーム練習風景5" loading="lazy">
-                <img src="https://www.dropbox.com/scl/fi/0z547g8p9rj93zuluunc6/LINE_ALBUM_20250906-_250925_22.jpg?rlkey=w7p8k1ksvbybqwr7i93lpweze&st=zz45aa2x&dl=1" alt="チーム練習風景6" loading="lazy">
-                <img src="https://www.dropbox.com/scl/fi/4w0jarkfgafnkwtgfkdhm/LINE_ALBUM_20250906-_250925_25.jpg?rlkey=q9j32po38l4ro6428270efxrf&st=b6wk2w91&dl=1" alt="チーム練習風景7" loading="lazy">
-                <img src="https://www.dropbox.com/scl/fi/kabmuixpbusul2dbqpkyd/LINE_ALBUM_20250906-_250925_28.jpg?rlkey=eg349s752le93o951phnyyzaa&st=d9uo27s2&dl=1" alt="チーム練習風景8" loading="lazy">
-                <img src="https://www.dropbox.com/scl/fi/7i3foll35o99dfvpkrjjd/LINE_ALBUM_20250906-_250925_5.jpg?rlkey=u684hqo6xmv8dhx0g4r1ha0sa&st=4ymxlzlc&dl=1" alt="チーム練習風景9" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/fp9flze5wl9danunhap0o/LINE_ALBUM_20250602_250925_1.jpg?rlkey=qtgtzr9oipg0qb2zlpd71mvcs&st=tbhbjmgf&dl=1" alt="チーム練習風景1" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/60xshw8c29v8u4iv9sl01/LINE_ALBUM_20250602_250925_3.jpg?rlkey=4piglqv4zg99jemgmvfsyiohg&st=y14ystfm&dl=1" alt="チーム練習風景2" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/tl9lspyrynnxcrftc7c14/LINE_ALBUM_20250623_250925_12.jpg?rlkey=7mksa7h56o8x81nt0sxp1ro23&st=1xiu3tf7&dl=1" alt="チーム練習風景3" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/xyzrfgdvlfl25b6718hoi/LINE_ALBUM_20250623_250925_14.jpg?rlkey=sqs3yd4h9p360luh91ckug83n&st=zmmjdwf7&dl=1" alt="チーム練習風景4" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/gvi74xsm34byy769i55c8/LINE_ALBUM_20250906-_250925_3.jpg?rlkey=m81paoovvt8kz7vd1izxgvx02&st=tizfjl60&dl=1" alt="チーム練習風景5" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/0z547g8p9rj93zuluunc6/LINE_ALBUM_20250906-_250925_22.jpg?rlkey=w7p8k1ksvbybqwr7i93lpweze&st=zz45aa2x&dl=1" alt="チーム練習風景6" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/4w0jarkfgafnkwtgfkdhm/LINE_ALBUM_20250906-_250925_25.jpg?rlkey=q9j32po38l4ro6428270efxrf&st=b6wk2w91&dl=1" alt="チーム練習風景7" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/kabmuixpbusul2dbqpkyd/LINE_ALBUM_20250906-_250925_28.jpg?rlkey=eg349s752le93o951phnyyzaa&st=d9uo27s2&dl=1" alt="チーム練習風景8" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/7i3foll35o99dfvpkrjjd/LINE_ALBUM_20250906-_250925_5.jpg?rlkey=u684hqo6xmv8dhx0g4r1ha0sa&st=4ymxlzlc&dl=1" alt="チーム練習風景9" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
             </div>
         </section>
         <section id="events" class="animate-on-scroll">
@@ -837,6 +877,14 @@
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
     <script>
+        // イベントデータ
+        const events = [
+            { date: '10/04', id: '1004', img: 'https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1' },
+            { date: '10/18', id: '1018', img: 'https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1' },
+            { date: '11/08', id: '1108', img: 'https://www.dropbox.com/scl/fi/gd7hk8095kgji9093ityt/11_08.jpg?rlkey=savp3wv2zgrw8ickm6nqev7c1&st=698y8ugq&dl=1' },
+            { date: '11/22', id: '1122', img: 'https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1' }
+        ];
+
         // モジュラーアプリケーション
         const App = {
             // パーティクルアニメーション（強化版）
@@ -848,16 +896,16 @@
                 canvas.height = window.innerHeight;
 
                 const particles = [];
-                const particleCount = 150; // 数を増やして強調
+                const particleCount = 300; // 粒子数を増やして強調
 
                 class Particle {
                     constructor() {
                         this.x = Math.random() * canvas.width;
                         this.y = Math.random() * canvas.height;
-                        this.size = Math.random() * 5 + 2;
-                        this.speedX = Math.random() * 1.5 - 0.75; // 速度を増加
-                        this.speedY = Math.random() * 1.5 - 0.75;
-                        this.color = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.5})`;
+                        this.size = Math.random() * 6 + 2;
+                        this.speedX = Math.random() * 2 - 1; // 速度を増加
+                        this.speedY = Math.random() * 2 - 1;
+                        this.color = `rgba(255, 255, 255, ${Math.random() * 0.6 + 0.4})`;
                     }
 
                     update() {
@@ -895,7 +943,273 @@
                 });
             },
 
-            // その他の初期化関数は前のコードと同じ...
+            // スムーススクロール
+            initSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    const handleScroll = e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    };
+                    anchor.addEventListener('click', handleScroll);
+                    anchor.addEventListener('touchstart', handleScroll, { passive: true });
+                });
+            },
+
+            // ナビゲーショントグル
+            initNavToggle() {
+                const navToggle = document.querySelector('.nav-toggle');
+                const navMenu = document.querySelector('nav ul');
+                if (navToggle && navMenu) {
+                    const toggleMenu = e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        navMenu.classList.toggle('active');
+                    };
+                    navToggle.addEventListener('click', toggleMenu);
+                    navToggle.addEventListener('touchstart', toggleMenu, { passive: true });
+                }
+            },
+
+            // ライトボックス
+            initLightbox() {
+                const galleryImages = document.querySelectorAll('.gallery img');
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const lightboxClose = document.querySelector('.lightbox-close');
+                const modalOverlay = document.querySelector('.modal-overlay');
+
+                if (galleryImages.length && lightbox && lightboxImg && lightboxClose) {
+                    galleryImages.forEach(img => {
+                        const openLightbox = e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (!document.querySelector('.modal[style*="display: block"]')) { // 他のモーダルが開いていない場合のみ
+                                lightboxImg.src = img.src;
+                                lightbox.classList.add('active');
+                                modalOverlay.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                                lightboxClose.focus();
+                            }
+                        };
+                        img.addEventListener('click', openLightbox);
+                        img.addEventListener('touchstart', openLightbox, { passive: true });
+                    });
+
+                    const closeLightbox = e => {
+                        if (e.target === lightbox || e.target === lightboxClose) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            lightbox.classList.remove('active');
+                            modalOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    };
+                    lightbox.addEventListener('click', closeLightbox);
+                    lightbox.addEventListener('touchstart', closeLightbox, { passive: true });
+
+                    lightboxClose.addEventListener('keydown', e => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            lightbox.classList.remove('active');
+                            modalOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+                }
+            },
+
+            // 連絡フォーム
+            initContactForm() {
+                const contactForm = document.querySelector('#contact-form');
+                if (contactForm) {
+                    contactForm.addEventListener('submit', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const name = contactForm.querySelector('input[name="name"]').value.trim();
+                        const email = contactForm.querySelector('input[name="email"]').value.trim();
+                        const message = contactForm.querySelector('textarea[name="message"]').value.trim();
+                        if (!name || !email || !message) {
+                            alert('すべての必須フィールドを入力してください。');
+                            return;
+                        }
+                        const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
+                        const body = `お名前: ${name}\nメールアドレス: ${email}\nメッセージ:\n${message}`;
+                        try {
+                            window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                            contactForm.reset();
+                            alert('問い合わせ送信完了！メールクライアントが開きます。');
+                        } catch (error) {
+                            alert('メール送信に失敗しました。');
+                        }
+                    });
+                }
+            },
+
+            // イベント登録
+            initEventRegistration() {
+                const eventList = document.getElementById('event-list');
+                const statusModal = document.getElementById('status-modal');
+                const formModal = document.getElementById('form-modal');
+                const registerForm = document.getElementById('register-form');
+                const closes = document.querySelectorAll('.modal-close');
+                const statusButtons = document.querySelectorAll('.status-btn');
+                const modalOverlay = document.querySelector('.modal-overlay');
+                let currentEventDate = '';
+
+                // イベントを動的に生成
+                events.forEach(event => {
+                    const eventHtml = `
+                        <div class="event-item">
+                            <h3>${event.date} バレーボール練習会</h3>
+                            <p>次回練習は${event.date}に開催予定。詳細はLINEグループで確認してください。</p>
+                            <img id="register-btn-${event.id}" src="${event.img}" alt="${event.date}練習会登録ボタン" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Event+Image+Not+Found'">
+                        </div>
+                    `;
+                    eventList.insertAdjacentHTML('beforeend', eventHtml);
+                    const btn = document.getElementById(`register-btn-${event.id}`);
+                    if (btn) {
+                        const openStatusModal = e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            currentEventDate = event.date;
+                            if (statusModal) {
+                                document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
+                                statusModal.style.display = 'block';
+                                modalOverlay.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                                statusModal.focus();
+                            } else {
+                                alert('モーダル表示に失敗しました。');
+                            }
+                        };
+                        btn.addEventListener('click', openStatusModal);
+                        btn.addEventListener('touchstart', openStatusModal, { passive: true });
+                    }
+                });
+
+                // モーダル閉じる
+                if (closes) {
+                    closes.forEach(close => {
+                        const closeModal = e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (statusModal) statusModal.style.display = 'none';
+                            if (formModal) formModal.style.display = 'none';
+                            if (registerForm) registerForm.reset();
+                            modalOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        };
+                        close.addEventListener('click', closeModal);
+                        close.addEventListener('touchstart', closeModal, { passive: true });
+                        close.addEventListener('keydown', e => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                closeModal(e);
+                            }
+                        });
+                    });
+                }
+
+                // モーダル背景クリック
+                const closeModalOnBackground = e => {
+                    if (e.target === statusModal || e.target === formModal) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                        modalOverlay.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                };
+                window.addEventListener('click', closeModalOnBackground);
+                window.addEventListener('touchstart', closeModalOnBackground, { passive: true });
+
+                // Escキー
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                        if (lightbox) lightbox.classList.remove('active');
+                        modalOverlay.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+
+                // ステータスボタン
+                statusButtons.forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const status = btn.getAttribute('data-status');
+                        const statusInput = document.getElementById('status');
+                        const eventDateInput = document.getElementById('event-date');
+                        const formTitle = document.getElementById('form-title');
+                        if (statusInput) statusInput.value = status;
+                        if (eventDateInput) eventDateInput.value = currentEventDate;
+                        if (formTitle) formTitle.textContent = `${status}の${currentEventDate}練習会登録情報入力`;
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) {
+                            formModal.style.display = 'block';
+                            modalOverlay.classList.add('active');
+                            formModal.focus();
+                        }
+                    });
+                });
+
+                // 登録フォーム
+                if (registerForm) {
+                    registerForm.addEventListener('submit', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const status = document.getElementById('status').value;
+                        const eventDate = document.getElementById('event-date').value;
+                        const name = document.getElementById('name').value.trim();
+                        const email = document.getElementById('email').value.trim();
+                        const phone = document.getElementById('phone').value.trim() || '未入力';
+                        const line = document.getElementById('line').value.trim() || '未入力';
+                        if (!name || !email) {
+                            alert('名前とメールアドレスは必須です。');
+                            return;
+                        }
+                        const subject = `${eventDate}練習会登録: ${status} - ${name}`;
+                        const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
+                        try {
+                            window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                            alert('登録完了！メールクライアントが開きます。');
+                            formModal.style.display = 'none';
+                            registerForm.reset();
+                            modalOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        } catch (error) {
+                            alert('メール送信に失敗しました。');
+                        }
+                    });
+                }
+            },
+
+            // スクロールアニメーション
+            initScrollAnimation() {
+                const sections = document.querySelectorAll('.animate-on-scroll');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                sections.forEach(section => observer.observe(section));
+            },
 
             // 初期化
             init() {
