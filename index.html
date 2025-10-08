@@ -6,7 +6,6 @@
     <title>チームマーメイド - Soft Volleyball Mermaid</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS変数でテーマ管理 */
         :root {
             --primary-color: #0284c7;
             --secondary-color: #1e40af;
@@ -34,7 +33,6 @@
             position: relative;
         }
 
-        /* ヘッダー */
         header {
             position: relative;
             text-align: center;
@@ -73,13 +71,12 @@
             50% { transform: scale(1.03); opacity: 0.95; }
         }
 
-        /* 波アニメーション（3層） */
         .wave, .wave2, .wave3 {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 12vw; /* 高さを増加して強調 */
+            height: 12vw;
             z-index: 1;
         }
 
@@ -103,12 +100,11 @@
 
         @keyframes wave {
             0% { background-position-x: 0; }
-            100% { background-position-x: 1500px; } /* 移動距離を増やして強調 */
+            100% { background-position-x: 1500px; }
         }
 
-        /* パーティクルアニメーション用Canvas */
         #particles {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -117,7 +113,6 @@
             pointer-events: none;
         }
 
-        /* ナビゲーション */
         nav {
             background: rgba(255, 255, 255, 0.95);
             padding: 1.5vw;
@@ -253,7 +248,6 @@
             color: var(--secondary-color);
         }
 
-        /* ギャラリー */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
@@ -294,7 +288,6 @@
             box-shadow: 0 0 20px rgba(14, 165, 233, 0.7);
         }
 
-        /* ライトボックス */
         .lightbox {
             position: fixed;
             top: 0;
@@ -351,7 +344,6 @@
             display: flex;
         }
 
-        /* フォーム */
         .contact-form, .event-form {
             display: flex;
             flex-direction: column;
@@ -434,7 +426,6 @@
             font-size: calc(var(--font-size-base) * 1.2);
         }
 
-        /* QRコード */
         .qr-code {
             text-align: center;
             margin-top: 2vw;
@@ -454,7 +445,6 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
 
-        /* 利用規約 */
         .terms {
             background: #e0f4ff;
             color: var(--text-color);
@@ -464,7 +454,6 @@
             color: var(--primary-color);
         }
 
-        /* フッター */
         footer {
             text-align: center;
             padding: 2.5vw;
@@ -490,7 +479,6 @@
             z-index: 1;
         }
 
-        /* イベントボタン */
         #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 {
             width: 30vw;
             height: auto;
@@ -509,7 +497,6 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
 
-        /* モーダル */
         .modal {
             display: none;
             position: fixed;
@@ -539,11 +526,11 @@
             position: absolute;
             top: 2vw;
             right: 2vw;
-            font-size: 6vw;
+            font-size: 3vw;
             color: var(--secondary-color);
             background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
-            padding: 1.5vw;
+            padding: 1vw;
             cursor: pointer;
             transition: var(--transition);
             z-index: 2001;
@@ -555,7 +542,6 @@
             transform: scale(1.1) rotate(180deg);
         }
 
-        /* モーダル表示中の背景無効化 */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -573,7 +559,6 @@
             pointer-events: auto;
         }
 
-        /* スクロールアニメーション */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -585,7 +570,6 @@
             transform: translateY(0);
         }
 
-        /* メディアクエリ */
         @media (max-width: 768px) {
             h1 { font-size: 8vw; }
             .nav-toggle { display: block; }
@@ -775,6 +759,20 @@
                 <li>内容: 基本練習、試合形式、障害調整</li>
             </ul>
             <h3>2. 試合: 未定</h3>
+            <h2>第5条（会費）</h2>
+            <h3>1. 会費:</h3>
+            <ul>
+                <li>1回400円（変動あり）</li>
+                <li>入館時現金支払い</li>
+            </ul>
+            <h3>2. 使途:</h3>
+            <ul>
+                <li>施設使用料、備品購入など</li>
+            </ul>
+            <h3>3. 遅延対応:</h3>
+            <ul>
+                <li>未納時は参加不可</li>
+            </ul>
             <h2>第6条（組織と役割）</h2>
             <h3>1. 運営体制:</h3>
             <ul>
@@ -863,9 +861,7 @@
             { date: '11/22', id: '1122', img: 'https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1' }
         ];
 
-        // モジュラーアプリケーション
         const App = {
-            // パーティクルアニメーション（強化版）
             initParticles() {
                 const canvas = document.getElementById('particles');
                 if (!canvas) return;
@@ -874,14 +870,14 @@
                 canvas.height = window.innerHeight;
 
                 const particles = [];
-                const particleCount = 300; // 粒子数を増やして強調
+                const particleCount = 300;
 
                 class Particle {
                     constructor() {
                         this.x = Math.random() * canvas.width;
                         this.y = Math.random() * canvas.height;
                         this.size = Math.random() * 6 + 2;
-                        this.speedX = Math.random() * 2 - 1; // 速度を増加
+                        this.speedX = Math.random() * 2 - 1;
                         this.speedY = Math.random() * 2 - 1;
                         this.color = `rgba(255, 255, 255, ${Math.random() * 0.6 + 0.4})`;
                     }
@@ -921,38 +917,28 @@
                 });
             },
 
-            // スムーススクロール
             initSmoothScroll() {
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    const handleScroll = e => {
+                    anchor.addEventListener('click', e => {
                         e.preventDefault();
-                        e.stopPropagation();
                         const target = document.querySelector(anchor.getAttribute('href'));
                         if (target) {
                             target.scrollIntoView({ behavior: 'smooth' });
                         }
-                    };
-                    anchor.addEventListener('click', handleScroll);
-                    anchor.addEventListener('touchstart', handleScroll, { passive: true });
+                    });
                 });
             },
 
-            // ナビゲーショントグル
             initNavToggle() {
                 const navToggle = document.querySelector('.nav-toggle');
                 const navMenu = document.querySelector('nav ul');
                 if (navToggle && navMenu) {
-                    const toggleMenu = e => {
-                        e.preventDefault();
-                        e.stopPropagation();
+                    navToggle.addEventListener('click', () => {
                         navMenu.classList.toggle('active');
-                    };
-                    navToggle.addEventListener('click', toggleMenu);
-                    navToggle.addEventListener('touchstart', toggleMenu, { passive: true });
+                    });
                 }
             },
 
-            // ライトボックス
             initLightbox() {
                 const galleryImages = document.querySelectorAll('.gallery img');
                 const lightbox = document.getElementById('lightbox');
@@ -960,86 +946,55 @@
                 const lightboxClose = document.querySelector('.lightbox-close');
                 const modalOverlay = document.querySelector('.modal-overlay');
 
-                if (galleryImages.length && lightbox && lightboxImg && lightboxClose) {
-                    galleryImages.forEach(img => {
-                        const openLightbox = e => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            if (!document.querySelector('.modal[style*="display: block"]')) { // 他のモーダルが開いていない場合のみ
-                                lightboxImg.src = img.src;
-                                lightbox.classList.add('active');
-                                modalOverlay.classList.add('active');
-                                document.body.style.overflow = 'hidden';
-                                lightboxClose.focus();
-                            }
-                        };
-                        img.addEventListener('click', openLightbox);
-                        img.addEventListener('touchstart', openLightbox, { passive: true });
+                galleryImages.forEach(img => {
+                    img.addEventListener('click', () => {
+                        lightboxImg.src = img.src;
+                        lightbox.style.display = 'flex';
+                        modalOverlay.classList.add('active');
+                        document.body.style.overflow = 'hidden';
                     });
+                });
 
-                    const closeLightbox = e => {
-                        if (e.target === lightbox || e.target === lightboxClose) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            lightbox.classList.remove('active');
-                            modalOverlay.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
-                    };
-                    lightbox.addEventListener('click', closeLightbox);
-                    lightbox.addEventListener('touchstart', closeLightbox, { passive: true });
+                lightboxClose.addEventListener('click', () => {
+                    lightbox.style.display = 'none';
+                    modalOverlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
 
-                    lightboxClose.addEventListener('keydown', e => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            lightbox.classList.remove('active');
-                            modalOverlay.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
-                    });
-                }
+                lightbox.addEventListener('click', e => {
+                    if (e.target === lightbox) {
+                        lightbox.style.display = 'none';
+                        modalOverlay.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
             },
 
-            // 連絡フォーム
             initContactForm() {
-                const contactForm = document.querySelector('#contact-form');
-                if (contactForm) {
-                    contactForm.addEventListener('submit', e => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const name = contactForm.querySelector('input[name="name"]').value.trim();
-                        const email = contactForm.querySelector('input[name="email"]').value.trim();
-                        const message = contactForm.querySelector('textarea[name="message"]').value.trim();
-                        if (!name || !email || !message) {
-                            alert('すべての必須フィールドを入力してください。');
-                            return;
-                        }
-                        const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
-                        const body = `お名前: ${name}\nメールアドレス: ${email}\nメッセージ:\n${message}`;
-                        try {
-                            window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                            contactForm.reset();
-                            alert('問い合わせ送信完了！メールクライアントが開きます。');
-                        } catch (error) {
-                            alert('メール送信に失敗しました。');
-                        }
-                    });
-                }
+                const contactForm = document.getElementById('contact-form');
+                contactForm.addEventListener('submit', e => {
+                    e.preventDefault();
+                    const name = contactForm.querySelector('input[name="name"]').value.trim();
+                    const email = contactForm.querySelector('input[name="email"]').value.trim();
+                    const message = contactForm.querySelector('textarea[name="message"]').value.trim();
+                    if (name && email && message) {
+                        window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(`問い合わせ - ${name}`)}&body=${encodeURIComponent(`お名前: ${name}\nメール: ${email}\nメッセージ: ${message}`)}`;
+                        contactForm.reset();
+                        alert('問い合わせを送信しました。');
+                    } else {
+                        alert('すべての項目を入力してください。');
+                    }
+                });
             },
 
-            // イベント登録
             initEventRegistration() {
                 const eventList = document.getElementById('event-list');
                 const statusModal = document.getElementById('status-modal');
                 const formModal = document.getElementById('form-modal');
                 const registerForm = document.getElementById('register-form');
-                const closes = document.querySelectorAll('.modal-close');
-                const statusButtons = document.querySelectorAll('.status-btn');
                 const modalOverlay = document.querySelector('.modal-overlay');
                 let currentEventDate = '';
 
-                // イベントを動的に生成
                 events.forEach(event => {
                     const eventHtml = `
                         <h3>${event.date} バレーボール練習会</h3>
@@ -1048,142 +1003,79 @@
                     `;
                     eventList.insertAdjacentHTML('beforeend', eventHtml);
                     const btn = document.getElementById(`register-btn-${event.id}`);
-                    if (btn) {
-                        const openStatusModal = e => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            currentEventDate = event.date;
-                            if (statusModal) {
-                                document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
-                                statusModal.style.display = 'block';
-                                modalOverlay.classList.add('active');
-                                document.body.style.overflow = 'hidden';
-                                statusModal.focus();
-                                // ギャラリーを無効化
-                                document.querySelector('.gallery').style.pointer-events = 'none';
-                            } else {
-                                alert('モーダル表示に失敗しました。');
-                            }
-                        };
-                        btn.addEventListener('click', openStatusModal);
-                        btn.addEventListener('touchstart', openStatusModal, { passive: true });
-                    }
-                });
-
-                // モーダル閉じる
-                if (closes) {
-                    closes.forEach(close => {
-                        const closeModal = e => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            if (statusModal) statusModal.style.display = 'none';
-                            if (formModal) formModal.style.display = 'none';
-                            if (registerForm) registerForm.reset();
-                            modalOverlay.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                            // ギャラリーを有効化
-                            document.querySelector('.gallery').style.pointer-events = 'auto';
-                        };
-                        close.addEventListener('click', closeModal);
-                        close.addEventListener('touchstart', closeModal, { passive: true });
-                        close.addEventListener('keydown', e => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                closeModal(e);
-                            }
-                        });
+                    btn.addEventListener('click', () => {
+                        currentEventDate = event.date;
+                        document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
+                        statusModal.style.display = 'block';
+                        modalOverlay.classList.add('active');
+                        document.body.style.overflow = 'hidden';
                     });
-                }
-
-                // モーダル背景クリック
-                const closeModalOnBackground = e => {
-                    if (e.target === statusModal || e.target === formModal) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (statusModal) statusModal.style.display = 'none';
-                        if (formModal) formModal.style.display = 'none';
-                        if (registerForm) registerForm.reset();
-                        modalOverlay.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                        // ギャラリーを有効化
-                        document.querySelector('.gallery').style.pointer-events = 'auto';
-                    }
-                };
-                window.addEventListener('click', closeModalOnBackground);
-                window.addEventListener('touchstart', closeModalOnBackground, { passive: true });
-
-                // Escキー
-                document.addEventListener('keydown', e => {
-                    if (e.key === 'Escape') {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (statusModal) statusModal.style.display = 'none';
-                        if (formModal) formModal.style.display = 'none';
-                        if (registerForm) registerForm.reset();
-                        if (lightbox) lightbox.classList.remove('active');
-                        modalOverlay.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                        // ギャラリーを有効化
-                        document.querySelector('.gallery').style.pointer-events = 'auto';
-                    }
                 });
 
-                // ステータスボタン
-                statusButtons.forEach(btn => {
-                    btn.addEventListener('click', e => {
-                        e.preventDefault();
-                        e.stopPropagation();
+                document.querySelectorAll('.modal-close').forEach(close => {
+                    close.addEventListener('click', () => {
+                        statusModal.style.display = 'none';
+                        formModal.style.display = 'none';
+                        registerForm.reset();
+                        modalOverlay.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+
+                document.querySelectorAll('.status-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
                         const status = btn.getAttribute('data-status');
-                        const statusInput = document.getElementById('status');
-                        const eventDateInput = document.getElementById('event-date');
-                        const formTitle = document.getElementById('form-title');
-                        if (statusInput) statusInput.value = status;
-                        if (eventDateInput) eventDateInput.value = currentEventDate;
-                        if (formTitle) formTitle.textContent = `${status}の${currentEventDate}練習会登録情報入力`;
-                        if (statusModal) statusModal.style.display = 'none';
-                        if (formModal) {
-                            formModal.style.display = 'block';
-                            modalOverlay.classList.add('active');
-                            formModal.focus();
-                        }
+                        document.getElementById('status').value = status;
+                        document.getElementById('event-date').value = currentEventDate;
+                        document.getElementById('form-title').textContent = `${status}の${currentEventDate}練習会登録情報入力`;
+                        statusModal.style.display = 'none';
+                        formModal.style.display = 'block';
                     });
                 });
 
-                // 登録フォーム
-                if (registerForm) {
-                    registerForm.addEventListener('submit', e => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const status = document.getElementById('status').value;
-                        const eventDate = document.getElementById('event-date').value;
-                        const name = document.getElementById('name').value.trim();
-                        const email = document.getElementById('email').value.trim();
-                        const phone = document.getElementById('phone').value.trim() || '未入力';
-                        const line = document.getElementById('line').value.trim() || '未入力';
-                        if (!name || !email) {
-                            alert('名前とメールアドレスは必須です。');
-                            return;
-                        }
-                        const subject = `${eventDate}練習会登録: ${status} - ${name}`;
-                        const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
-                        try {
-                            window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                            alert('登録完了！メールクライアントが開きます。');
-                            formModal.style.display = 'none';
+                registerForm.addEventListener('submit', e => {
+                    e.preventDefault();
+                    const status = document.getElementById('status').value;
+                    const eventDate = document.getElementById('event-date').value;
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim() || '未入力';
+                    const line = document.getElementById('line').value.trim() || '未入力';
+                    if (name && email) {
+                        window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(`${eventDate}練習会登録: ${status} - ${name}`)}&body=${encodeURIComponent(`参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`)}`;
+                        alert('登録完了！メールクライアントが開きます。');
+                        formModal.style.display = 'none';
+                        registerForm.reset();
+                        modalOverlay.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    } else {
+                        alert('名前とメールアドレスは必須です。');
+                    }
+                });
+
+                [statusModal, formModal].forEach(modal => {
+                    modal.addEventListener('click', e => {
+                        if (e.target === modal) {
+                            modal.style.display = 'none';
                             registerForm.reset();
                             modalOverlay.classList.remove('active');
                             document.body.style.overflow = 'auto';
-                            // ギャラリーを有効化
-                            document.querySelector('.gallery').style.pointer-events = 'auto';
-                        } catch (error) {
-                            alert('メール送信に失敗しました。');
                         }
                     });
-                }
+                });
+
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'Escape') {
+                        statusModal.style.display = 'none';
+                        formModal.style.display = 'none';
+                        document.getElementById('lightbox').style.display = 'none';
+                        registerForm.reset();
+                        modalOverlay.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
             },
 
-            // スクロールアニメーション
             initScrollAnimation() {
                 const sections = document.querySelectorAll('.animate-on-scroll');
                 const observer = new IntersectionObserver(entries => {
@@ -1193,11 +1085,9 @@
                         }
                     });
                 }, { threshold: 0.2 });
-
                 sections.forEach(section => observer.observe(section));
             },
 
-            // 初期化
             init() {
                 this.initParticles();
                 this.initSmoothScroll();
@@ -1209,7 +1099,6 @@
             }
         };
 
-        // アプリケーション開始
         document.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 </body>
