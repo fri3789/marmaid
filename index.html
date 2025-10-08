@@ -6,16 +6,17 @@
     <title>チームマーメイド - Soft Volleyball Mermaid</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS変数で再利用性を向上 */
+        /* CSS変数でテーマ管理 */
         :root {
             --primary-color: #0284c7;
             --secondary-color: #1e40af;
             --text-color: #1e3a8a;
             --bg-light: #f0f9ff;
-            --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --font-size-base: 1.2vw;
             --font-size-mobile: 3.5vw;
+            --border-radius: 1vw;
         }
 
         * {
@@ -30,13 +31,15 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
+        /* ヘッダー */
         header {
+            position: relative;
             text-align: center;
             padding: 12vw 5vw;
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
-            position: relative;
             box-shadow: var(--shadow);
         }
 
@@ -47,7 +50,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(56, 189, 248, 0.5));
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.6), rgba(56, 189, 248, 0.4));
             z-index: 1;
         }
 
@@ -61,24 +64,34 @@
             font-size: 6vw;
             color: #ffffff;
             text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
-            animation: pulse 2s infinite ease-in-out;
+            animation: pulse 2.5s infinite ease-in-out;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.95; }
         }
 
-        .wave {
+        /* 波アニメーション（多層） */
+        .wave, .wave2 {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 8vw;
+            z-index: 1;
+        }
+
+        .wave {
             background: url('https://svgwave.in/random/1') repeat-x;
             animation: wave 12s linear infinite;
             opacity: 0.8;
-            z-index: 1;
+        }
+
+        .wave2 {
+            background: url('https://svgwave.in/random/2') repeat-x;
+            animation: wave 18s linear infinite reverse;
+            opacity: 0.6;
         }
 
         @keyframes wave {
@@ -86,6 +99,17 @@
             100% { background-position-x: 1000px; }
         }
 
+        /* パーティクルアニメーション用Canvas */
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* ナビゲーション */
         nav {
             background: rgba(255, 255, 255, 0.95);
             padding: 1.5vw;
@@ -112,6 +136,7 @@
             padding: 1vw;
             position: relative;
             transition: var(--transition);
+            transform: perspective(500px);
         }
 
         nav a::after {
@@ -131,7 +156,7 @@
 
         nav a:hover {
             color: var(--primary-color);
-            transform: translateY(-2px);
+            transform: perspective(500px) translateZ(10px);
         }
 
         .nav-toggle {
@@ -145,6 +170,11 @@
             top: 1vw;
             right: 2vw;
             z-index: 1001;
+            transition: var(--transition);
+        }
+
+        .nav-toggle:hover {
+            transform: rotate(90deg);
         }
 
         main {
@@ -157,14 +187,15 @@
             background: #ffffff;
             padding: 4vw;
             margin-bottom: 4vw;
-            border-radius: 1.5vw;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             position: relative;
-            animation: slideIn 0.8s ease-out;
+            animation: slideIn 0.8s ease-out forwards;
+            opacity: 0;
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -207,6 +238,7 @@
             color: var(--secondary-color);
         }
 
+        /* ギャラリー */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
@@ -218,18 +250,36 @@
             width: 100%;
             height: 22vw;
             object-fit: cover;
-            border-radius: 1.2vw;
+            border-radius: var(--border-radius);
             border: 0.2vw solid var(--primary-color);
             transition: var(--transition);
             cursor: pointer;
             loading: lazy;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .gallery img:nth-child(1) { animation-delay: 0.1s; }
+        .gallery img:nth-child(2) { animation-delay: 0.2s; }
+        .gallery img:nth-child(3) { animation-delay: 0.3s; }
+        .gallery img:nth-child(4) { animation-delay: 0.4s; }
+        .gallery img:nth-child(5) { animation-delay: 0.5s; }
+        .gallery img:nth-child(6) { animation-delay: 0.6s; }
+        .gallery img:nth-child(7) { animation-delay: 0.7s; }
+        .gallery img:nth-child(8) { animation-delay: 0.8s; }
+        .gallery img:nth-child(9) { animation-delay: 0.9s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .gallery img:hover, .gallery img:active {
-            transform: scale(1.05) rotate(1deg);
+            transform: perspective(500px) rotateY(5deg) scale(1.05);
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
 
+        /* ライトボックス */
         .lightbox {
             position: fixed;
             top: 0;
@@ -240,15 +290,15 @@
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 2000; /* ナビゲーションより高いz-index */
-            animation: fadeIn 0.5s ease-out;
+            z-index: 2000;
+            animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .lightbox img {
             max-width: 90%;
             max-height: 80%;
-            border-radius: 1vw;
-            animation: zoomIn 0.5s ease-out;
+            border-radius: var(--border-radius);
+            animation: zoomIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .lightbox-close {
@@ -268,8 +318,13 @@
 
         .lightbox-close:hover, .lightbox-close:active {
             color: var(--primary-color);
-            font-size: 7.2vw;
-            transform: scale(1.1) rotate(90deg);
+            transform: scale(1.1) rotate(180deg);
+        }
+
+        @keyframes springIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            60% { opacity: 1; transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         @keyframes zoomIn {
@@ -281,17 +336,19 @@
             display: flex;
         }
 
-        .contact-form {
+        /* フォーム */
+        .contact-form, .event-form {
             display: flex;
             flex-direction: column;
             gap: 1.5vw;
         }
 
         .contact-form input,
-        .contact-form textarea {
+        .contact-form textarea,
+        .event-form input {
             padding: 1.2vw;
             border: 0.2vw solid #bfdbfe;
-            border-radius: 1vw;
+            border-radius: var(--border-radius);
             font-size: var(--font-size-base);
             color: var(--text-color);
             background: var(--bg-light);
@@ -299,7 +356,8 @@
         }
 
         .contact-form input:focus,
-        .contact-form textarea:focus {
+        .contact-form textarea:focus,
+        .event-form input:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
@@ -310,10 +368,12 @@
             min-height: 10vw;
         }
 
-        .contact-form button {
-            padding: 2vw 4vw;
+        .contact-form button,
+        .event-form button,
+        .status-btn {
+            padding: 1.2vw 4vw;
             border: none;
-            border-radius: 1vw;
+            border-radius: var(--border-radius);
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: #ffffff;
             font-weight: 600;
@@ -324,7 +384,9 @@
             transition: var(--transition);
         }
 
-        .contact-form button::after {
+        .contact-form button::after,
+        .event-form button::after,
+        .status-btn::after {
             content: '';
             position: absolute;
             top: 50%;
@@ -337,16 +399,27 @@
             transition: width 0.5s ease, height 0.5s ease;
         }
 
-        .contact-form button:hover::after, .contact-form button:active::after {
+        .contact-form button:hover::after,
+        .contact-form button:active::after,
+        .event-form button:hover::after,
+        .event-form button:active::after,
+        .status-btn:hover::after,
+        .status-btn:active::after {
             width: 200%;
             height: 200%;
         }
 
-        .contact-form button:hover, .contact-form button:active {
-            transform: scale(1.05);
+        .contact-form button:hover,
+        .contact-form button:active,
+        .event-form button:hover,
+        .event-form button:active,
+        .status-btn:hover,
+        .status-btn:active {
+            transform: scale(1.05) translateY(-2px);
             font-size: calc(var(--font-size-base) * 1.2);
         }
 
+        /* QRコード */
         .qr-code {
             text-align: center;
             margin-top: 2vw;
@@ -355,17 +428,18 @@
         .qr-code img {
             width: 10vw;
             height: 10vw;
-            border-radius: 1vw;
+            border-radius: var(--border-radius);
             border: 0.2vw solid var(--primary-color);
             transition: var(--transition);
             loading: lazy;
         }
 
         .qr-code img:hover, .qr-code img:active {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(5deg);
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
 
+        /* 利用規約 */
         .terms {
             background: #e0f4ff;
             color: var(--text-color);
@@ -375,18 +449,37 @@
             color: var(--primary-color);
         }
 
+        /* フッター */
         footer {
             text-align: center;
             padding: 2.5vw;
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: #ffffff;
             font-size: 0.95vw;
+            position: relative;
         }
 
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+            z-index: 0;
+        }
+
+        footer p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* イベントボタン */
         #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 {
             width: 30vw;
             height: auto;
-            border-radius: 1vw;
+            border-radius: var(--border-radius);
             cursor: pointer;
             transition: var(--transition);
             display: block;
@@ -397,10 +490,11 @@
 
         #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover,
         #register-btn-1004:active, #register-btn-1018:active, #register-btn-1108:active, #register-btn-1122:active {
-            transform: scale(1.05);
+            transform: perspective(500px) rotateX(5deg) scale(1.05);
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
 
+        /* モーダル */
         .modal {
             display: none;
             position: fixed;
@@ -409,9 +503,9 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
-            z-index: 2000; /* ナビゲーションより高いz-index */
+            z-index: 2000;
             backdrop-filter: blur(5px);
-            animation: fadeIn 0.5s ease-out;
+            animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .modal-content {
@@ -420,10 +514,10 @@
             padding: 2vw;
             width: 80%;
             max-width: 30vw;
-            border-radius: 1.5vw;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             text-align: center;
-            animation: slideIn 0.5s ease-out;
+            animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .modal-close {
@@ -443,123 +537,22 @@
 
         .modal-close:hover, .modal-close:active {
             color: var(--primary-color);
-            font-size: 7.2vw;
-            transform: scale(1.1) rotate(90deg);
+            transform: scale(1.1) rotate(180deg);
         }
 
-        .status-btn {
-            width: 100%;
-            padding: 1.2vw;
-            margin: 1vw 0;
-            border: none;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #ffffff;
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            border-radius: 1vw;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+        /* スクロールアニメーション */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .status-btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease;
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .status-btn:hover::after, .status-btn:active::after {
-            width: 200%;
-            height: 200%;
-        }
-
-        .status-btn:hover, .status-btn:active {
-            transform: scale(1.05);
-            font-size: calc(var(--font-size-base) * 1.2);
-        }
-
-        .event-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5vw;
-        }
-
-        .event-form label {
-            font-size: var(--font-size-base);
-            color: var(--text-color);
-            text-align: left;
-            margin-bottom: 0.5vw;
-        }
-
-        .event-form input {
-            padding: 1.2vw;
-            border: 0.2vw solid #bfdbfe;
-            border-radius: 1vw;
-            font-size: var(--font-size-base);
-            color: var(--text-color);
-            background: var(--bg-light);
-            transition: var(--transition);
-        }
-
-        .event-form input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
-            outline: none;
-        }
-
-        .event-form button {
-            padding: 1.2vw;
-            border: none;
-            border-radius: 1vw;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #ffffff;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: var(--font-size-base);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .event-form button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease;
-        }
-
-        .event-form button:hover::after, .event-form button:active::after {
-            width: 200%;
-            height: 200%;
-        }
-
-        .event-form button:hover, .event-form button:active {
-            transform: scale(1.05);
-            font-size: calc(var(--font-size-base) * 1.2);
-        }
-
-        .event-form h3 {
-            font-family: 'Lora', serif;
-            font-size: 2.5vw;
-            color: var(--primary-color);
-            margin: 0 0 2vw;
-        }
-
-        /* モバイル対応 */
+        /* メディアクエリ */
         @media (max-width: 768px) {
             h1 { font-size: 8vw; }
             .nav-toggle { display: block; }
@@ -583,47 +576,40 @@
             p { font-size: var(--font-size-mobile); }
             .gallery { grid-template-columns: 1fr; }
             .gallery img { height: 50vw; }
-            .contact-form input, .contact-form textarea { font-size: var(--font-size-mobile); padding: 3vw; }
-            .contact-form button { font-size: var(--font-size-mobile); padding: 3vw; }
-            .contact-form button:active { font-size: calc(var(--font-size-mobile) * 1.2); }
+            .contact-form input, .contact-form textarea, .event-form input { font-size: var(--font-size-mobile); padding: 3vw; }
+            .contact-form button, .event-form button, .status-btn { font-size: var(--font-size-mobile); padding: 3vw; }
+            .contact-form button:active, .event-form button:active, .status-btn:active { font-size: calc(var(--font-size-mobile) * 1.2); }
             .qr-code img { width: 25vw; height: 25vw; }
             footer { font-size: 3vw; padding: 4vw; }
             #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 50vw; }
             .modal-content { max-width: 80vw; }
-            .status-btn { font-size: var(--font-size-mobile); padding: 3vw; }
-            .status-btn:active { font-size: calc(var(--font-size-mobile) * 1.2); }
-            .event-form label { font-size: var(--font-size-mobile); }
-            .event-form input { font-size: var(--font-size-mobile); padding: 3vw; }
-            .event-form button { font-size: var(--font-size-mobile); padding: 3vw; }
-            .event-form button:active { font-size: calc(var(--font-size-mobile) * 1.2); }
             .event-form h3 { font-size: 5vw; }
-            .modal-close { font-size: 6vw; padding: 1.5vw; }
-            .modal-close:hover, .modal-close:active { font-size: 7.2vw; }
-            .lightbox-close { font-size: 6vw; padding: 1.5vw; }
-            .lightbox-close:hover, .lightbox-close:active { font-size: 7.2vw; }
+            .modal-close, .lightbox-close { font-size: 6vw; padding: 1.5vw; }
+            .modal-close:hover, .modal-close:active, .lightbox-close:hover, .lightbox-close:active { font-size: 7.2vw; }
         }
 
         @media (max-width: 480px) {
             nav ul { padding: 4vw 0; }
             .gallery img { height: 60vw; }
-            .contact-form { gap: 3vw; }
-            .contact-form button { width: 100%; }
+            .contact-form, .event-form { gap: 3vw; }
+            .contact-form button, .event-form button { width: 100%; }
             .modal-content { width: 90vw; }
-            .event-form { gap: 3vw; }
-            .event-form button { width: 100%; }
         }
 
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; }
+            .animate-on-scroll { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
+    <canvas id="particles"></canvas>
     <header>
         <div class="header-content">
             <h1>チームマーメイド<br>Soft Volleyball Mermaid</h1>
         </div>
         <div class="wave"></div>
+        <div class="wave2"></div>
     </header>
     <nav>
         <button class="nav-toggle" aria-label="メニューを開く">☰</button>
@@ -638,19 +624,19 @@
         </ul>
     </nav>
     <main>
-        <section id="home">
+        <section id="home" class="animate-on-scroll">
             <h2>ようこそ、チームマーメイドへ</h2>
             <p>障害者と健常者が一緒にソフトバレーを楽しみ、心身を健康にし、相互理解と地域貢献を目指します。総員21人で活動中！</p>
         </section>
-        <section id="about">
+        <section id="about" class="animate-on-scroll">
             <h2>チーム紹介</h2>
             <p>2025年1月12日に千葉県内で設立。ソフトバレーボールでインクルーシブな環境を作り、障害者スポーツの普及を推進します。</p>
         </section>
-        <section id="members">
+        <section id="members" class="animate-on-scroll">
             <h2>メンバー紹介</h2>
             <p>現在21名で活動中。プライバシー保護のため詳細は非公開です。</p>
         </section>
-        <section id="gallery">
+        <section id="gallery" class="animate-on-scroll">
             <h2>ギャラリー</h2>
             <div class="gallery">
                 <img src="https://www.dropbox.com/scl/fi/fp9flze5wl9danunhap0o/LINE_ALBUM_20250602_250925_1.jpg?rlkey=qtgtzr9oipg0qb2zlpd71mvcs&st=tbhbjmgf&dl=1" alt="チーム練習風景1" loading="lazy">
@@ -664,20 +650,9 @@
                 <img src="https://www.dropbox.com/scl/fi/7i3foll35o99dfvpkrjjd/LINE_ALBUM_20250906-_250925_5.jpg?rlkey=u684hqo6xmv8dhx0g4r1ha0sa&st=4ymxlzlc&dl=1" alt="チーム練習風景9" loading="lazy">
             </div>
         </section>
-        <section id="events">
+        <section id="events" class="animate-on-scroll">
             <h2>イベント情報</h2>
-            <h3>10/04 バレーボール練習会</h3>
-            <p>次回練習は10/04に開催予定。詳細はLINEグループで確認してください。</p>
-            <img id="register-btn-1004" src="https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1" alt="10/04練習会登録ボタン" loading="lazy">
-            <h3>10/18 バレーボール練習会</h3>
-            <p>次回練習は10/18に開催予定。詳細はLINEグループで確認してください。</p>
-            <img id="register-btn-1018" src="https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1" alt="10/18練習会登録ボタン" loading="lazy">
-            <h3>11/08 バレーボール練習会</h3>
-            <p>次回練習は11/08に開催予定。詳細はLINEグループで確認してください。</p>
-            <img id="register-btn-1108" src="https://www.dropbox.com/scl/fi/gd7hk8095kgji9093ityt/11_08.jpg?rlkey=savp3wv2zgrw8ickm6nqev7c1&st=698y8ugq&dl=1" alt="11/08練習会登録ボタン" loading="lazy">
-            <h3>11/22 バレーボール練習会</h3>
-            <p>次回練習は11/22に開催予定。詳細はLINEグループで確認してください。</p>
-            <img id="register-btn-1122" src="https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1" alt="11/22練習会登録ボタン" loading="lazy">
+            <div id="event-list"></div>
             <div id="status-modal" class="modal" role="dialog" aria-label="参加状況選択モーダル">
                 <div class="modal-content">
                     <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
@@ -715,7 +690,7 @@
                 </div>
             </div>
         </section>
-        <section id="contact">
+        <section id="contact" class="animate-on-scroll">
             <h2>連絡先</h2>
             <p>Email: <a href="mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com">mermaidnomail1125@gmail.co.jp</a></p>
             <h2>問い合わせフォーム</h2>
@@ -730,7 +705,7 @@
                 <p>メールで問い合わせ</p>
             </div>
         </section>
-        <section id="terms" class="terms">
+        <section id="terms" class="animate-on-scroll terms">
             <h1>チームマーメイド利用規約</h1>
             <p>制定日: 2025年6月27日（適宜改訂あり）</p>
             <h2>第1条（目的）</h2>
@@ -859,9 +834,72 @@
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
     <script>
-        // モジュラー構造で保守性を向上
+        // イベントデータ（拡張性を考慮）
+        const events = [
+            { date: '10/04', id: '1004', img: 'https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1' },
+            { date: '10/18', id: '1018', img: 'https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1' },
+            { date: '11/08', id: '1108', img: 'https://www.dropbox.com/scl/fi/gd7hk8095kgji9093ityt/11_08.jpg?rlkey=savp3wv2zgrw8ickm6nqev7c1&st=698y8ugq&dl=1' },
+            { date: '11/22', id: '1122', img: 'https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1' }
+        ];
+
+        // モジュラーアプリケーション
         const App = {
-            // スムーススクロール初期化
+            // パーティクルアニメーション
+            initParticles() {
+                const canvas = document.getElementById('particles');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const particles = [];
+                const particleCount = 50;
+
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.size = Math.random() * 5 + 2;
+                        this.speedX = Math.random() * 0.5 - 0.25;
+                        this.speedY = Math.random() * 0.5 - 0.25;
+                    }
+
+                    update() {
+                        this.x += this.speedX;
+                        this.y += this.speedY;
+                        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                    }
+
+                    draw() {
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(p => {
+                        p.update();
+                        p.draw();
+                    });
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+            },
+
+            // スムーススクロール
             initSmoothScroll() {
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     const handleScroll = e => {
@@ -877,7 +915,7 @@
                 });
             },
 
-            // モバイルナビゲーショントグル
+            // ナビゲーショントグル
             initNavToggle() {
                 const navToggle = document.querySelector('.nav-toggle');
                 const navMenu = document.querySelector('nav ul');
@@ -892,7 +930,7 @@
                 }
             },
 
-            // ライトボックス機能
+            // ライトボックス
             initLightbox() {
                 const galleryImages = document.querySelectorAll('.gallery img');
                 const lightbox = document.getElementById('lightbox');
@@ -935,7 +973,7 @@
                 }
             },
 
-            // 連絡フォーム送信処理
+            // 連絡フォーム
             initContactForm() {
                 const contactForm = document.querySelector('#contact-form');
                 if (contactForm) {
@@ -962,14 +1000,9 @@
                 }
             },
 
-            // イベント登録モーダル処理
+            // イベント登録
             initEventRegistration() {
-                const registerButtons = {
-                    '1004': document.getElementById('register-btn-1004'),
-                    '1018': document.getElementById('register-btn-1018'),
-                    '1108': document.getElementById('register-btn-1108'),
-                    '1122': document.getElementById('register-btn-1122')
-                };
+                const eventList = document.getElementById('event-list');
                 const statusModal = document.getElementById('status-modal');
                 const formModal = document.getElementById('form-modal');
                 const registerForm = document.getElementById('register-form');
@@ -977,14 +1010,20 @@
                 const statusButtons = document.querySelectorAll('.status-btn');
                 let currentEventDate = '';
 
-                // 登録ボタンの初期化
-                Object.keys(registerButtons).forEach(date => {
-                    const btn = registerButtons[date];
+                // イベントを動的に生成
+                events.forEach(event => {
+                    const eventHtml = `
+                        <h3>${event.date} バレーボール練習会</h3>
+                        <p>次回練習は${event.date}に開催予定。詳細はLINEグループで確認してください。</p>
+                        <img id="register-btn-${event.id}" src="${event.img}" alt="${event.date}練習会登録ボタン" loading="lazy">
+                    `;
+                    eventList.insertAdjacentHTML('beforeend', eventHtml);
+                    const btn = document.getElementById(`register-btn-${event.id}`);
                     if (btn) {
                         const openStatusModal = e => {
                             e.preventDefault();
                             e.stopPropagation();
-                            currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
+                            currentEventDate = event.date;
                             if (statusModal) {
                                 document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
                                 statusModal.style.display = 'block';
@@ -999,7 +1038,7 @@
                     }
                 });
 
-                // モーダル閉じる処理
+                // モーダル閉じる
                 if (closes) {
                     closes.forEach(close => {
                         const closeModal = e => {
@@ -1022,18 +1061,13 @@
                     });
                 }
 
-                // モーダルの背景クリックで閉じる
+                // モーダル背景クリック
                 const closeModalOnBackground = e => {
-                    if (e.target === statusModal) {
+                    if (e.target === statusModal || e.target === formModal) {
                         e.preventDefault();
                         e.stopPropagation();
-                        statusModal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
-                    if (e.target === formModal) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        formModal.style.display = 'none';
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
                         if (registerForm) registerForm.reset();
                         document.body.style.overflow = 'auto';
                     }
@@ -1041,7 +1075,7 @@
                 window.addEventListener('click', closeModalOnBackground);
                 window.addEventListener('touchstart', closeModalOnBackground, { passive: true });
 
-                // Escキーでモーダル閉じる
+                // Escキー
                 document.addEventListener('keydown', e => {
                     if (e.key === 'Escape') {
                         e.preventDefault();
@@ -1054,7 +1088,7 @@
                     }
                 });
 
-                // ステータスボタンの処理
+                // ステータスボタン
                 statusButtons.forEach(btn => {
                     btn.addEventListener('click', e => {
                         e.preventDefault();
@@ -1074,7 +1108,7 @@
                     });
                 });
 
-                // 登録フォーム送信処理
+                // 登録フォーム
                 if (registerForm) {
                     registerForm.addEventListener('submit', e => {
                         e.preventDefault();
@@ -1104,17 +1138,33 @@
                 }
             },
 
+            // スクロールアニメーション
+            initScrollAnimation() {
+                const sections = document.querySelectorAll('.animate-on-scroll');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                sections.forEach(section => observer.observe(section));
+            },
+
             // 初期化
             init() {
+                this.initParticles();
                 this.initSmoothScroll();
                 this.initNavToggle();
                 this.initLightbox();
                 this.initContactForm();
                 this.initEventRegistration();
+                this.initScrollAnimation();
             }
         };
 
-        // アプリケーションの開始
+        // アプリケーション開始
         document.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 </body>
