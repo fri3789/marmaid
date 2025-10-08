@@ -1,311 +1,1220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>チームマーメイド - Soft Volleyball Mermaid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS変数でテーマ管理 */
+        :root {
+            --primary-color: #0284c7;
+            --secondary-color: #1e40af;
+            --text-color: #1e3a8a;
+            --bg-light: #f0f9ff;
+            --shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-size-base: 1.2vw;
+            --font-size-mobile: 3.5vw;
+            --border-radius: 1vw;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f4ff, var(--bg-light));
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    
-    
-    
-    
-    
+        /* ヘッダー */
+        header {
+            position: relative;
+            text-align: center;
+            padding: 12vw 5vw;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
+            background-attachment: fixed;
+            box-shadow: var(--shadow);
+        }
 
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.6), rgba(56, 189, 248, 0.4));
+            z-index: 1;
+        }
 
-    
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
 
-    
-    
-        
-            
-チームマーメイド Soft Volleyball Mermaid
-        
-        
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 6vw;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
+            animation: pulse 2s infinite ease-in-out;
+        }
 
-        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.95; }
+        }
 
-        
+        /* 波アニメーション（3層） */
+        .wave, .wave2, .wave3 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 12vw; /* 高さを増加して強調 */
+            z-index: 1;
+        }
 
-    
-    
-        
-		        
-		            
-		ホーム
-		            
-		チーム紹介
-		            
-		メンバー
-		            
-		ギャラリー
-		            
-		イベント
-		            
-		連絡先
-		            
-		利用規約
-		        
-    
-    
-        
-            
-ようこそ、チームマーメイドへ
-            
-障害者と健常者が一緒にソフトバレーを楽しみ、心身を健康にし、相互理解と地域貢献を目指します。総員21人で活動中！
-        
-        
-            
-チーム紹介
-            
-2025年1月12日に千葉県内で設立。ソフトバレーボールでインクルーシブな環境を作り、障害者スポーツの普及を推進します。
-        
-        
-            
-メンバー紹介
-            
-現在21名で活動中。プライバシー保護のため詳細は非公開です。
-        
-        
-            
-ギャラリー
-            
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            
-        
-        
-            
-イベント情報
-            
+        .wave {
+            background: url('https://svgwave.in/random/1') repeat-x;
+            animation: wave 10s linear infinite;
+            opacity: 0.9;
+        }
 
-            
-            
-        
-        
-            
-連絡先
-            
-Email: mermaidnomail1125@gmail.co.jp
-            
-問い合わせフォーム
-            
-                
+        .wave2 {
+            background: url('https://svgwave.in/random/2') repeat-x;
+            animation: wave 15s linear infinite reverse;
+            opacity: 0.8;
+        }
 
-                
+        .wave3 {
+            background: url('https://svgwave.in/random/3') repeat-x;
+            animation: wave 20s linear infinite;
+            opacity: 0.7;
+        }
 
-                
-                
-メールで送信
-            
-            
-                
-                
-メールで問い合わせ
-            
-        
-        
-            
-チームマーメイド利用規約
-            
-制定日: 2025年6月27日（適宜改訂あり）
-            
-第1条（目的）
-            
-障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指します。障害者スポーツの普及を推進。
-            
-第2条（チーム概要）
-            
-                
-名称: マーメイド
-                
-設立: 2025年1月12日
-                
-活動拠点: 千葉県内
-                
-競技種目: ソフトバレーボール（男女混合）
-            
-            
-第3条（会員資格）
-            
-1. 加入条件:
-            
-                
-18歳以上の障害者および健常者。
-                
-ソフトバレーを楽しむ意欲とチーム目的への賛同。
-                
-本規約とLINEルールに同意し、LINEに従う。
-            
-            
-2. 入会手続き:
-            
-                
-代表者に申告し、健康・障害情報を提供。
-            
-            
-3. 退会:
-            
-                
-代表者に通知。規約違反時は退会手続きが制限される場合あり。
-            
-            
-第4条（活動内容）
-            
-1. 練習:
-            
-                
-日程: 随時決定
-                
-場所: 随時決定
-                
-内容: 基本練習、試合形式、障害調整
-            
-            
-2. 試合: 未定
-            
-第5条（会費）
-            
-1. 会費:
-            
-                
-1回400円（変動あり）
-                
-入館時現金支払い
-            
-            
-2. 使途:
-            
-                
-施設使用料、備品購入など
-            
-            
-3. 遅延対応:
-            
-                
-未納時は参加不可
-            
-            
-第6条（組織と役割）
-            
-1. 運営体制:
-            
-                
-幹事、副幹事（財務・情報発信）
-            
-            
-2. 連絡体制:
-            
-                
-LINEグループ、メール、電話
-                
-障害に配慮した連絡
-            
-            
-第7条（ルールとマナー）
-            
-1. 練習ルール:
-            
-                
-出席確認、遅刻・欠席連絡
-                
-施設ルール遵守
-                
-障害に配慮
-            
-            
-2. 禁止事項:
-            
-                
-暴力、飲酒、喫煙、規約違反
-            
-            
-第8条（安全と健康管理）
-            
-1. 健康管理:
-            
-                
-健康・障害情報を提供
-                
-体調不良時は参加控え
-            
-            
-2. 保険: 検討中
-            
-3. 怪我対応:
-            
-                
-119番通報、応急処置
-            
-            
-第9条（大会参加）
-            
-1. 参加資格:
-            
-                
-大会ルールに従う
-            
-            
-2. 費用:
-            
-                
-1大会5,000円（事前徴収）
-            
-            
-第10条（規約違反）
-            
-1. 違反行為:
-            
-                
-会費未納、マナー違反
-            
-            
-2. 懲戒:
-            
-                
-警告、停止、除名
-            
-            
-第11条（個人情報保護）
-            
-1. 情報管理:
-            
-                
-幹事・副幹事が管理
-                
-運営目的以外使用禁止
-            
-            
-第12条（解散）
-            
-1. 解散条件:
-            
-                
-財政難や目的達成不能時
-            
-            
-2. 資産処理:
-            
-                
-寄付または分配
-            
-            
-附則
-            
-                
-施行: 2025年6月17日
-                
-未定事項は4名以上で決定
-            
-        
-    
-    
-        
-© 2025 チームマーメイド. All rights reserved. Manami Hujimitsu, Kaito Saito
-    
-    
-    
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1500px; } /* 移動距離を増やして強調 */
+        }
 
+        /* パーティクルアニメーション用Canvas */
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
 
+        /* ナビゲーション */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5vw;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3vw;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            padding: 1vw;
+            position: relative;
+            transition: var(--transition);
+            transform: perspective(500px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -0.2vw;
+            left: 0;
+            width: 0;
+            height: 0.2vw;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            transform: perspective(500px) translateZ(10px);
+            animation: colorPulse 1.5s infinite;
+        }
+
+        @keyframes colorPulse {
+            0%, 100% { color: var(--text-color); }
+            50% { color: var(--primary-color); }
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            position: absolute;
+            top: 1vw;
+            right: 2vw;
+            z-index: 1001;
+            transition: var(--transition);
+        }
+
+        .nav-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        main {
+            max-width: 90vw;
+            margin: 5vw auto;
+            padding: 0 2vw;
+        }
+
+        section {
+            background: #ffffff;
+            padding: 4vw;
+            margin-bottom: 4vw;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            animation: springInSection 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            opacity: 0;
+        }
+
+        @keyframes springInSection {
+            0% { opacity: 0; transform: translateY(50px) scale(0.95); }
+            60% { opacity: 1; transform: translateY(-10px) scale(1.02); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(14, 165, 233, 0.05), rgba(255, 255, 255, 0.05));
+            z-index: -1;
+        }
+
+        h2 {
+            font-family: 'Lora', serif;
+            font-size: 4.5vw;
+            color: var(--primary-color);
+            margin: 0 0 2vw;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5vw;
+            left: 0;
+            width: 5vw;
+            height: 0.3vw;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: var(--transition);
+        }
+
+        h2:hover::after {
+            width: 12vw;
+        }
+
+        p {
+            font-size: var(--font-size-base);
+            color: var(--secondary-color);
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+            gap: 2vw;
+            margin-top: 2vw;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 22vw;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            border: 0.2vw solid var(--primary-color);
+            transition: var(--transition);
+            cursor: pointer;
+            loading: lazy;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .gallery img:nth-child(1) { animation-delay: 0.1s; }
+        .gallery img:nth-child(2) { animation-delay: 0.2s; }
+        .gallery img:nth-child(3) { animation-delay: 0.3s; }
+        .gallery img:nth-child(4) { animation-delay: 0.4s; }
+        .gallery img:nth-child(5) { animation-delay: 0.5s; }
+        .gallery img:nth-child(6) { animation-delay: 0.6s; }
+        .gallery img:nth-child(7) { animation-delay: 0.7s; }
+        .gallery img:nth-child(8) { animation-delay: 0.8s; }
+        .gallery img:nth-child(9) { animation-delay: 0.9s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .gallery img:hover, .gallery img:active {
+            transform: perspective(500px) rotateY(5deg) translateZ(20px);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.7);
+        }
+
+        /* ライトボックス */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: var(--border-radius);
+            animation: zoomIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2vw;
+            right: 2vw;
+            font-size: 6vw;
+            color: #ffffff;
+            background: rgba(30, 64, 175, 0.8);
+            border-radius: 50%;
+            padding: 1.5vw;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2001;
+            text-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
+        }
+
+        .lightbox-close:hover, .lightbox-close:active {
+            color: var(--primary-color);
+            transform: scale(1.1) rotate(180deg);
+        }
+
+        @keyframes springIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            60% { opacity: 1; transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        /* フォーム */
+        .contact-form, .event-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vw;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .event-form input {
+            padding: 1.2vw;
+            border: 0.2vw solid #bfdbfe;
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-base);
+            color: var(--text-color);
+            background: var(--bg-light);
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .event-form input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
+            outline: none;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 10vw;
+        }
+
+        .contact-form button,
+        .event-form button,
+        .status-btn {
+            padding: 1.2vw 4vw;
+            border: none;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #ffffff;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .contact-form button::after,
+        .event-form button::after,
+        .status-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .contact-form button:hover::after,
+        .contact-form button:active::after,
+        .event-form button:hover::after,
+        .event-form button:active::after,
+        .status-btn:hover::after,
+        .status-btn:active::after {
+            width: 200%;
+            height: 200%;
+        }
+
+        .contact-form button:hover,
+        .contact-form button:active,
+        .event-form button:hover,
+        .event-form button:active,
+        .status-btn:hover,
+        .status-btn:active {
+            transform: scale(1.05) translateY(-2px);
+            font-size: calc(var(--font-size-base) * 1.2);
+        }
+
+        /* QRコード */
+        .qr-code {
+            text-align: center;
+            margin-top: 2vw;
+        }
+
+        .qr-code img {
+            width: 10vw;
+            height: 10vw;
+            border-radius: var(--border-radius);
+            border: 0.2vw solid var(--primary-color);
+            transition: var(--transition);
+            loading: lazy;
+        }
+
+        .qr-code img:hover, .qr-code img:active {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+        }
+
+        /* 利用規約 */
+        .terms {
+            background: #e0f4ff;
+            color: var(--text-color);
+        }
+
+        .terms h2, .terms h3 {
+            color: var(--primary-color);
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 2.5vw;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: #ffffff;
+            font-size: 0.95vw;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+            z-index: 0;
+        }
+
+        footer p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* イベントボタン */
+        #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 {
+            width: 30vw;
+            height: auto;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 2vw auto;
+            border: 0.2vw solid var(--primary-color);
+            loading: lazy;
+        }
+
+        #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover,
+        #register-btn-1004:active, #register-btn-1018:active, #register-btn-1108:active, #register-btn-1122:active {
+            transform: perspective(500px) rotateX(5deg) scale(1.05);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+        }
+
+        /* モーダル */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+            animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .modal-content {
+            background: #ffffff;
+            margin: 10% auto;
+            padding: 2vw;
+            width: 80%;
+            max-width: 30vw;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2vw;
+            right: 2vw;
+            font-size: 6vw;
+            color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            padding: 1.5vw;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2001;
+            text-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
+        }
+
+        .modal-close:hover, .modal-close:active {
+            color: var(--primary-color);
+            transform: scale(1.1) rotate(180deg);
+        }
+
+        /* モーダル表示中の背景無効化 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 1999;
+            display: none;
+            pointer-events: none;
+        }
+
+        .modal-overlay.active {
+            display: block;
+            pointer-events: auto;
+        }
+
+        /* スクロールアニメーション */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* メディアクエリ */
+        @media (max-width: 768px) {
+            h1 { font-size: 8vw; }
+            .nav-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                background: #ffffff;
+                position: absolute;
+                top: 4vw;
+                left: 0;
+                width: 100%;
+                padding: 2vw 0;
+                box-shadow: var(--shadow);
+            }
+            nav ul.active { display: flex; }
+            nav a { font-size: var(--font-size-mobile); padding: 2vw; }
+            nav ul { gap: 2vw; }
+            section { padding: 6vw; margin-bottom: 6vw; }
+            h2 { font-size: 6vw; }
+            p { font-size: var(--font-size-mobile); }
+            .gallery { grid-template-columns: 1fr; }
+            .gallery img { height: 50vw; }
+            .contact-form input, .contact-form textarea, .event-form input { font-size: var(--font-size-mobile); padding: 3vw; }
+            .contact-form button, .event-form button, .status-btn { font-size: var(--font-size-mobile); padding: 3vw; }
+            .contact-form button:active, .event-form button:active, .status-btn:active { font-size: calc(var(--font-size-mobile) * 1.2); }
+            .qr-code img { width: 25vw; height: 25vw; }
+            footer { font-size: 3vw; padding: 4vw; }
+            #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 50vw; }
+            .modal-content { max-width: 80vw; }
+            .event-form h3 { font-size: 5vw; }
+            .modal-close, .lightbox-close { font-size: 6vw; padding: 1.5vw; }
+            .modal-close:hover, .modal-close:active, .lightbox-close:hover, .lightbox-close:active { font-size: 7.2vw; }
+        }
+
+        @media (max-width: 480px) {
+            nav ul { padding: 4vw 0; }
+            .gallery img { height: 60vw; }
+            .contact-form, .event-form { gap: 3vw; }
+            .contact-form button, .event-form button { width: 100%; }
+            .modal-content { width: 90vw; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+            .animate-on-scroll { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    <div class="modal-overlay"></div>
+    <header>
+        <div class="header-content">
+            <h1>チームマーメイド<br>Soft Volleyball Mermaid</h1>
+        </div>
+        <div class="wave"></div>
+        <div class="wave2"></div>
+        <div class="wave3"></div>
+    </header>
+    <nav>
+        <button class="nav-toggle" aria-label="メニューを開く">☰</button>
+        <ul>
+            <li><a href="#home">ホーム</a></li>
+            <li><a href="#about">チーム紹介</a></li>
+            <li><a href="#members">メンバー</a></li>
+            <li><a href="#gallery">ギャラリー</a></li>
+            <li><a href="#events">イベント</a></li>
+            <li><a href="#contact">連絡先</a></li>
+            <li><a href="#terms">利用規約</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="home" class="animate-on-scroll">
+            <h2>ようこそ、チームマーメイドへ</h2>
+            <p>障害者と健常者が一緒にソフトバレーを楽しみ、心身を健康にし、相互理解と地域貢献を目指します。総員21人で活動中！</p>
+        </section>
+        <section id="about" class="animate-on-scroll">
+            <h2>チーム紹介</h2>
+            <p>2025年1月12日に千葉県内で設立。ソフトバレーボールでインクルーシブな環境を作り、障害者スポーツの普及を推進します。</p>
+        </section>
+        <section id="members" class="animate-on-scroll">
+            <h2>メンバー紹介</h2>
+            <p>現在21名で活動中。プライバシー保護のため詳細は非公開です。</p>
+        </section>
+        <section id="gallery" class="animate-on-scroll">
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <img src="https://www.dropbox.com/scl/fi/fp9flze5wl9danunhap0o/LINE_ALBUM_20250602_250925_1.jpg?rlkey=qtgtzr9oipg0qb2zlpd71mvcs&st=tbhbjmgf&dl=1" alt="チーム練習風景1" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/60xshw8c29v8u4iv9sl01/LINE_ALBUM_20250602_250925_3.jpg?rlkey=4piglqv4zg99jemgmvfsyiohg&st=y14ystfm&dl=1" alt="チーム練習風景2" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/tl9lspyrynnxcrftc7c14/LINE_ALBUM_20250623_250925_12.jpg?rlkey=7mksa7h56o8x81nt0sxp1ro23&st=1xiu3tf7&dl=1" alt="チーム練習風景3" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/xyzrfgdvlfl25b6718hoi/LINE_ALBUM_20250623_250925_14.jpg?rlkey=sqs3yd4h9p360luh91ckug83n&st=zmmjdwf7&dl=1" alt="チーム練習風景4" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/gvi74xsm34byy769i55c8/LINE_ALBUM_20250906-_250925_3.jpg?rlkey=m81paoovvt8kz7vd1izxgvx02&st=tizfjl60&dl=1" alt="チーム練習風景5" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/0z547g8p9rj93zuluunc6/LINE_ALBUM_20250906-_250925_22.jpg?rlkey=w7p8k1ksvbybqwr7i93lpweze&st=zz45aa2x&dl=1" alt="チーム練習風景6" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/4w0jarkfgafnkwtgfkdhm/LINE_ALBUM_20250906-_250925_25.jpg?rlkey=q9j32po38l4ro6428270efxrf&st=b6wk2w91&dl=1" alt="チーム練習風景7" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/kabmuixpbusul2dbqpkyd/LINE_ALBUM_20250906-_250925_28.jpg?rlkey=eg349s752le93o951phnyyzaa&st=d9uo27s2&dl=1" alt="チーム練習風景8" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                <img src="https://www.dropbox.com/scl/fi/7i3foll35o99dfvpkrjjd/LINE_ALBUM_20250906-_250925_5.jpg?rlkey=u684hqo6xmv8dhx0g4r1ha0sa&st=4ymxlzlc&dl=1" alt="チーム練習風景9" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+            </div>
+        </section>
+        <section id="events" class="animate-on-scroll">
+            <h2>イベント情報</h2>
+            <div id="event-list"></div>
+            <div id="status-modal" class="modal" role="dialog" aria-label="参加状況選択モーダル">
+                <div class="modal-content">
+                    <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
+                    <h3 id="status-title">練習会参加状況を選択</h3>
+                    <button class="status-btn" data-status="参加">参加</button>
+                    <button class="status-btn" data-status="不参加">不参加</button>
+                    <button class="status-btn" data-status="未定">未定</button>
+                </div>
+            </div>
+            <div id="form-modal" class="modal" role="dialog" aria-label="登録フォームモーダル">
+                <div class="modal-content">
+                    <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
+                    <h3 id="form-title">練習会登録情報入力</h3>
+                    <form id="register-form" class="event-form">
+                        <div>
+                            <label for="name">名前:</label>
+                            <input type="text" id="name" required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="email">メールアドレス:</label>
+                            <input type="email" id="email" required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="phone">電話番号:</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div>
+                            <label for="line">LINE名:</label>
+                            <input type="text" id="line">
+                        </div>
+                        <input type="hidden" id="status">
+                        <input type="hidden" id="event-date">
+                        <button type="submit">送信</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="animate-on-scroll">
+            <h2>連絡先</h2>
+            <p>Email: <a href="mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com">mermaidnomail1125@gmail.co.jp</a></p>
+            <h2>問い合わせフォーム</h2>
+            <form class="contact-form" id="contact-form">
+                <input type="text" name="name" placeholder="お名前" required aria-required="true">
+                <input type="email" name="email" placeholder="メールアドレス" required aria-required="true">
+                <textarea name="message" placeholder="メッセージ" required aria-required="true"></textarea>
+                <button type="submit">メールで送信</button>
+            </form>
+            <div class="qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&size=150x150" alt="連絡先QRコード" loading="lazy">
+                <p>メールで問い合わせ</p>
+            </div>
+        </section>
+        <section id="terms" class="animate-on-scroll terms">
+            <h1>チームマーメイド利用規約</h1>
+            <p>制定日: 2025年6月27日（適宜改訂あり）</p>
+            <h2>第1条（目的）</h2>
+            <p>障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指します。障害者スポーツの普及を推進。</p>
+            <h2>第2条（チーム概要）</h2>
+            <ol>
+                <li>名称: マーメイド</li>
+                <li>設立: 2025年1月12日</li>
+                <li>活動拠点: 千葉県内</li>
+                <li>競技種目: ソフトバレーボール（男女混合）</li>
+            </ol>
+            <h2>第3条（会員資格）</h2>
+            <h3>1. 加入条件:</h3>
+            <ul>
+                <li>18歳以上の障害者および健常者。</li>
+                <li>ソフトバレーを楽しむ意欲とチーム目的への賛同。</li>
+                <li>本規約とLINEルールに同意し、LINEに従う。</li>
+            </ul>
+            <h3>2. 入会手続き:</h3>
+            <ul>
+                <li>代表者に申告し、健康・障害情報を提供。</li>
+            </ul>
+            <h3>3. 退会:</h3>
+            <ul>
+                <li>代表者に通知。規約違反時は退会手続きが制限される場合あり。</li>
+            </ul>
+            <h2>第4条（活動内容）</h2>
+            <h3>1. 練習:</h3>
+            <ul>
+                <li>日程: 随時決定</li>
+                <li>場所: 随時決定</li>
+                <li>内容: 基本練習、試合形式、障害調整</li>
+            </ul>
+            <h3>2. 試合: 未定</h3>
+            <h2>第5条（会費）</h2>
+            <h3>1. 会費:</h3>
+            <ul>
+                <li>1回400円（変動あり）</li>
+                <li>入館時現金支払い</li>
+            </ul>
+            <h3>2. 使途:</h3>
+            <ul>
+                <li>施設使用料、備品購入など</li>
+            </ul>
+            <h3>3. 遅延対応:</h3>
+            <ul>
+                <li>未納時は参加不可</li>
+            </ul>
+            <h2>第6条（組織と役割）</h2>
+            <h3>1. 運営体制:</h3>
+            <ul>
+                <li>幹事、副幹事（財務・情報発信）</li>
+            </ul>
+            <h3>2. 連絡体制:</h3>
+            <ul>
+                <li>LINEグループ、メール、電話</li>
+                <li>障害に配慮した連絡</li>
+            </ul>
+            <h2>第7条（ルールとマナー）</h2>
+            <h3>1. 練習ルール:</h3>
+            <ul>
+                <li>出席確認、遅刻・欠席連絡</li>
+                <li>施設ルール遵守</li>
+                <li>障害に配慮</li>
+            </ul>
+            <h3>2. 禁止事項:</h3>
+            <ul>
+                <li>暴力、飲酒、喫煙、規約違反</li>
+            </ul>
+            <h2>第8条（安全と健康管理）</h2>
+            <h3>1. 健康管理:</h3>
+            <ul>
+                <li>健康・障害情報を提供</li>
+                <li>体調不良時は参加控え</li>
+            </ul>
+            <h3>2. 保険: 検討中</h3>
+            <h3>3. 怪我対応:</h3>
+            <ul>
+                <li>119番通報、応急処置</li>
+            </ul>
+            <h2>第9条（大会参加）</h2>
+            <h3>1. 参加資格:</h3>
+            <ul>
+                <li>大会ルールに従う</li>
+            </ul>
+            <h3>2. 費用:</h3>
+            <ul>
+                <li>1大会5,000円（事前徴収）</li>
+            </ul>
+            <h2>第10条（規約違反）</h2>
+            <h3>1. 違反行為:</h3>
+            <ul>
+                <li>会費未納、マナー違反</li>
+            </ul>
+            <h3>2. 懲戒:</h3>
+            <ul>
+                <li>警告、停止、除名</li>
+            </ul>
+            <h2>第11条（個人情報保護）</h2>
+            <h3>1. 情報管理:</h3>
+            <ul>
+                <li>幹事・副幹事が管理</li>
+                <li>運営目的以外使用禁止</li>
+            </ul>
+            <h2>第12条（解散）</h2>
+            <h3>1. 解散条件:</h3>
+            <ul>
+                <li>財政難や目的達成不能時</li>
+            </ul>
+            <h3>2. 資産処理:</h3>
+            <ul>
+                <li>寄付または分配</li>
+            </ul>
+            <h2>附則</h2>
+            <ol>
+                <li>施行: 2025年6月17日</li>
+                <li>未定事項は4名以上で決定</li>
+            </ol>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 チームマーメイド. All rights reserved. Manami Hujimitsu, Kaito Saito</p>
+    </footer>
+    <div class="lightbox" id="lightbox" role="dialog" aria-label="画像拡大モーダル">
+        <span class="lightbox-close" aria-label="ライトボックスを閉じる">&times;</span>
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+    <script>
+        // イベントデータ
+        const events = [
+            { date: '10/04', id: '1004', img: 'https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&st=ntxy2dzj&dl=1' },
+            { date: '10/18', id: '1018', img: 'https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&st=349rvuzm&dl=1' },
+            { date: '11/08', id: '1108', img: 'https://www.dropbox.com/scl/fi/gd7hk8095kgji9093ityt/11_08.jpg?rlkey=savp3wv2zgrw8ickm6nqev7c1&st=698y8ugq&dl=1' },
+            { date: '11/22', id: '1122', img: 'https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&st=7v21avve&dl=1' }
+        ];
+
+        // モジュラーアプリケーション
+        const App = {
+            // パーティクルアニメーション（強化版）
+            initParticles() {
+                const canvas = document.getElementById('particles');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const particles = [];
+                const particleCount = 300; // 粒子数を増やして強調
+
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.size = Math.random() * 6 + 2;
+                        this.speedX = Math.random() * 2 - 1; // 速度を増加
+                        this.speedY = Math.random() * 2 - 1;
+                        this.color = `rgba(255, 255, 255, ${Math.random() * 0.6 + 0.4})`;
+                    }
+
+                    update() {
+                        this.x += this.speedX;
+                        this.y += this.speedY;
+                        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                    }
+
+                    draw() {
+                        ctx.fillStyle = this.color;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(p => {
+                        p.update();
+                        p.draw();
+                    });
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+            },
+
+            // スムーススクロール
+            initSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    const handleScroll = e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    };
+                    anchor.addEventListener('click', handleScroll);
+                    anchor.addEventListener('touchstart', handleScroll, { passive: true });
+                });
+            },
+
+            // ナビゲーショントグル
+            initNavToggle() {
+                const navToggle = document.querySelector('.nav-toggle');
+                const navMenu = document.querySelector('nav ul');
+                if (navToggle && navMenu) {
+                    const toggleMenu = e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        navMenu.classList.toggle('active');
+                    };
+                    navToggle.addEventListener('click', toggleMenu);
+                    navToggle.addEventListener('touchstart', toggleMenu, { passive: true });
+                }
+            },
+
+            // ライトボックス
+            initLightbox() {
+                const galleryImages = document.querySelectorAll('.gallery img');
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const lightboxClose = document.querySelector('.lightbox-close');
+                const modalOverlay = document.querySelector('.modal-overlay');
+
+                if (galleryImages.length && lightbox && lightboxImg && lightboxClose) {
+                    galleryImages.forEach(img => {
+                        const openLightbox = e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (!document.querySelector('.modal[style*="display: block"]')) { // 他のモーダルが開いていない場合のみ
+                                lightboxImg.src = img.src;
+                                lightbox.classList.add('active');
+                                modalOverlay.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                                lightboxClose.focus();
+                            }
+                        };
+                        img.addEventListener('click', openLightbox);
+                        img.addEventListener('touchstart', openLightbox, { passive: true });
+                    });
+
+                    const closeLightbox = e => {
+                        if (e.target === lightbox || e.target === lightboxClose) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            lightbox.classList.remove('active');
+                            modalOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    };
+                    lightbox.addEventListener('click', closeLightbox);
+                    lightbox.addEventListener('touchstart', closeLightbox, { passive: true });
+
+                    lightboxClose.addEventListener('keydown', e => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            lightbox.classList.remove('active');
+                            modalOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+                }
+            },
+
+            // 連絡フォーム
+            initContactForm() {
+                const contactForm = document.querySelector('#contact-form');
+                if (contactForm) {
+                    contactForm.addEventListener('submit', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const name = contactForm.querySelector('input[name="name"]').value.trim();
+                        const email = contactForm.querySelector('input[name="email"]').value.trim();
+                        const message = contactForm.querySelector('textarea[name="message"]').value.trim();
+                        if (!name || !email || !message) {
+                            alert('すべての必須フィールドを入力してください。');
+                            return;
+                        }
+                        const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
+                        const body = `お名前: ${name}\nメールアドレス: ${email}\nメッセージ:\n${message}`;
+                        try {
+                            window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                            contactForm.reset();
+                            alert('問い合わせ送信完了！メールクライアントが開きます。');
+                        } catch (error) {
+                            alert('メール送信に失敗しました。');
+                        }
+                    });
+                }
+            },
+
+            // イベント登録
+            initEventRegistration() {
+                const eventList = document.getElementById('event-list');
+                const statusModal = document.getElementById('status-modal');
+                const formModal = document.getElementById('form-modal');
+                const registerForm = document.getElementById('register-form');
+                const closes = document.querySelectorAll('.modal-close');
+                const statusButtons = document.querySelectorAll('.status-btn');
+                const modalOverlay = document.querySelector('.modal-overlay');
+                let currentEventDate = '';
+
+                // イベントを動的に生成
+                events.forEach(event => {
+                    const eventHtml = `
+                        <h3>${event.date} バレーボール練習会</h3>
+                        <p>次回練習は${event.date}に開催予定。詳細はLINEグループで確認してください。</p>
+                        <img id="register-btn-${event.id}" src="${event.img}" alt="${event.date}練習会登録ボタン" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Event+Image+Not+Found'">
+                    `;
+                    eventList.insertAdjacentHTML('beforeend', eventHtml);
+                    const btn = document.getElementById(`register-btn-${event.id}`);
+                    if (btn) {
+                        const openStatusModal = e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            currentEventDate = event.date;
+                            if (statusModal) {
+                                document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
+                                statusModal.style.display = 'block';
+                                modalOverlay.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                                statusModal.focus();
+                            } else {
+                                alert('モーダル表示に失敗しました。');
+                            }
+                        };
+                        btn.addEventListener('click', openStatusModal);
+                        btn.addEventListener('touchstart', openStatusModal, { passive: true });
+                    }
+                });
+
+                // モーダル閉じる
+                if (closes) {
+                    closes.forEach(close => {
+                        const closeModal = e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (statusModal) statusModal.style.display = 'none';
+                            if (formModal) formModal.style.display = 'none';
+                            if (registerForm) registerForm.reset();
+                            modalOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        };
+                        close.addEventListener('click', closeModal);
+                        close.addEventListener('touchstart', closeModal, { passive: true });
+                        close.addEventListener('keydown', e => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                closeModal(e);
+                            }
+                        });
+                    });
+                }
+
+                // モーダル背景クリック
+                const closeModalOnBackground = e => {
+                    if (e.target === statusModal || e.target === formModal) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                        modalOverlay.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                };
+                window.addEventListener('click', closeModalOnBackground);
+                window.addEventListener('touchstart', closeModalOnBackground, { passive: true });
+
+                // Escキー
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                        if (lightbox) lightbox.classList.remove('active');
+                        modalOverlay.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+
+                // ステータスボタン
+                statusButtons.forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const status = btn.getAttribute('data-status');
+                        const statusInput = document.getElementById('status');
+                        const eventDateInput = document.getElementById('event-date');
+                        const formTitle = document.getElementById('form-title');
+                        if (statusInput) statusInput.value = status;
+                        if (eventDateInput) eventDateInput.value = currentEventDate;
+                        if (formTitle) formTitle.textContent = `${status}の${currentEventDate}練習会登録情報入力`;
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) {
+                            formModal.style.display = 'block';
+                            modalOverlay.classList.add('active');
+                            formModal.focus();
+                        }
+                    });
+                });
+
+                // 登録フォーム
+                if (registerForm) {
+                    registerForm.addEventListener('submit', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const status = document.getElementById('status').value;
+                        const eventDate = document.getElementById('event-date').value;
+                        const name = document.getElementById('name').value.trim();
+                        const email = document.getElementById('email').value.trim();
+                        const phone = document.getElementById('phone').value.trim() || '未入力';
+                        const line = document.getElementById('line').value.trim() || '未入力';
+                        if (!name || !email) {
+                            alert('名前とメールアドレスは必須です。');
+                            return;
+                        }
+                        const subject = `${eventDate}練習会登録: ${status} - ${name}`;
+                        const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
+                        try {
+                            window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                            alert('登録完了！メールクライアントが開きます。');
+                            formModal.style.display = 'none';
+                            registerForm.reset();
+                            modalOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        } catch (error) {
+                            alert('メール送信に失敗しました。');
+                        }
+                    });
+                }
+            },
+
+            // スクロールアニメーション
+            initScrollAnimation() {
+                const sections = document.querySelectorAll('.animate-on-scroll');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                sections.forEach(section => observer.observe(section));
+            },
+
+            // 初期化
+            init() {
+                this.initParticles();
+                this.initSmoothScroll();
+                this.initNavToggle();
+                this.initLightbox();
+                this.initContactForm();
+                this.initEventRegistration();
+                this.initScrollAnimation();
+            }
+        };
+
+        // アプリケーション開始
+        document.addEventListener('DOMContentLoaded', () => App.init());
+    </script>
+</body>
+</html>
