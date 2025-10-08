@@ -775,20 +775,6 @@
                 <li>内容: 基本練習、試合形式、障害調整</li>
             </ul>
             <h3>2. 試合: 未定</h3>
-            <h2>第5条（会費）</h2>
-            <h3>1. 会費:</h3>
-            <ul>
-                <li>1回400円（変動あり）</li>
-                <li>入館時現金支払い</li>
-            </ul>
-            <h3>2. 使途:</h3>
-            <ul>
-                <li>施設使用料、備品購入など</li>
-            </ul>
-            <h3>3. 遅延対応:</h3>
-            <ul>
-                <li>未納時は参加不可</li>
-            </ul>
             <h2>第6条（組織と役割）</h2>
             <h3>1. 運営体制:</h3>
             <ul>
@@ -1073,6 +1059,8 @@
                                 modalOverlay.classList.add('active');
                                 document.body.style.overflow = 'hidden';
                                 statusModal.focus();
+                                // ギャラリーを無効化
+                                document.querySelector('.gallery').style.pointer-events = 'none';
                             } else {
                                 alert('モーダル表示に失敗しました。');
                             }
@@ -1093,6 +1081,8 @@
                             if (registerForm) registerForm.reset();
                             modalOverlay.classList.remove('active');
                             document.body.style.overflow = 'auto';
+                            // ギャラリーを有効化
+                            document.querySelector('.gallery').style.pointer-events = 'auto';
                         };
                         close.addEventListener('click', closeModal);
                         close.addEventListener('touchstart', closeModal, { passive: true });
@@ -1116,6 +1106,8 @@
                         if (registerForm) registerForm.reset();
                         modalOverlay.classList.remove('active');
                         document.body.style.overflow = 'auto';
+                        // ギャラリーを有効化
+                        document.querySelector('.gallery').style.pointer-events = 'auto';
                     }
                 };
                 window.addEventListener('click', closeModalOnBackground);
@@ -1132,6 +1124,8 @@
                         if (lightbox) lightbox.classList.remove('active');
                         modalOverlay.classList.remove('active');
                         document.body.style.overflow = 'auto';
+                        // ギャラリーを有効化
+                        document.querySelector('.gallery').style.pointer-events = 'auto';
                     }
                 });
 
@@ -1180,6 +1174,8 @@
                             registerForm.reset();
                             modalOverlay.classList.remove('active');
                             document.body.style.overflow = 'auto';
+                            // ギャラリーを有効化
+                            document.querySelector('.gallery').style.pointer-events = 'auto';
                         } catch (error) {
                             alert('メール送信に失敗しました。');
                         }
