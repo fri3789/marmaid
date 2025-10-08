@@ -6,25 +6,40 @@
     <title>チームマーメイド - Soft Volleyball Mermaid</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS変数で再利用性を向上 */
+        :root {
+            --primary-color: #0284c7;
+            --secondary-color: #1e40af;
+            --text-color: #1e3a8a;
+            --bg-light: #f0f9ff;
+            --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --font-size-base: 1.2vw;
+            --font-size-mobile: 3.5vw;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #e0f4ff, #f0f9ff);
-            color: #1e3a8a;
+            background: linear-gradient(135deg, #e0f4ff, var(--bg-light));
+            color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
         }
+
         header {
             text-align: center;
             padding: 12vw 5vw;
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
             position: relative;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
         }
+
         header::before {
             content: '';
             position: absolute;
@@ -35,21 +50,25 @@
             background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(56, 189, 248, 0.5));
             z-index: 1;
         }
+
         .header-content {
             position: relative;
             z-index: 2;
         }
+
         h1 {
             font-family: 'Lora', serif;
             font-size: 6vw;
             color: #ffffff;
             text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
-            animation: fadeIn 1.5s ease-out;
+            animation: pulse 2s infinite ease-in-out;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
+
         .wave {
             position: absolute;
             bottom: 0;
@@ -61,18 +80,21 @@
             opacity: 0.8;
             z-index: 1;
         }
+
         @keyframes wave {
             0% { background-position-x: 0; }
             100% { background-position-x: 1000px; }
         }
+
         nav {
             background: rgba(255, 255, 255, 0.95);
             padding: 1.5vw;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
+
         nav ul {
             list-style: none;
             display: flex;
@@ -81,15 +103,17 @@
             margin: 0;
             flex-wrap: wrap;
         }
+
         nav a {
-            color: #1e3a8a;
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.2vw;
+            font-size: var(--font-size-base);
             padding: 1vw;
             position: relative;
-            transition: color 0.3s ease;
+            transition: var(--transition);
         }
+
         nav a::after {
             content: '';
             position: absolute;
@@ -97,44 +121,53 @@
             left: 0;
             width: 0;
             height: 0.2vw;
-            background: #0284c7;
-            transition: width 0.3s ease;
+            background: var(--primary-color);
+            transition: var(--transition);
         }
+
         nav a:hover::after {
             width: 100%;
         }
+
         nav a:hover {
-            color: #0284c7;
+            color: var(--primary-color);
+            transform: translateY(-2px);
         }
+
         .nav-toggle {
             display: none;
             font-size: 2rem;
             background: none;
             border: none;
-            color: #1e3a8a;
+            color: var(--text-color);
             cursor: pointer;
             position: absolute;
             top: 1vw;
             right: 2vw;
+            z-index: 1001;
         }
+
         main {
             max-width: 90vw;
             margin: 5vw auto;
             padding: 0 2vw;
         }
+
         section {
             background: #ffffff;
             padding: 4vw;
             margin-bottom: 4vw;
             border-radius: 1.5vw;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             position: relative;
             animation: slideIn 0.8s ease-out;
         }
+
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
         section::before {
             content: '';
             position: absolute;
@@ -145,13 +178,15 @@
             background: linear-gradient(45deg, rgba(14, 165, 233, 0.05), rgba(255, 255, 255, 0.05));
             z-index: -1;
         }
+
         h2 {
             font-family: 'Lora', serif;
             font-size: 4.5vw;
-            color: #0284c7;
+            color: var(--primary-color);
             margin: 0 0 2vw;
             position: relative;
         }
+
         h2::after {
             content: '';
             position: absolute;
@@ -159,36 +194,42 @@
             left: 0;
             width: 5vw;
             height: 0.3vw;
-            background: linear-gradient(to right, #0284c7, #1e40af);
-            transition: width 0.3s ease;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: var(--transition);
         }
+
         h2:hover::after {
             width: 12vw;
         }
+
         p {
-            font-size: 1.2vw;
-            color: #1e40af;
+            font-size: var(--font-size-base);
+            color: var(--secondary-color);
         }
+
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
             gap: 2vw;
             margin-top: 2vw;
         }
+
         .gallery img {
             width: 100%;
             height: 22vw;
             object-fit: cover;
             border-radius: 1.2vw;
-            border: 0.2vw solid #0284c7;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 0.2vw solid var(--primary-color);
+            transition: var(--transition);
             cursor: pointer;
             loading: lazy;
         }
+
         .gallery img:hover, .gallery img:active {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(1deg);
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
+
         .lightbox {
             position: fixed;
             top: 0;
@@ -199,75 +240,90 @@
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            z-index: 2000; /* ナビゲーションより高いz-index */
             animation: fadeIn 0.5s ease-out;
         }
+
         .lightbox img {
             max-width: 90%;
             max-height: 80%;
             border-radius: 1vw;
             animation: zoomIn 0.5s ease-out;
         }
+
         .lightbox-close {
             position: absolute;
             top: 2vw;
             right: 2vw;
             font-size: 6vw;
             color: #ffffff;
+            background: rgba(30, 64, 175, 0.8);
+            border-radius: 50%;
+            padding: 1.5vw;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            z-index: 2001;
             text-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
-            padding: 1vw;
         }
+
         .lightbox-close:hover, .lightbox-close:active {
-            color: #0284c7;
+            color: var(--primary-color);
             font-size: 7.2vw;
+            transform: scale(1.1) rotate(90deg);
         }
+
         @keyframes zoomIn {
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
+
         .lightbox.active {
             display: flex;
         }
+
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 1.5vw;
         }
+
         .contact-form input,
         .contact-form textarea {
             padding: 1.2vw;
             border: 0.2vw solid #bfdbfe;
             border-radius: 1vw;
-            font-size: 1.1vw;
-            color: #1e3a8a;
-            background: #f0f9ff;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: var(--font-size-base);
+            color: var(--text-color);
+            background: var(--bg-light);
+            transition: var(--transition);
         }
+
         .contact-form input:focus,
         .contact-form textarea:focus {
-            border-color: #0284c7;
+            border-color: var(--primary-color);
             box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
         }
+
         .contact-form textarea {
             resize: vertical;
             min-height: 10vw;
         }
+
         .contact-form button {
             padding: 2vw 4vw;
             border: none;
             border-radius: 1vw;
-            background: linear-gradient(135deg, #0284c7, #1e40af);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: #ffffff;
             font-weight: 600;
             cursor: pointer;
-            font-size: 1.1vw;
+            font-size: var(--font-size-base);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
+
         .contact-form button::after {
             content: '';
             position: absolute;
@@ -280,60 +336,71 @@
             transform: translate(-50%, -50%);
             transition: width 0.5s ease, height 0.5s ease;
         }
+
         .contact-form button:hover::after, .contact-form button:active::after {
             width: 200%;
             height: 200%;
         }
+
         .contact-form button:hover, .contact-form button:active {
             transform: scale(1.05);
-            font-size: 1.32vw;
+            font-size: calc(var(--font-size-base) * 1.2);
         }
+
         .qr-code {
             text-align: center;
             margin-top: 2vw;
         }
+
         .qr-code img {
             width: 10vw;
             height: 10vw;
             border-radius: 1vw;
-            border: 0.2vw solid #0284c7;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 0.2vw solid var(--primary-color);
+            transition: var(--transition);
             loading: lazy;
         }
+
         .qr-code img:hover, .qr-code img:active {
             transform: scale(1.1);
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
+
         .terms {
             background: #e0f4ff;
-            color: #1e3a8a;
+            color: var(--text-color);
         }
+
         .terms h2, .terms h3 {
-            color: #0284c7;
+            color: var(--primary-color);
         }
+
         footer {
             text-align: center;
             padding: 2.5vw;
-            background: linear-gradient(135deg, #1e3a8a, #0284c7);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: #ffffff;
             font-size: 0.95vw;
         }
+
         #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 {
             width: 30vw;
             height: auto;
             border-radius: 1vw;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: var(--transition);
             display: block;
             margin: 2vw auto;
-            border: 0.2vw solid #0284c7;
+            border: 0.2vw solid var(--primary-color);
             loading: lazy;
         }
+
         #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover,
         #register-btn-1004:active, #register-btn-1018:active, #register-btn-1108:active, #register-btn-1122:active {
             transform: scale(1.05);
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -342,10 +409,11 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
+            z-index: 2000; /* ナビゲーションより高いz-index */
             backdrop-filter: blur(5px);
             animation: fadeIn 0.5s ease-out;
         }
+
         .modal-content {
             background: #ffffff;
             margin: 10% auto;
@@ -353,43 +421,48 @@
             width: 80%;
             max-width: 30vw;
             border-radius: 1.5vw;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
             text-align: center;
             animation: slideIn 0.5s ease-out;
         }
+
         .modal-close {
             position: absolute;
-            top: 1vw;
-            right: 1vw;
+            top: 2vw;
+            right: 2vw;
             font-size: 6vw;
-            color: #1e40af;
-            background: #ffffff;
+            color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
-            padding: 1vw;
+            padding: 1.5vw;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            z-index: 2001;
             text-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
         }
+
         .modal-close:hover, .modal-close:active {
-            color: #0284c7;
+            color: var(--primary-color);
             font-size: 7.2vw;
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(90deg);
         }
+
         .status-btn {
             width: 100%;
             padding: 1.2vw;
             margin: 1vw 0;
             border: none;
-            background: linear-gradient(135deg, #0284c7, #1e40af);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: #ffffff;
-            font-size: 1.2vw;
+            font-size: var(--font-size-base);
             font-weight: 600;
             border-radius: 1vw;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
+
         .status-btn::after {
             content: '';
             position: absolute;
@@ -402,52 +475,60 @@
             transform: translate(-50%, -50%);
             transition: width 0.5s ease, height 0.5s ease;
         }
+
         .status-btn:hover::after, .status-btn:active::after {
             width: 200%;
             height: 200%;
         }
+
         .status-btn:hover, .status-btn:active {
             transform: scale(1.05);
-            font-size: 1.44vw;
+            font-size: calc(var(--font-size-base) * 1.2);
         }
+
         .event-form {
             display: flex;
             flex-direction: column;
             gap: 1.5vw;
         }
+
         .event-form label {
-            font-size: 1.1vw;
-            color: #1e3a8a;
+            font-size: var(--font-size-base);
+            color: var(--text-color);
             text-align: left;
             margin-bottom: 0.5vw;
         }
+
         .event-form input {
             padding: 1.2vw;
             border: 0.2vw solid #bfdbfe;
             border-radius: 1vw;
-            font-size: 1.1vw;
-            color: #1e3a8a;
-            background: #f0f9ff;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: var(--font-size-base);
+            color: var(--text-color);
+            background: var(--bg-light);
+            transition: var(--transition);
         }
+
         .event-form input:focus {
-            border-color: #0284c7;
+            border-color: var(--primary-color);
             box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
         }
+
         .event-form button {
             padding: 1.2vw;
             border: none;
             border-radius: 1vw;
-            background: linear-gradient(135deg, #0284c7, #1e40af);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: #ffffff;
             font-weight: 600;
             cursor: pointer;
-            font-size: 1.1vw;
-            transition: all 0.3s ease;
+            font-size: var(--font-size-base);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
+
         .event-form button::after {
             content: '';
             position: absolute;
@@ -460,20 +541,25 @@
             transform: translate(-50%, -50%);
             transition: width 0.5s ease, height 0.5s ease;
         }
+
         .event-form button:hover::after, .event-form button:active::after {
             width: 200%;
             height: 200%;
         }
+
         .event-form button:hover, .event-form button:active {
             transform: scale(1.05);
-            font-size: 1.32vw;
+            font-size: calc(var(--font-size-base) * 1.2);
         }
+
         .event-form h3 {
             font-family: 'Lora', serif;
             font-size: 2.5vw;
-            color: #0284c7;
+            color: var(--primary-color);
             margin: 0 0 2vw;
         }
+
+        /* モバイル対応 */
         @media (max-width: 768px) {
             h1 { font-size: 8vw; }
             .nav-toggle { display: block; }
@@ -487,35 +573,36 @@
                 left: 0;
                 width: 100%;
                 padding: 2vw 0;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                box-shadow: var(--shadow);
             }
             nav ul.active { display: flex; }
-            nav a { font-size: 4vw; padding: 2vw; }
+            nav a { font-size: var(--font-size-mobile); padding: 2vw; }
             nav ul { gap: 2vw; }
             section { padding: 6vw; margin-bottom: 6vw; }
             h2 { font-size: 6vw; }
-            p { font-size: 3.5vw; }
+            p { font-size: var(--font-size-mobile); }
             .gallery { grid-template-columns: 1fr; }
             .gallery img { height: 50vw; }
-            .contact-form input, .contact-form textarea { font-size: 3.5vw; padding: 3vw; }
-            .contact-form button { font-size: 3.5vw; padding: 3vw; }
-            .contact-form button:active { font-size: 4.2vw; }
+            .contact-form input, .contact-form textarea { font-size: var(--font-size-mobile); padding: 3vw; }
+            .contact-form button { font-size: var(--font-size-mobile); padding: 3vw; }
+            .contact-form button:active { font-size: calc(var(--font-size-mobile) * 1.2); }
             .qr-code img { width: 25vw; height: 25vw; }
             footer { font-size: 3vw; padding: 4vw; }
             #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 50vw; }
             .modal-content { max-width: 80vw; }
-            .status-btn { font-size: 3.5vw; padding: 3vw; }
-            .status-btn:active { font-size: 4.2vw; }
-            .event-form label { font-size: 3.5vw; }
-            .event-form input { font-size: 3.5vw; padding: 3vw; }
-            .event-form button { font-size: 3.5vw; padding: 3vw; }
-            .event-form button:active { font-size: 4.2vw; }
+            .status-btn { font-size: var(--font-size-mobile); padding: 3vw; }
+            .status-btn:active { font-size: calc(var(--font-size-mobile) * 1.2); }
+            .event-form label { font-size: var(--font-size-mobile); }
+            .event-form input { font-size: var(--font-size-mobile); padding: 3vw; }
+            .event-form button { font-size: var(--font-size-mobile); padding: 3vw; }
+            .event-form button:active { font-size: calc(var(--font-size-mobile) * 1.2); }
             .event-form h3 { font-size: 5vw; }
-            .modal-close { font-size: 6vw; padding: 1vw; }
+            .modal-close { font-size: 6vw; padding: 1.5vw; }
             .modal-close:hover, .modal-close:active { font-size: 7.2vw; }
-            .lightbox-close { font-size: 6vw; }
+            .lightbox-close { font-size: 6vw; padding: 1.5vw; }
             .lightbox-close:hover, .lightbox-close:active { font-size: 7.2vw; }
         }
+
         @media (max-width: 480px) {
             nav ul { padding: 4vw 0; }
             .gallery img { height: 60vw; }
@@ -525,6 +612,7 @@
             .event-form { gap: 3vw; }
             .event-form button { width: 100%; }
         }
+
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; }
         }
@@ -594,9 +682,9 @@
                 <div class="modal-content">
                     <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
                     <h3 id="status-title">練習会参加状況を選択</h3>
-                    <button class="status-btn" onclick="showForm('参加')">参加</button>
-                    <button class="status-btn" onclick="showForm('不参加')">不参加</button>
-                    <button class="status-btn" onclick="showForm('未定')">未定</button>
+                    <button class="status-btn" data-status="参加">参加</button>
+                    <button class="status-btn" data-status="不参加">不参加</button>
+                    <button class="status-btn" data-status="未定">未定</button>
                 </div>
             </div>
             <div id="form-modal" class="modal" role="dialog" aria-label="登録フォームモーダル">
@@ -629,7 +717,7 @@
         </section>
         <section id="contact">
             <h2>連絡先</h2>
-            <p>Email: <a href="mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com">mermaidnomail1125@gmail.com</a></p>
+            <p>Email: <a href="mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com">mermaidnomail1125@gmail.co.jp</a></p>
             <h2>問い合わせフォーム</h2>
             <form class="contact-form" id="contact-form">
                 <input type="text" name="name" placeholder="お名前" required aria-required="true">
@@ -638,7 +726,7 @@
                 <button type="submit">メールで送信</button>
             </form>
             <div class="qr-code">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?data=mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com&size=150x150" alt="連絡先QRコード" loading="lazy">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&size=150x150" alt="連絡先QRコード" loading="lazy">
                 <p>メールで問い合わせ</p>
             </div>
         </section>
@@ -730,7 +818,7 @@
             </ul>
             <h3>2. 費用:</h3>
             <ul>
-                <li>1大会600円（事前徴収）</li>
+                <li>1大会5,000円（事前徴収）</li>
             </ul>
             <h2>第10条（規約違反）</h2>
             <h3>1. 違反行為:</h3>
@@ -764,239 +852,270 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 チームマーメイドMnami Hujimitsu Kaito Saito. All rights reserved.</p>
+        <p>&copy; 2025 チームマーメイド. All rights reserved. Manami Hujimitsu, Kaito Saito</p>
     </footer>
     <div class="lightbox" id="lightbox" role="dialog" aria-label="画像拡大モーダル">
         <span class="lightbox-close" aria-label="ライトボックスを閉じる">&times;</span>
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // スムーススクロール
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', e => {
-                    e.preventDefault();
-                    const target = document.querySelector(anchor.getAttribute('href'));
-                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+        // モジュラー構造で保守性を向上
+        const App = {
+            // スムーススクロール初期化
+            initSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    const handleScroll = e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    };
+                    anchor.addEventListener('click', handleScroll);
+                    anchor.addEventListener('touchstart', handleScroll, { passive: true });
                 });
-                anchor.addEventListener('touchstart', e => {
-                    e.preventDefault();
-                    const target = document.querySelector(anchor.getAttribute('href'));
-                    if (target) target.scrollIntoView({ behavior: 'smooth' });
-                }, { passive: true });
-            });
+            },
 
             // モバイルナビゲーショントグル
-            const navToggle = document.querySelector('.nav-toggle');
-            const navMenu = document.querySelector('nav ul');
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', e => {
-                    e.preventDefault();
-                    navMenu.classList.toggle('active');
-                });
-                navToggle.addEventListener('touchstart', e => {
-                    e.preventDefault();
-                    navMenu.classList.toggle('active');
-                }, { passive: true });
-            }
+            initNavToggle() {
+                const navToggle = document.querySelector('.nav-toggle');
+                const navMenu = document.querySelector('nav ul');
+                if (navToggle && navMenu) {
+                    const toggleMenu = e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        navMenu.classList.toggle('active');
+                    };
+                    navToggle.addEventListener('click', toggleMenu);
+                    navToggle.addEventListener('touchstart', toggleMenu, { passive: true });
+                }
+            },
 
             // ライトボックス機能
-            const galleryImages = document.querySelectorAll('.gallery img');
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxClose = document.querySelector('.lightbox-close');
-            if (galleryImages.length && lightbox && lightboxImg && lightboxClose) {
-                galleryImages.forEach(img => {
-                    img.addEventListener('click', e => {
-                        e.preventDefault();
-                        lightboxImg.src = img.src;
-                        lightbox.classList.add('active');
-                        lightboxClose.focus();
+            initLightbox() {
+                const galleryImages = document.querySelectorAll('.gallery img');
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const lightboxClose = document.querySelector('.lightbox-close');
+
+                if (galleryImages.length && lightbox && lightboxImg && lightboxClose) {
+                    galleryImages.forEach(img => {
+                        const openLightbox = e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            lightboxImg.src = img.src;
+                            lightbox.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                            lightboxClose.focus();
+                        };
+                        img.addEventListener('click', openLightbox);
+                        img.addEventListener('touchstart', openLightbox, { passive: true });
                     });
-                    img.addEventListener('touchstart', e => {
-                        e.preventDefault();
-                        lightboxImg.src = img.src;
-                        lightbox.classList.add('active');
-                        lightboxClose.focus();
-                    }, { passive: true });
-                });
-                lightbox.addEventListener('click', e => {
-                    if (e.target === lightbox || e.target === lightboxClose) {
-                        lightbox.classList.remove('active');
-                    }
-                });
-                lightbox.addEventListener('touchstart', e => {
-                    if (e.target === lightbox || e.target === lightboxClose) {
-                        lightbox.classList.remove('active');
-                    }
-                }, { passive: true });
-                lightboxClose.addEventListener('keydown', e => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        lightbox.classList.remove('active');
-                    }
-                });
-            }
 
-            // 連絡フォームの送信処理
-            const contactForm = document.querySelector('#contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', e => {
-                    e.preventDefault();
-                    const name = contactForm.querySelector('input[name="name"]').value.trim();
-                    const email = contactForm.querySelector('input[name="email"]').value.trim();
-                    const message = contactForm.querySelector('textarea[name="message"]').value.trim();
-                    if (!name || !email || !message) {
-                        alert('すべての必須フィールドを入力してください。');
-                        return;
-                    }
-                    const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
-                    const body = `お名前: ${name}\nメールアドレス: ${email}\nメッセージ:\n${message}`;
-                    try {
-                        window.location.href = `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                        contactForm.reset();
-                        alert('問い合わせ送信完了！メールクライアントが開きます。');
-                    } catch (error) {
-                        alert('メール送信に失敗しました。');
-                    }
-                });
-            }
-
-            // イベント登録ボタンとモーダルの処理
-            const registerButtons = {
-                '1004': document.getElementById('register-btn-1004'),
-                '1018': document.getElementById('register-btn-1018'),
-                '1108': document.getElementById('register-btn-1108'),
-                '1122': document.getElementById('register-btn-1122')
-            };
-            const statusModal = document.getElementById('status-modal');
-            const formModal = document.getElementById('form-modal');
-            const registerForm = document.getElementById('register-form');
-            const closes = document.querySelectorAll('.modal-close');
-            let currentEventDate = '';
-
-            Object.keys(registerButtons).forEach(date => {
-                const btn = registerButtons[date];
-                if (btn) {
-                    btn.addEventListener('click', e => {
-                        e.preventDefault();
-                        currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
-                        if (statusModal) {
-                            document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
-                            statusModal.style.display = 'block';
-                            statusModal.focus();
-                        } else {
-                            alert('モーダル表示に失敗しました。');
+                    const closeLightbox = e => {
+                        if (e.target === lightbox || e.target === lightboxClose) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            lightbox.classList.remove('active');
+                            document.body.style.overflow = 'auto';
                         }
-                    });
-                    btn.addEventListener('touchstart', e => {
-                        e.preventDefault();
-                        currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
-                        if (statusModal) {
-                            document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
-                            statusModal.style.display = 'block';
-                            statusModal.focus();
-                        } else {
-                            alert('モーダル表示に失敗しました。');
-                        }
-                    }, { passive: true });
-                }
-            });
+                    };
+                    lightbox.addEventListener('click', closeLightbox);
+                    lightbox.addEventListener('touchstart', closeLightbox, { passive: true });
 
-            if (closes) {
-                closes.forEach(close => {
-                    close.addEventListener('click', e => {
-                        e.preventDefault();
-                        if (statusModal) statusModal.style.display = 'none';
-                        if (formModal) formModal.style.display = 'none';
-                        if (registerForm) registerForm.reset();
-                    });
-                    close.addEventListener('touchstart', e => {
-                        e.preventDefault();
-                        if (statusModal) statusModal.style.display = 'none';
-                        if (formModal) formModal.style.display = 'none';
-                        if (registerForm) registerForm.reset();
-                    }, { passive: true });
-                    close.addEventListener('keydown', e => {
+                    lightboxClose.addEventListener('keydown', e => {
                         if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
+                            e.stopPropagation();
+                            lightbox.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+                }
+            },
+
+            // 連絡フォーム送信処理
+            initContactForm() {
+                const contactForm = document.querySelector('#contact-form');
+                if (contactForm) {
+                    contactForm.addEventListener('submit', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const name = contactForm.querySelector('input[name="name"]').value.trim();
+                        const email = contactForm.querySelector('input[name="email"]').value.trim();
+                        const message = contactForm.querySelector('textarea[name="message"]').value.trim();
+                        if (!name || !email || !message) {
+                            alert('すべての必須フィールドを入力してください。');
+                            return;
+                        }
+                        const subject = `チームマーメイドへの問い合わせ - ${name}様より`;
+                        const body = `お名前: ${name}\nメールアドレス: ${email}\nメッセージ:\n${message}`;
+                        try {
+                            window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                            contactForm.reset();
+                            alert('問い合わせ送信完了！メールクライアントが開きます。');
+                        } catch (error) {
+                            alert('メール送信に失敗しました。');
+                        }
+                    });
+                }
+            },
+
+            // イベント登録モーダル処理
+            initEventRegistration() {
+                const registerButtons = {
+                    '1004': document.getElementById('register-btn-1004'),
+                    '1018': document.getElementById('register-btn-1018'),
+                    '1108': document.getElementById('register-btn-1108'),
+                    '1122': document.getElementById('register-btn-1122')
+                };
+                const statusModal = document.getElementById('status-modal');
+                const formModal = document.getElementById('form-modal');
+                const registerForm = document.getElementById('register-form');
+                const closes = document.querySelectorAll('.modal-close');
+                const statusButtons = document.querySelectorAll('.status-btn');
+                let currentEventDate = '';
+
+                // 登録ボタンの初期化
+                Object.keys(registerButtons).forEach(date => {
+                    const btn = registerButtons[date];
+                    if (btn) {
+                        const openStatusModal = e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            currentEventDate = date.replace(/(\d{2})(\d{2})/, '$1/$2');
+                            if (statusModal) {
+                                document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
+                                statusModal.style.display = 'block';
+                                document.body.style.overflow = 'hidden';
+                                statusModal.focus();
+                            } else {
+                                alert('モーダル表示に失敗しました。');
+                            }
+                        };
+                        btn.addEventListener('click', openStatusModal);
+                        btn.addEventListener('touchstart', openStatusModal, { passive: true });
+                    }
+                });
+
+                // モーダル閉じる処理
+                if (closes) {
+                    closes.forEach(close => {
+                        const closeModal = e => {
+                            e.preventDefault();
+                            e.stopPropagation();
                             if (statusModal) statusModal.style.display = 'none';
                             if (formModal) formModal.style.display = 'none';
                             if (registerForm) registerForm.reset();
+                            document.body.style.overflow = 'auto';
+                        };
+                        close.addEventListener('click', closeModal);
+                        close.addEventListener('touchstart', closeModal, { passive: true });
+                        close.addEventListener('keydown', e => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                closeModal(e);
+                            }
+                        });
+                    });
+                }
+
+                // モーダルの背景クリックで閉じる
+                const closeModalOnBackground = e => {
+                    if (e.target === statusModal) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        statusModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                    if (e.target === formModal) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                        document.body.style.overflow = 'auto';
+                    }
+                };
+                window.addEventListener('click', closeModalOnBackground);
+                window.addEventListener('touchstart', closeModalOnBackground, { passive: true });
+
+                // Escキーでモーダル閉じる
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) formModal.style.display = 'none';
+                        if (registerForm) registerForm.reset();
+                        if (lightbox) lightbox.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+
+                // ステータスボタンの処理
+                statusButtons.forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const status = btn.getAttribute('data-status');
+                        const statusInput = document.getElementById('status');
+                        const eventDateInput = document.getElementById('event-date');
+                        const formTitle = document.getElementById('form-title');
+                        if (statusInput) statusInput.value = status;
+                        if (eventDateInput) eventDateInput.value = currentEventDate;
+                        if (formTitle) formTitle.textContent = `${status}の${currentEventDate}練習会登録情報入力`;
+                        if (statusModal) statusModal.style.display = 'none';
+                        if (formModal) {
+                            formModal.style.display = 'block';
+                            formModal.focus();
                         }
                     });
                 });
+
+                // 登録フォーム送信処理
+                if (registerForm) {
+                    registerForm.addEventListener('submit', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const status = document.getElementById('status').value;
+                        const eventDate = document.getElementById('event-date').value;
+                        const name = document.getElementById('name').value.trim();
+                        const email = document.getElementById('email').value.trim();
+                        const phone = document.getElementById('phone').value.trim() || '未入力';
+                        const line = document.getElementById('line').value.trim() || '未入力';
+                        if (!name || !email) {
+                            alert('名前とメールアドレスは必須です。');
+                            return;
+                        }
+                        const subject = `${eventDate}練習会登録: ${status} - ${name}`;
+                        const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
+                        try {
+                            window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                            alert('登録完了！メールクライアントが開きます。');
+                            formModal.style.display = 'none';
+                            registerForm.reset();
+                            document.body.style.overflow = 'auto';
+                        } catch (error) {
+                            alert('メール送信に失敗しました。');
+                        }
+                    });
+                }
+            },
+
+            // 初期化
+            init() {
+                this.initSmoothScroll();
+                this.initNavToggle();
+                this.initLightbox();
+                this.initContactForm();
+                this.initEventRegistration();
             }
+        };
 
-            window.addEventListener('click', e => {
-                if (e.target === statusModal) {
-                    statusModal.style.display = 'none';
-                }
-                if (e.target === formModal) {
-                    formModal.style.display = 'none';
-                    if (registerForm) registerForm.reset();
-                }
-            });
-
-            window.addEventListener('touchstart', e => {
-                if (e.target === statusModal) {
-                    statusModal.style.display = 'none';
-                }
-                if (e.target === formModal) {
-                    formModal.style.display = 'none';
-                    if (registerForm) registerForm.reset();
-                }
-            }, { passive: true });
-
-            document.addEventListener('keydown', e => {
-                if (e.key === 'Escape') {
-                    if (statusModal) statusModal.style.display = 'none';
-                    if (formModal) formModal.style.display = 'none';
-                    if (registerForm) registerForm.reset();
-                    if (lightbox) lightbox.classList.remove('active');
-                }
-            });
-
-            window.showForm = status => {
-                const statusInput = document.getElementById('status');
-                const eventDateInput = document.getElementById('event-date');
-                const formTitle = document.getElementById('form-title');
-                if (statusInput) statusInput.value = status;
-                if (eventDateInput) eventDateInput.value = currentEventDate;
-                if (formTitle) formTitle.textContent = `${status}の${currentEventDate}練習会登録情報入力`;
-                if (statusModal) statusModal.style.display = 'none';
-                if (formModal) {
-                    formModal.style.display = 'block';
-                    formModal.focus();
-                }
-            };
-
-            if (registerForm) {
-                registerForm.addEventListener('submit', e => {
-                    e.preventDefault();
-                    const status = document.getElementById('status').value;
-                    const eventDate = document.getElementById('event-date').value;
-                    const name = document.getElementById('name').value.trim();
-                    const email = document.getElementById('email').value.trim();
-                    const phone = document.getElementById('phone').value.trim() || '未入力';
-                    const line = document.getElementById('line').value.trim() || '未入力';
-                    if (!name || !email) {
-                        alert('名前とメールアドレスは必須です。');
-                        return;
-                    }
-                    const subject = `${eventDate}練習会登録: ${status} - ${name}`;
-                    const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
-                    try {
-                        window.location.href = `mailto:mermaidnomail@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                        alert('登録完了！メールクライアントが開きます。');
-                        formModal.style.display = 'none';
-                        registerForm.reset();
-                    } catch (error) {
-                        alert('メール送信に失敗しました。');
-                    }
-                });
-            }
-        });
+        // アプリケーションの開始
+        document.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 </body>
 </html>
