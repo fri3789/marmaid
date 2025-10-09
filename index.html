@@ -19,13 +19,11 @@
             --font-size-mobile: clamp(1.2rem, 3.5vw, 1.5rem);
             --border-radius: clamp(0.5rem, 1vw, 1rem);
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #e0f4ff, var(--bg-light));
@@ -36,7 +34,6 @@
             -webkit-tap-highlight-color: transparent;
             -webkit-overflow-scrolling: touch;
         }
-
         header {
             position: relative;
             text-align: center;
@@ -45,7 +42,6 @@
             background-attachment: scroll;
             box-shadow: var(--shadow);
         }
-
         header::before {
             content: '';
             position: absolute;
@@ -56,24 +52,20 @@
             background: linear-gradient(135deg, rgba(14, 165, 233, 0.6), rgba(56, 189, 248, 0.4));
             z-index: 1;
         }
-
         .header-content {
             position: relative;
             z-index: 2;
         }
-
         h1 {
             font-size: clamp(2rem, 6vw, 3rem);
             color: #ffffff;
             text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
             animation: pulse 2s infinite ease-in-out;
         }
-
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.03); opacity: 0.95; }
         }
-
         nav {
             background: rgba(255, 255, 255, 0.95);
             padding: 1.5vw;
@@ -82,7 +74,6 @@
             z-index: 1000;
             box-shadow: var(--shadow);
         }
-
         nav ul {
             list-style: none;
             display: flex;
@@ -91,7 +82,6 @@
             margin: 0;
             flex-wrap: wrap;
         }
-
         nav a {
             color: var(--text-color);
             text-decoration: none;
@@ -101,7 +91,6 @@
             position: relative;
             transition: var(--transition);
         }
-
         nav a::after {
             content: '';
             position: absolute;
@@ -112,15 +101,12 @@
             background: var(--primary-color);
             transition: var(--transition);
         }
-
         nav a:hover::after {
             width: 100%;
         }
-
         nav a:hover {
             color: var(--primary-color);
         }
-
         .nav-toggle {
             display: none;
             font-size: 2rem;
@@ -134,17 +120,14 @@
             z-index: 1001;
             transition: var(--transition);
         }
-
         .nav-toggle:hover {
             transform: rotate(90deg);
         }
-
         main {
             max-width: 90vw;
             margin: 5vw auto;
             padding: 0 2vw;
         }
-
         section {
             background: #ffffff;
             padding: 4vw;
@@ -155,23 +138,19 @@
             animation: slideUp 0.7s ease-out;
             opacity: 0;
         }
-
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         section.visible {
             opacity: 1;
         }
-
         h2 {
             font-size: clamp(1.5rem, 4.5vw, 2.5rem);
             color: var(--primary-color);
             margin: 0 0 2vw;
             position: relative;
         }
-
         h2::after {
             content: '';
             position: absolute;
@@ -182,16 +161,13 @@
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             transition: var(--transition);
         }
-
         h2:hover::after {
             width: 12vw;
         }
-
         p {
             font-size: var(--font-size-base);
             color: var(--secondary-color);
         }
-
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
@@ -199,21 +175,18 @@
             margin-top: 2vw;
             touch-action: manipulation;
         }
-
         .gallery img {
             width: 100%;
-            height: 25vw;
+            height: auto; /* モバイルで柔軟に調整 */
             object-fit: cover;
             border-radius: var(--border-radius);
             border: 0.2vw solid var(--primary-color);
             transition: var(--transition);
             cursor: pointer;
-            opacity: 1;
+            opacity: 0;
             animation: fadeInUp 0.6s ease-out forwards;
             touch-action: manipulation;
-            display: block;
         }
-
         .gallery img:nth-child(1) { animation-delay: 0.1s; }
         .gallery img:nth-child(2) { animation-delay: 0.2s; }
         .gallery img:nth-child(3) { animation-delay: 0.3s; }
@@ -223,17 +196,14 @@
         .gallery img:nth-child(7) { animation-delay: 0.7s; }
         .gallery img:nth-child(8) { animation-delay: 0.8s; }
         .gallery img:nth-child(9) { animation-delay: 0.9s; }
-
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .gallery img:hover {
             transform: scale(1.05);
             box-shadow: 0 0 20px rgba(14, 165, 233, 0.7);
         }
-
         .lightbox {
             position: fixed;
             top: 0;
@@ -248,14 +218,12 @@
             animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             touch-action: none;
         }
-
         .lightbox img {
             max-width: 90%;
             max-height: 80vh;
             border-radius: var(--border-radius);
             animation: zoomIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-
         .lightbox-close {
             position: absolute;
             top: 2vw;
@@ -270,33 +238,27 @@
             z-index: 2001;
             touch-action: manipulation;
         }
-
         .lightbox-close:hover {
             color: var(--primary-color);
             transform: scale(1.1) rotate(180deg);
         }
-
         @keyframes springIn {
             0% { opacity: 0; transform: scale(0.8); }
             60% { opacity: 1; transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-
         @keyframes zoomIn {
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-
         .lightbox.active {
             display: flex;
         }
-
         .contact-form, .event-form {
             display: flex;
             flex-direction: column;
             gap: 1.5vw;
         }
-
         .contact-form input,
         .contact-form textarea,
         .event-form input {
@@ -308,7 +270,6 @@
             background: var(--bg-light);
             transition: var(--transition);
         }
-
         .contact-form input:focus,
         .contact-form textarea:focus,
         .event-form input:focus {
@@ -316,12 +277,10 @@
             box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
             outline: none;
         }
-
         .contact-form textarea {
             resize: vertical;
             min-height: 10vw;
         }
-
         .contact-form button,
         .event-form button,
         .status-btn {
@@ -335,18 +294,15 @@
             font-size: var(--font-size-base);
             transition: var(--transition);
         }
-
         .contact-form button:hover,
         .event-form button:hover,
         .status-btn:hover {
             transform: scale(1.05) translateY(-2px);
         }
-
         .qr-code {
             text-align: center;
             margin-top: 2vw;
         }
-
         .qr-code img {
             width: clamp(8vw, 10vw, 10rem);
             height: clamp(8vw, 10vw, 10rem);
@@ -355,21 +311,17 @@
             transition: var(--transition);
             loading: lazy;
         }
-
         .qr-code img:hover {
             transform: scale(1.1) rotate(5deg);
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
-
         .terms {
             background: #e0f4ff;
             color: var(--text-color);
         }
-
         .terms h2, .terms h3 {
             color: var(--primary-color);
         }
-
         footer {
             text-align: center;
             padding: 2.5vw;
@@ -378,7 +330,6 @@
             font-size: clamp(0.8rem, 0.95vw, 1rem);
             position: relative;
         }
-
         footer::before {
             content: '';
             position: absolute;
@@ -389,12 +340,10 @@
             background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
             z-index: 0;
         }
-
         footer p {
             position: relative;
             z-index: 1;
         }
-
         #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 {
             width: clamp(20vw, 30vw, 30rem);
             height: auto;
@@ -406,12 +355,10 @@
             border: 0.2vw solid var(--primary-color);
             loading: lazy;
         }
-
         #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover {
             transform: perspective(500px) rotateX(5deg) scale(1.05);
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
-
         .modal {
             display: none;
             position: fixed;
@@ -424,7 +371,6 @@
             backdrop-filter: blur(5px);
             animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-
         .modal-content {
             background: #ffffff;
             margin: 10% auto;
@@ -436,7 +382,6 @@
             text-align: center;
             animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-
         .modal-close {
             position: absolute;
             top: 2vw;
@@ -450,12 +395,10 @@
             transition: var(--transition);
             z-index: 2001;
         }
-
         .modal-close:hover {
             color: var(--primary-color);
             transform: scale(1.1) rotate(180deg);
         }
-
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -467,12 +410,10 @@
             display: none;
             pointer-events: none;
         }
-
         .modal-overlay.active {
             display: block;
             pointer-events: auto;
         }
-
         @media (max-width: 768px) {
             h1 { font-size: clamp(1.8rem, 8vw, 2.5rem); }
             .nav-toggle { display: block; }
@@ -494,14 +435,13 @@
             section { padding: 6vw; margin-bottom: 6vw; }
             h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
             p { font-size: var(--font-size-mobile); }
-            .gallery { 
-                grid-template-columns: 1fr; 
-                gap: 3vw;
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 1.5vw; /* モバイルでギャップを小さく */
             }
-            .gallery img { 
-                height: auto;
-                min-height: 50vw;
-                max-height: 70vw;
+            .gallery img {
+                height: auto; /* モバイルで高さを自動調整 */
+                max-height: 40vw; /* 最大高さを制限 */
             }
             .contact-form input, .contact-form textarea, .event-form input { font-size: var(--font-size-mobile); padding: 3vw; }
             .contact-form button, .event-form button, .status-btn { font-size: var(--font-size-mobile); padding: 3vw; }
@@ -511,24 +451,28 @@
             .modal-content { max-width: 80vw; }
             .modal-close { font-size: clamp(1.5rem, 6vw, 2rem); padding: 1.5vw; }
         }
-
         @media (max-width: 480px) {
             nav ul { padding: 4vw 0; }
-            .gallery { 
-                gap: 4vw;
-            }
-            .gallery img { 
-                max-height: 80vw;
-                min-height: 60vw;
+            .gallery img {
+                max-height: 50vw; /* さらに小さく調整 */
+                margin-bottom: 1vw; /* 画像間の余白を追加 */
             }
             .contact-form, .event-form { gap: 3vw; }
             .contact-form button, .event-form button { width: 100%; }
             .modal-content { width: 90vw; margin-top: 15vh; }
             .lightbox img { max-height: 70vh; }
         }
-
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; }
+            .gallery img {
+                opacity: 1 !important;
+            }
+        }
+        .event-details {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5vw;
         }
     </style>
 </head>
@@ -553,7 +497,7 @@
     <main>
         <section id="home" class="animate-on-scroll">
             <h2>ようこそ、チームマーメイドへ</h2>
-            <p>障害者と健常者が一緒にソフトバレーを楽しみ、心身を健康にし、相互理解と地域貢献を目指します。総員21人で活動中!</p>
+            <p>障害者と健常者が一緒にソフトバレーを楽しみ、心身を健康にし、相互理解と地域貢献を目指します。総員21人で活動中！</p>
         </section>
         <section id="about" class="animate-on-scroll">
             <h2>チーム紹介</h2>
@@ -770,7 +714,6 @@
                     document.querySelector(anchor.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
                 });
             });
-
             // ナビゲーショントグル
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('nav ul');
@@ -779,7 +722,6 @@
                     navMenu.classList.toggle('active');
                 });
             }
-
             // ライトボックス（スクロール対応）
             const galleryImages = document.querySelectorAll('.gallery img');
             const lightbox = document.getElementById('lightbox');
@@ -787,7 +729,6 @@
             const lightboxClose = document.querySelector('.lightbox-close');
             const modalOverlay = document.getElementById('modal-overlay');
             let touchStartY = 0;
-
             if (galleryImages.length && lightbox && lightboxImg && lightboxClose && modalOverlay) {
                 galleryImages.forEach(img => {
                     img.addEventListener('click', (e) => {
@@ -798,12 +739,10 @@
                         document.body.style.overflow = 'hidden';
                         document.body.style.touchAction = 'none';
                     });
-
                     // タッチイベント対応
                     img.addEventListener('touchstart', (e) => {
                         touchStartY = e.touches[0].clientY;
                     }, { passive: true });
-
                     img.addEventListener('touchend', (e) => {
                         const touchEndY = e.changedTouches[0].clientY;
                         const touchDiff = Math.abs(touchEndY - touchStartY);
@@ -817,14 +756,12 @@
                         }
                     }, { passive: false });
                 });
-
                 lightboxClose.addEventListener('click', () => {
                     lightbox.classList.remove('active');
                     modalOverlay.classList.remove('active');
                     document.body.style.overflow = 'auto';
                     document.body.style.touchAction = 'auto';
                 });
-
                 lightbox.addEventListener('click', (e) => {
                     if (e.target === lightbox) {
                         lightbox.classList.remove('active');
@@ -834,7 +771,6 @@
                     }
                 });
             }
-
             // 連絡フォーム
             const contactForm = document.getElementById('contact-form');
             if (contactForm) {
@@ -848,7 +784,7 @@
                         alert('すべての項目を入力してください。');
                         return;
                     }
-                    if (!emailRegex.test(email)) {
+                    if (!emailRegex.test(email) ) {
                         alert('有効なメールアドレスを入力してください。');
                         return;
                     }
@@ -857,20 +793,18 @@
                     alert('問い合わせを送信しました。');
                 });
             }
-
             // イベント登録
             const events = [
                 { date: '10/04', id: '1004', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day.jpg' },
                 { date: '10/18', id: '1018', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg' },
                 { date: '11/08', id: '1108', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_08.jpg' },
-                { date: '11/22', id: '1122', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_22.jpg' }
+                { date: '11/22', id: '1122', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_22.jpg', time: '13:00～15:00', location: '勝田台中央小体育館' }
             ];
             const eventList = document.getElementById('event-list');
             const statusModal = document.getElementById('status-modal');
             const formModal = document.getElementById('form-modal');
             const registerForm = document.getElementById('register-form');
             let currentEventDate = '';
-
             if (eventList && statusModal && formModal && registerForm) {
                 events.forEach(event => {
                     const eventDate = new Date(`2025-${event.date.replace('/', '-')}`);
@@ -878,6 +812,10 @@
                     if (eventDate >= today) {
                         const eventHtml = `
                             <h3>${event.date} バレーボール練習会</h3>
+                            ${event.time && event.location ? `
+                                <p class="event-details"><strong>開催時間→</strong> ${event.time}</p>
+                                <p class="event-details"><strong>場所→</strong> ${event.location}</p>
+                            ` : ''}
                             <p>次回練習は${event.date}に開催予定。詳細はLINEグループで確認してください。</p>
                             <img id="register-btn-${event.id}" src="${event.img}" alt="${event.date}練習会登録ボタン" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=イベント画像が読み込めません'; console.log('Event image load failed:', this.src)">
                         `;
@@ -894,7 +832,6 @@
                         }
                     }
                 });
-
                 document.querySelectorAll('.modal-close').forEach(close => {
                     close.addEventListener('click', () => {
                         statusModal.style.display = 'none';
@@ -904,7 +841,6 @@
                         document.body.style.overflow = 'auto';
                     });
                 });
-
                 document.querySelectorAll('.status-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
                         const status = btn.getAttribute('data-status');
@@ -915,7 +851,6 @@
                         formModal.style.display = 'block';
                     });
                 });
-
                 registerForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const status = document.getElementById('status').value;
@@ -940,7 +875,6 @@
                     modalOverlay.classList.remove('active');
                     document.body.style.overflow = 'auto';
                 });
-
                 [statusModal, formModal].forEach(modal => {
                     modal.addEventListener('click', (e) => {
                         if (e.target === modal) {
@@ -951,7 +885,6 @@
                         }
                     });
                 });
-
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') {
                         statusModal.style.display = 'none';
@@ -964,7 +897,6 @@
                     }
                 });
             }
-
             // スクロールアニメーション
             const sections = document.querySelectorAll('.animate-on-scroll');
             const observer = new IntersectionObserver((entries) => {
@@ -975,7 +907,6 @@
                 });
             }, { threshold: 0.2 });
             sections.forEach((section) => observer.observe(section));
-
             // フォーカストラップ
             function trapFocus(modal) {
                 const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea');
