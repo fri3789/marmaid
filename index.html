@@ -177,13 +177,13 @@
         }
         .gallery img {
             width: 100%;
-            height: auto; /* モバイルで柔軟に調整 */
+            height: auto;
             object-fit: cover;
             border-radius: var(--border-radius);
             border: 0.2vw solid var(--primary-color);
             transition: var(--transition);
             cursor: pointer;
-            opacity: 1;
+            opacity: 0;
             animation: fadeInUp 0.6s ease-out forwards;
             touch-action: manipulation;
         }
@@ -437,11 +437,11 @@
             p { font-size: var(--font-size-mobile); }
             .gallery {
                 grid-template-columns: 1fr;
-                gap: 1.5vw; /* モバイルでギャップを小さく */
+                gap: 1.5vw;
             }
             .gallery img {
-                height: auto; /* モバイルで高さを自動調整 */
-                max-height: 40vw; /* 最大高さを制限 */
+                height: auto;
+                max-height: 40vw;
             }
             .contact-form input, .contact-form textarea, .event-form input { font-size: var(--font-size-mobile); padding: 3vw; }
             .contact-form button, .event-form button, .status-btn { font-size: var(--font-size-mobile); padding: 3vw; }
@@ -454,8 +454,8 @@
         @media (max-width: 480px) {
             nav ul { padding: 4vw 0; }
             .gallery img {
-                max-height: 50vw; /* さらに小さく調整 */
-                margin-bottom: 1vw; /* 画像間の余白を追加 */
+                max-height: 50vw;
+                margin-bottom: 1vw;
             }
             .contact-form, .event-form { gap: 3vw; }
             .contact-form button, .event-form button { width: 100%; }
@@ -739,7 +739,6 @@
                         document.body.style.overflow = 'hidden';
                         document.body.style.touchAction = 'none';
                     });
-                    // タッチイベント対応
                     img.addEventListener('touchstart', (e) => {
                         touchStartY = e.touches[0].clientY;
                     }, { passive: true });
@@ -784,7 +783,7 @@
                         alert('すべての項目を入力してください。');
                         return;
                     }
-                    if (!emailRegex.test(email) ) {
+                    if (!emailRegex.test(email)) {
                         alert('有効なメールアドレスを入力してください。');
                         return;
                     }
@@ -796,8 +795,8 @@
             // イベント登録
             const events = [
                 { date: '10/04', id: '1004', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day.jpg' },
-                { date: '10/18', id: '1018', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg' },
-                { date: '11/08', id: '1108', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_08.jpg' },
+                { date: '10/18', id: '1018', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg', time: '13:00～15:00', location: '勝田台中央小体育館' },
+                { date: '11/08', id: '1108', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_08.jpg', time: '13:00～15:00', location: '勝田台中央小体育館' },
                 { date: '11/22', id: '1122', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_22.jpg', time: '13:00～15:00', location: '勝田台中央小体育館' }
             ];
             const eventList = document.getElementById('event-list');
@@ -836,7 +835,7 @@
                     close.addEventListener('click', () => {
                         statusModal.style.display = 'none';
                         formModal.style.display = 'none';
-                        registerForm.reset();
+                        registerFilm.reset();
                         modalOverlay.classList.remove('active');
                         document.body.style.overflow = 'auto';
                     });
