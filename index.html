@@ -13,9 +13,9 @@
             --bg-light: #f0f9ff;
             --shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-size-base: 1.2vw;
-            --font-size-mobile: 3.5vw;
-            --border-radius: 1vw;
+            --font-size-base: clamp(1rem, 1.2vw, 1.2rem);
+            --font-size-mobile: clamp(1.2rem, 3.5vw, 1.5rem);
+            --border-radius: clamp(0.5rem, 1vw, 1rem);
         }
 
         * {
@@ -31,6 +31,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            -webkit-tap-highlight-color: transparent;
         }
 
         header {
@@ -38,7 +39,7 @@
             text-align: center;
             padding: 12vw 5vw;
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
-            background-attachment: fixed;
+            background-attachment: scroll;
             box-shadow: var(--shadow);
         }
 
@@ -59,7 +60,7 @@
         }
 
         h1 {
-            font-size: 6vw;
+            font-size: clamp(2rem, 6vw, 3rem);
             color: #ffffff;
             text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
             animation: pulse 2s infinite ease-in-out;
@@ -162,7 +163,7 @@
         }
 
         h2 {
-            font-size: 4.5vw;
+            font-size: clamp(1.5rem, 4.5vw, 2.5rem);
             color: var(--primary-color);
             margin: 0 0 2vw;
             position: relative;
@@ -244,7 +245,7 @@
 
         .lightbox img {
             max-width: 90%;
-            max-height: 80%;
+            max-height: 80vh;
             border-radius: var(--border-radius);
             animation: zoomIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
@@ -253,7 +254,7 @@
             position: absolute;
             top: 2vw;
             right: 2vw;
-            font-size: 6vw;
+            font-size: clamp(2rem, 6vw, 3rem);
             color: #ffffff;
             background: rgba(30, 64, 175, 0.8);
             border-radius: 50%;
@@ -340,8 +341,8 @@
         }
 
         .qr-code img {
-            width: 10vw;
-            height: 10vw;
+            width: clamp(8vw, 10vw, 10rem);
+            height: clamp(8vw, 10vw, 10rem);
             border-radius: var(--border-radius);
             border: 0.2vw solid var(--primary-color);
             transition: var(--transition);
@@ -367,7 +368,7 @@
             padding: 2.5vw;
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: #ffffff;
-            font-size: 0.95vw;
+            font-size: clamp(0.8rem, 0.95vw, 1rem);
             position: relative;
         }
 
@@ -388,7 +389,7 @@
         }
 
         #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 {
-            width: 30vw;
+            width: clamp(20vw, 30vw, 30rem);
             height: auto;
             border-radius: var(--border-radius);
             cursor: pointer;
@@ -422,7 +423,7 @@
             margin: 10% auto;
             padding: 2vw;
             width: 80%;
-            max-width: 30vw;
+            max-width: clamp(20rem, 30vw, 30rem);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             text-align: center;
@@ -433,7 +434,7 @@
             position: absolute;
             top: 2vw;
             right: 2vw;
-            font-size: 3vw;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             color: var(--secondary-color);
             background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
@@ -466,7 +467,7 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 8vw; }
+            h1 { font-size: clamp(1.8rem, 8vw, 2.5rem); }
             .nav-toggle { display: block; }
             nav ul {
                 display: none;
@@ -482,27 +483,28 @@
             }
             nav ul.active { display: flex; }
             nav a { font-size: var(--font-size-mobile); padding: 2vw; }
-            nav ul { gap: 2vw; }
+            nav ul { gap: 1.5vw; }
             section { padding: 6vw; margin-bottom: 6vw; }
-            h2 { font-size: 6vw; }
+            h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
             p { font-size: var(--font-size-mobile); }
             .gallery { grid-template-columns: 1fr; }
-            .gallery img { height: 50vw; }
+            .gallery img { height: clamp(30vw, 50vw, 50rem); }
             .contact-form input, .contact-form textarea, .event-form input { font-size: var(--font-size-mobile); padding: 3vw; }
             .contact-form button, .event-form button, .status-btn { font-size: var(--font-size-mobile); padding: 3vw; }
             .qr-code img { width: 25vw; height: 25vw; }
-            footer { font-size: 3vw; padding: 4vw; }
+            footer { font-size: clamp(0.8rem, 3vw, 1rem); padding: 4vw; }
             #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 50vw; }
             .modal-content { max-width: 80vw; }
-            .modal-close { font-size: 6vw; padding: 1.5vw; }
+            .modal-close { font-size: clamp(1.5rem, 6vw, 2rem); padding: 1.5vw; }
         }
 
         @media (max-width: 480px) {
             nav ul { padding: 4vw 0; }
-            .gallery img { height: 60vw; }
+            .gallery img { height: clamp(40vw, 60vw, 60rem); }
             .contact-form, .event-form { gap: 3vw; }
             .contact-form button, .event-form button { width: 100%; }
-            .modal-content { width: 90vw; }
+            .modal-content { width: 90vw; margin-top: 15vh; }
+            .lightbox img { max-height: 70vh; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -611,120 +613,120 @@
             </div>
         </section>
         <section id="terms" class="animate-on-scroll terms">
-            <h1>チームマーメイド利用規約</h1>
+            <h2>チームマーメイド利用規約</h2>
             <p>制定日: 2025年6月27日（適宜改訂あり）</p>
-            <h2>第1条（目的）</h2>
+            <h3>第1条（目的）</h3>
             <p>障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指します。障害者スポーツの普及を推進。</p>
-            <h2>第2条（チーム概要）</h2>
+            <h3>第2条（チーム概要）</h3>
             <ol>
                 <li>名称: マーメイド</li>
                 <li>設立: 2025年1月12日</li>
                 <li>活動拠点: 千葉県内</li>
                 <li>競技種目: ソフトバレーボール（男女混合）</li>
             </ol>
-            <h2>第3条（会員資格）</h2>
-            <h3>1. 加入条件:</h3>
+            <h3>第3条（会員資格）</h3>
+            <h4>1. 加入条件:</h4>
             <ul>
                 <li>18歳以上の障害者および健常者。</li>
                 <li>ソフトバレーを楽しむ意欲とチーム目的への賛同。</li>
                 <li>本規約とLINEルールに同意し、LINEに従う。</li>
             </ul>
-            <h3>2. 入会手続き:</h3>
+            <h4>2. 入会手続き:</h4>
             <ul>
                 <li>代表者に申告し、健康・障害情報を提供。</li>
             </ul>
-            <h3>3. 退会:</h3>
+            <h4>3. 退会:</h4>
             <ul>
                 <li>代表者に通知。規約違反時は退会手続きが制限される場合あり。</li>
             </ul>
-            <h2>第4条（活動内容）</h2>
-            <h3>1. 練習:</h3>
+            <h3>第4条（活動内容）</h3>
+            <h4>1. 練習:</h4>
             <ul>
                 <li>日程: 随時決定</li>
                 <li>場所: 随時決定</li>
                 <li>内容: 基本練習、試合形式、障害調整</li>
             </ul>
-            <h3>2. 試合: 未定</h3>
-            <h2>第5条（会費）</h2>
-            <h3>1. 会費:</h3>
+            <h4>2. 試合: 未定</h4>
+            <h3>第5条（会費）</h3>
+            <h4>1. 会費:</h4>
             <ul>
                 <li>1回400円（変動あり）</li>
                 <li>入館時現金支払い</li>
             </ul>
-            <h3>2. 使途:</h3>
+            <h4>2. 使途:</h4>
             <ul>
                 <li>施設使用料、備品購入など</li>
             </ul>
-            <h3>3. 遅延対応:</h3>
+            <h4>3. 遅延対応:</h4>
             <ul>
                 <li>未納時は参加不可</li>
             </ul>
-            <h2>第6条（組織と役割）</h2>
-            <h3>1. 運営体制:</h3>
+            <h3>第6条（組織と役割）</h3>
+            <h4>1. 運営体制:</h4>
             <ul>
                 <li>幹事、副幹事（財務・情報発信）</li>
             </ul>
-            <h3>2. 連絡体制:</h3>
+            <h4>2. 連絡体制:</h4>
             <ul>
                 <li>LINEグループ、メール、電話</li>
                 <li>障害に配慮した連絡</li>
             </ul>
-            <h2>第7条（ルールとマナー）</h2>
-            <h3>1. 練習ルール:</h3>
+            <h3>第7条（ルールとマナー）</h3>
+            <h4>1. 練習ルール:</h4>
             <ul>
                 <li>出席確認、遅刻・欠席連絡</li>
                 <li>施設ルール遵守</li>
                 <li>障害に配慮</li>
             </ul>
-            <h3>2. 禁止事項:</h3>
+            <h4>2. 禁止事項:</h4>
             <ul>
                 <li>暴力、飲酒、喫煙、規約違反</li>
             </ul>
-            <h2>第8条（安全と健康管理）</h2>
-            <h3>1. 健康管理:</h3>
+            <h3>第8条（安全と健康管理）</h3>
+            <h4>1. 健康管理:</h4>
             <ul>
                 <li>健康・障害情報を提供</li>
                 <li>体調不良時は参加控え</li>
             </ul>
-            <h3>2. 保険: 検討中</h3>
-            <h3>3. 怪我対応:</h3>
+            <h4>2. 保険: 検討中</h4>
+            <h4>3. 怪我対応:</h4>
             <ul>
                 <li>119番通報、応急処置</li>
             </ul>
-            <h2>第9条（大会参加）</h2>
-            <h3>1. 参加資格:</h3>
+            <h3>第9条（大会参加）</h3>
+            <h4>1. 参加資格:</h4>
             <ul>
                 <li>大会ルールに従う</li>
             </ul>
-            <h3>2. 費用:</h3>
+            <h4>2. 費用:</h4>
             <ul>
                 <li>1大会5,000円（事前徴収）</li>
             </ul>
-            <h2>第10条（規約違反）</h2>
-            <h3>1. 違反行為:</h3>
+            <h3>第10条（規約違反）</h3>
+            <h4>1. 違反行為:</h4>
             <ul>
                 <li>会費未納、マナー違反</li>
             </ul>
-            <h3>2. 懲戒:</h3>
+            <h4>2. 懲戒:</h4>
             <ul>
                 <li>警告、停止、除名</li>
             </ul>
-            <h2>第11条（個人情報保護）</h2>
-            <h3>1. 情報管理:</h3>
+            <h3>第11条（個人情報保護）</h3>
+            <h4>1. 情報管理:</h4>
             <ul>
                 <li>幹事・副幹事が管理</li>
                 <li>運営目的以外使用禁止</li>
             </ul>
-            <h2>第12条（解散）</h2>
-            <h3>1. 解散条件:</h3>
+            <h3>第12条（解散）</h3>
+            <h4>1. 解散条件:</h4>
             <ul>
                 <li>財政難や目的達成不能時</li>
             </ul>
-            <h3>2. 資産処理:</h3>
+            <h4>2. 資産処理:</h4>
             <ul>
                 <li>寄付または分配</li>
             </ul>
-            <h2>附則</h2>
+            <h3>附則</h3>
             <ol>
                 <li>施行: 2025年6月17日</li>
                 <li>未定事項は4名以上で決定</li>
