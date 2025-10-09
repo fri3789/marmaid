@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>チームマーメイド - Soft Volleyball Mermaid</title>
+    <meta name="description" content="チームマーメイドは、障害者と健常者が一緒にソフトバレーを楽しむ千葉県のインクルーシブなチームです。">
+    <meta name="keywords" content="チームマーメイド, ソフトバレーボール, 障害者スポーツ, 千葉県">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -554,8 +556,8 @@
                 <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250602_250925_1.jpg" alt="チーム練習風景1" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed for:', this.src)">
                 <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250602_250925_3.jpg" alt="チーム練習風景2" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed for:', this.src)">
                 <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250623_250925_12.jpg" alt="チーム練習風景3" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed for:', this.src)">
-                <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250623_250925_14.jpg" alt="チーム練習風景4" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed for:', this.src)">
-                <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250906大会_250925_22.jpg" alt="チーム練習風景5" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed for:', this.src)">
+                <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250623_250925_14.jpg" alt="チーム練習風景4" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
+                <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250906大会_250925_22.jpg" alt="チーム練習風景5" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
                 <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250906大会_250925_25.jpg" alt="チーム練習風景6" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
                 <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250906大会_250925_28.jpg" alt="チーム練習風景7" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
                 <img crossorigin="anonymous" src="https://fri3789.github.io/marmaid/images/LINE_ALBUM_20250906大会_250925_3.jpg" alt="チーム練習風景8" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
@@ -565,7 +567,7 @@
         <section id="events" class="animate-on-scroll">
             <h2>イベント情報</h2>
             <div id="event-list"></div>
-            <div id="status-modal" class="modal" role="dialog" aria-label="参加状況選択モーダル">
+            <div id="status-modal" class="modal" role="dialog" aria-label="参加状況選択モーダル" aria-modal="true">
                 <div class="modal-content">
                     <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
                     <h3 id="status-title">練習会参加状況を選択</h3>
@@ -574,7 +576,7 @@
                     <button class="status-btn" data-status="未定">未定</button>
                 </div>
             </div>
-            <div id="form-modal" class="modal" role="dialog" aria-label="登録フォームモーダル">
+            <div id="form-modal" class="modal" role="dialog" aria-label="登録フォームモーダル" aria-modal="true">
                 <div class="modal-content">
                     <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
                     <h3 id="form-title">練習会登録情報入力</h3>
@@ -742,7 +744,7 @@
         <p>&copy; 2025 チームマーメイド. All rights reserved. Manami Hujimitsu, Kaito Saito.</p>
     </footer>
     <div class="overlay" id="modal-overlay"></div>
-    <div class="lightbox" id="lightbox" role="dialog" aria-label="画像拡大モーダル">
+    <div class="lightbox" id="lightbox" role="dialog" aria-label="画像拡大モーダル" aria-modal="true">
         <span class="lightbox-close" aria-label="ライトボックスを閉じる">&times;</span>
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
@@ -825,25 +827,30 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    const name = contactForm.querySelector('input[name="name"]').value;
-                    const email = contactForm.querySelector('input[name="email"]').value;
-                    const message = contactForm.querySelector('textarea[name="message"]').value;
-                    if (name && email && message) {
-                        window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(`問い合わせ - ${name}`)}&body=${encodeURIComponent(`お名前: ${name}\nメール: ${email}\nメッセージ: ${message}`)}`;
-                        contactForm.reset();
-                        alert('問い合わせを送信しました。');
-                    } else {
+                    const name = contactForm.querySelector('input[name="name"]').value.trim();
+                    const email = contactForm.querySelector('input[name="email"]').value.trim();
+                    const message = contactForm.querySelector('textarea[name="message"]').value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!name || !email || !message) {
                         alert('すべての項目を入力してください。');
+                        return;
                     }
+                    if (!emailRegex.test(email)) {
+                        alert('有効なメールアドレスを入力してください。');
+                        return;
+                    }
+                    window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(`問い合わせ - ${name}`)}&body=${encodeURIComponent(`お名前: ${name}\nメール: ${email}\nメッセージ: ${message}`)}`;
+                    contactForm.reset();
+                    alert('問い合わせを送信しました。');
                 });
             }
 
             // イベント登録
             const events = [
-                { date: '10/04', id: '1004', img: 'https://www.dropbox.com/scl/fi/sm7zxk4d4s1kie8bisei2/register-button.jpg?rlkey=ib8ng6v41acc4094oejikz7u5&dl=1' },
-                { date: '10/18', id: '1018', img: 'https://www.dropbox.com/scl/fi/9m6msxymu4pnkpkto6fww/10_18.jpg?rlkey=c05m32qtf4srikmyqbzx0vvhv&dl=1' },
-                { date: '11/08', id: '1108', img: 'https://www.dropbox.com/scl/fi/gd7hk8095kgji9093ityt/11_08.jpg?rlkey=savp3wv2zgrw8ickm6nqev7c1&dl=1' },
-                { date: '11/22', id: '1122', img: 'https://www.dropbox.com/scl/fi/gvn25vp3tti7p1cl8mw3n/11_22.jpg?rlkey=8rww287rjzkl4ukbxc5xmub5k&dl=1' }
+                { date: '10/04', id: '1004', img: 'https://github.com/fri3789/marmaid/blob/main/images/day.jpg?raw=true' },
+                { date: '10/18', id: '1018', img: 'https://github.com/fri3789/marmaid/blob/main/images/day10_18.jpg?raw=true' },
+                { date: '11/08', id: '1108', img: 'https://github.com/fri3789/marmaid/blob/main/images/day11_08.jpg?raw=true' },
+                { date: '11/22', id: '1122', img: 'https://github.com/fri3789/marmaid/blob/main/images/day11_22.jpg?raw=true' }
             ];
             const eventList = document.getElementById('event-list');
             const statusModal = document.getElementById('status-modal');
@@ -853,21 +860,25 @@
 
             if (eventList && statusModal && formModal && registerForm) {
                 events.forEach(event => {
-                    const eventHtml = `
-                        <h3>${event.date} バレーボール練習会</h3>
-                        <p>次回練習は${event.date}に開催予定。詳細はLINEグループで確認してください。</p>
-                        <img id="register-btn-${event.id}" src="${event.img}" alt="${event.date}練習会登録ボタン" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=イベント画像が読み込めません'; console.log('Event image load failed for:', this.src)">
-                    `;
-                    eventList.insertAdjacentHTML('beforeend', eventHtml);
-                    const btn = document.getElementById(`register-btn-${event.id}`);
-                    if (btn) {
-                        btn.addEventListener('click', () => {
-                            currentEventDate = event.date;
-                            document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
-                            statusModal.style.display = 'block';
-                            modalOverlay.classList.add('active');
-                            document.body.style.overflow = 'hidden';
-                        });
+                    const eventDate = new Date(`2025-${event.date.replace('/', '-')}`);
+                    const today = new Date();
+                    if (eventDate >= today) {
+                        const eventHtml = `
+                            <h3>${event.date} バレーボール練習会</h3>
+                            <p>次回練習は${event.date}に開催予定。詳細はLINEグループで確認してください。</p>
+                            <img id="register-btn-${event.id}" src="${event.img}" alt="${event.date}練習会登録ボタン" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=イベント画像が読み込めません'; console.log('Event image load failed:', this.src)">
+                        `;
+                        eventList.insertAdjacentHTML('beforeend', eventHtml);
+                        const btn = document.getElementById(`register-btn-${event.id}`);
+                        if (btn) {
+                            btn.addEventListener('click', () => {
+                                currentEventDate = event.date;
+                                document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
+                                statusModal.style.display = 'block';
+                                modalOverlay.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                            });
+                        }
                     }
                 });
 
@@ -900,16 +911,21 @@
                     const email = document.getElementById('email').value.trim();
                     const phone = document.getElementById('phone').value.trim() || '未入力';
                     const line = document.getElementById('line').value.trim() || '未入力';
-                    if (name && email) {
-                        window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(`${eventDate}練習会登録: ${status} - ${name}`)}&body=${encodeURIComponent(`参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`)}`;
-                        alert('登録完了！メールクライアントが開きます。');
-                        formModal.style.display = 'none';
-                        registerForm.reset();
-                        modalOverlay.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    } else {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!name || !email) {
                         alert('名前とメールアドレスは必須です。');
+                        return;
                     }
+                    if (!emailRegex.test(email)) {
+                        alert('有効なメールアドレスを入力してください。');
+                        return;
+                    }
+                    window.location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${encodeURIComponent(`${eventDate}練習会登録: ${status} - ${name}`)}&body=${encodeURIComponent(`参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`)}`;
+                    alert('登録完了！メールクライアントが開きます。');
+                    formModal.style.display = 'none';
+                    registerForm.reset();
+                    modalOverlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 });
 
                 [statusModal, formModal].forEach(modal => {
@@ -946,6 +962,25 @@
                 });
             }, { threshold: 0.2 });
             sections.forEach((section) => observer.observe(section));
+
+            // フォーカストラップ
+            function trapFocus(modal) {
+                const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                modal.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        if (e.shiftKey && document.activeElement === firstElement) {
+                            e.preventDefault();
+                            lastElement.focus();
+                        } else if (!e.shiftKey && document.activeElement === lastElement) {
+                            e.preventDefault();
+                            firstElement.focus();
+                        }
+                    }
+                });
+            }
+            [statusModal, formModal, lightbox].forEach(modal => trapFocus(modal));
         });
     </script>
 </body>
