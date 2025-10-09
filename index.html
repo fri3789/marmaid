@@ -32,6 +32,7 @@
             overflow-x: hidden;
             position: relative;
             -webkit-tap-highlight-color: transparent;
+            -webkit-overflow-scrolling: touch;
         }
 
         header {
@@ -194,6 +195,7 @@
             grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
             gap: 2vw;
             margin-top: 2vw;
+            touch-action: manipulation;
         }
 
         .gallery img {
@@ -207,6 +209,7 @@
             loading: lazy;
             opacity: 0;
             animation: fadeInUp 0.6s ease-out forwards;
+            touch-action: manipulation;
         }
 
         .gallery img:nth-child(1) { animation-delay: 0.1s; }
@@ -241,6 +244,7 @@
             justify-content: center;
             z-index: 2000;
             animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            touch-action: none;
         }
 
         .lightbox img {
@@ -262,6 +266,7 @@
             cursor: pointer;
             transition: var(--transition);
             z-index: 2001;
+            touch-action: manipulation;
         }
 
         .lightbox-close:hover {
@@ -734,7 +739,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 チームマーメイド. All rights reserved.</p>
+        <p>&copy; 2025 チームマーメイド. All rights reserved. Manami Hujimitsu, Kaito Saito.</p>
     </footer>
     <div class="overlay" id="modal-overlay"></div>
     <div class="lightbox" id="lightbox" role="dialog" aria-label="画像拡大モーダル">
@@ -760,31 +765,57 @@
                 });
             }
 
-            // ライトボックス
+            // ライトボックス（スクロール対応）
             const galleryImages = document.querySelectorAll('.gallery img');
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxClose = document.querySelector('.lightbox-close');
             const modalOverlay = document.getElementById('modal-overlay');
+            let touchStartY = 0;
+
             if (galleryImages.length && lightbox && lightboxImg && lightboxClose && modalOverlay) {
                 galleryImages.forEach(img => {
-                    img.addEventListener('click', () => {
+                    img.addEventListener('click', (e) => {
+                        e.preventDefault();
                         lightboxImg.src = img.src;
                         lightbox.classList.add('active');
                         modalOverlay.classList.add('active');
                         document.body.style.overflow = 'hidden';
+                        document.body.style.touchAction = 'none';
                     });
+
+                    // タッチイベント対応
+                    img.addEventListener('touchstart', (e) => {
+                        touchStartY = e.touches[0].clientY;
+                    }, { passive: true });
+
+                    img.addEventListener('touchend', (e) => {
+                        const touchEndY = e.changedTouches[0].clientY;
+                        const touchDiff = Math.abs(touchEndY - touchStartY);
+                        if (touchDiff < 10) {
+                            e.preventDefault();
+                            lightboxImg.src = img.src;
+                            lightbox.classList.add('active');
+                            modalOverlay.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                            document.body.style.touchAction = 'none';
+                        }
+                    }, { passive: false });
                 });
+
                 lightboxClose.addEventListener('click', () => {
                     lightbox.classList.remove('active');
                     modalOverlay.classList.remove('active');
                     document.body.style.overflow = 'auto';
+                    document.body.style.touchAction = 'auto';
                 });
-                lightbox.addEventListener('click', e => {
+
+                lightbox.addEventListener('click', (e) => {
                     if (e.target === lightbox) {
                         lightbox.classList.remove('active');
                         modalOverlay.classList.remove('active');
                         document.body.style.overflow = 'auto';
+                        document.body.style.touchAction = 'auto';
                     }
                 });
             }
@@ -792,7 +823,7 @@
             // 連絡フォーム
             const contactForm = document.getElementById('contact-form');
             if (contactForm) {
-                contactForm.addEventListener('submit', e => {
+                contactForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const name = contactForm.querySelector('input[name="name"]').value;
                     const email = contactForm.querySelector('input[name="email"]').value;
@@ -861,7 +892,7 @@
                     });
                 });
 
-                registerForm.addEventListener('submit', e => {
+                registerForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const status = document.getElementById('status').value;
                     const eventDate = document.getElementById('event-date').value;
@@ -882,7 +913,7 @@
                 });
 
                 [statusModal, formModal].forEach(modal => {
-                    modal.addEventListener('click', e => {
+                    modal.addEventListener('click', (e) => {
                         if (e.target === modal) {
                             modal.style.display = 'none';
                             registerForm.reset();
@@ -892,7 +923,7 @@
                     });
                 });
 
-                document.addEventListener('keydown', e => {
+                document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') {
                         statusModal.style.display = 'none';
                         formModal.style.display = 'none';
@@ -900,20 +931,21 @@
                         registerForm.reset();
                         modalOverlay.classList.remove('active');
                         document.body.style.overflow = 'auto';
+                        document.body.style.touchAction = 'auto';
                     }
                 });
             }
 
             // スクロールアニメーション
             const sections = document.querySelectorAll('.animate-on-scroll');
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
             }, { threshold: 0.2 });
-            sections.forEach(section => observer.observe(section));
+            sections.forEach((section) => observer.observe(section));
         });
     </script>
 </body>
