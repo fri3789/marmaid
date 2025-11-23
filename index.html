@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta name="google-site-verification" content="ozKChrwYqsm9qCT3xc_rgDiR2n6mNEYIPU0ClVJObZg" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チームマーメイド - Soft Volleyball Mermaid</title>
@@ -61,7 +60,14 @@
             z-index: 1000;
             box-shadow: var(--shadow);
         }
-        nav ul { list-style: none; display: flex; justify-content: center; gap: 3vw; flex-wrap: wrap; }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3vw;
+            margin: 0;
+            flex-wrap: wrap;
+        }
         nav a {
             color: var(--text-color);
             text-decoration: none;
@@ -83,6 +89,22 @@
         }
         nav a:hover::after { width: 100%; }
         nav a:hover { color: var(--primary-color); }
+
+        /* ハンバーガーメニュー（モバイルのみ表示） */
+        .nav-toggle {
+            display: none;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            position: absolute;
+            top: 1vw;
+            right: 2vw;
+            z-index: 1001;
+            transition: var(--transition);
+        }
+        .nav-toggle:hover { transform: rotate(90deg); }
 
         main { max-width: 90vw; margin: 5vw auto; padding: 0 2vw; }
         section {
@@ -115,64 +137,222 @@
             transition: var(--transition);
         }
 
-        /* イベントカード */
-        .event-card {
-            background: #fff;
-            border-radius: 1rem;
-            padding: 3vw;
-            margin-bottom: 3vw;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: var(--transition);
+        /* イベント表示 */
+        .event-item {
+            margin-bottom: 4vw;
         }
-        .event-card h3 {
+        .event-item h3 {
             font-size: clamp(1.6rem, 4vw, 2rem);
             color: var(--primary-color);
             margin-bottom: 1vw;
         }
-        .event-info {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            color: #444;
-            margin: 1vw 0;
-            line-height: 1.6;
-        }
-        .event-card img {
-            width: 100%;
-            max-width: 420px;
-            border-radius: 1rem;
-            border: 4px solid var(--primary-color);
+        .event-item p { margin-bottom: 1vw; }
+        .event-item img {
+            width: clamp(20vw, 30vw, 30rem);
+            height: auto;
+            border-radius: var(--border-radius);
             cursor: pointer;
             transition: var(--transition);
             display: block;
             margin: 2vw auto;
+            border: 0.2vw solid var(--primary-color);
         }
-        .event-card img:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(14,165,233,0.6); }
+        .event-item img:hover {
+            transform: perspective(500px) rotateX(5deg) scale(1.05);
+            box-shadow: 0 0 15px rgba(14,165,233,0.5);
+        }
+        .event-item.past h3, .event-item.past p { color: #999 !important; }
+        .event-item.past img {
+            opacity: 0.6;
+            filter: grayscale(80%);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
 
-        /* 過去の練習会（アーカイブ） */
+        /* アーカイブ開閉ボタン */
         .archive-toggle {
-            background: #f8f9fa;
+            background: #f0f9ff;
             padding: 1.5rem;
             border-radius: 1rem;
             text-align: center;
             cursor: pointer;
             margin: 3rem 0;
             font-weight: 600;
-            color: #666;
-            border: 2px dashed #ccc;
+            color: var(--primary-color);
+            border: 2px dashed var(--primary-color);
+            font-size: var(--font-size-base);
         }
-        .archive-toggle:hover { background: #e9ecef; }
+        .archive-toggle:hover { background: #e0f4ff; }
         #archive-container { display: none; margin-top: 2rem; }
         #archive-container.show { display: block; animation: slideUp 0.5s; }
-        .archive-card {
-            opacity: 0.6;
-            filter: grayscale(70%);
-            pointer-events: none;
+
+        /* ギャラリー（クリックでライトボックス） */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+            gap: 2vw;
+            margin-top: 2vw;
         }
-        .archive-card h3 { color: #999 !important; }
-        .archive-card img { transform: scale(0.85); opacity: 0.7; }
+        .gallery img {
+            width: 100%;
+            height: 22vw;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            border: 0.2vw solid var(--primary-color);
+            transition: var(--transition);
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .gallery img:nth-child(1) { animation-delay: 0.1s; }
+        .gallery img:nth-child(2) { animation-delay: 0.2s; }
+        .gallery img:nth-child(3) { animation-delay: 0.3s; }
+        .gallery img:nth-child(4) { animation-delay: 0.4s; }
+        .gallery img:nth-child(5) { animation-delay: 0.5s; }
+        .gallery img:nth-child(6) { animation-delay: 0.6s; }
+        .gallery img:nth-child(7) { animation-delay: 0.7s; }
+        .gallery img:nth-child(8) { animation-delay: 0.8s; }
+        .gallery img:nth-child(9) { animation-delay: 0.9s; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .gallery img:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(14,165,233,0.7); }
+
+        .contact-form, .event-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vw;
+        }
+        .contact-form input,
+        .contact-form textarea,
+        .event-form input {
+            padding: 1.2vw;
+            border: 0.2vw solid #bfdbfe;
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-base);
+            color: var(--text-color);
+            background: var(--bg-light);
+            transition: var(--transition);
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .event-form input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 1vw rgba(14,165,233,0.3);
+            outline: none;
+        }
+        .contact-form textarea { resize: vertical; min-height: 10vw; }
+        .contact-form button,
+        .event-form button,
+        .status-btn {
+            padding: 1.2vw 4vw;
+            border: none;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            transition: var(--transition);
+        }
+        .contact-form button:hover,
+        .event-form button:hover,
+        .status-btn:hover {
+            transform: scale(1.05) translateY(-2px);
+        }
+
+        .terms { background: #e0f4ff; color: var(--text-color); }
+        .terms h2, .terms h3 { color: var(--primary-color); }
+
+        footer {
+            text-align: center;
+            padding: 2.5vw;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: #ffffff;
+            font-size: clamp(0.8rem, 0.95vw, 1rem);
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            z-index: 0;
+        }
+        footer p { position: relative; z-index: 1; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: #fff;
+            margin: 10% auto;
+            padding: 2vw;
+            width: 80%;
+            max-width: clamp(20rem, 30vw, 30rem);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .modal-close {
+            position: absolute;
+            top: 2vw; right: 2vw;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--secondary-color);
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            padding: 1vw;
+            cursor: pointer;
+            z-index: 2001;
+        }
+        .modal-close:hover { color: var(--primary-color); transform: scale(1.1) rotate(180deg); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 1999; display: none; pointer-events: none; }
+        .modal-overlay.active { display: block; pointer-events: auto; }
+
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 80vh; border-radius: var(--border-radius); }
+        .lightbox-close {
+            position: absolute;
+            top: 2vw; right: 2vw;
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: #fff;
+            background: rgba(30,64,175,0.8);
+            border-radius: 50%;
+            padding: 1.5vw;
+            cursor: pointer;
+            z-index: 2001;
+        }
+        .lightbox-close:hover { color: var(--primary-color); transform: scale(1.1) rotate(180deg); }
 
         @media (max-width: 768px) {
-            .event-card img { max-width: 90vw; }
-            .archive-card img { transform: scale(0.8); }
+            .nav-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                background: #ffffff;
+                position: absolute;
+                top: 4vw;
+                left: 0;
+                width: 100%;
+                padding: 2vw 0;
+                box-shadow: var(--shadow);
+            }
+            nav ul.active { display: flex; }
+            nav a { font-size: var(--font-size-mobile); padding: 2vw; }
+            .gallery img { height: auto; max-height: 40vw; }
         }
     </style>
 </head>
@@ -183,7 +363,7 @@
         </div>
     </header>
     <nav>
-        <button class="nav-toggle" aria-label="メニューを開く">Menu</button>
+        <button class="nav-toggle" aria-label="メニューを開く">☰</button>
         <ul>
             <li><a href="#home">ホーム</a></li>
             <li><a href="#about">チーム紹介</a></li>
@@ -196,19 +376,181 @@
     </nav>
     <main>
         <section id="events" class="animate-on-scroll">
-            <h2>今後の練習会</h2>
-            <div id="future-events"></div>
+            <h2>イベント情報</h2>
+            <div id="event-list"></div>
 
             <div class="archive-toggle" onclick="document.getElementById('archive-container').classList.toggle('show')">
                 過去の練習会アーカイブを見る（クリックで開閉）
             </div>
-
             <div id="archive-container">
-                <h2 style="color:#999; text-align:center; margin:2rem 0;">過去の練習会アーカイブ</h2>
                 <div id="past-events"></div>
             </div>
         </section>
+
+        <!-- 他のセクションは完全に元通り -->
+        <section id="gallery" class="animate-on-scroll">
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <img src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250602_250925_1.jpg" alt="チーム練習風景1" onclick="openLightbox(this.src)">
+                <img src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250602_250925_3.jpg" alt="チーム練習風景2" onclick="openLightbox(this.src)">
+                <img src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250623_250925_12.jpg" alt="チーム練習風景3" onclick="openLightbox(this.src)">
+                <img src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250623_250925_14.jpg" alt="チーム練習風景4" onclick="openLightbox(this.src)">
+                <img src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_22.jpg" alt="チーム練習風景5" onclick="openLightbox(this.src)">
+                <img src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_25.jpg" alt="チーム練習風景6" onclick="openLightbox(this.src)">
+                <img src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_28.jpg" alt="チーム練習風景7" onclick="openLightbox(this.src)">
+                <img src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_3.jpg" alt="チーム練習風景8" onclick="openLightbox(this.src)">
+                <img src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_5.jpg" alt="チーム練習風景9" onclick="openLightbox(this.src)">
+            </div>
+        </section>
+
+        <!-- 連絡先・利用規約（完全復活） -->
+        <section id="contact" class="animate-on-scroll">
+            <h2>連絡先</h2>
+            <p>Email: <a href="mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com">mermaidnomail1125@gmail.co.jp</a></p>
+            <h2>問い合わせフォーム</h2>
+            <form class="contact-form" id="contact-form">
+                <input type="text" name="name" placeholder="お名前" required>
+                <input type="email" name="email" placeholder="メールアドレス" required>
+                <textarea name="message" placeholder="メッセージ" required></textarea>
+                <button type="submit">メールで送信</button>
+            </form>
+            <div class="qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://fri3789.github.io/marmaid/&size=150x150" alt="サイトQRコード">
+                <p>サイトにアクセス</p>
+            </div>
+        </section>
+
+        <section id="terms" class="animate-on-scroll terms">
+            <h2>チームマーメイド利用規約</h2>
+            <p>制定日: 2025年6月27日（適宜改訂あり）</p>
+            <h3>第1条（目的）</h3>
+            <p>障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指します。障害者スポーツの普及を推進。</p>
+            <h3>第2条（チーム概要）</h3>
+            <ol>
+                <li>名称: マーメイド</li>
+                <li>設立: 2025年1月12日</li>
+                <li>活動拠点: 千葉県内</li>
+                <li>競技種目: ソフトバレーボール（男女混合）</li>
+            </ol>
+            <h3>第3条（会員資格）</h3>
+            <h4>1. 加入条件:</h4>
+            <ul>
+                <li>18歳以上の障害者および健常者。</li>
+                <li>ソフトバレーを楽しむ意欲とチーム目的への賛同。</li>
+                <li>本規約とLINEルールに同意し、LINEに従う。</li>
+            </ul>
+            <h4>2. 入会手続き:</h4>
+            <ul>
+                <li>代表者に申告し、健康・障害情報を提供。</li>
+            </ul>
+            <h4>3. 退会:</h4>
+            <ul>
+                <li>代表者に通知。規約違反時は退会手続きが制限される場合あり。</li>
+            </ul>
+            <h3>第4条（活動内容）</h3>
+            <h4>1. 練習:</h4>
+            <ul>
+                <li>日程: 随時決定</li>
+                <li>場所: 随時決定</li>
+                <li>内容: 基本練習、試合形式、障害調整</li>
+            </ul>
+            <h4>2. 試合: 未定</h4>
+            <h3>第5条（会費）</h3>
+            <h4>1. 会費:</h4>
+            <ul>
+                <li>1回400円（変動あり）</li>
+                <li>入館時現金支払い</li>
+            </ul>
+            <h4>2. 使途:</h4>
+            <ul>
+                <li>施設使用料、備品購入など</li>
+            </ul>
+            <h4>3. 遅延対応:</h4>
+            <ul>
+                <li>未納時は参加不可</li>
+            </ul>
+            <h3>第6条（組織と役割）</h3>
+            <h4>1. 運営体制:</h4>
+            <ul>
+                <li>幹事、副幹事（財務・情報発信）</li>
+            </ul>
+            <h4>2. 連絡体制:</h4>
+            <ul>
+                <li>LINEグループ、メール、電話</li>
+                <li>障害に配慮した連絡</li>
+            </ul>
+            <h3>第7条（ルールとマナー）</h3>
+            <h4>1. 練習ルール:</h4>
+            <ul>
+                <li>出席確認、遅刻・欠席連絡</li>
+                <li>施設ルール遵守</li>
+                <li>障害に配慮</li>
+            </ul>
+            <h4>2. 禁止事項:</h4>
+            <ul>
+                <li>暴力、飲酒、喫煙、規約違反</li>
+            </ul>
+            <h3>第8条（安全と健康管理）</h3>
+            <h4>1. 健康管理:</h4>
+            <ul>
+                <li>健康・障害情報を提供</li>
+                <li>体調不良時は参加控え</li>
+            </ul>
+            <h4>2. 保険: 検討中</h4>
+            <h4>3. 怪我対応:</h4>
+            <ul>
+                <li>119番通報、応急処置</li>
+            </ul>
+            <h3>第9条（大会参加）</h3>
+            <h4>1. 参加資格:</h4>
+            <ul>
+                <li>大会ルールに従う</li>
+            </ul>
+            <h4>2. 費用:</h4>
+            <ul>
+                <li>1大会5,000円（事前徴収）</li>
+            </ul>
+            <h3>第10条（規約違反）</h3>
+            <h4>1. 違反行為:</h4>
+            <ul>
+                <li>会費未納、マナー違反</li>
+            </ul>
+            <h4>2. 懲戒:</h4>
+            <ul>
+                <li>警告、停止、除名</li>
+            </ul>
+            <h3>第11条（個人情報保護）</h3>
+            <h4>1. 情報管理:</h4>
+            <ul>
+                <li>幹事・副幹事が管理</li>
+                <li>運営目的以外使用禁止</li>
+            </ul>
+            <h3>第12条（解散）</h3>
+            <h4>1. 解散条件:</h4>
+            <ul>
+                <li>財政難や目的達成不能時</li>
+            </ul>
+            <h4>2. 資産処理:</h4>
+            <ul>
+                <li>寄付または分配</li>
+            </ul>
+            <h3>附則</h3>
+            <ol>
+                <li>施行: 2025年6月17日</li>
+                <li>未定事項は4名以上で決定</li>
+            </ol>
+        </section>
     </main>
+    <footer>
+        <p>&copy; 2025 チームマーメイド. All rights reserved. Manami Hujimitsu, Kaito Saito.</p>
+    </footer>
+
+    <!-- ライトボックス -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+    <div class="overlay" id="modal-overlay"></div>
 
     <!-- モーダル -->
     <div id="status-modal" class="modal">
@@ -239,7 +581,14 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date();
+
             const events = [
+                // 過去の練習会
+                { date: '2025-10-04', display: '10/04', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day.jpg' },
+                { date: '2025-10-18', display: '10/18', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg' },
+                { date: '2025-11-08', display: '11/08', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_08.jpg' },
+                { date: '2025-11-22', display: '11/22', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_22.jpg' },
+                // 今後の練習会
                 { date: '2025-12-13', display: '12/13', venue: '勝田台小体育館',     time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_13.jpg' },
                 { date: '2025-12-20', display: '12/20', venue: 'ふれあいプラザ',       time: '18:00～21:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_20.jpg' },
                 { date: '2026-01-10', display: '1/10',  venue: '勝田台中央小体育館',   time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_10.jpg' },
@@ -248,34 +597,47 @@
                 { date: '2026-02-21', display: '2/21',  venue: '勝田台小体育館',       time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day2_21.jpg' }
             ];
 
-            const futureContainer = document.getElementById('future-events');
-            const pastContainer   = document.getElementById('past-events');
+            const mainList = document.getElementById('event-list');
+            const pastList = document.getElementById('past-events');
 
             events.forEach(ev => {
                 const eventDate = new Date(ev.date);
                 const isPast = eventDate < today;
 
-                const card = document.createElement('div');
-                card.className = `event-card ${isPast ? 'archive-card' : ''}`;
+                const item = document.createElement('div');
+                item.className = `event-item ${isPast ? 'past' : ''}`;
 
-                card.innerHTML = `
+                item.innerHTML = `
                     <h3>${ev.display} バレーボール練習会${isPast ? ' <small style="color:#999;">（終了）</small>' : ''}</h3>
-                    <div class="event-info">
-                        <strong>会場：</strong>${ev.venue}<br>
-                        <strong>時間：</strong>${ev.time}
-                    </div>
-                    <img src="${ev.img}" alt="${ev.display}練習会登録ボタン"
+                    <p><strong>開催時間→</strong> ${ev.time}</p>
+                    <p><strong>場所→</strong> ${ev.venue}</p>
+                    <p>次回練習は${ev.display}に開催予定。詳細はLINEグループで確認してください。</p>
+                    <img src="${ev.img}" alt="${ev.display}練習会登録ボタン" loading="lazy"
                          ${isPast ? '' : `onclick="openStatus('${ev.display}')" style="cursor:pointer;"`}
-                         onerror="this.src='https://via.placeholder.com/400x300?text=画像読み込み中'">
+                         onerror="this.src='https://via.placeholder.com/300x200?text=画像読み込み中'">
                 `;
 
                 if (isPast) {
-                    pastContainer.appendChild(card);
+                    pastList.appendChild(item);
                 } else {
-                    futureContainer.appendChild(card);
+                    mainList.appendChild(item);
                 }
             });
 
+            // ライトボックス
+            window.openLightbox = function(src) {
+                document.getElementById('lightbox-img').src = src;
+                document.getElementById('lightbox').classList.add('active');
+                document.getElementById('modal-overlay').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+            window.closeLightbox = function() {
+                document.getElementById('lightbox').classList.remove('active');
+                document.getElementById('modal-overlay').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            };
+
+            // 参加登録モーダル
             window.openStatus = function(date) {
                 document.getElementById('status-title').textContent = `${date}練習会参加状況を選択`;
                 document.getElementById('event-date').value = date;
@@ -304,20 +666,20 @@
 
                 if (!name || !email) return alert('名前とメールアドレスは必須です。');
 
-                const body = `参加状況: ${status}%0D%0A名前: ${name}%0D%0Aメール: ${email}%0D%0A電話: ${phone}%0D%0ALINE: ${line}`;
-                location.href = `mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com&subject=${date}練習会登録: ${status} - ${name}&body=${body}`;
+                const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
+                location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${date}練習会登録: ${status} - ${name}&body=${encodeURIComponent(body)}`;
                 alert('登録完了！メールクライアントが開きます。');
                 document.getElementById('form-modal').style.display = 'none';
                 this.reset();
                 document.body.style.overflow = 'auto';
             });
 
-            // モーダル閉じる処理（全対応）
-            document.querySelectorAll('.modal-close, .modal').forEach(el => {
+            document.querySelectorAll('.modal-close, .modal, .lightbox').forEach(el => {
                 el.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('modal') || e.target.classList.contains('modal-close')) {
+                    if (e.target.classList.contains('modal') || e.target.classList.contains('modal-close') || e.target.classList.contains('lightbox') || e.target.classList.contains('lightbox-close')) {
                         document.getElementById('status-modal').style.display = 'none';
                         document.getElementById('form-modal').style.display = 'none';
+                        document.getElementById('lightbox').classList.remove('active');
                         document.getElementById('register-form').reset();
                         document.getElementById('modal-overlay').classList.remove('active');
                         document.body.style.overflow = 'auto';
@@ -325,11 +687,11 @@
                 });
             });
 
-            // ESCキーでも閉じる
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     document.getElementById('status-modal').style.display = 'none';
                     document.getElementById('form-modal').style.display = 'none';
+                    document.getElementById('lightbox').classList.remove('active');
                     document.getElementById('register-form').reset();
                     document.getElementById('modal-overlay').classList.remove('active');
                     document.body.style.overflow = 'auto';
