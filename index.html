@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="ozKChrwYqsm9qCT3xc_rgDiR2n6mNEYIPU0ClVJObZg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>チームマーメイド - Soft Volleyball Mermaid</title>
-    <meta name="description" content="チームマーメイドは、障害者と健常者が一緒にソフトバレーを楽しむ千葉県のインクルーシブなチームです。">
-    <meta name="keywords" content="チームマーメイド, ソフトバレーボール, 障害者スポーツ, 千葉県">
+    <title>チームマーメイド｜千葉県 千葉市・八千代市・勝田台のインクルーシブソフトバレーボールチーム</title>
+    <meta name="description" content="千葉県八千代市勝田台で活動するソフトバレーボールチームマーメイド。障害者と健常者が一緒に楽しむインクルーシブな練習会を毎月開催。見学・参加随時受付中！">
+    <meta name="keywords" content="チームマーメイド,ソフトバレーボール,千葉県,八千代市,勝田台,障害者スポーツ,インクルーシブ">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,346 +14,93 @@
             --secondary-color: #1e40af;
             --text-color: #1e3a8a;
             --bg-light: #f0f9ff;
-            --shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-size-base: clamp(1rem, 1.2vw, 1.2rem);
-            --font-size-mobile: clamp(1.2rem, 3.5vw, 1.5rem);
-            --border-radius: clamp(0.5rem, 1vw, 1rem);
+            --shadow: 0 6px 20px rgba(0,0,0,0.15);
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            --font-size-base: clamp(1rem,1.2vw,1.2rem);
+            --font-size-mobile: clamp(1.2rem,3.5vw,1.5rem);
+            --border-radius: clamp(0.5rem,1vw,1rem);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #e0f4ff, var(--bg-light));
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-overflow-scrolling: touch;
-        }
-        header {
-            position: relative;
-            text-align: center;
-            padding: 12vw 5vw;
-            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
-            box-shadow: var(--shadow);
-        }
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(14,165,233,0.6), rgba(56,189,248,0.4));
-            z-index: 1;
-        }
-        .header-content { position: relative; z-index: 2; }
-        h1 {
-            font-size: clamp(2rem, 6vw, 3rem);
-            color: #ffffff;
-            text-shadow: 0 0 15px rgba(14,165,233,0.8);
-            animation: pulse 2s infinite ease-in-out;
-        }
-        @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.03); opacity: 0.95; } }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#e0f4ff,var(--bg-light));color:var(--text-color);line-height:1.6;overflow-x:hidden;-webkit-tap-highlight-color:transparent;-webkit-overflow-scrolling:touch}
+        header{position:relative;text-align:center;padding:12vw 5vw;background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;box-shadow:var(--shadow)}
+        header::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,165,233,.6),rgba(56,189,248,.4));z-index:1}
+        .header-content{position:relative;z-index:2}
+        h1{font-size:clamp(2rem,6vw,3rem);color:#fff;text-shadow:0 0 15px rgba(14,165,233,.8);animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 
-        nav {
-            background: rgba(255,255,255,0.95);
-            padding: 1.5vw;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 3vw;
-            margin: 0;
-            flex-wrap: wrap;
-        }
-        nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: var(--font-size-base);
-            padding: 1vw;
-            position: relative;
-            transition: var(--transition);
-        }
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -0.2vw;
-            left: 0;
-            width: 0;
-            height: 0.2vw;
-            background: var(--primary-color);
-            transition: var(--transition);
-        }
-        nav a:hover::after { width: 100%; }
-        nav a:hover { color: var(--primary-color); }
+        nav{background:rgba(255,255,255,.95);padding:1.5vw;position:sticky;top:0;z-index:1000;box-shadow:var(--shadow)}
+        nav ul{list-style:none;display:flex;justify-content:center;gap:3vw;flex-wrap:wrap}
+        nav a{color:var(--text-color);text-decoration:none;font-weight:600;font-size:var(--font-size-base);padding:1vw;position:relative;transition:var(--transition)}
+        nav a::after{content:'';position:absolute;bottom:-.2vw;left:0;width:0;height:.2vw;background:var(--primary-color);transition:var(--transition)}
+        nav a:hover::after{width:100%}
+        nav a:hover{color:var(--primary-color)}
+        .nav-toggle{display:none;font-size:2rem;background:none;border:none;color:var(--text-color);cursor:pointer;position:absolute;top:1vw;right:2vw;z-index:1001}
+        .nav-toggle:hover{transform:rotate(90deg)}
 
-        /* ハンバーガーメニュー（モバイルのみ表示） */
-        .nav-toggle {
-            display: none;
-            font-size: 2rem;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            position: absolute;
-            top: 1vw;
-            right: 2vw;
-            z-index: 1001;
-            transition: var(--transition);
-        }
-        .nav-toggle:hover { transform: rotate(90deg); }
+        main{max-width:90vw;margin:5vw auto;padding:0 2vw}
+        section{background:#fff;padding:4vw;margin-bottom:4vw;border-radius:var(--border-radius);box-shadow:var(--shadow);position:relative;opacity:0;animation:slideUp .7s ease-out forwards}
+        @keyframes slideUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+        section.visible{opacity:1}
 
-        main { max-width: 90vw; margin: 5vw auto; padding: 0 2vw; }
-        section {
-            background: #ffffff;
-            padding: 4vw;
-            margin-bottom: 4vw;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            position: relative;
-            opacity: 0;
-            animation: slideUp 0.7s ease-out forwards;
-        }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        section.visible { opacity: 1; }
+        h2{font-size:clamp(1.5rem,4.5vw,2.5rem);color:var(--primary-color);margin:0 0 2vw;position:relative}
+        h2::after{content:'';position:absolute;bottom:-.5vw;left:0;width:5vw;height:.3vw;background:linear-gradient(to right,var(--primary-color),var(--secondary-color));transition:var(--transition)}
 
-        h2 {
-            font-size: clamp(1.5rem, 4.5vw, 2.5rem);
-            color: var(--primary-color);
-            margin: 0 0 2vw;
-            position: relative;
-        }
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5vw;
-            left: 0;
-            width: 5vw;
-            height: 0.3vw;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            transition: var(--transition);
-        }
+        .event-item{margin-bottom:4vw}
+        .event-item h3{font-size:clamp(1.6rem,4vw,2rem);color:var(--primary-color);margin-bottom:1vw}
+        .event-item p{margin-bottom:1vw}
+        .event-item img{width:clamp(20vw,30vw,30rem);height:auto;border-radius:var(--border-radius);cursor:pointer;transition:var(--transition);display:block;margin:2vw auto;border:.2vw solid var(--primary-color)}
+        .event-item img:hover{transform:perspective(500px) rotateX(5deg) scale(1.05);box-shadow:0 0 15px rgba(14,165,233,.5)}
+        .event-item.past h3,.event-item.past p{color:#999!important}
+        .event-item.past img{opacity:.6;filter:grayscale(80%);cursor:not-allowed;pointer-events:none}
 
-        /* イベント表示 */
-        .event-item {
-            margin-bottom: 4vw;
-        }
-        .event-item h3 {
-            font-size: clamp(1.6rem, 4vw, 2rem);
-            color: var(--primary-color);
-            margin-bottom: 1vw;
-        }
-        .event-item p { margin-bottom: 1vw; }
-        .event-item img {
-            width: clamp(20vw, 30vw, 30rem);
-            height: auto;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            display: block;
-            margin: 2vw auto;
-            border: 0.2vw solid var(--primary-color);
-        }
-        .event-item img:hover {
-            transform: perspective(500px) rotateX(5deg) scale(1.05);
-            box-shadow: 0 0 15px rgba(14,165,233,0.5);
-        }
-        .event-item.past h3, .event-item.past p { color: #999 !important; }
-        .event-item.past img {
-            opacity: 0.6;
-            filter: grayscale(80%);
-            cursor: not-allowed;
-            pointer-events: none;
-        }
+        .archive-toggle{background:#f0f9ff;padding:1.5rem;border-radius:1rem;text-align:center;cursor:pointer;margin:3rem 0;font-weight:600;color:var(--primary-color);border:2px dashed var(--primary-color);font-size:var(--font-size-base)}
+        .archive-toggle:hover{background:#e0f4ff}
+        #archive-container{display:none;margin-top:2rem}
+        #archive-container.show{display:block;animation:slideUp .5s}
 
-        /* アーカイブ開閉ボタン */
-        .archive-toggle {
-            background: #f0f9ff;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            text-align: center;
-            cursor: pointer;
-            margin: 3rem 0;
-            font-weight: 600;
-            color: var(--primary-color);
-            border: 2px dashed var(--primary-color);
-            font-size: var(--font-size-base);
-        }
-        .archive-toggle:hover { background: #e0f4ff; }
-        #archive-container { display: none; margin-top: 2rem; }
-        #archive-container.show { display: block; animation: slideUp 0.5s; }
+        .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(20vw,1fr));gap:2vw;margin-top:2vw}
+        .gallery img{width:100%;height:22vw;object-fit:cover;border-radius:var(--border-radius);border:.2vw solid var(--primary-color);transition:var(--transition);cursor:pointer;opacity:0;animation:fadeInUp .6s ease-out forwards}
+        .gallery img:nth-child(1){animation-delay:.1s}.gallery img:nth-child(2){animation-delay:.2s}
+        .gallery img:nth-child(3){animation-delay:.3s}.gallery img:nth-child(4){animation-delay:.4s}
+        .gallery img:nth-child(5){animation-delay:.5s}.gallery img:nth-child(6){animation-delay:.6s}
+        .gallery img:nth-child(7){animation-delay:.7s}.gallery img:nth-child(8){animation-delay:.8s}
+        .gallery img:nth-child(9){animation-delay:.9s}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .gallery img:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(14,165,233,.7)}
 
-        /* ギャラリー（クリックでライトボックス） */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
-            gap: 2vw;
-            margin-top: 2vw;
-        }
-        .gallery img {
-            width: 100%;
-            height: 22vw;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            border: 0.2vw solid var(--primary-color);
-            transition: var(--transition);
-            cursor: pointer;
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        .gallery img:nth-child(1) { animation-delay: 0.1s; }
-        .gallery img:nth-child(2) { animation-delay: 0.2s; }
-        .gallery img:nth-child(3) { animation-delay: 0.3s; }
-        .gallery img:nth-child(4) { animation-delay: 0.4s; }
-        .gallery img:nth-child(5) { animation-delay: 0.5s; }
-        .gallery img:nth-child(6) { animation-delay: 0.6s; }
-        .gallery img:nth-child(7) { animation-delay: 0.7s; }
-        .gallery img:nth-child(8) { animation-delay: 0.8s; }
-        .gallery img:nth-child(9) { animation-delay: 0.9s; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .gallery img:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(14,165,233,0.7); }
+        .contact-form,.event-form{display:flex;flex-direction:column;gap:1.5vw}
+        .contact-form input,.contact-form textarea,.event-form input{padding:1.2vw;border:.2vw solid #bfdbfe;border-radius:var(--border-radius);font-size:var(--font-size-base);color:var(--text-color);background:var(--bg-light);transition:var(--transition)}
+        .contact-form input:focus,.contact-form textarea:focus,.event-form input:focus{border-color:var(--primary-color);box-shadow:0 0 1vw rgba(14,165,233,.3);outline:none}
+        .contact-form textarea{resize:vertical;min-height:10vw}
+        .contact-form button,.event-form button,.status-btn{padding:1.2vw 4vw;border:none;border-radius:var(--border-radius);background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));color:#fff;font-weight:600;cursor:pointer;font-size:var(--font-size-base);transition:var(--transition)}
+        .contact-form button:hover,.event-form button:hover,.status-btn:hover{transform:scale(1.05) translateY(-2px)}
 
-        .contact-form, .event-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5vw;
-        }
-        .contact-form input,
-        .contact-form textarea,
-        .event-form input {
-            padding: 1.2vw;
-            border: 0.2vw solid #bfdbfe;
-            border-radius: var(--border-radius);
-            font-size: var(--font-size-base);
-            color: var(--text-color);
-            background: var(--bg-light);
-            transition: var(--transition);
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus,
-        .event-form input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 1vw rgba(14,165,233,0.3);
-            outline: none;
-        }
-        .contact-form textarea { resize: vertical; min-height: 10vw; }
-        .contact-form button,
-        .event-form button,
-        .status-btn {
-            padding: 1.2vw 4vw;
-            border: none;
-            border-radius: var(--border-radius);
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: var(--font-size-base);
-            transition: var(--transition);
-        }
-        .contact-form button:hover,
-        .event-form button:hover,
-        .status-btn:hover {
-            transform: scale(1.05) translateY(-2px);
-        }
+        .terms{background:#e0f4ff;color:var(--text-color)}
+        .terms h2,.terms h3{color:var(--primary-color)}
 
-        .terms { background: #e0f4ff; color: var(--text-color); }
-        .terms h2, .terms h3 { color: var(--primary-color); }
+        footer{text-align:center;padding:2.5vw;background:linear-gradient(135deg,var(--secondary-color),var(--primary-color));color:#fff;font-size:clamp(.8rem,.95vw,1rem);position:relative}
+        footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(45deg,rgba(255,255,255,.1),transparent);z-index:0}
+        footer p{position:relative;z-index:1}
 
-        footer {
-            text-align: center;
-            padding: 2.5vw;
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: #ffffff;
-            font-size: clamp(0.8rem, 0.95vw, 1rem);
-            position: relative;
-        }
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
-            z-index: 0;
-        }
-        footer p { position: relative; z-index: 1; }
+        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:2000;backdrop-filter:blur(5px)}
+        .modal-content{background:#fff;margin:10% auto;padding:2vw;width:80%;max-width:clamp(20rem,30vw,30rem);border-radius:var(--border-radius);box-shadow:var(--shadow);text-align:center}
+        .modal-close{position:absolute;top:2vw;right:2vw;font-size:clamp(1.5rem,3vw,2rem);color:var(--secondary-color);background:rgba(255,255,255,.9);border-radius:50%;padding:1vw;cursor:pointer;z-index:2001}
+        .modal-close:hover{color:var(--primary-color);transform:scale(1.1) rotate(180deg)}
+        .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:transparent;z-index:1999;display:none;pointer-events:none}
+        .modal-overlay.active{display:block;pointer-events:auto}
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: #fff;
-            margin: 10% auto;
-            padding: 2vw;
-            width: 80%;
-            max-width: clamp(20rem, 30vw, 30rem);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-        .modal-close {
-            position: absolute;
-            top: 2vw; right: 2vw;
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--secondary-color);
-            background: rgba(255,255,255,0.9);
-            border-radius: 50%;
-            padding: 1vw;
-            cursor: pointer;
-            z-index: 2001;
-        }
-        .modal-close:hover { color: var(--primary-color); transform: scale(1.1) rotate(180deg); }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 1999; display: none; pointer-events: none; }
-        .modal-overlay.active { display: block; pointer-events: auto; }
+        .lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:2000}
+        .lightbox.active{display:flex}
+        .lightbox img{max-width:90%;max-height:80vh;border-radius:var(--border-radius)}
+        .lightbox-close{position:absolute;top:2vw;right:2vw;font-size:clamp(2rem,6vw,3rem);color:#fff;background:rgba(30,64,175,.8);border-radius:50%;padding:1.5vw;cursor:pointer;z-index:2001}
+        .lightbox-close:hover{color:var(--primary-color);transform:scale(1.1) rotate(180deg)}
 
-        .lightbox {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-        .lightbox.active { display: flex; }
-        .lightbox img { max-width: 90%; max-height: 80vh; border-radius: var(--border-radius); }
-        .lightbox-close {
-            position: absolute;
-            top: 2vw; right: 2vw;
-            font-size: clamp(2rem, 6vw, 3rem);
-            color: #fff;
-            background: rgba(30,64,175,0.8);
-            border-radius: 50%;
-            padding: 1.5vw;
-            cursor: pointer;
-            z-index: 2001;
-        }
-        .lightbox-close:hover { color: var(--primary-color); transform: scale(1.1) rotate(180deg); }
-
-        @media (max-width: 768px) {
-            .nav-toggle { display: block; }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                background: #ffffff;
-                position: absolute;
-                top: 4vw;
-                left: 0;
-                width: 100%;
-                padding: 2vw 0;
-                box-shadow: var(--shadow);
-            }
-            nav ul.active { display: flex; }
-            nav a { font-size: var(--font-size-mobile); padding: 2vw; }
-            .gallery img { height: auto; max-height: 40vw; }
+        @media(max-width:768px){
+            .nav-toggle{display:block}
+            nav ul{display:none;flex-direction:column;align-items:center;background:#fff;position:absolute;top:4vw;left:0;width:100%;padding:2vw 0;box-shadow:var(--shadow)}
+            nav ul.active{display:flex}
+            nav a{font-size:var(--font-size-mobile);padding:2vw}
+            .gallery img{height:auto;max-height:40vw}
         }
     </style>
 </head>
@@ -364,11 +111,9 @@
         </div>
     </header>
     <nav>
-        <button class="nav-toggle" aria-label="メニューを開く">☰</button>
+        <button class="nav-toggle" aria-label="メニューを開く">Menu</button>
         <ul>
-            <li><a href="#home">ホーム</a></li>
-            <li><a href="#about">チーム紹介</a></li>
-            <li><a href="#members">メンバー</a></li>
+            <li><a href="#">ホーム</a></li>
             <li><a href="#gallery">ギャラリー</a></li>
             <li><a href="#events">イベント</a></li>
             <li><a href="#contact">連絡先</a></li>
@@ -376,10 +121,19 @@
         </ul>
     </nav>
     <main>
+
+        <!-- 一番上に、見やすく追加 -->
+        <section style="background:#fff;padding:3rem 4vw;margin:2rem auto 4rem;max-width:90vw;border-radius:1rem;box-shadow:var(--shadow);text-align:center;">
+            <p style="font-size:1.3rem;line-height:1.9;color:#1e3a8a;font-weight:600;">
+                障害者と健常者がソフトバレーを通じて心身を健康にし、<br class="sp-only">
+                相互理解と地域貢献を目指します。<br>
+                障害者スポーツの普及を推進することを目的としたチームです！
+            </p>
+        </section>
+
         <section id="events" class="animate-on-scroll">
             <h2>イベント情報</h2>
             <div id="event-list"></div>
-
             <div class="archive-toggle" onclick="document.getElementById('archive-container').classList.toggle('show')">
                 過去の練習会アーカイブを見る（クリックで開閉）
             </div>
@@ -388,7 +142,6 @@
             </div>
         </section>
 
-        <!-- 他のセクションは完全に元通り -->
         <section id="gallery" class="animate-on-scroll">
             <h2>ギャラリー</h2>
             <div class="gallery">
@@ -404,7 +157,6 @@
             </div>
         </section>
 
-        <!-- 連絡先・利用規約（完全復活） -->
         <section id="contact" class="animate-on-scroll">
             <h2>連絡先</h2>
             <p>Email: <a href="mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com">mermaidnomail1125@gmail.co.jp</a></p>
@@ -509,7 +261,7 @@
             </ul>
             <h4>2. 費用:</h4>
             <ul>
-                <li>1大会800円（事前徴収）</li>
+                <li>1大会5,000円（事前徴収）</li>
             </ul>
             <h3>第10条（規約違反）</h3>
             <h4>1. 違反行為:</h4>
@@ -543,17 +295,15 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 チームマーメイド. All rights reserved. Manami Hujimitsu, Kaito Saito.</p>
+        <p>© 2025 チームマーメイド. All rights reserved. Manami Hujimitsu, Kaito Saito.</p>
     </footer>
 
-    <!-- ライトボックス -->
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
     <div class="overlay" id="modal-overlay"></div>
 
-    <!-- モーダル -->
     <div id="status-modal" class="modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
@@ -584,12 +334,10 @@
             const today = new Date();
 
             const events = [
-                // 過去の練習会
                 { date: '2025-10-04', display: '10/04', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day.jpg' },
                 { date: '2025-10-18', display: '10/18', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg' },
                 { date: '2025-11-08', display: '11/08', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_08.jpg' },
                 { date: '2025-11-22', display: '11/22', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_22.jpg' },
-                // 今後の練習会
                 { date: '2025-12-13', display: '12/13', venue: '勝田台小体育館',     time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_13.jpg' },
                 { date: '2025-12-20', display: '12/20', venue: 'ふれあいプラザ',       time: '18:00～21:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_20.jpg' },
                 { date: '2026-01-10', display: '1/10',  venue: '勝田台中央小体育館',   time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_10.jpg' },
@@ -625,7 +373,6 @@
                 }
             });
 
-            // ライトボックス
             window.openLightbox = function(src) {
                 document.getElementById('lightbox-img').src = src;
                 document.getElementById('lightbox').classList.add('active');
@@ -638,7 +385,6 @@
                 document.body.style.overflow = 'auto';
             };
 
-            // 参加登録モーダル
             window.openStatus = function(date) {
                 document.getElementById('status-title').textContent = `${date}練習会参加状況を選択`;
                 document.getElementById('event-date').value = date;
