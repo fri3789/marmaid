@@ -3,7 +3,7 @@
 <head>
     <meta name="google-site-verification" content="ozKChrwYqsm9qCT3xc_rgDiR2n6mNEYIPU0ClVJObZg" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チームマーメイド - Soft Volleyball Mermaid</title>
     <meta name="description" content="チームマーメイドは、障害者と健常者が一緒にソフトバレーを楽しむ千葉県のインクルーシブなチームです。">
     <meta name="keywords" content="チームマーメイド, ソフトバレーボール, 障害者スポーツ, 千葉県">
@@ -20,19 +20,13 @@
             --font-size-mobile: clamp(1.2rem, 3.5vw, 1.5rem);
             --border-radius: clamp(0.5rem, 1vw, 1rem);
         }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        <meta name="google-site-verification" content="ozKChrwYqsm9qCT3xc_rgDiR2n6mNEYIPU0ClVJObZg" />
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #e0f4ff, var(--bg-light));
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
             -webkit-tap-highlight-color: transparent;
             -webkit-overflow-scrolling: touch;
         }
@@ -41,49 +35,33 @@
             text-align: center;
             padding: 12vw 5vw;
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
-            background-attachment: scroll;
             box-shadow: var(--shadow);
         }
         header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.6), rgba(56, 189, 248, 0.4));
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(14,165,233,0.6), rgba(56,189,248,0.4));
             z-index: 1;
         }
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
+        .header-content { position: relative; z-index: 2; }
         h1 {
             font-size: clamp(2rem, 6vw, 3rem);
             color: #ffffff;
-            text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
+            text-shadow: 0 0 15px rgba(14,165,233,0.8);
             animation: pulse 2s infinite ease-in-out;
         }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.03); opacity: 0.95; }
-        }
+        @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.03); opacity: 0.95; } }
+
         nav {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255,255,255,0.95);
             padding: 1.5vw;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: var(--shadow);
         }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 3vw;
-            margin: 0;
-            flex-wrap: wrap;
-        }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 3vw; flex-wrap: wrap; }
         nav a {
             color: var(--text-color);
             text-decoration: none;
@@ -103,33 +81,10 @@
             background: var(--primary-color);
             transition: var(--transition);
         }
-        nav a:hover::after {
-            width: 100%;
-        }
-        nav a:hover {
-            color: var(--primary-color);
-        }
-        .nav-toggle {
-            display: none;
-            font-size: 2rem;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            position: absolute;
-            top: 1vw;
-            right: 2vw;
-            z-index: 1001;
-            transition: var(--transition);
-        }
-        .nav-toggle:hover {
-            transform: rotate(90deg);
-        }
-        main {
-            max-width: 90vw;
-            margin: 5vw auto;
-            padding: 0 2vw;
-        }
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--primary-color); }
+
+        main { max-width: 90vw; margin: 5vw auto; padding: 0 2vw; }
         section {
             background: #ffffff;
             padding: 4vw;
@@ -137,16 +92,12 @@
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             position: relative;
-            animation: slideUp 0.7s ease-out;
             opacity: 0;
+            animation: slideUp 0.7s ease-out forwards;
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        section.visible {
-            opacity: 1;
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        section.visible { opacity: 1; }
+
         h2 {
             font-size: clamp(1.5rem, 4.5vw, 2.5rem);
             color: var(--primary-color);
@@ -163,318 +114,65 @@
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             transition: var(--transition);
         }
-        h2:hover::after {
-            width: 12vw;
-        }
-        p {
-            font-size: var(--font-size-base);
-            color: var(--secondary-color);
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
-            gap: 2vw;
-            margin-top: 2vw;
-            touch-action: manipulation;
-        }
-        .gallery img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            border: 0.2vw solid var(--primary-color);
+
+        /* イベントカード */
+        .event-card {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 3vw;
+            margin-bottom: 3vw;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: var(--transition);
-            cursor: pointer;
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-            touch-action: manipulation;
         }
-        .gallery img:nth-child(1) { animation-delay: 0.1s; }
-        .gallery img:nth-child(2) { animation-delay: 0.2s; }
-        .gallery img:nth-child(3) { animation-delay: 0.3s; }
-        .gallery img:nth-child(4) { animation-delay: 0.4s; }
-        .gallery img:nth-child(5) { animation-delay: 0.5s; }
-        .gallery img:nth-child(6) { animation-delay: 0.6s; }
-        .gallery img:nth-child(7) { animation-delay: 0.7s; }
-        .gallery img:nth-child(8) { animation-delay: 0.8s; }
-        .gallery img:nth-child(9) { animation-delay: 0.9s; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(14, 165, 233, 0.7);
-        }
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            touch-action: none;
-        }
-        .lightbox img {
-            max-width: 90%;
-            max-height: 80vh;
-            border-radius: var(--border-radius);
-            animation: zoomIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .lightbox-close {
-            position: absolute;
-            top: 2vw;
-            right: 2vw;
-            font-size: clamp(2rem, 6vw, 3rem);
-            color: #ffffff;
-            background: rgba(30, 64, 175, 0.8);
-            border-radius: 50%;
-            padding: 1.5vw;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 2001;
-            touch-action: manipulation;
-        }
-        .lightbox-close:hover {
+        .event-card h3 {
+            font-size: clamp(1.6rem, 4vw, 2rem);
             color: var(--primary-color);
-            transform: scale(1.1) rotate(180deg);
+            margin-bottom: 1vw;
         }
-        @keyframes springIn {
-            0% { opacity: 0; transform: scale(0.8); }
-            60% { opacity: 1; transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .event-info {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #444;
+            margin: 1vw 0;
+            line-height: 1.6;
         }
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .lightbox.active {
-            display: flex;
-        }
-        .contact-form, .event-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5vw;
-        }
-        .contact-form input,
-        .contact-form textarea,
-        .event-form input {
-            padding: 1.2vw;
-            border: 0.2vw solid #bfdbfe;
-            border-radius: var(--border-radius);
-            font-size: var(--font-size-base);
-            color: var(--text-color);
-            background: var(--bg-light);
-            transition: var(--transition);
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus,
-        .event-form input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 1vw rgba(14, 165, 233, 0.3);
-            outline: none;
-        }
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 10vw;
-        }
-        .contact-form button,
-        .event-form button,
-        .status-btn {
-            padding: 1.2vw 4vw;
-            border: none;
-            border-radius: var(--border-radius);
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #ffffff;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: var(--font-size-base);
-            transition: var(--transition);
-        }
-        .contact-form button:hover,
-        .event-form button:hover,
-        .status-btn:hover {
-            transform: scale(1.05) translateY(-2px);
-        }
-        .qr-code {
-            text-align: center;
-            margin-top: 2vw;
-        }
-        .qr-code img {
-            width: clamp(8vw, 10vw, 10rem);
-            height: clamp(8vw, 10vw, 10rem);
-            border-radius: var(--border-radius);
-            border: 0.2vw solid var(--primary-color);
-            transition: var(--transition);
-            loading: lazy;
-        }
-        .qr-code img:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
-        }
-        .terms {
-            background: #e0f4ff;
-            color: var(--text-color);
-        }
-        .terms h2, .terms h3 {
-            color: var(--primary-color);
-        }
-        footer {
-            text-align: center;
-            padding: 2.5vw;
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: #ffffff;
-            font-size: clamp(0.8rem, 0.95vw, 1rem);
-            position: relative;
-        }
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .event-card img {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
-            z-index: 0;
-        }
-        footer p {
-            position: relative;
-            z-index: 1;
-        }
-        #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 {
-            width: clamp(20vw, 30vw, 30rem);
-            height: auto;
-            border-radius: var(--border-radius);
+            max-width: 420px;
+            border-radius: 1rem;
+            border: 4px solid var(--primary-color);
             cursor: pointer;
             transition: var(--transition);
             display: block;
             margin: 2vw auto;
-            border: 0.2vw solid var(--primary-color);
-            loading: lazy;
         }
-        #register-btn-1004:hover, #register-btn-1018:hover, #register-btn-1108:hover, #register-btn-1122:hover {
-            transform: perspective(500px) rotateX(5deg) scale(1.05);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-            animation: springIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .modal-content {
-            background: #ffffff;
-            margin: 10% auto;
-            padding: 2vw;
-            width: 80%;
-            max-width: clamp(20rem, 30vw, 30rem);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+        .event-card img:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(14,165,233,0.6); }
+
+        /* 過去の練習会（アーカイブ） */
+        .archive-toggle {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 1rem;
             text-align: center;
-            animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .modal-close {
-            position: absolute;
-            top: 2vw;
-            right: 2vw;
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--secondary-color);
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            padding: 1vw;
             cursor: pointer;
-            transition: var(--transition);
-            z-index: 2001;
+            margin: 3rem 0;
+            font-weight: 600;
+            color: #666;
+            border: 2px dashed #ccc;
         }
-        .modal-close:hover {
-            color: var(--primary-color);
-            transform: scale(1.1) rotate(180deg);
-        }
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: 1999;
-            display: none;
+        .archive-toggle:hover { background: #e9ecef; }
+        #archive-container { display: none; margin-top: 2rem; }
+        #archive-container.show { display: block; animation: slideUp 0.5s; }
+        .archive-card {
+            opacity: 0.6;
+            filter: grayscale(70%);
             pointer-events: none;
         }
-        .modal-overlay.active {
-            display: block;
-            pointer-events: auto;
-        }
+        .archive-card h3 { color: #999 !important; }
+        .archive-card img { transform: scale(0.85); opacity: 0.7; }
+
         @media (max-width: 768px) {
-            h1 { font-size: clamp(1.8rem, 8vw, 2.5rem); }
-            .nav-toggle { display: block; }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                background: #ffffff;
-                position: absolute;
-                top: 4vw;
-                left: 0;
-                width: 100%;
-                padding: 2vw 0;
-                box-shadow: var(--shadow);
-            }
-            nav ul.active { display: flex; }
-            nav a { font-size: var(--font-size-mobile); padding: 2vw; }
-            nav ul { gap: 1.5vw; }
-            section { padding: 6vw; margin-bottom: 6vw; }
-            h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
-            p { font-size: var(--font-size-mobile); }
-            .gallery {
-                grid-template-columns: 1fr;
-                gap: 1.5vw;
-            }
-            .gallery img {
-                height: auto;
-                max-height: 40vw;
-            }
-            .contact-form input, .contact-form textarea, .event-form input { font-size: var(--font-size-mobile); padding: 3vw; }
-            .contact-form button, .event-form button, .status-btn { font-size: var(--font-size-mobile); padding: 3vw; }
-            .qr-code img { width: 25vw; height: 25vw; }
-            footer { font-size: clamp(0.8rem, 3vw, 1rem); padding: 4vw; }
-            #register-btn-1004, #register-btn-1018, #register-btn-1108, #register-btn-1122 { width: 50vw; }
-            .modal-content { max-width: 80vw; }
-            .modal-close { font-size: clamp(1.5rem, 6vw, 2rem); padding: 1.5vw; }
-        }
-        @media (max-width: 480px) {
-            nav ul { padding: 4vw 0; }
-            .gallery img {
-                max-height: 50vw;
-                margin-bottom: 1vw;
-            }
-            .contact-form, .event-form { gap: 3vw; }
-            .contact-form button, .event-form button { width: 100%; }
-            .modal-content { width: 90vw; margin-top: 15vh; }
-            .lightbox img { max-height: 70vh; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; transition: none !important; }
-            .gallery img {
-                opacity: 1 !important;
-            }
-        }
-        .event-details {
-            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 0.5vw;
+            .event-card img { max-width: 90vw; }
+            .archive-card img { transform: scale(0.8); }
         }
     </style>
 </head>
@@ -485,7 +183,7 @@
         </div>
     </header>
     <nav>
-        <button class="nav-toggle" aria-label="メニューを開く">☰</button>
+        <button class="nav-toggle" aria-label="メニューを開く">Menu</button>
         <ul>
             <li><a href="#home">ホーム</a></li>
             <li><a href="#about">チーム紹介</a></li>
@@ -497,435 +195,146 @@
         </ul>
     </nav>
     <main>
-        <section id="home" class="animate-on-scroll">
-            <h2>ようこそ、チームマーメイドへ</h2>
-            <p>障害者と健常者が一緒にソフトバレーを楽しみ、心身を健康にし、相互理解と地域貢献を目指します。総員21人で活動中！</p>
-        </section>
-        <section id="about" class="animate-on-scroll">
-            <h2>チーム紹介</h2>
-            <p>2025年1月12日に千葉県内で設立。ソフトバレーボールでインクルーシブな環境を作り、障害者スポーツの普及を推進します。</p>
-        </section>
-        <section id="members" class="animate-on-scroll">
-            <h2>メンバー紹介</h2>
-            <p>現在21名で活動中。プライバシー保護のため詳細は非公開です。</p>
-        </section>
-        <section id="gallery" class="animate-on-scroll">
-            <h2>ギャラリー</h2>
-            <div class="gallery">
-                <img crossorigin="anonymous" src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250602_250925_1.jpg" alt="チーム練習風景1" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed for:', this.src)">
-                <img crossorigin="anonymous" src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250602_250925_3.jpg" alt="チーム練習風景2" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed for:', this.src)">
-                <img crossorigin="anonymous" src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250623_250925_12.jpg" alt="チーム練習風景3" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed for:', this.src)">
-                <img crossorigin="anonymous" src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250623_250925_14.jpg" alt="チーム練習風景4" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
-                <img crossorigin="anonymous" src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906%E5%A4%A7%E4%BC%9A_250925_22.jpg" alt="チーム練習風景5" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
-                <img crossorigin="anonymous" src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906%E5%A4%A7%E4%BC%9A_250925_25.jpg" alt="チーム練習風景6" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
-                <img crossorigin="anonymous" src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906%E5%A4%A7%E4%BC%9A_250925_28.jpg" alt="チーム練習風景7" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
-                <img crossorigin="anonymous" src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906%E5%A4%A7%E4%BC%9A_250925_3.jpg" alt="チーム練習風景8" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
-                <img crossorigin="anonymous" src="https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906%E5%A4%A7%E4%BC%9A_250925_5.jpg" alt="チーム練習風景9" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=画像が読み込めません'; console.log('Image load failed:', this.src)">
-            </div>
-        </section>
         <section id="events" class="animate-on-scroll">
-            <h2>イベント情報</h2>
-            <div id="event-list"></div>
-            <div id="status-modal" class="modal" role="dialog" aria-label="参加状況選択モーダル" aria-modal="true">
-                <div class="modal-content">
-                    <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
-                    <h3 id="status-title">練習会参加状況を選択</h3>
-                    <button class="status-btn" data-status="参加">参加</button>
-                    <button class="status-btn" data-status="不参加">不参加</button>
-                    <button class="status-btn" data-status="未定">未定</button>
-                </div>
+            <h2>今後の練習会</h2>
+            <div id="future-events"></div>
+
+            <div class="archive-toggle" onclick="document.getElementById('archive-container').classList.toggle('show')">
+                過去の練習会アーカイブを見る（クリックで開閉）
             </div>
-            <div id="form-modal" class="modal" role="dialog" aria-label="登録フォームモーダル" aria-modal="true">
-                <div class="modal-content">
-                    <span class="modal-close" aria-label="モーダルを閉じる">&times;</span>
-                    <h3 id="form-title">練習会登録情報入力</h3>
-                    <form id="register-form" class="event-form">
-                        <div>
-                            <label for="name">名前:</label>
-                            <input type="text" id="name" required aria-required="true">
-                        </div>
-                        <div>
-                            <label for="email">メールアドレス:</label>
-                            <input type="email" id="email" required aria-required="true">
-                        </div>
-                        <div>
-                            <label for="phone">電話番号:</label>
-                            <input type="tel" id="phone">
-                        </div>
-                        <div>
-                            <label for="line">LINE名:</label>
-                            <input type="text" id="line">
-                        </div>
-                        <input type="hidden" id="status">
-                        <input type="hidden" id="event-date">
-                        <button type="submit">送信</button>
-                    </form>
-                </div>
+
+            <div id="archive-container">
+                <h2 style="color:#999; text-align:center; margin:2rem 0;">過去の練習会アーカイブ</h2>
+                <div id="past-events"></div>
             </div>
-        </section>
-        <section id="contact" class="animate-on-scroll">
-            <h2>連絡先</h2>
-            <p>Email: <a href="mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com">mermaidnomail1125@gmail.com</a></p>
-            <h2>問い合わせフォーム</h2>
-            <form class="contact-form" id="contact-form">
-                <input type="text" name="name" placeholder="お名前" required aria-required="true">
-                <input type="email" name="email" placeholder="メールアドレス" required aria-required="true">
-                <textarea name="message" placeholder="メッセージ" required aria-required="true"></textarea>
-                <button type="submit">メールで送信</button>
-            </form>
-            <div class="qr-code">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://fri3789.github.io/marmaid/&size=150x150" alt="サイトQRコード" loading="lazy">
-                <p>サイトにアクセス</p>
-            </div>
-        </section>
-        <section id="terms" class="animate-on-scroll terms">
-            <h2>チームマーメイド利用規約</h2>
-            <p>制定日: 2025年6月27日（適宜改訂あり）</p>
-            <h3>第1条（目的）</h3>
-            <p>障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指します。障害者スポーツの普及を推進。</p>
-            <h3>第2条（チーム概要）</h3>
-            <ol>
-                <li>名称: マーメイド</li>
-                <li>設立: 2025年1月12日</li>
-                <li>活動拠点: 千葉県内</li>
-                <li>競技種目: ソフトバレーボール（男女混合）</li>
-            </ol>
-            <h3>第3条（会員資格）</h3>
-            <h4>1. 加入条件:</h4>
-            <ul>
-                <li>18歳以上の障害者および健常者。</li>
-                <li>ソフトバレーを楽しむ意欲とチーム目的への賛同。</li>
-                <li>本規約とLINEルールに同意し、LINEに従う。</li>
-            </ul>
-            <h4>2. 入会手続き:</h4>
-            <ul>
-                <li>代表者に申告し、健康・障害情報を提供。</li>
-            </ul>
-            <h4>3. 退会:</h4>
-            <ul>
-                <li>代表者に通知。規約違反時は退会手続きが制限される場合あり。</li>
-            </ul>
-            <h3>第4条（活動内容）</h3>
-            <h4>1. 練習:</h4>
-            <ul>
-                <li>日程: 随時決定</li>
-                <li>場所: 随時決定</li>
-                <li>内容: 基本練習、試合形式、障害調整</li>
-            </ul>
-            <h4>2. 試合: 未定</h4>
-            <h3>第5条（会費）</h3>
-            <h4>1. 会費:</h4>
-            <ul>
-                <li>1回400円（変動あり）</li>
-                <li>入館時現金支払い</li>
-            </ul>
-            <h4>2. 使途:</h4>
-            <ul>
-                <li>施設使用料、備品購入など</li>
-            </ul>
-            <h4>3. 遅延対応:</h4>
-            <ul>
-                <li>未納時は参加不可</li>
-            </ul>
-            <h3>第6条（組織と役割）</h3>
-            <h4>1. 運営体制:</h4>
-            <ul>
-                <li>幹事、副幹事（財務・情報発信）</li>
-            </ul>
-            <h4>2. 連絡体制:</h4>
-            <ul>
-                <li>LINEグループ、メール、電話</li>
-                <li>障害に配慮した連絡</li>
-            </ul>
-            <h3>第7条（ルールとマナー）</h3>
-            <h4>1. 練習ルール:</h4>
-            <ul>
-                <li>出席確認、遅刻・欠席連絡</li>
-                <li>施設ルール遵守</li>
-                <li>障害に配慮</li>
-            </ul>
-            <h4>2. 禁止事項:</h4>
-            <ul>
-                <li>暴力、飲酒、喫煙、規約違反</li>
-            </ul>
-            <h3>第8条（安全と健康管理）</h3>
-            <h4>1. 健康管理:</h4>
-            <ul>
-                <li>健康・障害情報を提供</li>
-                <li>体調不良時は参加控え</li>
-            </ul>
-            <h4>2. 保険: 検討中</h4>
-            <h4>3. 怪我対応:</h4>
-            <ul>
-                <li>119番通報、応急処置</li>
-            </ul>
-            <h3>第9条（大会参加）</h3>
-            <h4>1. 参加資格:</h4>
-            <ul>
-                <li>大会ルールに従う</li>
-            </ul>
-            <h4>2. 費用:</h4>
-            <ul>
-                <li>1大会600円（事前徴収）</li>
-            </ul>
-            <h3>第10条（規約違反）</h3>
-            <h4>1. 違反行為:</h4>
-            <ul>
-                <li>会費未納、マナー違反</li>
-            </ul>
-            <h4>2. 懲戒:</h4>
-            <ul>
-                <li>警告、停止、除名</li>
-            </ul>
-            <h3>第11条（個人情報保護）</h3>
-            <h4>1. 情報管理:</h4>
-            <ul>
-                <li>幹事・副幹事が管理</li>
-                <li>運営目的以外使用禁止</li>
-            </ul>
-            <h3>第12条（解散）</h3>
-            <h4>1. 解散条件:</h4>
-            <ul>
-                <li>財政難や目的達成不能時</li>
-            </ul>
-            <h4>2. 資産処理:</h4>
-            <ul>
-                <li>寄付または分配</li>
-            </ul>
-            <h3>附則</h3>
-            <ol>
-                <li>施行: 2025年6月17日</li>
-                <li>未定事項は4名以上で決定</li>
-            </ol>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2025 チームマーメイド. All rights reserved. Manami Hujimitsu, Kaito Saito.</p>
-    </footer>
-    <div class="overlay" id="modal-overlay"></div>
-    <div class="lightbox" id="lightbox" role="dialog" aria-label="画像拡大モーダル" aria-modal="true">
-        <span class="lightbox-close" aria-label="ライトボックスを閉じる">&times;</span>
-        <img id="lightbox-img" src="" alt="拡大画像">
+
+    <!-- モーダル -->
+    <div id="status-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3 id="status-title">練習会参加状況を選択</h3>
+            <button class="status-btn" data-status="参加">参加</button>
+            <button class="status-btn" data-status="不参加">不参加</button>
+            <button class="status-btn" data-status="未定">未定</button>
+        </div>
     </div>
+    <div id="form-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3 id="form-title">練習会登録情報入力</h3>
+            <form id="register-form" class="event-form">
+                <div><label for="name">名前:</label><input type="text" id="name" required></div>
+                <div><label for="email">メールアドレス:</label><input type="email" id="email" required></div>
+                <div><label for="phone">電話番号:</label><input type="tel" id="phone"></div>
+                <div><label for="line">LINE名:</label><input type="text" id="line"></div>
+                <input type="hidden" id="status">
+                <input type="hidden" id="event-date">
+                <button type="submit">送信</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // スムーススクロール
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', e => {
-                    e.preventDefault();
-                    document.querySelector(anchor.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            const today = new Date();
+            const events = [
+                { date: '2025-12-13', display: '12/13', venue: '勝田台小体育館',     time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_13.jpg' },
+                { date: '2025-12-20', display: '12/20', venue: 'ふれあいプラザ',       time: '18:00～21:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_20.jpg' },
+                { date: '2026-01-10', display: '1/10',  venue: '勝田台中央小体育館',   time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_10.jpg' },
+                { date: '2026-01-17', display: '1/17',  venue: 'ふれあいプラザ',       time: '18:00～21:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_17.jpg' },
+                { date: '2026-01-24', display: '1/24',  venue: '勝田台小体育館',       time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_24.jpg' },
+                { date: '2026-02-21', display: '2/21',  venue: '勝田台小体育館',       time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day2_21.jpg' }
+            ];
+
+            const futureContainer = document.getElementById('future-events');
+            const pastContainer   = document.getElementById('past-events');
+
+            events.forEach(ev => {
+                const eventDate = new Date(ev.date);
+                const isPast = eventDate < today;
+
+                const card = document.createElement('div');
+                card.className = `event-card ${isPast ? 'archive-card' : ''}`;
+
+                card.innerHTML = `
+                    <h3>${ev.display} バレーボール練習会${isPast ? ' <small style="color:#999;">（終了）</small>' : ''}</h3>
+                    <div class="event-info">
+                        <strong>会場：</strong>${ev.venue}<br>
+                        <strong>時間：</strong>${ev.time}
+                    </div>
+                    <img src="${ev.img}" alt="${ev.display}練習会登録ボタン"
+                         ${isPast ? '' : `onclick="openStatus('${ev.display}')" style="cursor:pointer;"`}
+                         onerror="this.src='https://via.placeholder.com/400x300?text=画像読み込み中'">
+                `;
+
+                if (isPast) {
+                    pastContainer.appendChild(card);
+                } else {
+                    futureContainer.appendChild(card);
+                }
+            });
+
+            window.openStatus = function(date) {
+                document.getElementById('status-title').textContent = `${date}練習会参加状況を選択`;
+                document.getElementById('event-date').value = date;
+                document.getElementById('status-modal').style.display = 'block';
+                document.getElementById('modal-overlay').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+
+            document.querySelectorAll('.status-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.getElementById('status').value = btn.dataset.status;
+                    document.getElementById('form-title').textContent = `${btn.dataset.status}の${document.getElementById('event-date').value}練習会登録情報入力`;
+                    document.getElementById('status-modal').style.display = 'none';
+                    document.getElementById('form-modal').style.display = 'block';
                 });
             });
-            // ナビゲーショントグル
-            const navToggle = document.querySelector('.nav-toggle');
-            const navMenu = document.querySelector('nav ul');
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('active');
+
+            document.getElementById('register-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const status = document.getElementById('status').value;
+                const date = document.getElementById('event-date').value;
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim() || '未入力';
+                const line = document.getElementById('line').value.trim() || '未入力';
+
+                if (!name || !email) return alert('名前とメールアドレスは必須です。');
+
+                const body = `参加状況: ${status}%0D%0A名前: ${name}%0D%0Aメール: ${email}%0D%0A電話: ${phone}%0D%0ALINE: ${line}`;
+                location.href = `mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com&subject=${date}練習会登録: ${status} - ${name}&body=${body}`;
+                alert('登録完了！メールクライアントが開きます。');
+                document.getElementById('form-modal').style.display = 'none';
+                this.reset();
+                document.body.style.overflow = 'auto';
+            });
+
+            // モーダル閉じる処理（全対応）
+            document.querySelectorAll('.modal-close, .modal').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('modal') || e.target.classList.contains('modal-close')) {
+                        document.getElementById('status-modal').style.display = 'none';
+                        document.getElementById('form-modal').style.display = 'none';
+                        document.getElementById('register-form').reset();
+                        document.getElementById('modal-overlay').classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
                 });
-            }
-            // ライトボックス（スクロール対応）
-            const galleryImages = document.querySelectorAll('.gallery img');
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxClose = document.querySelector('.lightbox-close');
-            const modalOverlay = document.getElementById('modal-overlay');
-            let touchStartY = 0;
-            if (galleryImages.length && lightbox && lightboxImg && lightboxClose && modalOverlay) {
-                galleryImages.forEach(img => {
-                    img.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        lightboxImg.src = img.src;
-                        lightbox.classList.add('active');
-                        modalOverlay.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                        document.body.style.touchAction = 'none';
-                    });
-                    img.addEventListener('touchstart', (e) => {
-                        touchStartY = e.touches[0].clientY;
-                    }, { passive: true });
-                    img.addEventListener('touchend', (e) => {
-                        const touchEndY = e.changedTouches[0].clientY;
-                        const touchDiff = Math.abs(touchEndY - touchStartY);
-                        if (touchDiff < 10) {
-                            e.preventDefault();
-                            lightboxImg.src = img.src;
-                            lightbox.classList.add('active');
-                            modalOverlay.classList.add('active');
-                            document.body.style.overflow = 'hidden';
-                            document.body.style.touchAction = 'none';
-                        }
-                    }, { passive: false });
-                });
-                lightboxClose.addEventListener('click', () => {
-                    lightbox.classList.remove('active');
-                    modalOverlay.classList.remove('active');
+            });
+
+            // ESCキーでも閉じる
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.getElementById('status-modal').style.display = 'none';
+                    document.getElementById('form-modal').style.display = 'none';
+                    document.getElementById('register-form').reset();
+                    document.getElementById('modal-overlay').classList.remove('active');
                     document.body.style.overflow = 'auto';
-                    document.body.style.touchAction = 'auto';
-                });
-                lightbox.addEventListener('click', (e) => {
-                    if (e.target === lightbox) {
-                        lightbox.classList.remove('active');
-                        modalOverlay.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                        document.body.style.touchAction = 'auto';
-                    }
-                });
-            }
-            // 連絡フォーム
-            const contactForm = document.getElementById('contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const name = contactForm.querySelector('input[name="name"]').value.trim();
-                    const email = contactForm.querySelector('input[name="email"]').value.trim();
-                    const message = contactForm.querySelector('textarea[name="message"]').value.trim();
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!name || !email || !message) {
-                        alert('すべての項目を入力してください。');
-                        return;
-                    }
-                    if (!emailRegex.test(email)) {
-                        alert('有効なメールアドレスを入力してください。');
-                        return;
-                    }
-                    window.location.href = `mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(`問い合わせ - ${name}`)}&body=${encodeURIComponent(`お名前: ${name}\nメール: ${email}\nメッセージ: ${message}`)}`;
-                    contactForm.reset();
-                    alert('問い合わせを送信しました。');
-                });
-            }
-            // イベント登録
-            const events = [
-                { date: '10/04', id: '1004', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day.jpg' },
-                { date: '10/18', id: '1018', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg', time: '13:00～15:00', location: '勝田台中央小体育館' },
-                { date: '11/08', id: '1108', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_08.jpg', time: '13:00～15:00', location: '勝田台中央小体育館' },
-                { date: '11/22', id: '1122', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_22.jpg', time: '13:00～15:00', location: '勝田台中央小体育館' }
-            ];
-            const eventList = document.getElementById('event-list');
-            const statusModal = document.getElementById('status-modal');
-            const formModal = document.getElementById('form-modal');
-            const registerForm = document.getElementById('register-form');
-            let currentEventDate = '';
-            if (eventList && statusModal && formModal && registerForm) {
-                events.forEach(event => {
-                    const eventDate = new Date(`2025-${event.date.replace('/', '-')}`);
-                    const today = new Date('2025-10-09');
-                    if (eventDate >= today) {
-                        const eventHtml = `
-                            <h3>${event.date} バレーボール練習会</h3>
-                            ${event.time && event.location ? `
-                                <p class="event-details"><strong>開催時間→</strong> ${event.time}</p>
-                                <p class="event-details"><strong>場所→</strong> ${event.location}</p>
-                            ` : ''}
-                            <p>次回練習は${event.date}に開催予定。詳細はLINEグループで確認してください。</p>
-                            <img id="register-btn-${event.id}" src="${event.img}" alt="${event.date}練習会登録ボタン" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=イベント画像が読み込めません'; console.log('Event image load failed:', this.src)">
-                        `;
-                        eventList.insertAdjacentHTML('beforeend', eventHtml);
-                        const btn = document.getElementById(`register-btn-${event.id}`);
-                        if (btn) {
-                            btn.addEventListener('click', () => {
-                                currentEventDate = event.date;
-                                document.getElementById('status-title').textContent = `${currentEventDate}練習会参加状況を選択`;
-                                statusModal.style.display = 'block';
-                                modalOverlay.classList.add('active');
-                                document.body.style.overflow = 'hidden';
-                            });
-                        }
-                    }
-                });
-                document.querySelectorAll('.modal-close').forEach(close => {
-                    close.addEventListener('click', () => {
-                        statusModal.style.display = 'none';
-                        formModal.style.display = 'none';
-                        registerFilm.reset();
-                        modalOverlay.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    });
-                });
-                document.querySelectorAll('.status-btn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const status = btn.getAttribute('data-status');
-                        document.getElementById('status').value = status;
-                        document.getElementById('event-date').value = currentEventDate;
-                        document.getElementById('form-title').textContent = `${status}の${currentEventDate}練習会登録情報入力`;
-                        statusModal.style.display = 'none';
-                        formModal.style.display = 'block';
-                    });
-                });
-                registerForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const status = document.getElementById('status').value;
-                    const eventDate = document.getElementById('event-date').value;
-                    const name = document.getElementById('name').value.trim();
-                    const email = document.getElementById('email').value.trim();
-                    const phone = document.getElementById('phone').value.trim() || '未入力';
-                    const line = document.getElementById('line').value.trim() || '未入力';
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!name || !email) {
-                        alert('名前とメールアドレスは必須です。');
-                        return;
-                    }
-                    if (!emailRegex.test(email)) {
-                        alert('有効なメールアドレスを入力してください。');
-                        return;
-                    }
-                    window.location.href = `mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com&subject=${encodeURIComponent(`${eventDate}練習会登録: ${status} - ${name}`)}&body=${encodeURIComponent(`参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`)}`;
-                    alert('登録完了！メールクライアントが開きます。');
-                    formModal.style.display = 'none';
-                    registerForm.reset();
-                    modalOverlay.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-                [statusModal, formModal].forEach(modal => {
-                    modal.addEventListener('click', (e) => {
-                        if (e.target === modal) {
-                            modal.style.display = 'none';
-                            registerForm.reset();
-                            modalOverlay.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
-                    });
-                });
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') {
-                        statusModal.style.display = 'none';
-                        formModal.style.display = 'none';
-                        lightbox.classList.remove('active');
-                        registerForm.reset();
-                        modalOverlay.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                        document.body.style.touchAction = 'auto';
-                    }
-                });
-            }
-            // スクロールアニメーション
-            const sections = document.querySelectorAll('.animate-on-scroll');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.2 });
-            sections.forEach((section) => observer.observe(section));
-            // フォーカストラップ
-            function trapFocus(modal) {
-                const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea');
-                const firstElement = focusableElements[0];
-                const lastElement = focusableElements[focusableElements.length - 1];
-                modal.addEventListener('keydown', (e) => {
-                    if (e.key === 'Tab') {
-                        if (e.shiftKey && document.activeElement === firstElement) {
-                            e.preventDefault();
-                            lastElement.focus();
-                        } else if (!e.shiftKey && document.activeElement === lastElement) {
-                            e.preventDefault();
-                            firstElement.focus();
-                        }
-                    }
-                });
-            }
-            [statusModal, formModal, lightbox].forEach(modal => trapFocus(modal));
+                }
+            });
         });
     </script>
 </body>
