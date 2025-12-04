@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://fri3789.github.io/marmaid/sitemap.xml
+Crawl-delay: 1
