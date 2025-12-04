@@ -196,6 +196,7 @@
             flex: 1;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
+            min-height: 44px;
         }
         
         .doc-btn.view {
@@ -381,10 +382,58 @@
             align-items: center;
             gap: 0.5rem;
             transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 44px;
+            min-width: 44px;
         }
         
         .pdf-action-btn:hover {
             background: rgba(255,255,255,0.3);
+        }
+        
+        /* 追加・修正したCSS部分 */
+        .pdf-action-btn.download {
+            background: linear-gradient(135deg, #34c759, #30d158);
+        }
+        
+        .pdf-action-btn.download:hover {
+            background: linear-gradient(135deg, #30d158, #34c759);
+        }
+        
+        .pdf-action-btn.print {
+            background: linear-gradient(135deg, #007aff, #5856d6);
+        }
+        
+        .pdf-action-btn.close-pdf {
+            background: linear-gradient(135deg, #ff3b30, #d70015);
+        }
+        
+        /* モバイル用のPDFアクションボタン */
+        .mobile-pdf-actions {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 4002;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .mobile-pdf-actions.active {
+            display: flex;
+        }
+        
+        .mobile-pdf-actions .pdf-action-btn {
+            flex: 1;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .pdf-content {
@@ -465,25 +514,20 @@
             to { transform: rotate(360deg); }
         }
         
-        /* モバイル対応の改善 */
-        .mobile-pdf-actions {
+        /* PDFダウンロード用の非表示要素 */
+        .pdf-download-link {
             display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 1rem;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 4002;
-            justify-content: center;
-            gap: 1rem;
         }
         
         @media(max-width:768px){
             .mobile-pdf-actions {
                 display: flex;
             }
+            
+            .pdf-toolbar .pdf-actions {
+                display: none;
+            }
+            
             .nav-toggle{display:block}
             nav ul{display:none;flex-direction:column;align-items:center;background:#fff;position:absolute;top:4vw;left:0;width:100%;padding:2vw 0;box-shadow:var(--shadow)}
             nav ul.active{display:flex}
@@ -539,6 +583,45 @@
             .pdf-action-btn {
                 width: 100%;
                 justify-content: center;
+            }
+        }
+        
+        /* 印刷スタイルの改善 */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .pdf-container,
+            .pdf-container * {
+                visibility: visible;
+            }
+            .pdf-container {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                background: white !important;
+                overflow: visible !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .pdf-toolbar,
+            .mobile-pdf-actions,
+            .pdf-action-btn,
+            .pdf-download-link,
+            nav,
+            footer,
+            header {
+                display: none !important;
+            }
+            .pdf-content {
+                padding: 1cm !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+            @page {
+                margin: 1.5cm;
             }
         }
     </style>
@@ -854,22 +937,30 @@
         <div class="pdf-toolbar">
             <h3 id="pdf-title"></h3>
             <div class="pdf-actions">
-                <button class="pdf-action-btn" onclick="printPDF()">
+                <button class="pdf-action-btn download" onclick="downloadPDF()">
+                    <span>⬇️</span>
+                    <span>PDFで保存</span>
+                </button>
+                <button class="pdf-action-btn print" onclick="printPDF()">
                     <span>🖨️</span>
                     <span>印刷</span>
                 </button>
-                <button class="pdf-action-btn" onclick="closePDF()">
+                <button class="pdf-action-btn close-pdf" onclick="closePDF()">
                     <span>✕</span>
                     <span>閉じる</span>
                 </button>
             </div>
         </div>
-        <div class="mobile-pdf-actions">
-            <button class="pdf-action-btn" onclick="printPDF()" style="flex:1;">
+        <div class="mobile-pdf-actions" id="mobile-pdf-actions">
+            <button class="pdf-action-btn download" onclick="downloadPDF()">
+                <span>⬇️</span>
+                <span>PDF保存</span>
+            </button>
+            <button class="pdf-action-btn print" onclick="printPDF()">
                 <span>🖨️</span>
                 <span>印刷する</span>
             </button>
-            <button class="pdf-action-btn" onclick="closePDF()" style="flex:1; background:#ff3b30;">
+            <button class="pdf-action-btn close-pdf" onclick="closePDF()">
                 <span>✕</span>
                 <span>閉じる</span>
             </button>
@@ -877,12 +968,16 @@
         <div class="pdf-content" id="pdf-content"></div>
     </div>
 
-    <!-- モーダル -->
+    <!-- PDFダウンロード用の隠しリンク -->
+    <a id="pdf-download-link" class="pdf-download-link" download="チームマーメイド_同意書.pdf"></a>
+
+    <!-- ライトボックス -->
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
 
+    <!-- モーダル -->
     <div class="modal" id="status-modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('status')">&times;</span>
@@ -951,7 +1046,9 @@
     </footer>
 
     <script>
-        // 元のスクリプト
+        // PDFタイプをグローバル変数で管理
+        let currentPdfType = '';
+        
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date();
             const events = [
@@ -1058,9 +1155,15 @@
 
             // 規約内容を動的に生成
             initializeAgreementContent();
+            
+            // モバイル判定
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile) {
+                console.log('モバイルデバイスを検出しました');
+            }
         });
 
-        // 元の関数
+        // 基本機能
         window.openLightbox = function(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').classList.add('active');
@@ -1091,6 +1194,7 @@
             document.getElementById('agreement-page').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
             document.getElementById('pdf-container').classList.remove('active');
+            document.getElementById('mobile-pdf-actions').classList.remove('active');
             window.scrollTo(0, 0);
         }
 
@@ -1111,6 +1215,7 @@
 
         // PDF表示関数
         function showPDF(type) {
+            currentPdfType = type;
             const loadingElement = document.getElementById('pdf-loading');
             loadingElement.classList.add('active');
             
@@ -1137,19 +1242,231 @@
                 document.getElementById('pdf-title').textContent = title;
                 document.getElementById('pdf-content').innerHTML = generatePDFContent(title, content);
                 document.getElementById('pdf-container').classList.add('active');
+                document.getElementById('mobile-pdf-actions').classList.add('active');
                 document.getElementById('agreement-page').style.display = 'none';
                 loadingElement.classList.remove('active');
                 window.scrollTo(0, 0);
+                
+                // 印刷ボタンをモバイル対応に設定
+                setupPrintButton();
             }, 500);
         }
 
         function closePDF() {
             document.getElementById('pdf-container').classList.remove('active');
+            document.getElementById('mobile-pdf-actions').classList.remove('active');
             showAgreementPage();
         }
 
+        // 印刷機能の改善
         function printPDF() {
-            window.print();
+            // モバイルで印刷ダイアログが開かない問題を回避
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // モバイルデバイスの場合
+                const printContent = document.getElementById('pdf-content').innerHTML;
+                const title = document.getElementById('pdf-title').textContent;
+                
+                // 印刷用ページを作成
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>${title}</title>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <style>
+                            body { 
+                                font-family: Arial, sans-serif; 
+                                line-height: 1.6; 
+                                color: #333; 
+                                margin: 0; 
+                                padding: 20px;
+                                background: white;
+                            }
+                            .print-header {
+                                text-align: center;
+                                margin-bottom: 30px;
+                                padding-bottom: 15px;
+                                border-bottom: 2px solid #007aff;
+                            }
+                            .print-footer {
+                                text-align: center;
+                                margin-top: 40px;
+                                padding-top: 20px;
+                                border-top: 1px dashed #ccc;
+                                font-size: 0.9em;
+                                color: #666;
+                            }
+                            @media print {
+                                body { 
+                                    padding: 0; 
+                                    margin: 0;
+                                }
+                                .no-print { 
+                                    display: none; 
+                                }
+                            }
+                            .print-btn {
+                                background: #007aff;
+                                color: white;
+                                border: none;
+                                padding: 15px 30px;
+                                font-size: 16px;
+                                border-radius: 8px;
+                                cursor: pointer;
+                                display: block;
+                                margin: 20px auto;
+                                width: 200px;
+                                text-align: center;
+                            }
+                            .close-btn {
+                                background: #ff3b30;
+                                color: white;
+                                border: none;
+                                padding: 15px 30px;
+                                font-size: 16px;
+                                border-radius: 8px;
+                                cursor: pointer;
+                                display: block;
+                                margin: 20px auto;
+                                width: 200px;
+                                text-align: center;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="print-header">
+                            <h1>${title}</h1>
+                            <p>印刷日: ${new Date().toLocaleDateString('ja-JP')}</p>
+                        </div>
+                        ${printContent}
+                        <div class="print-footer">
+                            <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+                            <p>チームマーメイド - 千葉県八千代市勝田台</p>
+                            <p>© 2025 チームマーメイド</p>
+                        </div>
+                        <div class="no-print">
+                            <br><br>
+                            <button onclick="window.print()" class="print-btn">
+                                🖨️ 印刷する
+                            </button>
+                            <button onclick="window.close()" class="close-btn">
+                                ✕ 閉じる
+                            </button>
+                        </div>
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                
+                // 印刷ボタンを中央に表示
+                setTimeout(() => {
+                    printWindow.focus();
+                }, 500);
+            } else {
+                // デスクトップの場合は直接印刷
+                window.print();
+            }
+        }
+        
+        // PDFダウンロード機能
+        function downloadPDF() {
+            const title = document.getElementById('pdf-title').textContent;
+            const content = document.getElementById('pdf-content').innerHTML;
+            
+            // HTMLコンテンツを準備
+            const fullContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>${title}</title>
+                    <style>
+                        body {
+                            font-family: 'MS Gothic', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', sans-serif;
+                            line-height: 1.6;
+                            color: #000;
+                            margin: 2cm;
+                            font-size: 11pt;
+                        }
+                        h1 {
+                            color: #007aff;
+                            text-align: center;
+                            border-bottom: 2px solid #007aff;
+                            padding-bottom: 10px;
+                            margin-bottom: 30px;
+                        }
+                        .document-info {
+                            margin-bottom: 30px;
+                            padding: 15px;
+                            background: #f0f9ff;
+                            border-left: 4px solid #34c759;
+                        }
+                        .signature-area {
+                            margin-top: 4cm;
+                            padding-top: 1cm;
+                            border-top: 2px dashed #ccc;
+                        }
+                        .page-break {
+                            page-break-before: always;
+                        }
+                        @media print {
+                            body {
+                                margin: 1.5cm;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>${title}</h1>
+                    <div class="document-info">
+                        <p><strong>発行:</strong> チームマーメイド</p>
+                        <p><strong>活動拠点:</strong> 千葉県八千代市勝田台</p>
+                        <p><strong>作成日:</strong> 2025年6月27日</p>
+                        <p><strong>印刷日:</strong> ${new Date().toLocaleDateString('ja-JP')}</p>
+                        <p><strong>文書番号:</strong> TMM-${currentPdfType.toUpperCase()}-${new Date().toISOString().split('T')[0].replace(/-/g, '')}</p>
+                    </div>
+                    ${content}
+                </body>
+                </html>
+            `;
+            
+            // Blobを作成してダウンロード
+            const blob = new Blob([fullContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            // ダウンロードリンクを作成
+            const downloadLink = document.getElementById('pdf-download-link');
+            const fileName = `チームマーメイド_${title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.html`;
+            downloadLink.href = url;
+            downloadLink.download = fileName;
+            
+            // ダウンロードを実行
+            downloadLink.click();
+            
+            // クリーンアップ
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+            }, 100);
+            
+            // モバイルでダウンロード通知
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                setTimeout(() => {
+                    alert('ファイルのダウンロードが開始されました。\nダウンロードフォルダを確認してください。\nファイル名: ' + fileName);
+                }, 500);
+            }
+        }
+        
+        // モバイル用の印刷ボタン設定
+        function setupPrintButton() {
+            const printButtons = document.querySelectorAll('.pdf-action-btn.print');
+            printButtons.forEach(btn => {
+                btn.onclick = function(e) {
+                    e.preventDefault();
+                    printPDF();
+                };
+            });
         }
 
         // 規約コンテンツ生成関数
@@ -1395,40 +1712,76 @@
         }
 
         function generatePDFContent(title, content) {
+            const today = new Date().toLocaleDateString('ja-JP');
+            
             return `
-                <h1 class="pdf-title">${title}</h1>
-                
-                <div class="pdf-notice">
-                    ⚠️ 参加時、参加後の状況に合わせて同意していただきます
-                </div>
-                
-                <div class="pdf-section">
-                    <p><strong>チームマーメイド</strong></p>
+                <div class="document-info" style="margin-bottom: 30px; padding: 15px; background: #f0f9ff; border-left: 4px solid #34c759;">
+                    <p><strong>発行:</strong> チームマーメイド</p>
                     <p><strong>活動拠点:</strong> 千葉県八千代市勝田台</p>
                     <p><strong>作成日:</strong> 2025年6月27日</p>
-                    <p><strong>印刷日:</strong> ${new Date().toLocaleDateString('ja-JP')}</p>
+                    <p><strong>印刷日:</strong> ${today}</p>
+                    <p><strong>文書番号:</strong> TMM-${currentPdfType.toUpperCase()}-${today.replace(/\//g, '')}</p>
                 </div>
                 
-                <div class="pdf-section">
+                <div style="background: #fff8e1; padding: 15px; border-left: 4px solid #ff9800; margin: 20px 0;">
+                    <p><strong>⚠️ 重要事項:</strong> この文書はチームマーメイドの活動参加に必要な同意書です。参加前に内容をよくお読みいただき、同意の上で署名してください。</p>
+                </div>
+                
+                <div class="pdf-content-main">
                     ${content}
                 </div>
                 
-                <div class="pdf-signature-area">
-                    <p><strong>─────────────────────────────────────</strong></p>
-                    <p><strong>参加者情報（自筆でご記入ください）</strong></p>
-                    <p><strong>氏名:</strong> ______________________________</p>
-                    <p><strong>生年月日:</strong> 　　年　　月　　日</p>
-                    <p><strong>住所:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
-                    <p><strong>電話番号:</strong> ＿＿＿−＿＿＿＿−＿＿＿＿</p>
-                    <p style="margin-top: 20px;"><strong>署名:</strong> ______________________________</p>
-                    <p><strong>同意日:</strong> 　　年　　月　　日</p>
+                <div class="signature-area">
+                    <h3>参加者確認・署名欄</h3>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 15px; width: 50%;">
+                                <p><strong>氏名（自筆）:</strong></p>
+                                <p style="height: 40px; border-bottom: 1px solid #ccc; margin: 20px 0;"></p>
+                                
+                                <p><strong>生年月日:</strong></p>
+                                <p>　　年　　月　　日</p>
+                                
+                                <p><strong>電話番号:</strong></p>
+                                <p>＿＿＿−＿＿＿＿−＿＿＿＿</p>
+                            </td>
+                            <td style="border: 1px solid #ccc; padding: 15px; width: 50%;">
+                                <p><strong>住所:</strong></p>
+                                <p style="height: 80px; border-bottom: 1px solid #ccc; margin: 20px 0;"></p>
+                                
+                                <p><strong>緊急連絡先:</strong></p>
+                                <p>＿＿＿−＿＿＿＿−＿＿＿＿</p>
+                                
+                                <p><strong>署名日:</strong></p>
+                                <p>　　年　　月　　日</p>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <div style="margin-top: 40px; padding: 20px; background: #f5f5f5; border-radius: 8px;">
+                        <h4>同意確認事項</h4>
+                        <p>□ 上記の規約内容をすべて理解し、同意します。</p>
+                        <p>□ 記載内容に虚偽がないことを確認します。</p>
+                        <p>□ チーム活動中の安全に関する注意事項を理解しました。</p>
+                    </div>
                 </div>
                 
-                <div class="pdf-section" style="margin-top: 40px; font-size: 0.9rem; color: #666; text-align: center;">
-                    <p><strong>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</strong></p>
-                    <p><strong>チームマーメイド 担当確認欄</strong></p>
-                    <p>幹事・副幹事署名: ____________________</p>
-                    <p>確認日: 　　年　　月　　日</p>
+                <div style="margin-top: 60px; text-align: center; font-size: 0.9em; color: #666;">
+                    <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+                    <p><strong>チームマーメイド 担当者確認欄</strong></p>
+                    <table style="width: 100%; margin-top: 20px;">
+                        <tr>
+                            <td style="padding: 15px;">
+                                <p><strong>担当者氏名:</strong></p>
+                                <p style="height: 40px; border-bottom: 1px solid #ccc;"></p>
+                            </td>
+                            <td style="padding: 15px;">
+                                <p><strong>確認日:</strong></p>
+                                <p>　　年　　月　　日</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 30px;">© 2025 チームマーメイド - すべての権利を保有</p>
                 </div>
             `;
         }
@@ -1442,7 +1795,7 @@
             document.getElementById(`${type}-modal-agreement`).classList.remove('active');
         }
 
-        // イベント登録用のスクリプト（元のコード）
+        // イベント登録用のスクリプト
         document.querySelectorAll('.status-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.getElementById('status').value = btn.dataset.status;
@@ -1510,34 +1863,6 @@
                 section.classList.add('visible');
             });
         });
-
-        // 印刷スタイルの追加
-        const printStyle = document.createElement('style');
-        printStyle.textContent = `
-            @media print {
-                body * {
-                    visibility: hidden;
-                }
-                .pdf-container,
-                .pdf-container * {
-                    visibility: visible;
-                }
-                .pdf-container {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                    height: auto;
-                    background: white;
-                }
-                .pdf-toolbar,
-                .mobile-pdf-actions,
-                .pdf-action-btn {
-                    display: none !important;
-                }
-            }
-        `;
-        document.head.appendChild(printStyle);
     </script>
 </body>
 </html>
