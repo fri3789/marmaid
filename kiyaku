@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チームマーメイド - 規約と同意書</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f7;
+            --text-color: #1d1d1f;
+            --gray-color: #86868b;
+            --blue-color: #0066cc;
+            --green-color: #34c759;
+            --red-color: #ff3b30;
+            --card-color: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8f9ff 0%, var(--bg-color) 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #007aff 0%, #5856d6 50%, #af52de 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(20px, 10px) rotate(120deg); }
+            66% { transform: translate(-10px, 20px) rotate(240deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        .header p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .agreement-notice {
+            background: linear-gradient(135deg, var(--green-color), #30d158);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin: -2rem 2rem 0;
+            border-radius: 16px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 12px 32px rgba(52,199,89,0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+        }
+        
+        .agreement-notice::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid var(--green-color);
+        }
+        
+        .agreement-notice p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0;
+            font-weight: 700;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+        
+        .notice-icon {
+            font-size: 1.5rem;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            opacity: 0;
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+            perspective: 1000px;
+        }
+        
+        .doc-card {
+            background: var(--card-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            transform-style: preserve-3d;
+            opacity: 0;
+            transform: translateY(40px) rotateX(10deg);
+            animation: cardAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        .doc-card:nth-child(1) { animation-delay: 0.2s; }
+        .doc-card:nth-child(2) { animation-delay: 0.4s; }
+        .doc-card:nth-child(3) { animation-delay: 0.6s; }
+        
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+        
+        .doc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #007aff, #5856d6, #af52de);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .doc-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.12),
+                0 0 0 1px rgba(0,122,255,0.1);
+        }
+        
+        .doc-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.8rem;
+            font-size: 2rem;
+            color: white;
+            transform: rotate(-5deg);
+            transition: var(--transition);
+        }
+        
+        .doc-card:hover .doc-icon {
+            transform: rotate(0deg) scale(1.1);
+        }
+        
+        .doc-card h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .doc-card p {
+            color: var(--gray-color);
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .doc-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            min-width: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .doc-btn.view {
+            background: linear-gradient(135deg, var(--blue-color), #0056b3);
+            color: white;
+            box-shadow: 0 6px 20px rgba(0,122,255,0.3);
+        }
+        
+        .doc-btn.view:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,122,255,0.4);
+        }
+        
+        .doc-btn.pdf {
+            background: linear-gradient(135deg, var(--red-color), #d70015);
+            color: white;
+            box-shadow: 0 6px 20px rgba(255,59,48,0.3);
+        }
+        
+        .doc-btn.pdf:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255,59,48,0.4);
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--blue-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 1.2rem 2.5rem;
+            margin-top: 3rem;
+            background: rgba(0,122,255,0.1);
+            border-radius: 14px;
+            transition: var(--transition);
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        
+        .back-btn:hover {
+            gap: 1.2rem;
+            background: rgba(0,122,255,0.15);
+            padding-left: 3rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--card-color);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+        
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-color);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .close-btn:hover {
+            background: rgba(0,0,0,0.05);
+            color: var(--text-color);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: calc(90vh - 80px);
+        }
+        
+        .modal-body h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.8rem;
+            color: var(--text-color);
+            padding-left: 0.5rem;
+            border-left: 4px solid var(--blue-color);
+        }
+        
+        .modal-body p {
+            margin-bottom: 1rem;
+            color: var(--gray-color);
+            line-height: 1.7;
+        }
+        
+        .modal-body ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-body li {
+            margin-bottom: 0.5rem;
+            color: var(--gray-color);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: var(--card-color);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 4rem 1.5rem 3rem;
+            }
+            
+            .agreement-notice {
+                margin: -1.5rem 1rem 0;
+                padding: 1.2rem 1.5rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .doc-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .doc-card {
+                padding: 2rem;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .doc-btn {
+                width: 100%;
+            }
+            
+            .modal-content {
+                border-radius: 16px;
+            }
+            
+            .modal-header {
+                padding: 1.2rem;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>規約と同意書</h1>
+            <p>チームマーメイドの活動参加に必要な書類を確認ください</p>
+        </div>
+    </div>
+    
+    <div class="agreement-notice">
+        <p>
+            <span class="notice-icon">⚠️</span>
+            <span>参加時、参加後の状況に合わせて同意していただきます</span>
+        </p>
+    </div>
+    
+    <div class="container">
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-icon">📋</div>
+                <h2>利用規約</h2>
+                <p>チームマーメイドの活動に参加する際の基本的なルールと規約です。活動の目的から会員資格、禁止事項までを詳細に記載しています。</p>
+                <div class="btn-group">
+                    <button class="doc-btn view" onclick="openModal('terms')">
+                        <span>規約を確認</span>
+                        <span>→</span>
+                    </button>
+                    <button class="doc-btn pdf" onclick="downloadPDF('terms')">
+                        <span>PDFで保存</span>
+                        <span>↓</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="doc-card">
+                <div class="doc-icon">📄</div>
+                <h2>1日保険加入書</h2>
+                <p>当日保険に加入するための同意書です。生年月日や連絡先を記入の上、保険加入手続きを完了してください。</p>
+                <div class="btn-group">
+                    <button class="doc-btn view" onclick="openModal('insurance')">
+                        <span>同意書を確認</span>
+                        <span>→</span>
+                    </button>
+                    <button class="doc-btn pdf" onclick="downloadPDF('insurance')">
+                        <span>PDFで保存</span>
+                        <span>↓</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="doc-card">
+                <div class="doc-icon">✍️</div>
+                <h2>スポーツ保険同意書</h2>
+                <p>団体スポーツ保険に加入するための書類です。氏名、住所、生年月日などの基本情報と保険への同意が必要です。</p>
+                <div class="btn-group">
+                    <button class="doc-btn view" onclick="openModal('sports')">
+                        <span>同意書を確認</span>
+                        <span>→</span>
+                    </button>
+                    <button class="doc-btn pdf" onclick="downloadPDF('sports')">
+                        <span>PDFで保存</span>
+                        <span>↓</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <button onclick="goBack()" class="back-btn">
+            <span>←</span>
+            <span>メインページに戻る</span>
+        </button>
+    </div>
+    
+    <!-- 利用規約モーダル（完全版） -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>チームマーメイド利用規約</h3>
+                <button class="close-btn" onclick="closeModal('terms')">×</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>制定日:</strong> 2025年6月27日（適宜改訂あり）</p>
+                
+                <h4>第1条（目的）</h4>
+                <p>障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指します。障害者スポーツの普及を推進。</p>
+                
+                <h4>第2条（チーム概要）</h4>
+                <ul>
+                    <li>名称: マーメイド</li>
+                    <li>設立: 2025年1月12日</li>
+                    <li>活動拠点: 千葉県内</li>
+                    <li>競技種目: ソフトバレーボール（男女混合）</li>
+                </ul>
+                
+                <h4>第3条（会員資格）</h4>
+                <p><strong>1. 加入条件:</strong></p>
+                <ul>
+                    <li>18歳以上の障害者および健常者。</li>
+                    <li>ソフトバレーを楽しむ意欲とチーム目的への賛同。</li>
+                    <li>本規約とLINEルールに同意し、LINEに従う。</li>
+                </ul>
+                
+                <p><strong>2. 入会手続き:</strong></p>
+                <ul>
+                    <li>代表者に申告し、健康・障害情報を提供。</li>
+                </ul>
+                
+                <p><strong>3. 退会:</strong></p>
+                <ul>
+                    <li>代表者に通知。規約違反時は退会手続きが制限される場合あり。</li>
+                </ul>
+                
+                <h4>第4条（活動内容）</h4>
+                <p><strong>1. 練習:</strong></p>
+                <ul>
+                    <li>日程: 随時決定</li>
+                    <li>場所: 随時決定</li>
+                    <li>内容: 基本練習、試合形式、障害調整</li>
+                </ul>
+                
+                <p><strong>2. 試合:</strong> 未定</p>
+                
+                <h4>第5条（会費）</h4>
+                <p><strong>1. 会費:</strong></p>
+                <ul>
+                    <li>1回400円（変動あり）</li>
+                    <li>入館時現金支払い</li>
+                </ul>
+                
+                <p><strong>2. 使途:</strong></p>
+                <ul>
+                    <li>施設使用料、備品購入など</li>
+                </ul>
+                
+                <p><strong>3. 遅延対応:</strong></p>
+                <ul>
+                    <li>未納時は参加不可</li>
+                </ul>
+                
+                <h4>第6条（組織と役割）</h4>
+                <p><strong>1. 運営体制:</strong></p>
+                <ul>
+                    <li>幹事、副幹事（財務・情報発信）</li>
+                </ul>
+                
+                <p><strong>2. 連絡体制:</strong></p>
+                <ul>
+                    <li>LINEグループ、メール、電話</li>
+                    <li>障害に配慮した連絡</li>
+                </ul>
+                
+                <h4>第7条（ルールとマナー）</h4>
+                <p><strong>1. 練習ルール:</strong></p>
+                <ul>
+                    <li>出席確認、遅刻・欠席連絡</li>
+                    <li>施設ルール遵守</li>
+                    <li>障害に配慮</li>
+                </ul>
+                
+                <p><strong>2. 禁止事項:</strong></p>
+                <ul>
+                    <li>暴力、飲酒、喫煙、規約違反</li>
+                </ul>
+                
+                <h4>第8条（安全と健康管理）</h4>
+                <p><strong>1. 健康管理:</strong></p>
+                <ul>
+                    <li>健康・障害情報を提供</li>
+                    <li>体調不良時は参加控え</li>
+                </ul>
+                
+                <p><strong>2. 保険:</strong> 検討中</p>
+                
+                <p><strong>3. 怪我対応:</strong></p>
+                <ul>
+                    <li>119番通報、応急処置</li>
+                </ul>
+                
+                <h4>第9条（大会参加）</h4>
+                <p><strong>1. 参加資格:</strong></p>
+                <ul>
+                    <li>大会ルールに従う</li>
+                </ul>
+                
+                <p><strong>2. 費用:</strong></p>
+                <ul>
+                    <li>1大会800円（事前徴収）</li>
+                </ul>
+                
+                <h4>第10条（規約違反）</h4>
+                <p><strong>1. 違反行為:</strong></p>
+                <ul>
+                    <li>会費未納、マナー違反</li>
+                </ul>
+                
+                <p><strong>2. 懲戒:</strong></p>
+                <ul>
+                    <li>警告、停止、除名</li>
+                </ul>
+                
+                <h4>第11条（個人情報保護）</h4>
+                <p><strong>1. 情報管理:</strong></p>
+                <ul>
+                    <li>幹事・副幹事が管理</li>
+                    <li>運営目的以外使用禁止</li>
+                </ul>
+                
+                <h4>第12条（解散）</h4>
+                <p><strong>1. 解散条件:</strong></p>
+                <ul>
+                    <li>財政難や目的達成不能時</li>
+                </ul>
+                
+                <p><strong>2. 資産処理:</strong></p>
+                <ul>
+                    <li>寄付または分配</li>
+                </ul>
+                
+                <h4>附則</h4>
+                <ul>
+                    <li>施行: 2025年6月17日</li>
+                    <li>未定事項は4名以上で決定</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 1日保険加入書モーダル -->
+    <div id="insurance-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>1日保険加入＆同意書</h3>
+                <button class="close-btn" onclick="closeModal('insurance')">×</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>（チームマーメイド 当日その場で加入用）</strong></p>
+                <p>─── ここから下は当日その場でご記入ください ───</p>
+                
+                <h4>基本情報</h4>
+                <p><strong>生年月日:</strong> 　　年　　月　　日</p>
+                <p><strong>氏名:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>住所:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>電話番号:</strong> ＿＿＿−＿＿＿＿−＿＿＿＿</p>
+                
+                <h4>加入確認事項</h4>
+                <p>【その場で加入してすぐチェック＆サインしてください】</p>
+                <ul>
+                    <li>□ 今、スマホでURLにアクセスして「ワンデーサポーター」に加入手続きを完了した</li>
+                    <li>□ 重要事項説明書・約款を全て読み、内容を理解した 別紙規約</li>
+                    <li>□ 加入完了画面／保険証券PDFをスタッフに提示した</li>
+                </ul>
+                
+                <p><strong>加入完了時刻:</strong> 年 月 日 時 分 （例：9:15）</p>
+                
+                <h4>保険内容</h4>
+                <ul>
+                    <li>保険会社: ソニー損害保険株式会社</li>
+                    <li>商品名: 1日自動車保険「ワンデーサポーター」</li>
+                    <li>URL: https://accident.sony-sasti.jp/</li>
+                </ul>
+                
+                <h4>同意文</h4>
+                <p>私はソニー損保の1日自動車保険「ワンデーサポーター」に正しく加入した上でチームマーメイドのイベントに参加します。加入を怠った場合の事故は一切補償されず、全責任を負うことを理解しました。</p>
+                
+                <p><strong>署名:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>記入日:</strong> 2025年 月 日</p>
+                
+                <p style="margin-top: 2rem;"><strong>チームマーメイド 担当 確認欄</strong></p>
+                <p>幹事・副幹事署名: ＿＿＿＿＿＿＿＿＿＿</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- スポーツ保険同意書モーダル -->
+    <div id="sports-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>団体スポーツ保険加入同意書</h3>
+                <button class="close-btn" onclick="closeModal('sports')">×</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>（チームマーメイド 団体スポーツ保険加入用）</strong></p>
+                <p>─── ここから下は当日その場でご記入ください ───</p>
+                
+                <h4>参加者情報</h4>
+                <p><strong>生年月日:</strong> 　　年　　月　　日</p>
+                <p><strong>年齢:</strong> 　　歳</p>
+                <p><strong>氏名:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>住所:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>電話番号:</strong> ＿＿＿−＿＿＿＿−＿＿＿＿</p>
+                
+                <h4>加入手続き確認</h4>
+                <p>【その場で加入してすぐチェック＆サインしてください】</p>
+                <ul>
+                    <li>□ 保険加入サイトにアクセスし、団体スポーツ保険の加入手続きを完了した</li>
+                    <li>□ 重要事項説明書・約款を全て読み、内容を理解した</li>
+                    <li>□ 加入完了画面または保険証券をスタッフに提示した</li>
+                </ul>
+                
+                <p><strong>加入完了時刻:</strong> 年 月 日 時 分 （例：9:15）</p>
+                
+                <h4>保険内容</h4>
+                <ul>
+                    <li>保険会社: [保険会社名]</li>
+                    <li>商品名: [団体スポーツ保険商品名]</li>
+                    <li>加入サイト: [URLなど]</li>
+                </ul>
+                
+                <h4>同意文</h4>
+                <p>私は上記の団体スポーツ保険に正しく加入した上で、チームマーメイドの活動に参加します。加入を怠った場合の事故については一切補償されず、自己責任となることを理解し同意します。</p>
+                
+                <p><strong>署名:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>日付:</strong> 　　年　　月　　日</p>
+                
+                <h4>スタッフ確認欄</h4>
+                <p><strong>代表者・担当者署名:</strong> ＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>日付:</strong> 　　年　　月　　日</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 チームマーメイド. All rights reserved.</p>
+    </div>
+    
+    <script>
+        // モーダル管理用のグローバル変数
+        let currentModal = null;
+        
+        // ページ読み込み時のアニメーション
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.doc-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2 + 0.8}s`;
+            });
+            
+            // スクロールアニメーション
+            window.addEventListener('scroll', () => {
+                const cards = document.querySelectorAll('.doc-card');
+                cards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (cardTop < windowHeight * 0.8) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) rotateX(0)';
+                    }
+                });
+            });
+        });
+        
+        // モーダルを開く関数
+        function openModal(type) {
+            console.log('Opening modal:', type); // デバッグ用
+            
+            // 既に開いているモーダルがあれば閉じる
+            if (currentModal) {
+                closeModal(currentModal);
+            }
+            
+            const modal = document.getElementById(`${type}-modal`);
+            if (!modal) {
+                console.error('Modal not found:', type);
+                return;
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            currentModal = type;
+            
+            // モーダル内のスクロールを一番上に
+            const modalBody = modal.querySelector('.modal-body');
+            if (modalBody) {
+                modalBody.scrollTop = 0;
+            }
+        }
+        
+        // モーダルを閉じる関数
+        function closeModal(type) {
+            console.log('Closing modal:', type); // デバッグ用
+            
+            const modal = document.getElementById(`${type}-modal`);
+            if (modal) {
+                modal.classList.remove('active');
+            }
+            
+            document.body.style.overflow = 'auto';
+            currentModal = null;
+        }
+        
+        // モーダル外クリックで閉じる
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal(currentModal);
+            }
+        });
+        
+        // ESCキーでモーダル閉じる
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && currentModal) {
+                closeModal(currentModal);
+            }
+        });
+        
+        // PDFダウンロード関数（簡易版）
+        function downloadPDF(type) {
+            console.log('Downloading PDF for:', type); // デバッグ用
+            
+            let title, content;
+            
+            switch(type) {
+                case 'terms':
+                    title = 'チームマーメイド利用規約';
+                    content = document.getElementById('terms-modal').querySelector('.modal-body').innerHTML;
+                    break;
+                case 'insurance':
+                    title = '1日保険加入同意書';
+                    content = document.getElementById('insurance-modal').querySelector('.modal-body').innerHTML;
+                    break;
+                case 'sports':
+                    title = '団体スポーツ保険加入同意書';
+                    content = document.getElementById('sports-modal').querySelector('.modal-body').innerHTML;
+                    break;
+                default:
+                    title = '同意書';
+                    content = '';
+            }
+            
+            // 印刷機能を使用したPDF生成（簡易版）
+            const printContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>${title}</title>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { 
+                            font-family: Arial, sans-serif; 
+                            padding: 40px; 
+                            max-width: 800px; 
+                            margin: 0 auto; 
+                            line-height: 1.6;
+                        }
+                        h1 { 
+                            text-align: center; 
+                            color: #1d1d1f; 
+                            margin-bottom: 30px;
+                            border-bottom: 2px solid #0066cc;
+                            padding-bottom: 10px;
+                        }
+                        .notice-box {
+                            background: #f0f9ff;
+                            padding: 20px;
+                            border-radius: 10px;
+                            margin: 20px 0;
+                            border-left: 4px solid #34c759;
+                        }
+                        h2 {
+                            color: #0066cc;
+                            margin-top: 30px;
+                            padding-bottom: 5px;
+                            border-bottom: 1px solid #eee;
+                        }
+                        ul {
+                            margin-left: 20px;
+                        }
+                        li {
+                            margin-bottom: 8px;
+                        }
+                        .signature-area {
+                            margin-top: 50px;
+                            padding-top: 20px;
+                            border-top: 1px dashed #ccc;
+                        }
+                        @media print {
+                            @page { margin: 20mm; }
+                            body { padding: 0; }
+                            .notice-box { border: 1px solid #ccc; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>${title}</h1>
+                    
+                    <div class="notice-box">
+                        <strong>⚠️ 参加時、参加後の状況に合わせて同意していただきます</strong>
+                    </div>
+                    
+                    <p><strong>チームマーメイド</strong></p>
+                    <p><strong>作成日:</strong> 2025年6月27日</p>
+                    
+                    ${content}
+                    
+                    <div class="signature-area">
+                        <p>────────────────────────────────</p>
+                        <p><strong>署名:</strong> ______________________________</p>
+                        <p><strong>日付:</strong> 　年　月　日</p>
+                    </div>
+                    
+                    <script>
+                        window.onload = () => {
+                            window.print();
+                            setTimeout(() => {
+                                if (confirm('印刷が完了しましたか？')) {
+                                    window.close();
+                                }
+                            }, 1000);
+                        };
+                    <\/script>
+                </body>
+                </html>
+            `;
+            
+            // 新しいウィンドウで印刷ダイアログを表示
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            
+            // ボタンアニメーション
+            const button = event.target;
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 200);
+        }
+        
+        // 戻るボタンの関数
+        function goBack() {
+            if (document.referrer && document.referrer.includes(window.location.host)) {
+                window.history.back();
+            } else {
+                // 元のページがない場合はホームページなどにリダイレクト
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // ボタンがクリックされたことを確認するためのログ
+        console.log('Script loaded successfully');
+    </script>
+</body>
+</html>
