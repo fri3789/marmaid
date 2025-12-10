@@ -683,7 +683,7 @@
 
             <section id="contact" class="animate-on-scroll">
                 <h2>連絡先</h2>
-                <p>Email: <a href="mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com">mermaidnomail1125@gmail.co.jp</a></p>
+                <p>Email: <a href="mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com">mermaidnomail1125@gmail.com</a></p>
                 <h2>問い合わせフォーム</h2>
                 <form class="contact-form" id="contact-form">
                     <input type="text" name="name" placeholder="お名前" required>
@@ -1096,7 +1096,7 @@
                 e.preventDefault();
                 const formData = new FormData(this);
                 const body = `名前: ${formData.get('name')}\nメール: ${formData.get('email')}\nメッセージ: ${formData.get('message')}`;
-                location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
+                location.href = `mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
             });
 
             // イベントデリゲーションで規約ページのボタン処理
@@ -1824,7 +1824,7 @@
             }
             
             const body = `参加状況: ${status}\n名前: ${name}\nメール: ${email}\n電話: ${phone}\nLINE: ${line}`;
-            location.href = `mailto:mermaidnomail1125@gmail.co.jp?cc=zznjip@gmail.com&subject=${date}練習会登録: ${status} - ${name}&body=${encodeURIComponent(body)}`;
+            location.href = `mailto:mermaidnomail1125@gmail.com?cc=zznjip@gmail.com&subject=${date}練習会登録: ${status} - ${name}&body=${encodeURIComponent(body)}`;
             
             alert('登録完了！メールクライアントが開きます。');
             document.getElementById('form-modal').style.display = 'none';
