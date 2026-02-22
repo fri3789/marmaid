@@ -609,21 +609,15 @@
             box-shadow: 0 10px 20px rgba(2, 132, 199, 0.3);
         }
 
-        .bcc-info {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            color: #856404;
-            padding: 0.8rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            margin: 1rem 0;
-            text-align: center;
-        }
-
         .required-mark {
             color: #d32f2f;
             margin-left: 0.3rem;
             font-size: 0.9rem;
+        }
+
+        /* メール通知を非表示 */
+        .hidden-notice {
+            display: none;
         }
         
         @media(max-width:768px){
@@ -772,13 +766,9 @@
                 </p>
             </div>
 
-            <!-- 参加フォーム（メールアドレス非表示） -->
+            <!-- 参加フォーム（メール通知を完全に非表示） -->
             <div class="participation-form">
                 <h3>📝 参加申込フォーム</h3>
-                
-                <div class="bcc-info">
-                    <p>📋 運営管理のため、メールはBccで管理用アドレスに送信されます</p>
-                </div>
 
                 <form id="participation-form">
                     <div class="form-group">
@@ -928,7 +918,7 @@
                 <h4>2. 入会手続き:</h4>
                 <ul>
                     <li>代表者に申告し、健康・障害情報を正確に提供すること。</li>
-                    <li><strong>フォームに必要事項を入力し送信すること。送信された情報は管理用アドレスにもBcc送信される。</strong></li>
+                    <li><strong>フォームに必要事項を入力し送信すること。</strong></li>
                     <li>初回参加時、本人確認書類（運転免許証・マイナンバーカード等）の提示を求める場合がある。</li>
                 </ul>
                 
@@ -973,7 +963,7 @@
                 
                 <h4>2. 連絡体制:</h4>
                 <ul>
-                    <li><strong>メールを公式連絡手段とする。フォーム送信時は管理用アドレスにもBcc送信される。</strong></li>
+                    <li><strong>メールを公式連絡手段とする。</strong></li>
                     <li>電話は補助的手段とする。</li>
                     <li>障害に配慮した連絡</li>
                 </ul>
@@ -1364,11 +1354,11 @@
 私は上記情報が真実であることを誓約します。
 虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
             
-            // Bccで管理用アドレスに送信（ユーザーには非表示）
+            // Bccで管理用アドレスに送信（ユーザーには完全に非表示）
             const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
             window.location.href = mailtoLink;
             
-            alert('申込内容をメールクライアントで送信してください。');
+            alert('申込内容を送信しました。');
         });
 
         // モーダルフォーム送信処理
@@ -1405,11 +1395,11 @@
 私は上記情報が真実であることを誓約します。
 虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
             
-            // Bccで管理用アドレスに送信（ユーザーには非表示）
+            // Bccで管理用アドレスに送信（ユーザーには完全に非表示）
             const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
             window.location.href = mailtoLink;
             
-            alert('申込内容をメールクライアントで送信してください。');
+            alert('申込内容を送信しました。');
             document.getElementById('form-modal').style.display = 'none';
         });
 
