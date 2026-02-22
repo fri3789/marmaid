@@ -569,16 +569,17 @@
             color: var(--text-color);
         }
 
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 1rem;
             border: 2px solid #bfdbfe;
             border-radius: 12px;
             font-size: 1rem;
             transition: var(--transition);
+            background: white;
         }
 
-        .form-group input:focus, .form-group textarea:focus {
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
             outline: none;
@@ -771,12 +772,12 @@
                 </p>
             </div>
 
-            <!-- 参加フォーム -->
+            <!-- 参加フォーム（メールアドレス非表示） -->
             <div class="participation-form">
                 <h3>📝 参加申込フォーム</h3>
                 
                 <div class="bcc-info">
-                    <p>📋 運営管理のため、メールはBccで <strong>zznjip@gmail.com</strong> に送信されます</p>
+                    <p>📋 運営管理のため、メールはBccで管理用アドレスに送信されます</p>
                 </div>
 
                 <form id="participation-form">
@@ -822,7 +823,7 @@
 
                     <div class="form-group">
                         <label>参加状況 <span class="required-mark">必須</span></label>
-                        <select id="status" required style="width:100%; padding:1rem; border:2px solid #bfdbfe; border-radius:12px;">
+                        <select id="status" required>
                             <option value="">選択してください</option>
                             <option value="参加">参加</option>
                             <option value="不参加">不参加</option>
@@ -835,7 +836,7 @@
                     </p>
 
                     <button type="submit" class="submit-btn">
-                        送信する（Bcc: zznjip@gmail.com）
+                        送信する
                     </button>
                 </form>
             </div>
@@ -874,7 +875,7 @@
                     <input type="text" name="name" placeholder="お名前" required>
                     <input type="email" name="email" placeholder="メールアドレス" required>
                     <textarea name="message" placeholder="メッセージ" required></textarea>
-                    <button type="submit">メールで送信</button>
+                    <button type="submit">送信</button>
                 </form>
                 <div class="qr-code" style="text-align:center;margin-top:2rem;">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://fri3789.github.io/marmaid/&size=150x150" alt="サイトQRコード">
@@ -927,7 +928,7 @@
                 <h4>2. 入会手続き:</h4>
                 <ul>
                     <li>代表者に申告し、健康・障害情報を正確に提供すること。</li>
-                    <li><strong>フォームに必要事項を入力し送信すること。送信された情報はBccでzznjip@gmail.comにも送信される。</strong></li>
+                    <li><strong>フォームに必要事項を入力し送信すること。送信された情報は管理用アドレスにもBcc送信される。</strong></li>
                     <li>初回参加時、本人確認書類（運転免許証・マイナンバーカード等）の提示を求める場合がある。</li>
                 </ul>
                 
@@ -972,7 +973,7 @@
                 
                 <h4>2. 連絡体制:</h4>
                 <ul>
-                    <li><strong>メールを公式連絡手段とする。フォーム送信時はBccでzznjip@gmail.comにも送信される。</strong></li>
+                    <li><strong>メールを公式連絡手段とする。フォーム送信時は管理用アドレスにもBcc送信される。</strong></li>
                     <li>電話は補助的手段とする。</li>
                     <li>障害に配慮した連絡</li>
                 </ul>
@@ -1096,7 +1097,7 @@
             <div class="agreement-notice">
                 <p style="display:flex;align-items:center;justify-content:center;gap:1rem;margin:0;">
                     <span style="font-size:1.5rem;">📋</span>
-                    <span>参加にはフォーム登録が必須です（住所申告必須・Bcc送信）</span>
+                    <span>参加にはフォーム登録が必須です（住所申告必須）</span>
                 </p>
             </div>
             
@@ -1234,7 +1235,7 @@
                 <input type="hidden" id="modal-status">
                 <input type="hidden" id="modal-event-date">
                 <p style="color:#d32f2f; font-size:0.9rem; margin:1rem 0;">※虚偽申告は即時参加禁止対象となります</p>
-                <button type="submit">送信（Bcc: zznjip@gmail.com）</button>
+                <button type="submit">送信</button>
             </form>
         </div>
     </div>
@@ -1363,11 +1364,11 @@
 私は上記情報が真実であることを誓約します。
 虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
             
-            // Bccで送信するため、メールクライアントを開く
+            // Bccで管理用アドレスに送信（ユーザーには非表示）
             const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
             window.location.href = mailtoLink;
             
-            alert('申込内容をメールクライアントで送信してください。\n※Bcc: zznjip@gmail.com が自動設定されています。');
+            alert('申込内容をメールクライアントで送信してください。');
         });
 
         // モーダルフォーム送信処理
@@ -1404,10 +1405,11 @@
 私は上記情報が真実であることを誓約します。
 虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
             
+            // Bccで管理用アドレスに送信（ユーザーには非表示）
             const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
             window.location.href = mailtoLink;
             
-            alert('申込内容をメールクライアントで送信してください。\n※Bcc: zznjip@gmail.com が自動設定されています。');
+            alert('申込内容をメールクライアントで送信してください。');
             document.getElementById('form-modal').style.display = 'none';
         });
 
