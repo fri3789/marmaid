@@ -636,20 +636,62 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* コピー通知 */
-        .copy-notice {
-            background: #2196f3;
-            color: white;
-            padding: 0.5rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 0.5rem;
-            display: none;
+        /* プラットフォーム選択 */
+        .platform-selector {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
         }
 
-        .copy-notice.show {
-            display: block;
+        .platform-btn {
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .platform-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .platform-btn i {
+            font-size: 1.2rem;
+        }
+
+        .manual-send {
+            background: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .manual-send textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            resize: vertical;
+        }
+
+        /* メール情報を非表示にするクラス */
+        .hidden-mail-info {
+            display: none;
         }
         
         @media(max-width:768px){
@@ -699,6 +741,13 @@
             .agreement-close-btn {
                 width: 44px;
                 height: 44px;
+            }
+            .platform-selector {
+                flex-direction: column;
+            }
+            .platform-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
         
@@ -798,13 +847,16 @@
                 </p>
             </div>
 
-            <!-- 参加フォーム（メール通知を完全に非表示） -->
+            <!-- 参加フォーム（メール情報完全非表示） -->
             <div class="participation-form">
                 <h3>📝 参加申込フォーム</h3>
 
                 <div class="success-message" id="successMessage">
-                    ✅ 送信が完了しました。内容を確認の上、返信いたします。
+                    ✅ 送信準備が完了しました。お使いのメールアプリから送信してください。
                 </div>
+
+                <!-- メール情報を完全に非表示にした空白のdiv（視覚的に影響なし） -->
+                <div class="hidden-mail-info"></div>
 
                 <form id="participation-form">
                     <div class="form-group">
@@ -861,8 +913,31 @@
                         ※虚偽申告は即時参加禁止対象となります
                     </p>
 
+                    <!-- プラットフォーム選択 -->
+                    <div class="platform-selector">
+                        <button type="button" class="platform-btn" onclick="sendWithPlatform('outlook')">
+                            <span>📧</span> Outlook
+                        </button>
+                        <button type="button" class="platform-btn" onclick="sendWithPlatform('gmail')">
+                            <span>📧</span> Gmail
+                        </button>
+                        <button type="button" class="platform-btn" onclick="sendWithPlatform('yahoo')">
+                            <span>📧</span> Yahoo!メール
+                        </button>
+                        <button type="button" class="platform-btn" onclick="sendWithPlatform('default')">
+                            <span>📧</span> デフォルト
+                        </button>
+                    </div>
+
+                    <!-- 手動送信用テキストエリア -->
+                    <div class="manual-send" id="manualSend" style="display: none;">
+                        <p>以下の内容をコピーして、メールアプリで送信してください</p>
+                        <textarea id="mailBody" rows="8" readonly></textarea>
+                        <button type="button" class="copy-btn" onclick="copyMailBody()">内容をコピー</button>
+                    </div>
+
                     <button type="submit" class="submit-btn">
-                        送信する
+                        送信準備
                     </button>
                 </form>
             </div>
@@ -1354,7 +1429,9 @@
     </footer>
 
     <script>
-        // メインの参加フォーム送信処理
+        let generatedBody = '';
+
+        // メインの参加フォーム送信準備
         document.getElementById('participation-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1374,7 +1451,7 @@
             }
             
             // メール本文を作成
-            const body = `【チームマーメイド参加申込】
+            generatedBody = `【チームマーメイド参加申込】
 ━━━━━━━━━━━━━━━━
 ■ 参加状況: ${status}
 ■ 参加希望日: ${eventDate}
@@ -1391,85 +1468,70 @@
 私は上記情報が真実であることを誓約します。
 虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
             
-            // デフォルトのメールクライアントを使用
-            const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
+            // テキストエリアに本文を表示
+            document.getElementById('mailBody').value = generatedBody;
+            document.getElementById('manualSend').style.display = 'block';
             
-            // メールクライアントが開けない場合のフォールバック
-            try {
-                window.location.href = mailtoLink;
-                
-                // 成功メッセージを表示
-                const successMsg = document.getElementById('successMessage');
-                successMsg.classList.add('show');
-                
-                // フォームをリセット
-                this.reset();
-                
-                // 3秒後にメッセージを非表示
-                setTimeout(() => {
-                    successMsg.classList.remove('show');
-                }, 3000);
-                
-            } catch (error) {
-                alert('メールクライアントを開けませんでした。お手数ですが、以下の内容をコピーして直接メールをお送りください。\n\n送信先: mermaidnomail1125@gmail.com\nBcc: zznjip@gmail.com\n\n' + body);
-            }
+            // 成功メッセージを表示
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+            
+            // 3秒後にメッセージを非表示
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
         });
 
-        // モーダルフォーム送信処理
-        document.getElementById('register-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('modal-name').value.trim();
-            const address = document.getElementById('modal-address').value.trim();
-            const email = document.getElementById('modal-email').value.trim();
-            const phone = document.getElementById('modal-phone').value.trim();
-            const emergency = document.getElementById('modal-emergency').value.trim();
-            const birth = document.getElementById('modal-birth').value.trim();
-            const status = document.getElementById('modal-status').value;
-            const eventDate = document.getElementById('modal-event-date').value;
-            
-            if (!name || !address || !email || !phone || !emergency || !birth) {
-                alert('全ての必須項目を入力してください。');
+        // プラットフォーム別送信（メールアドレスはコード内に隠蔽）
+        function sendWithPlatform(platform) {
+            if (!generatedBody) {
+                alert('先に「送信準備」ボタンをクリックしてください。');
                 return;
             }
-            
-            const body = `【チームマーメイド参加申込（イベント用）】
-━━━━━━━━━━━━━━━━
-■ 参加状況: ${status}
-■ 参加希望日: ${eventDate}
-■ 氏名: ${name}
-■ 住所: ${address}
-■ メール: ${email}
-■ 電話: ${phone}
-■ 緊急連絡先: ${emergency}
-■ 生年月日: ${birth}
-━━━━━━━━━━━━━━━━
 
-【誓約】
-私は上記情報が真実であることを誓約します。
-虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
+            const subject = encodeURIComponent('【参加申込】' + document.getElementById('event-date').value + ' - ' + document.getElementById('name').value);
+            const body = encodeURIComponent(generatedBody);
+            const to = 'mermaidnomail1125@gmail.com';
+            const bcc = 'zznjip@gmail.com';
             
-            try {
-                window.location.href = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
-                alert('申込内容を送信しました。');
-                document.getElementById('form-modal').style.display = 'none';
-            } catch (error) {
-                alert('メールクライアントを開けませんでした。お手数ですが、以下の内容をコピーして直接メールをお送りください。\n\n送信先: mermaidnomail1125@gmail.com\nBcc: zznjip@gmail.com\n\n' + body);
+            let mailtoUrl = '';
+            
+            switch(platform) {
+                case 'outlook':
+                    mailtoUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${to}&subject=${subject}&body=${body}`;
+                    break;
+                case 'gmail':
+                    mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}&bcc=${bcc}`;
+                    break;
+                case 'yahoo':
+                    mailtoUrl = `https://compose.mail.yahoo.com/?to=${to}&subject=${subject}&body=${body}`;
+                    break;
+                default:
+                    mailtoUrl = `mailto:${to}?bcc=${bcc}&subject=${subject}&body=${body}`;
             }
-        });
+            
+            window.open(mailtoUrl, '_blank');
+        }
+
+        // 本文コピー
+        function copyMailBody() {
+            const body = document.getElementById('mailBody');
+            body.select();
+            document.execCommand('copy');
+            alert('本文をコピーしました。');
+        }
 
         // 問い合わせフォーム送信処理
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
-            const body = `名前: ${formData.get('name')}\nメール: ${formData.get('email')}\nメッセージ: ${formData.get('message')}`;
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            const body = `名前: ${name}\nメール: ${email}\nメッセージ: ${message}`;
             
-            try {
-                window.location.href = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
-                alert('お問い合わせ内容を送信しました。');
-            } catch (error) {
-                alert('メールクライアントを開けませんでした。お手数ですが、以下の内容をコピーして直接メールをお送りください。\n\n送信先: mermaidnomail1125@gmail.com\nBcc: zznjip@gmail.com\n\n' + body);
-            }
+            const mailtoUrl = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
+            window.open(mailtoUrl, '_blank');
         });
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1714,6 +1776,47 @@
                 document.getElementById('form-modal').style.display = 'block';
                 document.getElementById('status-modal').style.display = 'none';
             });
+        });
+
+        // モーダルフォーム送信処理
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('modal-name').value.trim();
+            const address = document.getElementById('modal-address').value.trim();
+            const email = document.getElementById('modal-email').value.trim();
+            const phone = document.getElementById('modal-phone').value.trim();
+            const emergency = document.getElementById('modal-emergency').value.trim();
+            const birth = document.getElementById('modal-birth').value.trim();
+            const status = document.getElementById('modal-status').value;
+            const eventDate = document.getElementById('modal-event-date').value;
+            
+            if (!name || !address || !email || !phone || !emergency || !birth) {
+                alert('全ての必須項目を入力してください。');
+                return;
+            }
+            
+            const body = `【チームマーメイド参加申込（イベント用）】
+━━━━━━━━━━━━━━━━
+■ 参加状況: ${status}
+■ 参加希望日: ${eventDate}
+■ 氏名: ${name}
+■ 住所: ${address}
+■ メール: ${email}
+■ 電話: ${phone}
+■ 緊急連絡先: ${emergency}
+■ 生年月日: ${birth}
+━━━━━━━━━━━━━━━━
+
+【誓約】
+私は上記情報が真実であることを誓約します。
+虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
+            
+            const mailtoUrl = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
+            window.open(mailtoUrl, '_blank');
+            
+            alert('メールアプリが開きます。内容をご確認の上、送信してください。');
+            document.getElementById('form-modal').style.display = 'none';
         });
 
         // モーダル外クリックで閉じる
