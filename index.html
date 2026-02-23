@@ -329,7 +329,7 @@
             gap: 1rem;
         }
         
-        /* PDF表示用のスタイル */
+        /* PDF表示用のスタイル - モバイル対応強化 */
         .pdf-container {
             display: none;
             position: fixed;
@@ -340,6 +340,7 @@
             background: white;
             z-index: 4000;
             overflow: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .pdf-container.active {
@@ -362,6 +363,7 @@
         .pdf-toolbar h3 {
             margin: 0;
             font-size: 1.2rem;
+            font-weight: 500;
         }
         
         .pdf-actions {
@@ -373,18 +375,18 @@
             background: rgba(255,255,255,0.2);
             color: white;
             border: none;
-            border-radius: 6px;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;  /* 少し大きく */
+            font-size: 1rem;          /* フォントサイズ統一 */
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             transition: var(--transition);
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
-            min-height: 44px;
-            min-width: 44px;
+            min-height: 48px;          /* タップ領域確保 */
+            min-width: 48px;
         }
         
         .pdf-action-btn:hover {
@@ -395,10 +397,6 @@
             background: linear-gradient(135deg, #34c759, #30d158);
         }
         
-        .pdf-action-btn.download:hover {
-            background: linear-gradient(135deg, #30d158, #34c759);
-        }
-        
         .pdf-action-btn.print {
             background: linear-gradient(135deg, #007aff, #5856d6);
         }
@@ -407,7 +405,7 @@
             background: linear-gradient(135deg, #ff3b30, #d70015);
         }
         
-        /* モバイル用のPDFアクションボタン */
+        /* モバイル用のPDFアクションボタン - 下部固定 */
         .mobile-pdf-actions {
             display: none;
             position: fixed;
@@ -416,10 +414,11 @@
             right: 0;
             background: white;
             padding: 1rem;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
             z-index: 4002;
             justify-content: center;
             gap: 1rem;
+            border-top: 1px solid #e5e7eb;
         }
         
         .mobile-pdf-actions.active {
@@ -431,94 +430,28 @@
             justify-content: center;
             font-size: 1rem;
             font-weight: 600;
+            color: white;
+            border: none;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            min-height: 52px;  /* さらに大きく */
         }
         
         .pdf-content {
             padding: 2rem;
             max-width: 800px;
             margin: 0 auto;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #374151;
+            padding-bottom: 80px; /* 下部固定ボタンの分の余白 */
         }
         
-        .pdf-title {
-            text-align: center;
-            color: #007aff;
-            border-bottom: 2px solid #007aff;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .pdf-section {
-            margin-bottom: 1.5rem;
-            page-break-inside: avoid;
-        }
-        
-        .pdf-section h2 {
-            color: #1e40af;
-            border-bottom: 1px solid #e0f4ff;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .pdf-signature-area {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 2px dashed #ccc;
-        }
-        
-        .pdf-notice {
-            background: #f0f9ff;
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #34c759;
-            margin: 1.5rem 0;
-            font-weight: 600;
-        }
-        
-        /* ローディング */
-        .pdf-loading {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-align: center;
-            z-index: 5000;
-        }
-        
-        .pdf-loading.active {
-            display: block;
-        }
-        
-        .loading-spinner {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(0,122,255,0.3);
-            border-radius: 50%;
-            border-top-color: #007aff;
-            animation: spin 1s linear infinite;
-            margin-bottom: 1rem;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* PDFダウンロード用の非表示要素 */
         .pdf-download-link {
             display: none;
         }
 
-        /* 厳格な規約用のスタイル */
-        .strict-rule {
+        /* 厳格な規約用のスタイル（名称から「厳格」削除） */
+        .important-rule {
             border-left: 4px solid #d32f2f;
             background: #ffebee;
             padding: 1rem;
@@ -526,7 +459,7 @@
             border-radius: 8px;
         }
         
-        .strict-rule p {
+        .important-rule p {
             color: #b71c1c;
             font-weight: 500;
         }
@@ -637,6 +570,7 @@
             width: 100%;
             transition: var(--transition);
             margin: 0.5rem 0;
+            min-height: 56px; /* タップ領域 */
         }
 
         .simple-send-btn:hover {
@@ -718,6 +652,7 @@
             }
             .pdf-content {
                 padding: 1rem;
+                padding-bottom: 80px;
             }
             .pdf-toolbar h3 {
                 font-size: 1rem;
@@ -942,12 +877,13 @@
                 <h2>連絡先</h2>
                 <p>Email: <a href="mailto:mermaidnomail1125@gmail.com">mermaidnomail1125@gmail.com</a></p>
                 <h2>問い合わせフォーム</h2>
-                <form class="contact-form" id="contact-form">
-                    <input type="text" name="name" placeholder="お名前" required>
-                    <input type="email" name="email" placeholder="メールアドレス" required>
-                    <textarea name="message" placeholder="メッセージ" required></textarea>
-                    <button type="submit">送信</button>
+                <form class="contact-form" id="contact-form" onsubmit="return false;">
+                    <input type="text" name="name" id="contact-name" placeholder="お名前" required>
+                    <input type="email" name="email" id="contact-email" placeholder="メールアドレス" required>
+                    <textarea name="message" id="contact-message" placeholder="メッセージ" required></textarea>
+                    <button type="button" onclick="sendContactMail()">送信</button>
                 </form>
+                <div id="contact-error" style="color: #d32f2f; font-size:0.9rem; margin-top:0.5rem; display:none;"></div>
                 <div class="qr-code" style="text-align:center;margin-top:2rem;">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://fri3789.github.io/marmaid/&size=150x150" alt="サイトQRコード">
                     <p>サイトにアクセス</p>
@@ -955,11 +891,11 @@
             </section>
 
             <section id="terms" class="animate-on-scroll terms">
-                <h2>チームマーメイド利用規約【厳格適用版】</h2>
+                <h2>チームマーメイド利用規約</h2>
                 <p>制定日: 2025年6月27日（適宜改訂あり）</p>
                 
-                <div class="strict-rule">
-                    <p>⚠️ 本規約は法的拘束力を持ち、全項目に厳格に従うものとする</p>
+                <div class="important-rule">
+                    <p>⚠️ 本規約は法的拘束力を持ち、全項目に従うものとする</p>
                 </div>
                 
                 <div class="notice-box">
@@ -986,7 +922,7 @@
                     <li>競技種目: ソフトバレーボール（男女混合）</li>
                 </ol>
                 
-                <h3>第3条（会員資格と厳格な審査）</h3>
+                <h3>第3条（会員資格）</h3>
                 <h4>1. 加入条件（全項目必須）:</h4>
                 <ul>
                     <li>18歳以上の障害者および健常者。年齢確認のため身分証明書の提示を求める場合がある。</li>
@@ -1150,7 +1086,7 @@
                     <li>未定事項は4名以上で決定</li>
                 </ol>
                 
-                <div class="strict-rule">
+                <div class="important-rule">
                     <p>私は上記規約の全項目を理解し、真実の情報を提供することを誓約します</p>
                 </div>
             </section>
@@ -1180,8 +1116,8 @@
             <div class="doc-grid">
                 <div class="doc-card">
                     <div class="doc-icon">📋</div>
-                    <h3>利用規約【厳格版】</h3>
-                    <p>チームマーメイドの活動に参加する際の厳格なルールと規約です。</p>
+                    <h3>利用規約</h3>
+                    <p>チームマーメイドの活動に参加する際のルールと規約です。</p>
                     <div class="btn-group">
                         <button class="doc-btn view" data-type="terms">
                             <span>規約を確認</span>
@@ -1243,7 +1179,7 @@
             <div class="pdf-actions">
                 <button class="pdf-action-btn download" onclick="downloadPDF()">
                     <span>⬇️</span>
-                    <span>PDFで保存</span>
+                    <span>PDF保存</span>
                 </button>
                 <button class="pdf-action-btn print" onclick="printPDF()">
                     <span>🖨️</span>
@@ -1262,7 +1198,7 @@
             </button>
             <button class="pdf-action-btn print" onclick="printPDF()">
                 <span>🖨️</span>
-                <span>印刷する</span>
+                <span>印刷</span>
             </button>
             <button class="pdf-action-btn close-pdf" onclick="closePDF()">
                 <span>✕</span>
@@ -1315,7 +1251,7 @@
     <div id="terms-modal-agreement" class="agreement-modal">
         <div class="agreement-modal-content">
             <div class="agreement-modal-header">
-                <h3>チームマーメイド利用規約【厳格版】</h3>
+                <h3>チームマーメイド利用規約</h3>
                 <button class="agreement-close-btn" data-close="terms">×</button>
             </div>
             <div class="agreement-modal-body">
@@ -1395,7 +1331,7 @@
     </div>
 
     <footer>
-        <p>© 2026 チームマーメイド. All rights reserved.</p>
+        <p>© 2026 チームマーメイド. Mayumi Huzimitu Kaito Saito YAMADA, All rights reserved.</p>
     </footer>
 
     <script>
@@ -1456,18 +1392,35 @@
             }, 3000);
         });
 
-        // 問い合わせフォーム送信処理
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            const body = `名前: ${name}\nメール: ${email}\nメッセージ: ${message}`;
+        // 問い合わせフォーム送信処理（修正版）
+        function sendContactMail() {
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+            const errorDiv = document.getElementById('contact-error');
             
+            if (!name || !email || !message) {
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = '全ての項目を入力してください。';
+                return;
+            }
+            
+            errorDiv.style.display = 'none';
+            
+            const body = `名前: ${name}\nメール: ${email}\nメッセージ: ${message}`;
             const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
+            
+            // メールアプリを開く
             window.location.href = mailtoLink;
-        });
+            
+            // フォームをリセット
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+            
+            // 成功メッセージを表示
+            alert('お問い合わせメールを作成しました。送信してください。');
+        }
 
         // モーダルフォーム送信処理
         document.getElementById('register-form').addEventListener('submit', function(e) {
@@ -1673,7 +1626,7 @@
             
             switch(type) {
                 case 'terms':
-                    title = 'チームマーメイド利用規約【厳格版】';
+                    title = 'チームマーメイド利用規約';
                     content = getTermsContent();
                     break;
                 case 'insurance':
@@ -1704,7 +1657,24 @@
         }
 
         function printPDF() {
-            window.print();
+            // モバイル対応：印刷用ページを開く
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                const printContent = document.getElementById('pdf-content').innerHTML;
+                const title = document.getElementById('pdf-title').textContent;
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head><title>${title}</title><meta charset="UTF-8"></head>
+                    <body style="font-family:sans-serif;padding:1rem;">${printContent}</body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.focus();
+                printWindow.print();
+            } else {
+                window.print();
+            }
         }
 
         function downloadPDF() {
@@ -1718,6 +1688,7 @@
             a.href = url;
             a.download = `${title}.html`;
             a.click();
+            URL.revokeObjectURL(url);
         }
 
         function initializeAgreementContent() {
@@ -1776,6 +1747,9 @@
                 closePDF();
             }
         });
+
+        // タッチデバイス用の改善（パッシブイベント）
+        document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
 </body>
 </html>
