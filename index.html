@@ -473,7 +473,7 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.7;
             color: #374151;
-            padding-bottom: 80px; /* モバイル下部ボタン分 */
+            padding-bottom: 80px;
         }
        
         .pdf-download-link {
@@ -773,6 +773,88 @@
         .contact-note a:hover {
             text-decoration: underline;
         }
+        /* 同意チェックボックス */
+        .agreement-checkbox {
+            background: #f9f9f9;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+        .agreement-checkbox input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+            accent-color: var(--primary-color);
+        }
+        .agreement-checkbox label {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #333;
+        }
+        .agreement-checkbox label strong {
+            color: var(--primary-color);
+        }
+        .required-check {
+            color: #d32f2f;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin: 0.5rem 0 1rem;
+            padding: 0.5rem;
+            background: #ffebee;
+            border-radius: 6px;
+            border-left: 4px solid #d32f2f;
+            display: none;
+        }
+        /* 手動送信用テキストエリア */
+        .manual-email-area {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            display: none;
+        }
+        .manual-email-area.show {
+            display: block;
+        }
+        .manual-email-area textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            resize: vertical;
+        }
+        .copy-btn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            touch-action: manipulation;
+        }
+        .copy-btn:hover {
+            background: #f57c00;
+        }
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
     </style>
 </head>
 <body>
@@ -874,6 +956,14 @@
                         </p>
                     </div>
                 </form>
+                <!-- 手動送信用エリア（メールが開かない場合に表示） -->
+                <div id="manualEmailArea" class="manual-email-area">
+                    <p style="font-weight:600; margin-bottom:0.5rem;">📋 メールアプリが開かない場合は、以下の内容をコピーして手動で送信してください</p>
+                    <p><strong>宛先:</strong> mermaidnomail1125@gmail.com (Bcc: zznjip@gmail.com)</p>
+                    <p><strong>件名:</strong> <span id="manualSubject"></span></p>
+                    <textarea id="manualBody" rows="8" readonly></textarea>
+                    <button class="copy-btn" onclick="copyManualBody()">内容をコピー</button>
+                </div>
             </div>
             <section id="events" class="animate-on-scroll">
                 <h2>イベント情報</h2>
@@ -933,4 +1023,854 @@
                 </div>
                
                 <div style="text-align:center;margin:2rem 0;padding:1.5rem;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
-                    <p style="margin-bottom:1rem;font-weight:600;color:#1e40af;">活動参加には以下の同意書への同意が必要です</p
+                    <p style="margin-bottom:1rem;font-weight:600;color:#1e40af;">活動参加には以下の同意書への同意が必要です</p>
+                    <button onclick="showAgreementPage()" style="display:inline-flex;align-items:center;gap:0.5rem;padding:1rem 2rem;background:linear-gradient(135deg,#007aff,#5856d6);color:white;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-size:1rem;min-height:48px;touch-action:manipulation;">
+                        <span>規約と同意書を確認</span>
+                        <span>→</span>
+                    </button>
+                </div>
+               
+                <h3>第1条（目的）</h3>
+                <p>障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指す。障害者スポーツの普及を推進することを目的とする。</p>
+               
+                <!-- 以降、規約の全文（省略せずに記載） -->
+                <h3>第2条（チーム概要）</h3>
+                <ol>
+                    <li>名称: マーメイド</li>
+                    <li>設立: 2025年1月12日</li>
+                    <li>活動拠点: 千葉県内（詳細住所はフォーム登録者にのみ通知）</li>
+                    <li>競技種目: ソフトバレーボール（男女混合）</li>
+                </ol>
+                <h3>第3条（会員資格）</h3>
+                <h4>1. 加入条件（全項目必須）:</h4>
+                <ul>
+                    <li>18歳以上の障害者および健常者。年齢確認のため身分証明書の提示を求める場合がある。</li>
+                    <li>ソフトバレーを楽しむ意欲とチーム目的への賛同。</li>
+                    <li><strong>本規約に同意し、フォームによる事前登録を行っていること（未登録者の参加は一切認めない）。</strong></li>
+                    <li><strong>日本語での円滑なコミュニケーションが可能であること（安全確保のため）。</strong></li>
+                    <li><strong>本名・現住所・緊急連絡先の正確な情報を提供できること。虚偽申告は即時参加禁止とする。</strong></li>
+                </ul>
+                <h4>2. 入会手続き:</h4>
+                <ul>
+                    <li>代表者に申告し、健康・障害情報を正確に提供すること。</li>
+                    <li><strong>フォームに必要事項を入力し送信すること。</strong></li>
+                    <li>初回参加時、本人確認書類（運転免許証・マイナンバーカード等）の提示を求める場合がある。</li>
+                </ul>
+                <h4>3. 退会:</h4>
+                <ul>
+                    <li>代表者に通知。規約違反時は退会手続きが制限される場合あり。</li>
+                </ul>
+                <h3>第4条（活動内容と会場情報の管理）</h3>
+                <h4>1. 練習:</h4>
+                <ul>
+                    <li>日程: 随時決定（メールにて通知）</li>
+                    <li>場所: 随時決定。会場の詳細住所はフォーム登録者にのみ通知する。</li>
+                    <li><strong>【厳守】会場住所の無断公開・SNS投稿を固く禁じる。違反した場合は即時参加禁止とする。</strong></li>
+                    <li>内容: 基本練習、試合形式、障害調整</li>
+                </ul>
+                <h4>2. 試合: 未定</h4>
+                <h3>第5条（会費）</h3>
+                <h4>1. 会費:</h4>
+                <ul>
+                    <li>1回400円（変動あり）。施設利用料の変動に応じて変更する場合あり。</li>
+                    <li>入館時現金支払い。お釣りのないよう準備すること。</li>
+                </ul>
+                <h4>2. 使途:</h4>
+                <ul>
+                    <li>施設使用料、備品購入など</li>
+                </ul>
+                <h4>3. 遅延対応:</h4>
+                <ul>
+                    <li>未納時は参加不可。2回以上の未納で参加禁止対象とする。</li>
+                </ul>
+                <h3>第6条（組織と役割）</h3>
+                <h4>1. 運営体制:</h4>
+                <ul>
+                    <li>幹事、副幹事（財務・情報発信）</li>
+                </ul>
+                <h4>2. 連絡体制:</h4>
+                <ul>
+                    <li><strong>メールを公式連絡手段とする。</strong></li>
+                    <li>電話は補助的手段とする。</li>
+                    <li>障害に配慮した連絡</li>
+                </ul>
+                <h3>第7条（ルールとマナー）</h3>
+                <h4>1. 練習ルール:</h4>
+                <ul>
+                    <li>出席確認、遅刻・欠席連絡は必須。</li>
+                    <li>施設ルール厳守。</li>
+                    <li>障害に配慮した行動。差別的言動は即時参加禁止対象。</li>
+                </ul>
+                <h4>2. 禁止事項:</h4>
+                <ul>
+                    <li>暴力、暴言、ハラスメント行為</li>
+                    <li>飲酒、喫煙（施設内全面禁煙）</li>
+                    <li><strong>フォーム未登録での会場参加</strong></li>
+                    <li><strong>会場住所の無断公開</strong></li>
+                    <li><strong>虚偽の申告（住所・氏名・健康状態等）</strong></li>
+                </ul>
+                <h3>第8条（安全と健康管理）</h3>
+                <h4>1. 健康管理:</h4>
+                <ul>
+                    <li><strong>健康・障害情報を正確に提供すること。虚偽申告による事故は全責任を負う。</strong></li>
+                    <li>体調不良時は参加控え。</li>
+                </ul>
+                <h4>2. 保険: 各自加入推奨</h4>
+                <h4>3. 怪我対応:</h4>
+                <ul>
+                    <li>119番通報、応急処置を行う。</li>
+                </ul>
+                <h3>第9条（大会参加）</h3>
+                <h4>1. 参加資格:</h4>
+                <ul>
+                    <li>大会ルールに従うこと。</li>
+                </ul>
+                <h4>2. 費用:</h4>
+                <ul>
+                    <li>1大会800円（事前徴収）</li>
+                </ul>
+                <h3>第10条（規約違反と処分）</h3>
+                <h4>1. 違反行為（即時参加禁止対象）:</h4>
+                <ul>
+                    <li>会費未納が2回以上</li>
+                    <li>マナー違反（他の参加者への迷惑行為）</li>
+                    <li><strong>フォーム未登録での参加試み</strong></li>
+                    <li><strong>会場住所の無断公開</strong></li>
+                    <li><strong>虚偽申告（住所・氏名・健康状態等）</strong></li>
+                </ul>
+                <h4>2. 懲戒:</h4>
+                <ul>
+                    <li>警告、停止、除名。除名の場合は即時効力を持つ。</li>
+                </ul>
+                <h3>第11条（個人情報保護と管理）</h3>
+                <h4>1. 情報管理:</h4>
+                <ul>
+                    <li>幹事・副幹事が管理。情報の取り扱いは細心の注意を払う。</li>
+                    <li>運営目的以外使用禁止。</li>
+                </ul>
+                <h4>2. 情報提供義務:</h4>
+                <ul>
+                    <li><strong>会場借用のため、参加者は正確な住所・氏名・連絡先を提供する義務を負う。</strong></li>
+                    <li><strong>提供された情報に虚偽があった場合、即時参加禁止とする。</strong></li>
+                </ul>
+                <h4>3. 住所変更の届出義務:</h4>
+                <ul>
+                    <li>住所に変更があった場合は、1週間以内に幹事または副幹事にメールで報告すること。</li>
+                </ul>
+                <h3>第12条（フォーム登録義務）</h3>
+                <h4>1. フォーム必須条項:</h4>
+                <ul>
+                    <li><strong>本チームの全ての活動参加者は、所定のフォームに必要情報を入力し送信していなければならない。</strong></li>
+                    <li><strong>フォーム未登録者の会場参加は一切認めない。</strong></li>
+                    <li><strong>見学希望者も事前にフォーム登録が必要。</strong></li>
+                </ul>
+                <h3>第13条（住所提供義務）</h3>
+                <h4>1. 住所提供の義務:</h4>
+                <ul>
+                    <li><strong>会場借用の法的要件のため、参加者は現住所を正確に提供しなければならない。</strong></li>
+                    <li><strong>提供された住所は会場借用申請および緊急時連絡のみに使用する。</strong></li>
+                </ul>
+                <h4>2. 虚偽申告の罰則:</h4>
+                <ul>
+                    <li><strong>住所・氏名に虚偽があった場合は、即時参加禁止とする。</strong></li>
+                </ul>
+                <h3>附則</h3>
+                <ol>
+                    <li>施行: 2025年6月17日</li>
+                    <li>未定事項は4名以上で決定</li>
+                </ol>
+                <div class="important-rule">
+                    <p>私は上記規約の全項目を理解し、真実の情報を提供することを誓約します</p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- 規約ページの内容（最初は非表示） -->
+    <div id="agreement-page" style="display: none;">
+        <div class="agreement-header">
+            <h1 style="color:white;font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem;">規約と同意書</h1>
+            <p style="color:rgba(255,255,255,0.9);font-size:1.2rem;">チームマーメイドの活動参加に必要な書類を確認ください</p>
+        </div>
+       
+        <div style="max-width:1200px;margin:0 auto;padding:0 2rem 4rem;">
+            <div class="agreement-notice">
+                <p style="display:flex;align-items:center;justify-content:center;gap:1rem;margin:0;">
+                    <span style="font-size:1.5rem;">📋</span>
+                    <span>参加にはフォーム登録が必須です（住所申告必須）</span>
+                </p>
+            </div>
+           
+            <div class="pdf-loading" id="pdf-loading">
+                <div class="loading-spinner"></div>
+                <p>PDFを準備中...</p>
+            </div>
+           
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">📋</div>
+                    <h3>利用規約</h3>
+                    <p>チームマーメイドの活動に参加する際のルールと規約です。</p>
+                    <div class="btn-group">
+                        <button class="doc-btn view" data-type="terms">
+                            <span>規約を確認</span>
+                            <span>→</span>
+                        </button>
+                        <button class="doc-btn pdf" data-type="terms">
+                            <span>PDFで保存</span>
+                            <span>↓</span>
+                        </button>
+                    </div>
+                </div>
+               
+                <div class="doc-card">
+                    <div class="doc-icon">📄</div>
+                    <h3>1日保険加入書</h3>
+                    <p>当日保険に加入するための同意書です。</p>
+                    <div class="btn-group">
+                        <button class="doc-btn view" data-type="insurance">
+                            <span>同意書を確認</span>
+                            <span>→</span>
+                        </button>
+                        <button class="doc-btn pdf" data-type="insurance">
+                            <span>PDFで保存</span>
+                            <span>↓</span>
+                        </button>
+                    </div>
+                </div>
+               
+                <div class="doc-card">
+                    <div class="doc-icon">✍️</div>
+                    <h3>スポーツ保険同意書</h3>
+                    <p>団体スポーツ保険に加入するための書類です。</p>
+                    <div class="btn-group">
+                        <button class="doc-btn view" data-type="sports">
+                            <span>同意書を確認</span>
+                            <span>→</span>
+                        </button>
+                        <button class="doc-btn pdf" data-type="sports">
+                            <span>PDFで保存</span>
+                            <span>↓</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+           
+            <div style="text-align:center;">
+                <a href="#" class="back-to-home" onclick="showHome(); return false;">
+                    <span>←</span>
+                    <span>メインページに戻る</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF表示コンテナ -->
+    <div class="pdf-container" id="pdf-container">
+        <div class="pdf-toolbar">
+            <h3 id="pdf-title"></h3>
+            <div class="pdf-actions">
+                <button class="pdf-action-btn download" onclick="downloadPDF()">
+                    <span>⬇️</span>
+                    <span>PDF保存</span>
+                </button>
+                <button class="pdf-action-btn print" onclick="printPDF()">
+                    <span>🖨️</span>
+                    <span>印刷</span>
+                </button>
+                <button class="pdf-action-btn close-pdf" onclick="closePDF()">
+                    <span>✕</span>
+                    <span>閉じる</span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-pdf-actions" id="mobile-pdf-actions">
+            <button class="pdf-action-btn download" onclick="downloadPDF()">
+                <span>⬇️</span>
+                <span>PDF保存</span>
+            </button>
+            <button class="pdf-action-btn print" onclick="printPDF()">
+                <span>🖨️</span>
+                <span>印刷</span>
+            </button>
+            <button class="pdf-action-btn close-pdf" onclick="closePDF()">
+                <span>✕</span>
+                <span>閉じる</span>
+            </button>
+        </div>
+        <div class="pdf-content" id="pdf-content"></div>
+    </div>
+
+    <!-- PDFダウンロード用の隠しリンク -->
+    <a id="pdf-download-link" class="pdf-download-link" download="チームマーメイド_同意書.pdf"></a>
+
+    <!-- ライトボックス -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <!-- モーダル（イベント画像クリック時） -->
+    <div class="modal" id="status-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('status')">&times;</span>
+            <h3 id="status-title">練習会参加状況を選択</h3>
+            <button class="status-btn" data-status="参加">参加</button>
+            <button class="status-btn" data-status="不参加">不参加</button>
+            <button class="status-btn" data-status="未定">未定</button>
+        </div>
+    </div>
+
+    <div class="modal" id="form-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('form')">&times;</span>
+            <h3 id="form-title">練習会登録情報入力</h3>
+            <form id="register-form" class="event-form">
+                <div><label for="modal-name">名前:</label><input type="text" id="modal-name" required></div>
+                <div><label for="modal-address">住所:</label><input type="text" id="modal-address" required placeholder="例：千葉県八千代市勝田台1-1-1"></div>
+                <div><label for="modal-email">メールアドレス:</label><input type="email" id="modal-email" required></div>
+                <div><label for="modal-phone">電話番号:</label><input type="tel" id="modal-phone" required></div>
+                <div><label for="modal-emergency">緊急連絡先:</label><input type="text" id="modal-emergency" required placeholder="家族・親族の名前/続柄/電話番号"></div>
+                <div><label for="modal-birth">生年月日:</label><input type="text" id="modal-birth" required placeholder="例：1990年1月1日"></div>
+                <input type="hidden" id="modal-status">
+                <input type="hidden" id="modal-event-date">
+                <p style="color:#d32f2f; font-size:0.9rem; margin:1rem 0;">※虚偽申告は即時参加禁止対象となります</p>
+                <button type="submit">送信</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 規約モーダル -->
+    <div id="terms-modal-agreement" class="agreement-modal">
+        <div class="agreement-modal-content">
+            <div class="agreement-modal-header">
+                <h3>チームマーメイド利用規約</h3>
+                <button class="agreement-close-btn" data-close="terms">×</button>
+            </div>
+            <div class="agreement-modal-body">
+                <!-- 内容はJavaScriptで動的に生成 -->
+            </div>
+        </div>
+    </div>
+
+    <div id="insurance-modal-agreement" class="agreement-modal">
+        <div class="agreement-modal-content">
+            <div class="agreement-modal-header">
+                <h3>1日保険加入＆同意書</h3>
+                <button class="agreement-close-btn" data-close="insurance">×</button>
+            </div>
+            <div class="agreement-modal-body">
+                <p><strong>（チームマーメイド 当日その場で加入用）</strong></p>
+                <p>─── ここから下は当日その場でご記入ください ───</p>
+               
+                <h4>基本情報</h4>
+                <p><strong>生年月日:</strong> 　　年　　月　　日</p>
+                <p><strong>氏名:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>住所:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>電話番号:</strong> ＿＿＿−＿＿＿＿−＿＿＿＿</p>
+               
+                <h4>加入確認事項</h4>
+                <ul>
+                    <li>□ 今、スマホでURLにアクセスして「ワンデーサポーター」に加入手続きを完了した</li>
+                    <li>□ 重要事項説明書・約款を全て読み、内容を理解した</li>
+                    <li>□ 加入完了画面をスタッフに提示した</li>
+                </ul>
+               
+                <p><strong>加入完了時刻:</strong> 年 月 日 時 分</p>
+               
+                <h4>保険内容</h4>
+                <ul>
+                    <li>保険会社: ソニー損害保険株式会社</li>
+                    <li>商品名: 1日自動車保険「ワンデーサポーター」</li>
+                    <li>URL: https://accident.sony-sasti.jp/</li>
+                </ul>
+               
+                <p><strong>署名:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>記入日:</strong> 2025年 月 日</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="sports-modal-agreement" class="agreement-modal">
+        <div class="agreement-modal-content">
+            <div class="agreement-modal-header">
+                <h3>団体スポーツ保険加入同意書</h3>
+                <button class="agreement-close-btn" data-close="sports">×</button>
+            </div>
+            <div class="agreement-modal-body">
+                <p><strong>（チームマーメイド 団体スポーツ保険加入用）</strong></p>
+                <p>─── ここから下は当日その場でご記入ください ───</p>
+               
+                <h4>参加者情報</h4>
+                <p><strong>生年月日:</strong> 　　年　　月　　日</p>
+                <p><strong>年齢:</strong> 　　歳</p>
+                <p><strong>氏名:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>住所:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>電話番号:</strong> ＿＿＿−＿＿＿＿−＿＿＿＿</p>
+               
+                <h4>加入手続き確認</h4>
+                <ul>
+                    <li>□ 保険加入サイトにアクセスし、団体スポーツ保険の加入手続きを完了した</li>
+                    <li>□ 重要事項説明書・約款を全て読み、内容を理解した</li>
+                    <li>□ 加入完了画面をスタッフに提示した</li>
+                </ul>
+               
+                <p><strong>加入完了時刻:</strong> 年 月 日 時 分</p>
+               
+                <p><strong>署名:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+                <p><strong>日付:</strong> 　　年　　月　　日</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 チームマーメイド. Mayumi Huzimitu Kaito Saito YAMADA, All rights reserved.</p>
+    </footer>
+
+    <script>
+        // ========== 基本機能 ==========
+        window.openLightbox = function(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        };
+
+        window.closeLightbox = function() {
+            document.getElementById('lightbox').classList.remove('active');
+        };
+
+        window.openStatus = function(date) {
+            document.getElementById('status-title').textContent = `${date}練習会参加状況を選択`;
+            document.getElementById('modal-event-date').value = date;
+            document.getElementById('status-modal').style.display = 'block';
+        };
+
+        window.closeModal = function(type) {
+            document.getElementById(`${type}-modal`).style.display = 'none';
+        };
+
+        function showAgreementPage() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('agreement-page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function showHome() {
+            document.getElementById('agreement-page').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('pdf-container').classList.remove('active');
+            document.getElementById('mobile-pdf-actions').classList.remove('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showSection(sectionId) {
+            showHome();
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+
+        function toggleNav() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+
+        // ========== 参加フォーム送信（同意チェック付き）==========
+        document.getElementById('participation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 同意チェック
+            if (!document.getElementById('agree-all').checked) {
+                document.getElementById('agree-error').style.display = 'block';
+                return;
+            } else {
+                document.getElementById('agree-error').style.display = 'none';
+            }
+            
+            const name = document.getElementById('name').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const emergency = document.getElementById('emergency').value.trim();
+            const birth = document.getElementById('birth').value.trim();
+            const health = document.getElementById('health').value.trim() || '特記事項なし';
+            const eventDate = document.getElementById('event-date').value.trim();
+            const status = document.getElementById('status').value;
+            
+            if (!name || !address || !email || !phone || !emergency || !birth || !eventDate || !status) {
+                alert('全ての必須項目を入力してください。');
+                return;
+            }
+            
+            const body = `【チームマーメイド参加申込】
+━━━━━━━━━━━━━━━━
+■ 参加状況: ${status}
+■ 参加希望日: ${eventDate}
+■ 氏名: ${name}
+■ 住所: ${address}
+■ メール: ${email}
+■ 電話: ${phone}
+■ 緊急連絡先: ${emergency}
+■ 生年月日: ${birth}
+■ 健康状態: ${health}
+━━━━━━━━━━━━━━━━
+
+【誓約】
+私は上記情報が真実であることを誓約します。
+虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
+            
+            const subject = encodeURIComponent(`【参加申込】${eventDate} - ${name}`);
+            const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=${subject}&body=${encodeURIComponent(body)}`;
+            
+            // 手動送信用エリアに内容をセット
+            document.getElementById('manualSubject').textContent = `【参加申込】${eventDate} - ${name}`;
+            document.getElementById('manualBody').value = body;
+            
+            // メールアプリを開く試行
+            const mailtoWindow = window.location.href = mailtoLink;
+            
+            // 少し待ってから手動エリアを表示（メールが開かない場合のフォールバック）
+            setTimeout(() => {
+                const manualArea = document.getElementById('manualEmailArea');
+                if (!manualArea.classList.contains('show')) {
+                    manualArea.classList.add('show');
+                }
+            }, 1000);
+            
+            // 成功メッセージ表示
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+            
+            // フォームはリセットしない（内容を残す）
+            setTimeout(() => successMsg.classList.remove('show'), 3000);
+        });
+
+        // 手動送信用コピー機能
+        window.copyManualBody = function() {
+            const body = document.getElementById('manualBody');
+            body.select();
+            document.execCommand('copy');
+            alert('本文をコピーしました。メールアプリに貼り付けて送信してください。');
+        };
+
+        // ========== 問い合わせフォーム送信 ==========
+        function sendContactMail() {
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+            const errorDiv = document.getElementById('contact-error');
+            
+            if (!name || !email || !message) {
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = '全ての項目を入力してください。';
+                return;
+            }
+            errorDiv.style.display = 'none';
+            
+            const body = `名前: ${name}\nメール: ${email}\nメッセージ: ${message}`;
+            const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
+            
+            window.location.href = mailtoLink;
+            
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+            
+            alert('お問い合わせメールを作成しました。送信してください。');
+        }
+        window.sendContactMail = sendContactMail;
+
+        // ========== モーダルフォーム送信 ==========
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('modal-name').value.trim();
+            const address = document.getElementById('modal-address').value.trim();
+            const email = document.getElementById('modal-email').value.trim();
+            const phone = document.getElementById('modal-phone').value.trim();
+            const emergency = document.getElementById('modal-emergency').value.trim();
+            const birth = document.getElementById('modal-birth').value.trim();
+            const status = document.getElementById('modal-status').value;
+            const eventDate = document.getElementById('modal-event-date').value;
+            
+            if (!name || !address || !email || !phone || !emergency || !birth) {
+                alert('全ての必須項目を入力してください。');
+                return;
+            }
+            
+            const body = `【チームマーメイド参加申込（イベント用）】
+━━━━━━━━━━━━━━━━
+■ 参加状況: ${status}
+■ 参加希望日: ${eventDate}
+■ 氏名: ${name}
+■ 住所: ${address}
+■ メール: ${email}
+■ 電話: ${phone}
+■ 緊急連絡先: ${emergency}
+■ 生年月日: ${birth}
+━━━━━━━━━━━━━━━━
+
+【誓約】
+私は上記情報が真実であることを誓約します。
+虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
+            
+            const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+            
+            alert('メールアプリが開きます。内容をご確認の上、送信してください。');
+            document.getElementById('form-modal').style.display = 'none';
+        });
+
+        // ========== ステータスボタン（参加/不参加/未定）==========
+        document.querySelectorAll('.status-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.getElementById('modal-status').value = this.dataset.status;
+                document.getElementById('form-modal').style.display = 'block';
+                document.getElementById('status-modal').style.display = 'none';
+            });
+        });
+
+        // ========== PDF関連機能 ==========
+        let currentPdfType = '';
+
+        function showPDF(type) {
+            currentPdfType = type;
+            document.getElementById('pdf-loading').classList.add('active');
+            
+            let title, content;
+            switch(type) {
+                case 'terms':
+                    title = 'チームマーメイド利用規約';
+                    content = getTermsContent();
+                    break;
+                case 'insurance':
+                    title = '1日保険加入＆同意書';
+                    content = getInsuranceContent();
+                    break;
+                case 'sports':
+                    title = '団体スポーツ保険加入同意書';
+                    content = getSportsContent();
+                    break;
+            }
+            
+            setTimeout(() => {
+                document.getElementById('pdf-title').textContent = title;
+                document.getElementById('pdf-content').innerHTML = content;
+                document.getElementById('pdf-container').classList.add('active');
+                document.getElementById('mobile-pdf-actions').classList.add('active');
+                document.getElementById('agreement-page').style.display = 'none';
+                document.getElementById('pdf-loading').classList.remove('active');
+                window.scrollTo(0, 0);
+            }, 500);
+        }
+        window.showPDF = showPDF;
+
+        function closePDF() {
+            document.getElementById('pdf-container').classList.remove('active');
+            document.getElementById('mobile-pdf-actions').classList.remove('active');
+            showAgreementPage();
+        }
+        window.closePDF = closePDF;
+
+        function printPDF() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                const printContent = document.getElementById('pdf-content').innerHTML;
+                const title = document.getElementById('pdf-title').textContent;
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head><title>${title}</title><meta charset="UTF-8"></head>
+                    <body style="font-family:sans-serif;padding:1rem;">${printContent}</body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.focus();
+                printWindow.print();
+            } else {
+                window.print();
+            }
+        }
+        window.printPDF = printPDF;
+
+        // 改良版ダウンロード関数（モバイル対応強化）
+        function downloadPDF() {
+            const title = document.getElementById('pdf-title').textContent;
+            const content = document.getElementById('pdf-content').innerHTML;
+            
+            const fullContent = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <style>
+        body { font-family: 'Poppins', sans-serif; padding: 1.5rem; line-height: 1.7; color: #333; }
+        h1 { color: #0284c7; border-bottom: 2px solid #0284c7; padding-bottom: 0.5rem; }
+        .signature-area { margin-top: 3rem; border-top: 2px dashed #ccc; padding-top: 2rem; }
+    </style>
+</head>
+<body>
+    <h1>${title}</h1>
+    ${content}
+</body>
+</html>`;
+            
+            const blob = new Blob([fullContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                const newWindow = window.open(url, '_blank');
+                if (!newWindow) {
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${title}.html`;
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    
+                    setTimeout(() => {
+                        alert('ダウンロードが開始されない場合は、リンクを長押しして「リンクを保存」を選んでください。');
+                    }, 500);
+                }
+                URL.revokeObjectURL(url);
+            } else {
+                const a = document.getElementById('pdf-download-link');
+                a.href = url;
+                a.download = `${title}.html`;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+            
+            setTimeout(() => {
+                alert('ダウンロードを開始しました。ファイルが保存されない場合は、お使いのブラウザの設定をご確認ください。');
+            }, 1000);
+        }
+        window.downloadPDF = downloadPDF;
+
+        function getTermsContent() {
+            return document.querySelector('#terms-modal-agreement .agreement-modal-body').innerHTML;
+        }
+
+        function getInsuranceContent() {
+            return document.querySelector('#insurance-modal-agreement .agreement-modal-body').innerHTML;
+        }
+
+        function getSportsContent() {
+            return document.querySelector('#sports-modal-agreement .agreement-modal-body').innerHTML;
+        }
+
+        // ========== 規約モーダル表示 ==========
+        function openAgreementModal(type) {
+            document.getElementById(`${type}-modal-agreement`).classList.add('active');
+        }
+        window.openAgreementModal = openAgreementModal;
+
+        function closeAgreementModal(type) {
+            document.getElementById(`${type}-modal-agreement`).classList.remove('active');
+        }
+        window.closeAgreementModal = closeAgreementModal;
+
+        // ========== 初期化 ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date();
+            const events = [
+                { date: '2025-10-04', display: '10/04', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day.jpg' },
+                { date: '2025-10-18', display: '10/18', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg' },
+                { date: '2025-11-08', display: '11/08', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_08.jpg' },
+                { date: '2025-11-22', display: '11/22', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_22.jpg' },
+                { date: '2025-12-13', display: '12/13', venue: '勝田台小体育館', time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_13.jpg' },
+                { date: '2025-12-20', display: '12/20', venue: 'ふれあいプラザ', time: '18:00～21:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_20.jpg' },
+                { date: '2026-01-10', display: '1/10',  venue: '勝田台中央小体育館',   time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_10.jpg' },
+                { date: '2026-01-17', display: '1/17',  venue: 'ふれあいプラザ',       time: '18:00～21:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_17.jpg' },
+                { date: '2026-01-24', display: '1/24',  venue: '勝田台小体育館',       time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_24.jpg' },
+                { date: '2026-02-21', display: '2/21',  venue: '勝田台小体育館',       time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day2_21.jpg' },
+                { date: '2026-02-28', display: '2/28', venue: 'ふれあいプラザ', time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day2_28.jpg' },
+                { date: '2026-03-14', display: '03/14', venue: 'ふれあいプラザ',       time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day03_14.jpg' },
+                { date: '2026-03-21', display: '3/21', venue: '勝田台小体育館', time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day3_21.jpg' },
+                { date: '2026-04-18', display: '4/18', venue: '勝田台小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day4_18.jpg' }
+            ];
+
+            events.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            const mainList = document.getElementById('event-list');
+            const pastList = document.getElementById('past-events');
+            events.forEach(ev => {
+                const eventDate = new Date(ev.date);
+                const isPast = eventDate < today;
+                const item = document.createElement('div');
+                item.className = `event-item ${isPast ? 'past' : ''}`;
+                item.innerHTML = `
+                    <h3>${ev.display} バレーボール練習会${isPast ? ' <small style="color:#999;">（終了）</small>' : ''}</h3>
+                    <p><strong>開催時間→</strong> ${ev.time}</p>
+                    <p><strong>場所→</strong> ${ev.venue}</p>
+                    <p>次回練習は${ev.display}に開催予定。詳細はメールで確認してください。</p>
+                    <img src="${ev.img}" alt="${ev.display}練習会登録ボタン" loading="lazy"
+                         ${isPast ? '' : `onclick="openStatus('${ev.display}')" style="cursor:pointer;"`}
+                         onerror="this.src='https://via.placeholder.com/300x200?text=画像読み込み中'">
+                `;
+                if (isPast) pastList.appendChild(item);
+                else mainList.appendChild(item);
+            });
+
+            // イベントデリゲーション（規約ページのボタンなど）
+            document.addEventListener('click', function(e) {
+                const docBtn = e.target.closest('.doc-btn');
+                if (docBtn) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const type = docBtn.dataset.type;
+                    if (docBtn.classList.contains('view')) {
+                        openAgreementModal(type);
+                    } else if (docBtn.classList.contains('pdf')) {
+                        showPDF(type);
+                    }
+                    return;
+                }
+                
+                const closeBtn = e.target.closest('.agreement-close-btn');
+                if (closeBtn) {
+                    const modalType = closeBtn.dataset.close;
+                    closeAgreementModal(modalType);
+                    return;
+                }
+            });
+
+            // スクロールアニメーション
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.animate-on-scroll').forEach(section => observer.observe(section));
+
+            // 規約モーダル初期化
+            const termsModal = document.querySelector('#terms-modal-agreement .agreement-modal-body');
+            termsModal.innerHTML = document.getElementById('terms').innerHTML;
+        });
+
+        // ========== モーダル外クリック / ESCキー ==========
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+            if (e.target.classList.contains('agreement-modal')) e.target.classList.remove('active');
+            if (e.target.classList.contains('pdf-container')) closePDF();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+                document.querySelectorAll('.agreement-modal').forEach(m => m.classList.remove('active'));
+                document.getElementById('lightbox').classList.remove('active');
+                closePDF();
+            }
+        });
+
+        // タッチデバイス用
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    </script>
+</body>
+</html>
