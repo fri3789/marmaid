@@ -9,6 +9,7 @@
     <meta name="keywords" content="チームマーメイド,ソフトバレーボール,千葉県,八千代市,勝田台,障害者スポーツ,インクルーシブ">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* === 基本設定 === */
         :root {
             --primary-color: #0284c7;
             --secondary-color: #1e40af;
@@ -22,11 +23,15 @@
         }
         *{box-sizing:border-box;margin:0;padding:0}
         body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#e0f4ff,var(--bg-light));color:var(--text-color);line-height:1.6;overflow-x:hidden;-webkit-tap-highlight-color:transparent;-webkit-overflow-scrolling:touch}
+        
+        /* === ヘッダー === */
         header{position:relative;text-align:center;padding:12vw 5vw;background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;box-shadow:var(--shadow)}
         header::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,165,233,.6),rgba(56,189,248,.4));z-index:1}
         .header-content{position:relative;z-index:2}
         h1{font-size:clamp(2rem,6vw,3rem);color:#fff;text-shadow:0 0 15px rgba(14,165,233,.8);animation:pulse 2s infinite}
         @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+        
+        /* === ナビゲーション === */
         nav{background:rgba(255,255,255,.95);padding:1.5vw;position:sticky;top:0;z-index:1000;box-shadow:var(--shadow)}
         nav ul{list-style:none;display:flex;justify-content:center;gap:3vw;flex-wrap:wrap}
         nav a{color:var(--text-color);text-decoration:none;font-weight:600;font-size:var(--font-size-base);padding:1vw;position:relative;transition:var(--transition);cursor:pointer;display:inline-block;min-height:44px;line-height:44px}
@@ -35,12 +40,16 @@
         nav a:hover{color:var(--primary-color)}
         .nav-toggle{display:none;font-size:2rem;background:none;border:none;color:var(--text-color);cursor:pointer;position:absolute;top:1vw;right:2vw;z-index:1001;min-width:44px;min-height:44px;touch-action:manipulation}
         .nav-toggle:hover{transform:rotate(90deg)}
+        
+        /* === メインコンテンツ === */
         main{max-width:90vw;margin:5vw auto;padding:0 2vw}
         section{background:#fff;padding:4vw;margin-bottom:4vw;border-radius:var(--border-radius);box-shadow:var(--shadow);position:relative;opacity:0;animation:slideUp .7s ease-out forwards}
         @keyframes slideUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
         section.visible{opacity:1}
         h2{font-size:clamp(1.5rem,4.5vw,2.5rem);color:var(--primary-color);margin:0 0 2vw;position:relative}
         h2::after{content:'';position:absolute;bottom:-.5vw;left:0;width:5vw;height:.3vw;background:linear-gradient(to right,var(--primary-color),var(--secondary-color));transition:var(--transition)}
+        
+        /* === イベントアイテム === */
         .event-item{margin-bottom:4vw}
         .event-item h3{font-size:clamp(1.6rem,4vw,2rem);color:var(--primary-color);margin-bottom:1vw}
         .event-item p{margin-bottom:1vw}
@@ -53,6 +62,8 @@
         .archive-toggle:active{background:#d1e9ff}
         #archive-container{display:none;margin-top:2rem}
         #archive-container.show{display:block;animation:slideUp .5s}
+        
+        /* === ギャラリー === */
         .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(20vw,1fr));gap:2vw;margin-top:2vw}
         .gallery img{width:100%;height:22vw;object-fit:cover;border-radius:var(--border-radius);border:.2vw solid var(--primary-color);transition:var(--transition);cursor:pointer;opacity:0;animation:fadeInUp .6s ease-out forwards;min-height:44px;touch-action:manipulation}
         .gallery img:nth-child(1){animation-delay:.1s}.gallery img:nth-child(2){animation-delay:.2s}
@@ -63,6 +74,8 @@
         @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
         .gallery img:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(14,165,233,.7)}
         .gallery img:active{transform:scale(0.98)}
+        
+        /* === フォーム全般 === */
         .contact-form,.event-form{display:flex;flex-direction:column;gap:1.5vw}
         .contact-form input,.contact-form textarea,.event-form input{padding:1.2vw;border:.2vw solid #bfdbfe;border-radius:var(--border-radius);font-size:var(--font-size-base);color:var(--text-color);background:var(--bg-light);transition:var(--transition);min-height:44px}
         .contact-form input:focus,.contact-form textarea:focus,.event-form input:focus{border-color:var(--primary-color);box-shadow:0 0 1vw rgba(14,165,233,.3);outline:none}
@@ -70,11 +83,17 @@
         .contact-form button,.event-form button,.status-btn{padding:1.2vw 4vw;border:none;border-radius:var(--border-radius);background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));color:#fff;font-weight:600;cursor:pointer;font-size:var(--font-size-base);transition:var(--transition);min-height:44px;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
         .contact-form button:hover,.event-form button:hover,.status-btn:hover{transform:scale(1.05) translateY(-2px)}
         .contact-form button:active,.event-form button:active,.status-btn:active{transform:scale(0.98)}
+        
+        /* === 利用規約セクション === */
         .terms{background:#e0f4ff;color:var(--text-color)}
         .terms h2,.terms h3{color:var(--primary-color)}
+        
+        /* === フッター === */
         footer{text-align:center;padding:2.5vw;background:linear-gradient(135deg,var(--secondary-color),var(--primary-color));color:#fff;font-size:clamp(.8rem,.95vw,1rem);position:relative}
         footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(45deg,rgba(255,255,255,.1),transparent);z-index:0}
         footer p{position:relative;z-index:1}
+        
+        /* === モーダル／ライトボックス === */
         .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:2000;backdrop-filter:blur(5px)}
         .modal-content{background:#fff;margin:10% auto;padding:2vw;width:80%;max-width:clamp(20rem,30vw,30rem);border-radius:var(--border-radius);box-shadow:var(--shadow);text-align:center}
         .modal-close{position:absolute;top:2vw;right:2vw;font-size:clamp(1.5rem,3vw,2rem);color:var(--secondary-color);background:rgba(255,255,255,.9);border-radius:50%;padding:1vw;cursor:pointer;z-index:2001;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
@@ -86,6 +105,8 @@
         .lightbox-close{position:absolute;top:2vw;right:2vw;font-size:clamp(2rem,6vw,3rem);color:#fff;background:rgba(30,64,175,.8);border-radius:50%;padding:1.5vw;cursor:pointer;z-index:2001;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
         .lightbox-close:hover{color:var(--primary-color);transform:scale(1.1) rotate(180deg)}
         .lightbox-close:active{transform:scale(0.95) rotate(180deg)}
+        
+        /* === レスポンシブ：モバイルメニュー === */
         @media(max-width:768px){
             .nav-toggle{display:block}
             nav ul{display:none;flex-direction:column;align-items:center;background:#fff;position:absolute;top:4vw;left:0;width:100%;padding:2vw 0;box-shadow:var(--shadow)}
@@ -93,7 +114,8 @@
             nav a{font-size:var(--font-size-mobile);padding:2vw}
             .gallery img{height:auto;max-height:40vw}
         }
-        /* 規約ページ用のスタイル */
+        
+        /* === 規約ページ用スタイル === */
         .agreement-header {
             background: linear-gradient(135deg, #007aff 0%, #5856d6 50%, #af52de 100%);
             color: white;
@@ -103,7 +125,6 @@
             overflow: hidden;
             margin-bottom: 2rem;
         }
-       
         .agreement-header::before {
             content: '';
             position: absolute;
@@ -113,7 +134,6 @@
             bottom: 0;
             background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
         }
-       
         .agreement-notice {
             background: linear-gradient(135deg, #34c759, #30d158);
             color: white;
@@ -123,14 +143,12 @@
             margin: 1rem 0 2rem;
             box-shadow: 0 8px 24px rgba(52,199,89,0.3);
         }
-       
         .doc-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
-       
         .doc-card {
             background: white;
             border-radius: 16px;
@@ -141,12 +159,10 @@
             overflow: hidden;
             border: 1px solid rgba(0,0,0,0.05);
         }
-       
         .doc-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(0,0,0,0.15);
         }
-       
         .doc-card::before {
             content: '';
             position: absolute;
@@ -156,7 +172,6 @@
             height: 5px;
             background: linear-gradient(90deg, #007aff, #5856d6, #af52de);
         }
-       
         .doc-icon {
             width: 60px;
             height: 60px;
@@ -169,25 +184,21 @@
             font-size: 1.8rem;
             color: white;
         }
-       
         .doc-card h3 {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--text-color);
         }
-       
         .doc-card p {
             color: #666;
             margin-bottom: 1.5rem;
             font-size: 1rem;
         }
-       
         .btn-group {
             display: flex;
             gap: 1rem;
         }
-       
         .doc-btn {
             display: inline-flex;
             align-items: center;
@@ -206,26 +217,23 @@
             touch-action: manipulation;
             min-height: 48px;
         }
-       
         .doc-btn.view {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
         }
-       
         .doc-btn.pdf {
             background: linear-gradient(135deg, #ff3b30, #d70015);
             color: white;
         }
-       
         .doc-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
-       
         .doc-btn:active {
             transform: scale(0.98);
         }
-       
+        
+        /* === 規約モーダル === */
         .agreement-modal {
             display: none;
             position: fixed;
@@ -240,11 +248,9 @@
             padding: 1rem;
             backdrop-filter: blur(10px);
         }
-       
         .agreement-modal.active {
             display: flex;
         }
-       
         .agreement-modal-content {
             background: white;
             border-radius: 20px;
@@ -254,7 +260,6 @@
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
-       
         .agreement-modal-header {
             padding: 1.5rem 2rem;
             border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -263,13 +268,11 @@
             align-items: center;
             background: #f8f9fa;
         }
-       
         .agreement-modal-header h3 {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-color);
         }
-       
         .agreement-close-btn {
             background: none;
             border: none;
@@ -287,23 +290,19 @@
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
         }
-       
         .agreement-close-btn:hover {
             background: rgba(0,0,0,0.05);
         }
-       
         .agreement-close-btn:active {
             background: rgba(0,0,0,0.1);
             transform: scale(0.95);
         }
-       
         .agreement-modal-body {
             padding: 2rem;
             overflow-y: auto;
             max-height: calc(90vh - 80px);
             -webkit-overflow-scrolling: touch;
         }
-       
         .agreement-modal-body h4 {
             font-size: 1.2rem;
             font-weight: 600;
@@ -312,23 +311,19 @@
             padding-left: 0.5rem;
             border-left: 4px solid var(--primary-color);
         }
-       
         .agreement-modal-body p {
             margin-bottom: 1rem;
             color: #666;
             line-height: 1.7;
         }
-       
         .agreement-modal-body ul {
             margin-left: 1.5rem;
             margin-bottom: 1.5rem;
         }
-       
         .agreement-modal-body li {
             margin-bottom: 0.5rem;
             color: #666;
         }
-       
         .back-to-home {
             display: inline-flex;
             align-items: center;
@@ -345,16 +340,15 @@
             min-height: 48px;
             touch-action: manipulation;
         }
-       
         .back-to-home:hover {
             background: rgba(0,122,255,0.2);
             gap: 1rem;
         }
-       
         .back-to-home:active {
             transform: scale(0.98);
         }
-        /* PDF表示用のスタイル - モバイル対応強化 */
+        
+        /* === PDF表示コンテナ === */
         .pdf-container {
             display: none;
             position: fixed;
@@ -367,11 +361,9 @@
             overflow: auto;
             -webkit-overflow-scrolling: touch;
         }
-       
         .pdf-container.active {
             display: block;
         }
-       
         .pdf-toolbar {
             position: sticky;
             top: 0;
@@ -384,18 +376,15 @@
             z-index: 4001;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-       
         .pdf-toolbar h3 {
             margin: 0;
             font-size: 1.2rem;
             font-weight: 500;
         }
-       
         .pdf-actions {
             display: flex;
             gap: 0.5rem;
         }
-       
         .pdf-action-btn {
             background: rgba(255,255,255,0.2);
             color: white;
@@ -413,29 +402,22 @@
             min-height: 48px;
             min-width: 48px;
         }
-       
         .pdf-action-btn:hover {
             background: rgba(255,255,255,0.3);
         }
-       
         .pdf-action-btn:active {
             transform: scale(0.95);
             background: rgba(255,255,255,0.4);
         }
-       
         .pdf-action-btn.download {
             background: linear-gradient(135deg, #34c759, #30d158);
         }
-       
         .pdf-action-btn.print {
             background: linear-gradient(135deg, #007aff, #5856d6);
         }
-       
         .pdf-action-btn.close-pdf {
             background: linear-gradient(135deg, #ff3b30, #d70015);
         }
-       
-        /* モバイル用のPDFアクションボタン - 下部固定 */
         .mobile-pdf-actions {
             display: none;
             position: fixed;
@@ -450,11 +432,9 @@
             gap: 1rem;
             border-top: 1px solid #e5e7eb;
         }
-       
         .mobile-pdf-actions.active {
             display: flex;
         }
-       
         .mobile-pdf-actions .pdf-action-btn {
             flex: 1;
             justify-content: center;
@@ -465,7 +445,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             min-height: 52px;
         }
-       
         .pdf-content {
             padding: 2rem;
             max-width: 800px;
@@ -475,11 +454,11 @@
             color: #374151;
             padding-bottom: 80px;
         }
-       
         .pdf-download-link {
             display: none;
         }
-        /* 重要ルール用のスタイル */
+        
+        /* === 重要ルール・注意書き === */
         .important-rule {
             border-left: 4px solid #d32f2f;
             background: #ffebee;
@@ -487,7 +466,6 @@
             margin: 1rem 0;
             border-radius: 0 8px 8px 0;
         }
-       
         .important-rule p {
             color: #b71c1c;
             font-weight: 500;
@@ -497,7 +475,18 @@
             margin-left: 0.3rem;
             font-size: 0.9rem;
         }
-        /* 参加フォーム */
+        .notice-box {
+            background: #f0f9ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+        .notice-box p {
+            margin: 0.3rem 0;
+        }
+        
+        /* === 参加フォーム専用スタイル === */
         .participation-form {
             background: linear-gradient(135deg, #ffffff, #f5f5f5);
             border: 2px solid var(--primary-color);
@@ -540,35 +529,6 @@
             min-height: 100px;
             resize: vertical;
         }
-        .send-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 1.2rem 2rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: var(--transition);
-            margin-top: 1rem;
-            min-height: 56px;
-            touch-action: manipulation;
-        }
-        .send-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(2, 132, 199, 0.3);
-        }
-       
-        .send-btn:active {
-            transform: scale(0.98);
-        }
-        .required-mark {
-            color: #d32f2f;
-            margin-left: 0.3rem;
-            font-size: 0.9rem;
-        }
-        /* シンプル送信ボックス */
         .simple-send-box {
             background: #e8f5e9;
             border: 2px solid #4caf50;
@@ -597,20 +557,15 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
         }
-       
         .simple-send-btn:active {
             transform: scale(0.98);
             background: #3d8b40;
-        }
-        .simple-send-btn i {
-            margin-right: 0.5rem;
         }
         .simple-note {
             color: #666;
             font-size: 0.9rem;
             margin: 0.5rem 0;
         }
-        /* 送信完了メッセージ */
         .success-message {
             background: #4caf50;
             color: white;
@@ -628,152 +583,8 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .emergency-contact {
-            margin-top: 1rem;
-            padding: 0.8rem;
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-       
-        @media(max-width:768px){
-            .mobile-pdf-actions {
-                display: flex;
-            }
-           
-            .pdf-toolbar .pdf-actions {
-                display: none;
-            }
-           
-            .nav-toggle{display:block}
-            nav ul{display:none;flex-direction:column;align-items:center;background:#fff;position:absolute;top:4vw;left:0;width:100%;padding:2vw 0;box-shadow:var(--shadow)}
-            nav ul.active{display:flex}
-            nav a{font-size:var(--font-size-mobile);padding:2vw}
-            .gallery img{height:auto;max-height:40vw}
-            .doc-grid {
-                grid-template-columns: 1fr;
-            }
-            .btn-group {
-                flex-direction: column;
-            }
-            .agreement-modal-content {
-                margin: 1rem;
-            }
-            .agreement-modal-body {
-                padding: 1.5rem;
-            }
-            .doc-btn {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-            }
-            .pdf-content {
-                padding: 1rem;
-                padding-bottom: 80px;
-            }
-            .pdf-toolbar h3 {
-                font-size: 1rem;
-            }
-            .pdf-action-btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
-            .doc-btn, .agreement-close-btn, .back-to-home {
-                min-height: 48px;
-                min-width: 48px;
-            }
-            .agreement-close-btn {
-                width: 48px;
-                height: 48px;
-            }
-        }
-       
-        @media(max-width:480px){
-            .doc-btn span {
-                pointer-events: none;
-            }
-            .btn-group {
-                gap: 0.8rem;
-            }
-            .mobile-pdf-actions {
-                flex-direction: column;
-            }
-            .pdf-action-btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .simple-send-btn {
-                font-size: 1rem;
-                padding: 0.8rem 1rem;
-            }
-        }
-       
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            .pdf-container,
-            .pdf-container * {
-                visibility: visible;
-            }
-            .pdf-container {
-                position: absolute !important;
-                left: 0 !important;
-                top: 0 !important;
-                width: 100% !important;
-                height: auto !important;
-                background: white !important;
-                overflow: visible !important;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
-            .pdf-toolbar,
-            .mobile-pdf-actions,
-            .pdf-action-btn,
-            .pdf-download-link,
-            nav,
-            footer,
-            header {
-                display: none !important;
-            }
-            .pdf-content {
-                padding: 1cm !important;
-                max-width: 100% !important;
-                margin: 0 !important;
-            }
-            @page {
-                margin: 1.5cm;
-            }
-        }
-        .notice-box {
-            background: #f0f9ff;
-            border-left: 4px solid var(--primary-color);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 8px;
-        }
-       
-        .notice-box p {
-            margin: 0.3rem 0;
-        }
-        /* 問い合わせフォーム補足 */
-        .contact-note {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 0.5rem;
-            text-align: center;
-            border-top: 1px dashed #ccc;
-            padding-top: 0.8rem;
-        }
-        .contact-note a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .contact-note a:hover {
-            text-decoration: underline;
-        }
-        /* 同意チェックボックス */
+        
+        /* === 同意チェックボックス === */
         .agreement-checkbox {
             background: #f9f9f9;
             padding: 1.2rem;
@@ -815,7 +626,8 @@
             border-left: 4px solid #d32f2f;
             display: none;
         }
-        /* 手動送信用テキストエリア */
+        
+        /* === 手動送信用エリア（補助） === */
         .manual-email-area {
             background: #fff3e0;
             border: 2px solid #ff9800;
@@ -854,6 +666,125 @@
         }
         .copy-btn:active {
             transform: scale(0.98);
+        }
+        
+        /* === 問い合わせフォーム補足 === */
+        .contact-note {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+            text-align: center;
+            border-top: 1px dashed #ccc;
+            padding-top: 0.8rem;
+        }
+        .contact-note a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact-note a:hover {
+            text-decoration: underline;
+        }
+        
+        /* === レスポンシブ調整 === */
+        @media(max-width:768px){
+            .mobile-pdf-actions {
+                display: flex;
+            }
+            .pdf-toolbar .pdf-actions {
+                display: none;
+            }
+            .doc-grid {
+                grid-template-columns: 1fr;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .agreement-modal-content {
+                margin: 1rem;
+            }
+            .agreement-modal-body {
+                padding: 1.5rem;
+            }
+            .doc-btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+            .pdf-content {
+                padding: 1rem;
+                padding-bottom: 80px;
+            }
+            .pdf-toolbar h3 {
+                font-size: 1rem;
+            }
+            .pdf-action-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            .doc-btn, .agreement-close-btn, .back-to-home {
+                min-height: 48px;
+                min-width: 48px;
+            }
+            .agreement-close-btn {
+                width: 48px;
+                height: 48px;
+            }
+        }
+        @media(max-width:480px){
+            .doc-btn span {
+                pointer-events: none;
+            }
+            .btn-group {
+                gap: 0.8rem;
+            }
+            .mobile-pdf-actions {
+                flex-direction: column;
+            }
+            .pdf-action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .simple-send-btn {
+                font-size: 1rem;
+                padding: 0.8rem 1rem;
+            }
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .pdf-container,
+            .pdf-container * {
+                visibility: visible;
+            }
+            .pdf-container {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                background: white !important;
+                overflow: visible !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .pdf-toolbar,
+            .mobile-pdf-actions,
+            .pdf-action-btn,
+            .pdf-download-link,
+            nav,
+            footer,
+            header {
+                display: none !important;
+            }
+            .pdf-content {
+                padding: 1cm !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+            @page {
+                margin: 1.5cm;
+            }
         }
     </style>
 </head>
@@ -948,21 +879,25 @@
                     <!-- 送信ボタン -->
                     <div class="simple-send-box">
                         <button type="submit" class="simple-send-btn">
-                            <span>📧</span> この内容でメールを送信する
+                            <span>📧</span> 送信準備（メールアプリを開く）
                         </button>
                         <p class="simple-note">
-                            ※お使いのメールアプリが自動的に開きます。「送信」ボタンを押してください。<br>
-                            開かない場合は <strong>mermaidnomail1125@gmail.com</strong> まで直接お問い合わせください。
+                            ※メールアプリが自動的に開きます。内容をご確認の上、送信してください。<br>
+                            内容を変更した場合は、再度フォームから送信し直してください。
                         </p>
                     </div>
                 </form>
-                <!-- 手動送信用エリア（メールが開かない場合に表示） -->
+                <!-- 補助エリア（メールアプリが開かなかった場合のみ表示） -->
                 <div id="manualEmailArea" class="manual-email-area">
-                    <p style="font-weight:600; margin-bottom:0.5rem;">📋 メールアプリが開かない場合は、以下の内容をコピーして手動で送信してください</p>
+                    <p style="font-weight:600; margin-bottom:0.5rem;">📋 メールアプリが自動的に開かない場合は、以下の内容をご利用ください</p>
                     <p><strong>宛先:</strong> mermaidnomail1125@gmail.com (Bcc: zznjip@gmail.com)</p>
                     <p><strong>件名:</strong> <span id="manualSubject"></span></p>
                     <textarea id="manualBody" rows="8" readonly></textarea>
                     <button class="copy-btn" onclick="copyManualBody()">内容をコピー</button>
+                    <p style="font-size:0.85rem; margin-top:0.5rem; color:#d32f2f;">
+                        ※内容を変更せずに、そのままメールアプリで送信してください。<br>
+                        変更した場合は、再度フォームから送信し直してください。
+                    </p>
                 </div>
             </div>
             <section id="events" class="animate-on-scroll">
@@ -1000,7 +935,6 @@
                     <button type="button" onclick="sendContactMail()">送信</button>
                 </form>
                 <div id="contact-error" style="color: #d32f2f; font-size:0.9rem; margin-top:0.5rem; display:none;"></div>
-                <!-- 補足：メールが開かない場合の案内 -->
                 <div class="contact-note">
                     もしメールアプリが開かない場合は、<a href="mailto:mermaidnomail1125@gmail.com">mermaidnomail1125@gmail.com</a> まで直接ご連絡ください。
                 </div>
@@ -1033,7 +967,7 @@
                 <h3>第1条（目的）</h3>
                 <p>障害者と健常者がソフトバレーを通じて心身を健康にし、相互理解と地域貢献を目指す。障害者スポーツの普及を推進することを目的とする。</p>
                
-                <!-- 以降、規約の全文（省略せずに記載） -->
+                <!-- 規約全文（省略せず記載） -->
                 <h3>第2条（チーム概要）</h3>
                 <ol>
                     <li>名称: マーメイド</li>
@@ -1433,27 +1367,22 @@
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').classList.add('active');
         };
-
         window.closeLightbox = function() {
             document.getElementById('lightbox').classList.remove('active');
         };
-
         window.openStatus = function(date) {
             document.getElementById('status-title').textContent = `${date}練習会参加状況を選択`;
             document.getElementById('modal-event-date').value = date;
             document.getElementById('status-modal').style.display = 'block';
         };
-
         window.closeModal = function(type) {
             document.getElementById(`${type}-modal`).style.display = 'none';
         };
-
         function showAgreementPage() {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('agreement-page').style.display = 'block';
             window.scrollTo(0, 0);
         }
-
         function showHome() {
             document.getElementById('agreement-page').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
@@ -1461,17 +1390,13 @@
             document.getElementById('mobile-pdf-actions').classList.remove('active');
             window.scrollTo(0, 0);
         }
-
         function showSection(sectionId) {
             showHome();
             setTimeout(() => {
                 const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                }
+                if (section) section.scrollIntoView({ behavior: 'smooth' });
             }, 100);
         }
-
         function toggleNav() {
             document.getElementById('nav-menu').classList.toggle('active');
         }
@@ -1521,29 +1446,29 @@
 虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。`;
             
             const subject = encodeURIComponent(`【参加申込】${eventDate} - ${name}`);
-            const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=${subject}&body=${encodeURIComponent(body)}`;
             
             // 手動送信用エリアに内容をセット
             document.getElementById('manualSubject').textContent = `【参加申込】${eventDate} - ${name}`;
             document.getElementById('manualBody').value = body;
             
-            // メールアプリを開く試行
-            const mailtoWindow = window.location.href = mailtoLink;
-            
-            // 少し待ってから手動エリアを表示（メールが開かない場合のフォールバック）
-            setTimeout(() => {
-                const manualArea = document.getElementById('manualEmailArea');
-                if (!manualArea.classList.contains('show')) {
-                    manualArea.classList.add('show');
-                }
-            }, 1000);
-            
             // 成功メッセージ表示
             const successMsg = document.getElementById('successMessage');
             successMsg.classList.add('show');
             
-            // フォームはリセットしない（内容を残す）
-            setTimeout(() => successMsg.classList.remove('show'), 3000);
+            // メールアプリを開く（mailto）
+            const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=${subject}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+            
+            // 少し遅れて手動エリアを表示（mailtoが失敗した場合のフォールバック）
+            setTimeout(() => {
+                const manualArea = document.getElementById('manualEmailArea');
+                // mailtoが開かなかった場合のみ表示（簡易判定：ページがアクティブなままなら）
+                if (document.hasFocus()) {
+                    manualArea.classList.add('show');
+                }
+            }, 1000);
+            
+            setTimeout(() => successMsg.classList.remove('show'), 4000);
         });
 
         // 手動送信用コピー機能
@@ -1570,13 +1495,11 @@
             
             const body = `名前: ${name}\nメール: ${email}\nメッセージ: ${message}`;
             const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
-            
             window.location.href = mailtoLink;
             
             document.getElementById('contact-name').value = '';
             document.getElementById('contact-email').value = '';
             document.getElementById('contact-message').value = '';
-            
             alert('お問い合わせメールを作成しました。送信してください。');
         }
         window.sendContactMail = sendContactMail;
@@ -1633,11 +1556,9 @@
 
         // ========== PDF関連機能 ==========
         let currentPdfType = '';
-
         function showPDF(type) {
             currentPdfType = type;
             document.getElementById('pdf-loading').classList.add('active');
-            
             let title, content;
             switch(type) {
                 case 'terms':
@@ -1653,7 +1574,6 @@
                     content = getSportsContent();
                     break;
             }
-            
             setTimeout(() => {
                 document.getElementById('pdf-title').textContent = title;
                 document.getElementById('pdf-content').innerHTML = content;
@@ -1694,32 +1614,16 @@
         }
         window.printPDF = printPDF;
 
-        // 改良版ダウンロード関数（モバイル対応強化）
         function downloadPDF() {
             const title = document.getElementById('pdf-title').textContent;
             const content = document.getElementById('pdf-content').innerHTML;
-            
             const fullContent = `<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
-    <style>
-        body { font-family: 'Poppins', sans-serif; padding: 1.5rem; line-height: 1.7; color: #333; }
-        h1 { color: #0284c7; border-bottom: 2px solid #0284c7; padding-bottom: 0.5rem; }
-        .signature-area { margin-top: 3rem; border-top: 2px dashed #ccc; padding-top: 2rem; }
-    </style>
-</head>
-<body>
-    <h1>${title}</h1>
-    ${content}
-</body>
+<head><meta charset="UTF-8"><title>${title}</title></head>
+<body style="font-family:sans-serif;padding:1.5rem;">${content}</body>
 </html>`;
-            
             const blob = new Blob([fullContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
-            
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             
             if (isMobile) {
@@ -1732,7 +1636,6 @@
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                    
                     setTimeout(() => {
                         alert('ダウンロードが開始されない場合は、リンクを長押しして「リンクを保存」を選んでください。');
                     }, 500);
@@ -1745,21 +1648,15 @@
                 a.click();
                 URL.revokeObjectURL(url);
             }
-            
-            setTimeout(() => {
-                alert('ダウンロードを開始しました。ファイルが保存されない場合は、お使いのブラウザの設定をご確認ください。');
-            }, 1000);
         }
         window.downloadPDF = downloadPDF;
 
         function getTermsContent() {
             return document.querySelector('#terms-modal-agreement .agreement-modal-body').innerHTML;
         }
-
         function getInsuranceContent() {
             return document.querySelector('#insurance-modal-agreement .agreement-modal-body').innerHTML;
         }
-
         function getSportsContent() {
             return document.querySelector('#sports-modal-agreement .agreement-modal-body').innerHTML;
         }
@@ -1769,7 +1666,6 @@
             document.getElementById(`${type}-modal-agreement`).classList.add('active');
         }
         window.openAgreementModal = openAgreementModal;
-
         function closeAgreementModal(type) {
             document.getElementById(`${type}-modal-agreement`).classList.remove('active');
         }
@@ -1794,7 +1690,6 @@
                 { date: '2026-03-21', display: '3/21', venue: '勝田台小体育館', time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day3_21.jpg' },
                 { date: '2026-04-18', display: '4/18', venue: '勝田台小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day4_18.jpg' }
             ];
-
             events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
             const mainList = document.getElementById('event-list');
@@ -1831,7 +1726,6 @@
                     }
                     return;
                 }
-                
                 const closeBtn = e.target.closest('.agreement-close-btn');
                 if (closeBtn) {
                     const modalType = closeBtn.dataset.close;
@@ -1859,7 +1753,6 @@
             if (e.target.classList.contains('agreement-modal')) e.target.classList.remove('active');
             if (e.target.classList.contains('pdf-container')) closePDF();
         });
-
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
@@ -1868,8 +1761,6 @@
                 closePDF();
             }
         });
-
-        // タッチデバイス用
         document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
 </body>
