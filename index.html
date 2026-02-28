@@ -32,27 +32,6 @@
             --border-radius: clamp(0.5rem,1vw,1rem);
         }
 
-        /* === ダークモード変数（システム設定に自動追従） === */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-color: #38bdf8;
-                --secondary-color: #60a5fa;
-                --text-color: #e2e8f0;
-                --bg-light: #0f172a;
-                --bg-card: #1e293b;
-                --border-color: #334155;
-                --shadow: 0 6px 20px rgba(0,0,0,0.5);
-                --nav-bg: rgba(30, 41, 59, 0.95);
-                --footer-text: #e2e8f0;
-                --important-bg: #2d1a1a;
-                --important-border: #ef4444;
-                --success-bg: #15803d;
-                --warning-bg: #422800;
-                --warning-border: #f59e0b;
-                --input-bg: #0f172a;
-            }
-        }
-
         *{box-sizing:border-box;margin:0;padding:0}
         body{
             font-family:'Poppins',sans-serif;
@@ -62,30 +41,22 @@
             overflow-x:hidden;
             -webkit-tap-highlight-color:transparent;
             -webkit-overflow-scrolling:touch;
-            transition:background-color 0.3s, color 0.3s;
         }
 
-        /* === ヘッダー（アニメーション強化）=== */
+        /* === ヘッダー（砂浜画像に復元）=== */
         header{
             position:relative;
             text-align:center;
             padding:12vw 5vw;
-            background:linear-gradient(135deg, #0284c7, #1e40af, #0f172a);
-            background-size:300% 300%;
+            background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             box-shadow:var(--shadow);
-            animation:gradientShift 10s ease infinite;
             overflow:hidden;
-        }
-        @keyframes gradientShift {
-            0%{background-position:0% 50%}
-            50%{background-position:100% 50%}
-            100%{background-position:0% 50%}
         }
         header::before{
             content:'';
             position:absolute;
             inset:0;
-            background:radial-gradient(circle at 20% 40%, rgba(255,255,255,0.2) 0%, transparent 50%);
+            background:linear-gradient(135deg,rgba(14,165,233,.6),rgba(56,189,248,.4));
             z-index:1;
             animation:glowPulse 5s ease infinite;
         }
@@ -185,7 +156,6 @@
             position:relative;
             opacity:0;
             animation:slideUp .7s ease-out forwards;
-            transition:background-color 0.3s;
         }
         @keyframes slideUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
         section.visible{opacity:1}
@@ -1928,9 +1898,12 @@
             document.getElementById('lightbox-counter').textContent = `${currentIndex+1} / ${galleryImages.length}`;
         }
 
-        // ========== イベントデータ ==========
+        // ========== イベントデータ（修正箇所）==========
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date();
+            // 今日の日付を時刻0時に設定（日付のみ比較用）
+            const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            
             const events = [
                 { date: '2025-10-04', display: '10/04', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day.jpg' },
                 { date: '2025-10-18', display: '10/18', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg' },
@@ -1947,26 +1920,50 @@
                 { date: '2026-03-21', display: '3/21', venue: '勝田台小体育館', time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day3_21.jpg' },
                 { date: '2026-04-18', display: '4/18', venue: '勝田台小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day4_18.jpg' }
             ];
+
+            // 日付順にソート
             events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
             const mainList = document.getElementById('event-list');
             const pastList = document.getElementById('past-events');
-            events.forEach(ev => {
+            
+            events.forEach((ev, index) => {
                 const eventDate = new Date(ev.date);
-                const isPast = eventDate < today;
+                eventDate.setHours(0,0,0,0);
+                const isPast = eventDate < todayDate;
+                
+                // 次のイベント（配列の次の要素）を取得
+                const nextEvent = events[index + 1];
+                const nextDisplay = nextEvent ? nextEvent.display : '未定';
+
+                let nextPracticeText = '';
+                if (isPast) {
+                    nextPracticeText = nextEvent
+                        ? `この練習会は${ev.display}に終了しました。次回は${nextDisplay}です。`
+                        : `この練習会は${ev.display}に終了しました。`;
+                } else {
+                    nextPracticeText = nextEvent
+                        ? `この練習会は${ev.display}に開催予定。次回は${nextDisplay}です。`
+                        : `この練習会は${ev.display}に開催予定。`;
+                }
+
                 const item = document.createElement('div');
                 item.className = `event-item ${isPast ? 'past' : ''}`;
                 item.innerHTML = `
                     <h3>${ev.display} バレーボール練習会${isPast ? ' <small style="color:#999;">（終了）</small>' : ''}</h3>
                     <p><strong>開催時間→</strong> ${ev.time}</p>
                     <p><strong>場所→</strong> ${ev.venue}</p>
-                    <p>次回練習は${ev.display}に開催予定。詳細はメールで確認してください。</p>
+                    <p>${nextPracticeText}</p>
                     <img src="${ev.img}" alt="${ev.display}練習会登録ボタン" loading="lazy"
                          ${isPast ? '' : `onclick="openStatus('${ev.display}')" style="cursor:pointer;"`}
                          onerror="this.src='https://via.placeholder.com/300x200?text=画像読み込み中'">
                 `;
-                if (isPast) pastList.appendChild(item);
-                else mainList.appendChild(item);
+                
+                if (isPast) {
+                    pastList.appendChild(item);
+                } else {
+                    mainList.appendChild(item);
+                }
             });
 
             // ギャラリー描画
