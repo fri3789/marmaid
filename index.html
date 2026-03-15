@@ -43,7 +43,7 @@
             -webkit-overflow-scrolling:touch;
         }
 
-        /* === ヘッダー（砂浜画像に復元）=== */
+        /* === ヘッダー === */
         header{
             position:relative;
             text-align:center;
@@ -222,7 +222,7 @@
         #archive-container{display:none;margin-top:2rem}
         #archive-container.show{display:block;animation:slideUp .5s}
 
-        /* === ギャラリー（動的アニメーション追加）=== */
+        /* === ギャラリー === */
         .gallery{
             display:grid;
             grid-template-columns:repeat(auto-fit,minmax(20vw,1fr));
@@ -277,7 +277,7 @@
             transform:translateY(0);
         }
 
-        /* === ライトボックス強化版 === */
+        /* === ライトボックス === */
         .lightbox{
             position:fixed;
             top:0;
@@ -471,7 +471,7 @@
             .gallery{grid-template-columns:1fr}
         }
 
-        /* === その他の既存スタイル（規約ページなど）=== */
+        /* === 規約ページ用スタイル === */
         .agreement-header {
             background: linear-gradient(135deg, #007aff 0%, #5856d6 50%, #af52de 100%);
             color: white;
@@ -1154,7 +1154,7 @@
                 </div>
             </div>
 
-            <!-- ギャラリーセクション（強化版） -->
+            <!-- ギャラリーセクション -->
             <section id="gallery" class="animate-on-scroll">
                 <h2>ギャラリー</h2>
                 <div class="gallery" id="gallery-grid"></div>
@@ -1531,6 +1531,7 @@
         </div>
     </div>
 
+    <!-- ★ 修正箇所：1日保険をスポーツ保険に変更 ★ -->
     <div id="insurance-modal-agreement" class="agreement-modal">
         <div class="agreement-modal-content">
             <div class="agreement-modal-header">
@@ -1547,16 +1548,16 @@
                 <p><strong>電話番号:</strong> ＿＿＿−＿＿＿＿−＿＿＿＿</p>
                 <h4>加入確認事項</h4>
                 <ul>
-                    <li>□ 今、スマホでURLにアクセスして「ワンデーサポーター」に加入手続きを完了した</li>
+                    <li>□ 今、スマホでURLにアクセスして「1日スポーツ保険」に加入手続きを完了した</li>
                     <li>□ 重要事項説明書・約款を全て読み、内容を理解した</li>
                     <li>□ 加入完了画面をスタッフに提示した</li>
                 </ul>
                 <p><strong>加入完了時刻:</strong> 年 月 日 時 分</p>
                 <h4>保険内容</h4>
                 <ul>
-                    <li>保険会社: ソニー損害保険株式会社</li>
-                    <li>商品名: 1日自動車保険「ワンデーサポーター」</li>
-                    <li>URL: https://accident.sony-sasti.jp/</li>
+                    <li>保険会社: アクサダイレクト損害保険株式会社</li>
+                    <li>商品名: 1日スポーツ保険「レクリエーションサポート」</li>
+                    <li>URL: https://www.axa-direct.co.jp/leisure/</li>
                 </ul>
                 <p><strong>署名:</strong> ＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
                 <p><strong>記入日:</strong> 2025年 月 日</p>
@@ -1898,7 +1899,7 @@
             document.getElementById('lightbox-counter').textContent = `${currentIndex+1} / ${galleryImages.length}`;
         }
 
-        // ========== イベントデータ（修正箇所）==========
+        // ========== イベントデータ ==========
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date();
             // 今日の日付を時刻0時に設定（日付のみ比較用）
