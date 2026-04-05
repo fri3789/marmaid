@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="ozKChrwYqsm9qCT3xc_rgDiR2n6mNEYIPU0ClVJObZg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="wth=device-wth, initial-scale=1.0, user-scalable=yes">
     <title>チームマーメイド｜千葉県 千葉市・八千代市・勝田台のインクルーシブソフトバレーボールチーム</title>
     <meta name="description" content="千葉県八千代市勝田台で活動するソフトバレーボールチームマーメイド。障がい者と健常者が一緒に楽しむインクルーシブな練習会を毎月開催。見学・参加随時受付中！">
     <meta name="keywords" content="チームマーメイド,ソフトバレーボール,千葉県,八千代市,勝田台,障がい者スポーツ,インクルーシブ">
@@ -37,7 +37,7 @@
             background:linear-gradient(135deg,var(--bg-light),var(--bg-light));
             color:var(--text-color);
             line-height:1.6;
-            overflow-x:hidden;
+            overflow-x:hden;
             -webkit-tap-highlight-color:transparent;
             -webkit-overflow-scrolling:touch;
         }
@@ -47,7 +47,7 @@
             padding:12vw 5vw;
             background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             box-shadow:var(--shadow);
-            overflow:hidden;
+            overflow:hden;
         }
         header::before{
             content:'';
@@ -116,12 +116,12 @@
             position:absolute;
             bottom:-.2vw;
             left:0;
-            width:0;
+            wth:0;
             height:.2vw;
             background:var(--primary-color);
             transition:var(--transition);
         }
-        nav a:hover::after{width:100%}
+        nav a:hover::after{wth:100%}
         nav a:hover{color:var(--primary-color)}
         .nav-toggle{
             display:none;
@@ -134,12 +134,12 @@
             top:1vw;
             right:2vw;
             z-index:1001;
-            min-width:44px;
+            min-wth:44px;
             min-height:44px;
             touch-action:manipulation
         }
         .nav-toggle:hover{transform:rotate(90deg)}
-        main{max-width:90vw;margin:5vw auto;padding:0 2vw}
+        main{max-wth:90vw;margin:5vw auto;padding:0 2vw}
         section{
             background:var(--bg-card);
             padding:4vw;
@@ -148,9 +148,9 @@
             box-shadow:var(--shadow);
             position:relative;
             opacity:0;
-            animation:slideUp .7s ease-out forwards;
+            animation:sleUp .7s ease-out forwards;
         }
-        @keyframes slideUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes sleUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
         section.visible{opacity:1}
         h2{
             font-size:clamp(1.5rem,4.5vw,2.5rem);
@@ -163,7 +163,7 @@
             position:absolute;
             bottom:-.5vw;
             left:0;
-            width:5vw;
+            wth:5vw;
             height:.3vw;
             background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
             transition:var(--transition)
@@ -176,14 +176,14 @@
         }
         .event-item p{margin-bottom:1vw}
         .event-item img{
-            width:clamp(20vw,30vw,30rem);
+            wth:clamp(20vw,30vw,30rem);
             height:auto;
             border-radius:var(--border-radius);
             cursor:pointer;
             transition:var(--transition);
             display:block;
             margin:2vw auto;
-            border:.2vw solid var(--primary-color)
+            border:.2vw sol var(--primary-color)
         }
         .event-item img:hover{
             transform:perspective(500px) rotateX(5deg) scale(1.05);
@@ -211,18 +211,18 @@
         .archive-toggle:hover{background:var(--bg-card)}
         .archive-toggle:active{background:var(--border-color)}
         #archive-container{display:none;margin-top:2rem}
-        #archive-container.show{display:block;animation:slideUp .5s}
+        #archive-container.show{display:block;animation:sleUp .5s}
         .gallery{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(20vw,1fr));
+            display:gr;
+            gr-template-columns:repeat(auto-fit,minmax(20vw,1fr));
             gap:2vw;
             margin-top:2vw;
         }
         .gallery-item{
             position:relative;
-            overflow:hidden;
+            overflow:hden;
             border-radius:var(--border-radius);
-            border:.2vw solid var(--primary-color);
+            border:.2vw sol var(--primary-color);
             opacity:0;
             transform:translateY(20px);
             transition:opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s;
@@ -239,7 +239,7 @@
             z-index:5;
         }
         .gallery-item img{
-            width:100%;
+            wth:100%;
             height:100%;
             object-fit:cover;
             transition:transform 0.5s;
@@ -269,7 +269,7 @@
             position:fixed;
             top:0;
             left:0;
-            width:100%;
+            wth:100%;
             height:100%;
             background:rgba(0,0,0,0.9);
             display:none;
@@ -281,11 +281,11 @@
         .lightbox.active{display:flex}
         .lightbox-content{
             position:relative;
-            max-width:90vw;
+            max-wth:90vw;
             max-height:80vh;
         }
         .lightbox img{
-            max-width:100%;
+            max-wth:100%;
             max-height:80vh;
             border-radius:var(--border-radius);
             box-shadow:0 0 30px rgba(0,0,0,0.5);
@@ -306,7 +306,7 @@
             padding:1.5vw;
             cursor:pointer;
             z-index:3001;
-            min-width:44px;
+            min-wth:44px;
             min-height:44px;
             display:flex;
             align-items:center;
@@ -327,7 +327,7 @@
             color:white;
             border:none;
             font-size:3rem;
-            width:60px;
+            wth:60px;
             height:60px;
             border-radius:50%;
             cursor:pointer;
@@ -359,9 +359,9 @@
         }
         .contact-form,.event-form{display:flex;flex-direction:column;gap:1.5vw}
         .contact-form input,.contact-form textarea,.event-form input,.event-form select{
-            width:100%;
+            wth:100%;
             padding:1rem;
-            border:.2vw solid var(--border-color);
+            border:.2vw sol var(--border-color);
             border-radius:12px;
             font-size:1rem;
             transition:var(--transition);
@@ -408,14 +408,14 @@
             position:absolute;
             top:0;
             left:0;
-            width:100%;
+            wth:100%;
             height:100%;
             background:linear-gradient(45deg,rgba(255,255,255,.1),transparent);
             z-index:0;
         }
         footer p{position:relative;z-index:1}
-        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:2000;backdrop-filter:blur(5px)}
-        .modal-content{background:var(--bg-card);margin:10% auto;padding:2vw;width:80%;max-width:clamp(20rem,30vw,30rem);border-radius:var(--border-radius);box-shadow:var(--shadow);text-align:center;color:var(--text-color)}
+        .modal{display:none;position:fixed;top:0;left:0;wth:100%;height:100%;background:rgba(0,0,0,.7);z-index:2000;backdrop-filter:blur(5px)}
+        .modal-content{background:var(--bg-card);margin:10% auto;padding:2vw;wth:80%;max-wth:clamp(20rem,30vw,30rem);border-radius:var(--border-radius);box-shadow:var(--shadow);text-align:center;color:var(--text-color)}
         .modal-close{
             position:absolute;
             top:2vw;
@@ -1622,34 +1622,34 @@
                     values.push(current);
                     // 各列の値をトリムしてオブジェクトに
                     const ev = {};
-                    headers.forEach((h, idx) => {
-                        ev[h] = values[idx] ? values[idx].replace(/^"|"$/g, '').trim() : '';
+                    headers.forEach((h, x) => {
+                        ev[h] = values[x] ? values[x].replace(/^"|"$/g, '').trim() : '';
                     });
                     return ev;
                 });
                 renderEvents(events);
             } catch (err) {
                 console.error('スプレッドシート読み込みエラー:', err);
-                document.getElementById('event-list').innerHTML = '<p style="color:red;">イベント情報の読み込みに失敗しました。</p>';
+                document.getElementBy('event-list').innerHTML = '<p style="color:red;">イベント情報の読み込みに失敗しました。</p>';
             }
         }
 
         function renderEvents(events) {
             const today = new Date();
             today.setHours(0,0,0,0);
-            const mainList = document.getElementById('event-list');
-            const pastList = document.getElementById('past-events');
+            const mainList = document.getElementBy('event-list');
+            const pastList = document.getElementBy('past-events');
             if (!mainList || !pastList) return;
 
             events.sort((a,b) => new Date(a.date) - new Date(b.date));
             mainList.innerHTML = '';
             pastList.innerHTML = '';
 
-            events.forEach((ev, idx) => {
+            events.forEach((ev, x) => {
                 const eventDate = new Date(ev.date);
                 eventDate.setHours(0,0,0,0);
                 const isPast = eventDate < today;
-                const nextEvent = events[idx+1];
+                const nextEvent = events[x+1];
                 const nextDisplay = nextEvent ? nextEvent.display : '未定';
                 const nextPracticeText = isPast
                     ? (nextEvent ? `この練習会は${ev.display}に終了しました。次回は${nextDisplay}です。` : `この練習会は${ev.display}に終了しました。`)
@@ -1673,19 +1673,19 @@
 
         // ======================== ギャラリー（固定） ========================
         const galleryImages = [
-            { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250602_250925_1.jpg', caption: '練習風景①' },
-            { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250602_250925_3.jpg', caption: '練習風景②' },
-            { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250623_250925_12.jpg', caption: '練習風景③' },
-            { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250623_250925_14.jpg', caption: '練習風景④' },
-            { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_22.jpg', caption: '大会風景①' },
-            { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_25.jpg', caption: '大会風景②' },
-            { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_28.jpg', caption: '大会風景③' },
-            { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_3.jpg', caption: '大会風景④' },
-            { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250906大会_250925_5.jpg', caption: '大会風景⑤' }
+            { src: 'https://raw.githubusercontent.com/fri3789/marma/main/images/LINE_ALBUM_20250602_250925_1.jpg', caption: '練習風景①' },
+            { src: 'https://raw.githubusercontent.com/fri3789/marma/main/images/LINE_ALBUM_20250602_250925_3.jpg', caption: '練習風景②' },
+            { src: 'https://raw.githubusercontent.com/fri3789/marma/main/images/LINE_ALBUM_20250623_250925_12.jpg', caption: '練習風景③' },
+            { src: 'https://raw.githubusercontent.com/fri3789/marma/main/images/LINE_ALBUM_20250623_250925_14.jpg', caption: '練習風景④' },
+            { src: 'https://raw.githubusercontent.com/fri3789/marma/main/images/LINE_ALBUM_20250906大会_250925_22.jpg', caption: '大会風景①' },
+            { src: 'https://raw.githubusercontent.com/fri3789/marma/main/images/LINE_ALBUM_20250906大会_250925_25.jpg', caption: '大会風景②' },
+            { src: 'https://raw.githubusercontent.com/fri3789/marma/main/images/LINE_ALBUM_20250906大会_250925_28.jpg', caption: '大会風景③' },
+            { src: 'https://raw.githubusercontent.com/fri3789/marma/main/images/LINE_ALBUM_20250906大会_250925_3.jpg', caption: '大会風景④' },
+            { src: 'https://raw.githubusercontent.com/fri3789/marma/main/images/LINE_ALBUM_20250906大会_250925_5.jpg', caption: '大会風景⑤' }
         ];
 
         function renderGallery() {
-            const gallery = document.getElementById('gallery-grid');
+            const gallery = document.getElementBy('gallery-gr');
             if (!gallery) return;
             gallery.innerHTML = '';
             galleryImages.forEach((img, index) => {
@@ -1712,97 +1712,97 @@
         window.openLightbox = function(index) {
             currentIndex = index;
             const img = galleryImages[index];
-            document.getElementById('lightbox-img').src = img.src;
-            document.getElementById('lightbox-img').alt = img.caption;
+            document.getElementBy('lightbox-img').src = img.src;
+            document.getElementBy('lightbox-img').alt = img.caption;
             updateCounter();
-            document.getElementById('lightbox').classList.add('active');
+            document.getElementBy('lightbox').classList.add('active');
         };
         window.closeLightbox = function(e) {
             if (e) e.stopPropagation();
-            document.getElementById('lightbox').classList.remove('active');
+            document.getElementBy('lightbox').classList.remove('active');
         };
         window.prevImage = function(e) {
             e.stopPropagation();
             currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
             const img = galleryImages[currentIndex];
-            document.getElementById('lightbox-img').src = img.src;
-            document.getElementById('lightbox-img').alt = img.caption;
+            document.getElementBy('lightbox-img').src = img.src;
+            document.getElementBy('lightbox-img').alt = img.caption;
             updateCounter();
         };
         window.nextImage = function(e) {
             e.stopPropagation();
             currentIndex = (currentIndex + 1) % galleryImages.length;
             const img = galleryImages[currentIndex];
-            document.getElementById('lightbox-img').src = img.src;
-            document.getElementById('lightbox-img').alt = img.caption;
+            document.getElementBy('lightbox-img').src = img.src;
+            document.getElementBy('lightbox-img').alt = img.caption;
             updateCounter();
         };
         function updateCounter() {
-            document.getElementById('lightbox-counter').textContent = `${currentIndex+1} / ${galleryImages.length}`;
+            document.getElementBy('lightbox-counter').textContent = `${currentIndex+1} / ${galleryImages.length}`;
         }
 
         // その他の関数（元のHTMLからほぼそのまま）
         window.showHome = function() {
-            document.getElementById('agreement-page').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            document.getElementById('pdf-container').classList.remove('active');
-            document.getElementById('mobile-pdf-actions').classList.remove('active');
+            document.getElementBy('agreement-page').style.display = 'none';
+            document.getElementBy('main-content').style.display = 'block';
+            document.getElementBy('pdf-container').classList.remove('active');
+            document.getElementBy('mobile-pdf-actions').classList.remove('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
-        window.showSection = function(sectionId) {
+        window.showSection = function(section) {
             showHome();
             setTimeout(() => {
-                const section = document.getElementById(sectionId);
+                const section = document.getElementBy(section);
                 if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
         };
         window.showAgreementPage = function() {
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('agreement-page').style.display = 'block';
+            document.getElementBy('main-content').style.display = 'none';
+            document.getElementBy('agreement-page').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
         function toggleNav() {
-            document.getElementById('nav-menu').classList.toggle('active');
+            document.getElementBy('nav-menu').classList.toggle('active');
         }
-        function validateEmail(email) {
+        function valateEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
-        function validatePhone(phone) {
+        function valatePhone(phone) {
             return /^[0-9\-+\s()]+$/.test(phone) && phone.replace(/\D/g, '').length >= 10;
         }
-        function validateBirth(birth) {
+        function valateBirth(birth) {
             return /^\d{4}年\d{1,2}月\d{1,2}日$/.test(birth) || /^\d{4}-\d{2}-\d{2}$/.test(birth);
         }
-        document.getElementById('participation-form').addEventListener('submit', function(e) {
+        document.getElementBy('participation-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            if (!document.getElementById('agree-all').checked) {
-                document.getElementById('agree-error').style.display = 'block';
+            if (!document.getElementBy('agree-all').checked) {
+                document.getElementBy('agree-error').style.display = 'block';
                 return;
             } else {
-                document.getElementById('agree-error').style.display = 'none';
+                document.getElementBy('agree-error').style.display = 'none';
             }
-            const name = document.getElementById('name').value.trim();
-            const address = document.getElementById('address').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const emergency = document.getElementById('emergency').value.trim();
-            const birth = document.getElementById('birth').value.trim();
-            const health = document.getElementById('health').value.trim() || '特記事項なし';
-            const eventDate = document.getElementById('event-date').value.trim();
-            const status = document.getElementById('status').value;
+            const name = document.getElementBy('name').value.trim();
+            const address = document.getElementBy('address').value.trim();
+            const email = document.getElementBy('email').value.trim();
+            const phone = document.getElementBy('phone').value.trim();
+            const emergency = document.getElementBy('emergency').value.trim();
+            const birth = document.getElementBy('birth').value.trim();
+            const health = document.getElementBy('health').value.trim() || '特記事項なし';
+            const eventDate = document.getElementBy('event-date').value.trim();
+            const status = document.getElementBy('status').value;
             if (!name || !address || !email || !phone || !emergency || !birth || !eventDate || !status) {
                 alert('全ての必須項目を入力してください。');
                 return;
             }
-            if (!validateEmail(email)) {
+            if (!valateEmail(email)) {
                 alert('正しいメールアドレスを入力してください。');
                 return;
             }
-            if (!validatePhone(phone)) {
+            if (!valatePhone(phone)) {
                 alert('電話番号は10桁以上の数字、ハイフン、括弧のみ使用できます。');
                 return;
             }
-            if (!validateBirth(birth)) {
+            if (!valateBirth(birth)) {
                 alert('生年月日は「YYYY年MM月DD日」または「YYYY-MM-DD」形式で入力してください。');
                 return;
             }
@@ -1827,27 +1827,27 @@
 このメール送信後、自動返信メールが届きますので、必ず「参加同意」の返信をお願いします。
 返信がない場合は参加登録が完了しません。`;
             const subject = encodeURIComponent(`【参加申込】${eventDate} - ${name}`);
-            document.getElementById('manualSubject').textContent = `【参加申込】${eventDate} - ${name}`;
-            document.getElementById('manualBody').value = body;
-            const successMsg = document.getElementById('successMessage');
+            document.getElementBy('manualSubject').textContent = `【参加申込】${eventDate} - ${name}`;
+            document.getElementBy('manualBody').value = body;
+            const successMsg = document.getElementBy('successMessage');
             successMsg.classList.add('show');
-            window.location.href = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=${subject}&body=${encodeURIComponent(body)}`;
+            window.location.href = `mailto:mermanomail1125@gmail.com?bcc=zznjip@gmail.com&subject=${subject}&body=${encodeURIComponent(body)}`;
             setTimeout(() => {
-                document.getElementById('manualEmailArea').classList.add('show');
+                document.getElementBy('manualEmailArea').classList.add('show');
             }, 1000);
             setTimeout(() => successMsg.classList.remove('show'), 4000);
         });
         window.copyManualBody = function() {
-            const body = document.getElementById('manualBody');
+            const body = document.getElementBy('manualBody');
             body.select();
             document.execCommand('copy');
             alert('本文をコピーしました。メールアプリに貼り付けて送信してください。\n送信後、必ず自動返信メールに「参加同意」の返信をお願いします。');
         };
         window.sendContactMail = function() {
-            const name = document.getElementById('contact-name').value.trim();
-            const email = document.getElementById('contact-email').value.trim();
-            const message = document.getElementById('contact-message').value.trim();
-            const errorDiv = document.getElementById('contact-error');
+            const name = document.getElementBy('contact-name').value.trim();
+            const email = document.getElementBy('contact-email').value.trim();
+            const message = document.getElementBy('contact-message').value.trim();
+            const errorDiv = document.getElementBy('contact-error');
             if (!name || !email || !message) {
                 errorDiv.style.display = 'block';
                 errorDiv.textContent = '全ての項目を入力してください。';
@@ -1855,22 +1855,22 @@
             }
             errorDiv.style.display = 'none';
             const body = `名前: ${name}\nメール: ${email}\nメッセージ: ${message}`;
-            window.location.href = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
-            document.getElementById('contact-name').value = '';
-            document.getElementById('contact-email').value = '';
-            document.getElementById('contact-message').value = '';
+            window.location.href = `mailto:mermanomail1125@gmail.com?bcc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
+            document.getElementBy('contact-name').value = '';
+            document.getElementBy('contact-email').value = '';
+            document.getElementBy('contact-message').value = '';
             alert('お問い合わせメールを作成しました。送信してください。');
         };
-        document.getElementById('register-form').addEventListener('submit', function(e) {
+        document.getElementBy('register-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('modal-name').value.trim();
-            const address = document.getElementById('modal-address').value.trim();
-            const email = document.getElementById('modal-email').value.trim();
-            const phone = document.getElementById('modal-phone').value.trim();
-            const emergency = document.getElementById('modal-emergency').value.trim();
-            const birth = document.getElementById('modal-birth').value.trim();
-            const status = document.getElementById('modal-status').value;
-            const eventDate = document.getElementById('modal-event-date').value;
+            const name = document.getElementBy('modal-name').value.trim();
+            const address = document.getElementBy('modal-address').value.trim();
+            const email = document.getElementBy('modal-email').value.trim();
+            const phone = document.getElementBy('modal-phone').value.trim();
+            const emergency = document.getElementBy('modal-emergency').value.trim();
+            const birth = document.getElementBy('modal-birth').value.trim();
+            const status = document.getElementBy('modal-status').value;
+            const eventDate = document.getElementBy('modal-event-date').value;
             if (!name || !address || !email || !phone || !emergency || !birth) {
                 alert('全ての必須項目を入力してください。');
                 return;
@@ -1894,35 +1894,35 @@
 【重要】
 このメール送信後、自動返信メールが届きますので、必ず「参加同意」の返信をお願いします。
 返信がない場合は参加登録が完了しません。`;
-            window.location.href = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
+            window.location.href = `mailto:mermanomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
             alert('メールアプリが開きます。内容をご確認の上、送信してください。\n送信後、必ず自動返信メールに「参加同意」の返信をお願いします。');
-            document.getElementById('form-modal').style.display = 'none';
+            document.getElementBy('form-modal').style.display = 'none';
         });
         document.querySelectorAll('.status-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                document.getElementById('modal-status').value = this.dataset.status;
-                document.getElementById('form-modal').style.display = 'block';
-                document.getElementById('status-modal').style.display = 'none';
+                document.getElementBy('modal-status').value = this.dataset.status;
+                document.getElementBy('form-modal').style.display = 'block';
+                document.getElementBy('status-modal').style.display = 'none';
             });
         });
         window.closeModal = function(type) {
-            document.getElementById(`${type}-modal`).style.display = 'none';
+            document.getElementBy(`${type}-modal`).style.display = 'none';
         };
         window.openStatus = function(date) {
-            document.getElementById('status-title').textContent = `${date}練習会参加状況を選択`;
-            document.getElementById('modal-event-date').value = date;
-            document.getElementById('status-modal').style.display = 'block';
+            document.getElementBy('status-title').textContent = `${date}練習会参加状況を選択`;
+            document.getElementBy('modal-event-date').value = date;
+            document.getElementBy('status-modal').style.display = 'block';
         };
         window.openAgreementModal = function(type) {
-            document.getElementById(`${type}-modal-agreement`).classList.add('active');
+            document.getElementBy(`${type}-modal-agreement`).classList.add('active');
         };
         window.closeAgreementModal = function(type) {
-            document.getElementById(`${type}-modal-agreement`).classList.remove('active');
+            document.getElementBy(`${type}-modal-agreement`).classList.remove('active');
         };
         window.showPDF = function(type) { alert('PDF機能は開発中です。'); };
         window.closePDF = function() {
-            document.getElementById('pdf-container').classList.remove('active');
-            document.getElementById('mobile-pdf-actions').classList.remove('active');
+            document.getElementBy('pdf-container').classList.remove('active');
+            document.getElementBy('mobile-pdf-actions').classList.remove('active');
             showAgreementPage();
         };
         window.printPDF = function() { window.print(); };
@@ -1949,7 +1949,7 @@
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
                 document.querySelectorAll('.agreement-modal').forEach(m => m.classList.remove('active'));
-                document.getElementById('lightbox').classList.remove('active');
+                document.getElementBy('lightbox').classList.remove('active');
                 closePDF();
             }
         });
@@ -1959,7 +1959,7 @@
         loadEventsFromSheet();
         renderGallery();
         const termsModal = document.querySelector('#terms-modal-agreement .agreement-modal-body');
-        if (termsModal) termsModal.innerHTML = document.getElementById('terms').innerHTML;
+        if (termsModal) termsModal.innerHTML = document.getElementBy('terms').innerHTML;
     </script>
 </body>
 </html>
