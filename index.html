@@ -1065,6 +1065,19 @@
             font-size: 0.9rem;
             color: #b71c1c;
         }
+        /* モバイルで規約モーダルが切れる問題の修正 */
+        @media (max-width: 768px) {
+        .agreement-modal-content {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .agreement-modal-body {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
     </style>
 </head>
 <body>
