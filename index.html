@@ -9,7 +9,7 @@
     <meta name="keywords" content="チームマーメイド,ソフトバレーボール,千葉県,八千代市,勝田台,障がい者スポーツ,インクルーシブ">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* === 基本設定 === */
+        /* === 基本設定（元のスタイルをそのまま使用）=== */
         :root {
             --primary-color: #0284c7;
             --secondary-color: #1e40af;
@@ -31,7 +31,6 @@
             --font-size-mobile: clamp(1.2rem,3.5vw,1.5rem);
             --border-radius: clamp(0.5rem,1vw,1rem);
         }
-
         *{box-sizing:border-box;margin:0;padding:0}
         body{
             font-family:'Poppins',sans-serif;
@@ -42,8 +41,6 @@
             -webkit-tap-highlight-color:transparent;
             -webkit-overflow-scrolling:touch;
         }
-
-        /* === ヘッダー === */
         header{
             position:relative;
             text-align:center;
@@ -85,8 +82,6 @@
             0%,100%{text-shadow:0 0 20px rgba(255,255,255,0.5)}
             50%{text-shadow:0 0 40px rgba(255,255,255,0.8)}
         }
-
-        /* === ナビゲーション === */
         nav{
             background:var(--nav-bg);
             padding:1.5vw;
@@ -144,8 +139,6 @@
             touch-action:manipulation
         }
         .nav-toggle:hover{transform:rotate(90deg)}
-
-        /* === メイン === */
         main{max-width:90vw;margin:5vw auto;padding:0 2vw}
         section{
             background:var(--bg-card);
@@ -175,8 +168,6 @@
             background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
             transition:var(--transition)
         }
-
-        /* === イベント === */
         .event-item{margin-bottom:4vw}
         .event-item h3{
             font-size:clamp(1.6rem,4vw,2rem);
@@ -221,8 +212,6 @@
         .archive-toggle:active{background:var(--border-color)}
         #archive-container{display:none;margin-top:2rem}
         #archive-container.show{display:block;animation:slideUp .5s}
-
-        /* === ギャラリー === */
         .gallery{
             display:grid;
             grid-template-columns:repeat(auto-fit,minmax(20vw,1fr));
@@ -276,8 +265,6 @@
         .gallery-item:hover .gallery-caption{
             transform:translateY(0);
         }
-
-        /* === ライトボックス === */
         .lightbox{
             position:fixed;
             top:0;
@@ -370,8 +357,6 @@
             font-size:0.9rem;
             backdrop-filter:blur(5px);
         }
-
-        /* === フォーム系 === */
         .contact-form,.event-form{display:flex;flex-direction:column;gap:1.5vw}
         .contact-form input,.contact-form textarea,.event-form input,.event-form select{
             width:100%;
@@ -408,12 +393,8 @@
         }
         .contact-form button:hover,.event-form button:hover,.status-btn:hover{transform:scale(1.05) translateY(-2px)}
         .contact-form button:active,.event-form button:active,.status-btn:active{transform:scale(0.98)}
-
-        /* === 利用規約セクション === */
         .terms{background:var(--bg-light);color:var(--text-color)}
         .terms h2,.terms h3{color:var(--primary-color)}
-
-        /* === フッター === */
         footer{
             text-align:center;
             padding:2.5vw;
@@ -433,8 +414,6 @@
             z-index:0;
         }
         footer p{position:relative;z-index:1}
-
-        /* === モーダル === */
         .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:2000;backdrop-filter:blur(5px)}
         .modal-content{background:var(--bg-card);margin:10% auto;padding:2vw;width:80%;max-width:clamp(20rem,30vw,30rem);border-radius:var(--border-radius);box-shadow:var(--shadow);text-align:center;color:var(--text-color)}
         .modal-close{
@@ -458,8 +437,6 @@
         .modal-close:hover{color:var(--primary-color);transform:scale(1.1) rotate(180deg)}
         .modal-close:active{transform:scale(0.95) rotate(180deg)}
         .status-btn{margin:0.5rem;min-width:100px}
-
-        /* === レスポンシブ === */
         @media(max-width:768px){
             .nav-toggle{display:block}
             nav ul{display:none;flex-direction:column;align-items:center;background:var(--nav-bg);position:absolute;top:4vw;left:0;width:100%;padding:2vw 0;box-shadow:var(--shadow)}
@@ -470,8 +447,6 @@
         @media(max-width:480px){
             .gallery{grid-template-columns:1fr}
         }
-
-        /* === 規約ページ用スタイル === */
         .agreement-header {
             background: linear-gradient(135deg, #007aff 0%, #5856d6 50%, #af52de 100%);
             color: white;
@@ -1035,7 +1010,6 @@
             max-width: 150px;
             height: auto;
         }
-        /* 返信必要の注意書き */
         .reply-required-note {
             background: #fff3cd;
             border-left: 4px solid #ffc107;
@@ -1060,14 +1034,12 @@
     </style>
 </head>
 <body>
-    <!-- ヘッダー -->
     <header>
         <div class="header-content">
             <h1>チームマーメイド<br>Soft Volleyball Mermaid</h1>
         </div>
     </header>
 
-    <!-- ナビゲーション -->
     <nav>
         <button class="nav-toggle" aria-label="メニューを開く" onclick="toggleNav()">☰</button>
         <ul id="nav-menu">
@@ -1080,7 +1052,6 @@
     </nav>
 
     <main id="main-content">
-        <!-- ホームセクション -->
         <section id="home" style="display: block;">
             <div style="background:var(--bg-card);padding:3rem 4vw;margin:2rem auto 4rem;border-radius:1rem;box-shadow:var(--shadow);text-align:center;">
                 <p style="font-size:1.3rem;line-height:1.9;color:var(--text-color);font-weight:600;">
@@ -1090,7 +1061,6 @@
                 </p>
             </div>
 
-            <!-- 参加申込フォーム -->
             <div class="participation-form">
                 <h3>📝 参加申込フォーム</h3>
                 <div class="reply-required-note">
@@ -1147,7 +1117,6 @@
                     <p style="color:#d32f2f; font-size:0.9rem; margin:1rem 0; text-align:center;">
                         ※虚偽申告は即時参加禁止対象となります
                     </p>
-                    <!-- 同意チェックボックス -->
                     <div class="agreement-checkbox">
                         <input type="checkbox" id="agree-all" required>
                         <label for="agree-all">
@@ -1157,7 +1126,6 @@
                     <div id="agree-error" class="error-message">
                         ※規約・同意書への同意が必要です。チェックを入れてください。
                     </div>
-                    <!-- 送信ボタン -->
                     <div class="simple-send-box">
                         <button type="submit" class="simple-send-btn">
                             <span>📧</span> 送信準備（メールアプリを開く）
@@ -1169,7 +1137,6 @@
                         </p>
                     </div>
                 </form>
-                <!-- 手動送信用エリア（補助） -->
                 <div id="manualEmailArea" class="manual-email-area">
                     <p style="font-weight:600; margin-bottom:0.5rem;">📋 メールアプリが自動的に開かない場合は、以下の内容をご利用ください</p>
                     <p><strong>宛先:</strong> mermaidnomail1125@gmail.com (Bcc: zznjip@gmail.com)</p>
@@ -1184,13 +1151,12 @@
                 </div>
             </div>
 
-            <!-- ギャラリーセクション -->
             <section id="gallery" class="animate-on-scroll">
                 <h2>ギャラリー</h2>
                 <div class="gallery" id="gallery-grid"></div>
             </section>
 
-            <!-- イベントセクション -->
+            <!-- ★★★ イベント情報はスプレッドシートから自動読み込み ★★★ -->
             <section id="events" class="animate-on-scroll">
                 <h2>イベント情報</h2>
                 <div id="event-list"></div>
@@ -1202,7 +1168,6 @@
                 </div>
             </section>
 
-            <!-- 連絡先セクション -->
             <section id="contact" class="animate-on-scroll">
                 <h2>連絡先</h2>
                 <p>Email: <a href="mailto:mermaidnomail1125@gmail.com">mermaidnomail1125@gmail.com</a></p>
@@ -1223,7 +1188,6 @@
                 </div>
             </section>
 
-            <!-- 利用規約セクション -->
             <section id="terms" class="animate-on-scroll terms">
                 <h2>チームマーメイド利用規約</h2>
                 <p>制定日: 2026年04月01日（適宜改訂あり）</p>
@@ -1396,7 +1360,6 @@
         </section>
     </main>
 
-    <!-- 規約ページの内容（最初は非表示） -->
     <div id="agreement-page" style="display: none;">
         <div class="agreement-header">
             <h1 style="color:white;font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem;">規約と同意書</h1>
@@ -1470,7 +1433,6 @@
         </div>
     </div>
 
-    <!-- PDF表示コンテナ -->
     <div class="pdf-container" id="pdf-container">
         <div class="pdf-toolbar">
             <h3 id="pdf-title"></h3>
@@ -1506,10 +1468,8 @@
         <div class="pdf-content" id="pdf-content"></div>
     </div>
 
-    <!-- PDFダウンロード用の隠しリンク -->
     <a id="pdf-download-link" class="pdf-download-link" download="チームマーメイド_同意書.pdf"></a>
 
-    <!-- ライトボックス -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
         <span class="lightbox-prev" onclick="prevImage(event)">&#10094;</span>
@@ -1520,7 +1480,6 @@
         </div>
     </div>
 
-    <!-- モーダル（イベント画像クリック時） -->
     <div class="modal" id="status-modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('status')">&times;</span>
@@ -1553,16 +1512,13 @@
         </div>
     </div>
 
-    <!-- 規約モーダル -->
     <div id="terms-modal-agreement" class="agreement-modal">
         <div class="agreement-modal-content">
             <div class="agreement-modal-header">
                 <h3>チームマーメイド利用規約</h3>
                 <button class="agreement-close-btn" data-close="terms">×</button>
             </div>
-            <div class="agreement-modal-body">
-                <!-- 内容はJavaScriptで動的に生成 -->
-            </div>
+            <div class="agreement-modal-body"></div>
         </div>
     </div>
 
@@ -1627,247 +1583,95 @@
         </div>
     </div>
 
-    <!-- フッター -->
     <footer>
         <p>© 2026 チームマーメイド. Mayumi Huzimitu Kaito Saito YAMADA, All rights reserved.</p>
     </footer>
 
     <script>
-        // ========== 基本機能 ==========
-        window.openLightbox = function(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').classList.add('active');
-        };
-        window.closeLightbox = function() {
-            document.getElementById('lightbox').classList.remove('active');
-        };
+        // ======================== 設定 ========================
+        // ★★★ あなたのスプレッドシートIDをここに入力してください ★★★
+        const SPREADSHEET_ID = 'あなたのスプレッドシートID';  // ← ここを書き換える！
 
-        // ========== スムーススクロール対応 ==========
-        function showHome() {
-            document.getElementById('agreement-page').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            document.getElementById('pdf-container').classList.remove('active');
-            document.getElementById('mobile-pdf-actions').classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function showSection(sectionId) {
-            showHome();
-            setTimeout(() => {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ======================== イベント読み込み（Googleスプレッドシート） ========================
+        async function loadEventsFromSheet() {
+            const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv`;
+            try {
+                const res = await fetch(url);
+                const csvText = await res.text();
+                const lines = csvText.trim().split('\n');
+                if (lines.length < 2) {
+                    console.warn('スプレッドシートにデータがありません');
+                    return;
                 }
-            }, 100);
+                const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, ''));
+                const events = lines.slice(1).map(line => {
+                    // 簡易的なCSVパース（引用符内のカンマには非対応だが、実用上問題ない）
+                    const values = [];
+                    let inQuote = false;
+                    let current = '';
+                    for (let ch of line) {
+                        if (ch === '"') {
+                            inQuote = !inQuote;
+                        } else if (ch === ',' && !inQuote) {
+                            values.push(current);
+                            current = '';
+                        } else {
+                            current += ch;
+                        }
+                    }
+                    values.push(current);
+                    // 各列の値をトリムしてオブジェクトに
+                    const ev = {};
+                    headers.forEach((h, idx) => {
+                        ev[h] = values[idx] ? values[idx].replace(/^"|"$/g, '').trim() : '';
+                    });
+                    return ev;
+                });
+                renderEvents(events);
+            } catch (err) {
+                console.error('スプレッドシート読み込みエラー:', err);
+                document.getElementById('event-list').innerHTML = '<p style="color:red;">イベント情報の読み込みに失敗しました。</p>';
+            }
         }
 
-        function showAgreementPage() {
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('agreement-page').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        function renderEvents(events) {
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            const mainList = document.getElementById('event-list');
+            const pastList = document.getElementById('past-events');
+            if (!mainList || !pastList) return;
 
-        function toggleNav() {
-            document.getElementById('nav-menu').classList.toggle('active');
-        }
+            events.sort((a,b) => new Date(a.date) - new Date(b.date));
+            mainList.innerHTML = '';
+            pastList.innerHTML = '';
 
-        // ========== フォームバリデーション強化 ==========
-        function validateEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-        function validatePhone(phone) {
-            return /^[0-9\-+\s()]+$/.test(phone) && phone.replace(/\D/g, '').length >= 10;
-        }
-        function validateBirth(birth) {
-            return /^\d{4}年\d{1,2}月\d{1,2}日$/.test(birth) || /^\d{4}-\d{2}-\d{2}$/.test(birth);
-        }
-
-        document.getElementById('participation-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 同意チェック
-            if (!document.getElementById('agree-all').checked) {
-                document.getElementById('agree-error').style.display = 'block';
-                return;
-            } else {
-                document.getElementById('agree-error').style.display = 'none';
-            }
-            
-            const name = document.getElementById('name').value.trim();
-            const address = document.getElementById('address').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const emergency = document.getElementById('emergency').value.trim();
-            const birth = document.getElementById('birth').value.trim();
-            const health = document.getElementById('health').value.trim() || '特記事項なし';
-            const eventDate = document.getElementById('event-date').value.trim();
-            const status = document.getElementById('status').value;
-            
-            // 必須チェック
-            if (!name || !address || !email || !phone || !emergency || !birth || !eventDate || !status) {
-                alert('全ての必須項目を入力してください。');
-                return;
-            }
-            
-            // メール形式
-            if (!validateEmail(email)) {
-                alert('正しいメールアドレスを入力してください。');
-                return;
-            }
-            
-            // 電話番号形式
-            if (!validatePhone(phone)) {
-                alert('電話番号は10桁以上の数字、ハイフン、括弧のみ使用できます。');
-                return;
-            }
-            
-            // 生年月日形式
-            if (!validateBirth(birth)) {
-                alert('生年月日は「YYYY年MM月DD日」または「YYYY-MM-DD」形式で入力してください。');
-                return;
-            }
-            
-            const body = `【チームマーメイド参加申込】
-━━━━━━━━━━━━━━━━
-■ 参加状況: ${status}
-■ 参加希望日: ${eventDate}
-■ 氏名: ${name}
-■ 住所: ${address}
-■ メール: ${email}
-■ 電話: ${phone}
-■ 緊急連絡先: ${emergency}
-■ 生年月日: ${birth}
-■ 健康状態: ${health}
-━━━━━━━━━━━━━━━━
-
-【誓約】
-私は上記情報が真実であることを誓約します。
-虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。
-
-【重要】
-このメール送信後、自動返信メールが届きますので、必ず「参加同意」の返信をお願いします。
-返信がない場合は参加登録が完了しません。`;
-            
-            const subject = encodeURIComponent(`【参加申込】${eventDate} - ${name}`);
-            
-            // 手動送信用エリアに内容をセット
-            document.getElementById('manualSubject').textContent = `【参加申込】${eventDate} - ${name}`;
-            document.getElementById('manualBody').value = body;
-            
-            // 成功メッセージ表示
-            const successMsg = document.getElementById('successMessage');
-            successMsg.classList.add('show');
-            
-            // メールアプリを開く
-            const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=${subject}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
-            
-            // 手動エリア表示
-            setTimeout(() => {
-                document.getElementById('manualEmailArea').classList.add('show');
-            }, 1000);
-            
-            setTimeout(() => successMsg.classList.remove('show'), 4000);
-        });
-
-        // 手動送信用コピー機能
-        window.copyManualBody = function() {
-            const body = document.getElementById('manualBody');
-            body.select();
-            document.execCommand('copy');
-            alert('本文をコピーしました。メールアプリに貼り付けて送信してください。\n送信後、必ず自動返信メールに「参加同意」の返信をお願いします。');
-        };
-
-        // 問い合わせフォーム送信
-        window.sendContactMail = function() {
-            const name = document.getElementById('contact-name').value.trim();
-            const email = document.getElementById('contact-email').value.trim();
-            const message = document.getElementById('contact-message').value.trim();
-            const errorDiv = document.getElementById('contact-error');
-            
-            if (!name || !email || !message) {
-                errorDiv.style.display = 'block';
-                errorDiv.textContent = '全ての項目を入力してください。';
-                return;
-            }
-            errorDiv.style.display = 'none';
-            
-            const body = `名前: ${name}\nメール: ${email}\nメッセージ: ${message}`;
-            const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
-            
-            document.getElementById('contact-name').value = '';
-            document.getElementById('contact-email').value = '';
-            document.getElementById('contact-message').value = '';
-            alert('お問い合わせメールを作成しました。送信してください。');
-        };
-
-        // モーダルフォーム送信
-        document.getElementById('register-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('modal-name').value.trim();
-            const address = document.getElementById('modal-address').value.trim();
-            const email = document.getElementById('modal-email').value.trim();
-            const phone = document.getElementById('modal-phone').value.trim();
-            const emergency = document.getElementById('modal-emergency').value.trim();
-            const birth = document.getElementById('modal-birth').value.trim();
-            const status = document.getElementById('modal-status').value;
-            const eventDate = document.getElementById('modal-event-date').value;
-            
-            if (!name || !address || !email || !phone || !emergency || !birth) {
-                alert('全ての必須項目を入力してください。');
-                return;
-            }
-            
-            const body = `【チームマーメイド参加申込（イベント用）】
-━━━━━━━━━━━━━━━━
-■ 参加状況: ${status}
-■ 参加希望日: ${eventDate}
-■ 氏名: ${name}
-■ 住所: ${address}
-■ メール: ${email}
-■ 電話: ${phone}
-■ 緊急連絡先: ${emergency}
-■ 生年月日: ${birth}
-━━━━━━━━━━━━━━━━
-
-【誓約】
-私は上記情報が真実であることを誓約します。
-虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。
-
-【重要】
-このメール送信後、自動返信メールが届きますので、必ず「参加同意」の返信をお願いします。
-返信がない場合は参加登録が完了しません。`;
-            
-            const mailtoLink = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
-            
-            alert('メールアプリが開きます。内容をご確認の上、送信してください。\n送信後、必ず自動返信メールに「参加同意」の返信をお願いします。');
-            document.getElementById('form-modal').style.display = 'none';
-        });
-
-        // ステータスボタン（参加/不参加/未定）
-        document.querySelectorAll('.status-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.getElementById('modal-status').value = this.dataset.status;
-                document.getElementById('form-modal').style.display = 'block';
-                document.getElementById('status-modal').style.display = 'none';
+            events.forEach((ev, idx) => {
+                const eventDate = new Date(ev.date);
+                eventDate.setHours(0,0,0,0);
+                const isPast = eventDate < today;
+                const nextEvent = events[idx+1];
+                const nextDisplay = nextEvent ? nextEvent.display : '未定';
+                const nextPracticeText = isPast
+                    ? (nextEvent ? `この練習会は${ev.display}に終了しました。次回は${nextDisplay}です。` : `この練習会は${ev.display}に終了しました。`)
+                    : (nextEvent ? `この練習会は${ev.display}に開催予定。次回は${nextDisplay}です。` : `この練習会は${ev.display}に開催予定。`);
+                
+                const item = document.createElement('div');
+                item.className = `event-item ${isPast ? 'past' : ''}`;
+                item.innerHTML = `
+                    <h3>${ev.display} バレーボール練習会${isPast ? ' <small style="color:#999;">（終了）</small>' : ''}</h3>
+                    <p><strong>開催時間→</strong> ${ev.time}</p>
+                    <p><strong>場所→</strong> ${ev.venue}</p>
+                    <p>${nextPracticeText}</p>
+                    <img src="${ev.img}" alt="${ev.display}練習会登録ボタン" loading="lazy"
+                         ${isPast ? '' : `onclick="openStatus('${ev.display}')" style="cursor:pointer;"`}
+                         onerror="this.src='https://via.placeholder.com/300x200?text=画像エラー'">
+                `;
+                if (isPast) pastList.appendChild(item);
+                else mainList.appendChild(item);
             });
-        });
+        }
 
-        // モーダルクローズ
-        window.closeModal = function(type) {
-            document.getElementById(`${type}-modal`).style.display = 'none';
-        };
-
-        window.openStatus = function(date) {
-            document.getElementById('status-title').textContent = `${date}練習会参加状況を選択`;
-            document.getElementById('modal-event-date').value = date;
-            document.getElementById('status-modal').style.display = 'block';
-        };
-
-        // ========== ギャラリー画像データ ==========
+        // ======================== ギャラリー（固定） ========================
         const galleryImages = [
             { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250602_250925_1.jpg', caption: '練習風景①' },
             { src: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/LINE_ALBUM_20250602_250925_3.jpg', caption: '練習風景②' },
@@ -1895,19 +1699,15 @@
                 item.addEventListener('click', () => openLightbox(index));
                 gallery.appendChild(item);
             });
-
-            // スクロールアニメーション用
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
                 });
             }, { threshold: 0.1 });
             document.querySelectorAll('.gallery-item').forEach(item => observer.observe(item));
         }
 
-        // ========== ライトボックス機能 ==========
+        // ライトボックス関連
         let currentIndex = 0;
         window.openLightbox = function(index) {
             currentIndex = index;
@@ -1941,129 +1741,205 @@
             document.getElementById('lightbox-counter').textContent = `${currentIndex+1} / ${galleryImages.length}`;
         }
 
-        // ========== イベントデータ ==========
-        document.addEventListener('DOMContentLoaded', () => {
-            const today = new Date();
-            // 今日の日付を時刻0時に設定（日付のみ比較用）
-            const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-            
-            const events = [
-                { date: '2025-10-04', display: '10/04', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day.jpg' },
-                { date: '2025-10-18', display: '10/18', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg' },
-                { date: '2025-11-08', display: '11/08', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_08.jpg' },
-                { date: '2025-11-22', display: '11/22', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day11_22.jpg' },
-                { date: '2025-12-13', display: '12/13', venue: '勝田台小体育館', time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_13.jpg' },
-                { date: '2025-12-20', display: '12/20', venue: 'ふれあいプラザ', time: '18:00～21:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day12_20.jpg' },
-                { date: '2026-01-10', display: '1/10',  venue: '勝田台中央小体育館',   time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_10.jpg' },
-                { date: '2026-01-17', display: '1/17',  venue: 'ふれあいプラザ',       time: '18:00～21:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_17.jpg' },
-                { date: '2026-01-24', display: '1/24',  venue: '勝田台小体育館',       time: '15:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day1_24.jpg' },
-                { date: '2026-02-21', display: '2/21',  venue: '勝田台小体育館',       time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day2_21.jpg' },
-                { date: '2026-02-28', display: '2/28', venue: 'ふれあいプラザ', time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day2_28.jpg' },
-                { date: '2026-03-14', display: '03/14', venue: 'ふれあいプラザ', time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day03_14.jpg' },
-                { date: '2026-03-21', display: '3/21', venue: '勝田台小体育館', time: '13:00～17:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day3_21.jpg' },
-                { date: '2026-04-18', display: '4/18', venue: '勝田台小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day4_18.jpg' }
-            ];
+        // その他の関数（元のHTMLからほぼそのまま）
+        window.showHome = function() {
+            document.getElementById('agreement-page').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('pdf-container').classList.remove('active');
+            document.getElementById('mobile-pdf-actions').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        window.showSection = function(sectionId) {
+            showHome();
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        };
+        window.showAgreementPage = function() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('agreement-page').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        function toggleNav() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+        function validatePhone(phone) {
+            return /^[0-9\-+\s()]+$/.test(phone) && phone.replace(/\D/g, '').length >= 10;
+        }
+        function validateBirth(birth) {
+            return /^\d{4}年\d{1,2}月\d{1,2}日$/.test(birth) || /^\d{4}-\d{2}-\d{2}$/.test(birth);
+        }
+        document.getElementById('participation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!document.getElementById('agree-all').checked) {
+                document.getElementById('agree-error').style.display = 'block';
+                return;
+            } else {
+                document.getElementById('agree-error').style.display = 'none';
+            }
+            const name = document.getElementById('name').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const emergency = document.getElementById('emergency').value.trim();
+            const birth = document.getElementById('birth').value.trim();
+            const health = document.getElementById('health').value.trim() || '特記事項なし';
+            const eventDate = document.getElementById('event-date').value.trim();
+            const status = document.getElementById('status').value;
+            if (!name || !address || !email || !phone || !emergency || !birth || !eventDate || !status) {
+                alert('全ての必須項目を入力してください。');
+                return;
+            }
+            if (!validateEmail(email)) {
+                alert('正しいメールアドレスを入力してください。');
+                return;
+            }
+            if (!validatePhone(phone)) {
+                alert('電話番号は10桁以上の数字、ハイフン、括弧のみ使用できます。');
+                return;
+            }
+            if (!validateBirth(birth)) {
+                alert('生年月日は「YYYY年MM月DD日」または「YYYY-MM-DD」形式で入力してください。');
+                return;
+            }
+            const body = `【チームマーメイド参加申込】
+━━━━━━━━━━━━━━━━
+■ 参加状況: ${status}
+■ 参加希望日: ${eventDate}
+■ 氏名: ${name}
+■ 住所: ${address}
+■ メール: ${email}
+■ 電話: ${phone}
+■ 緊急連絡先: ${emergency}
+■ 生年月日: ${birth}
+■ 健康状態: ${health}
+━━━━━━━━━━━━━━━━
 
-            // 日付順にソート
-            events.sort((a, b) => new Date(a.date) - new Date(b.date));
+【誓約】
+私は上記情報が真実であることを誓約します。
+虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。
 
-            const mainList = document.getElementById('event-list');
-            const pastList = document.getElementById('past-events');
-            
-            events.forEach((ev, index) => {
-                const eventDate = new Date(ev.date);
-                eventDate.setHours(0,0,0,0);
-                const isPast = eventDate < todayDate;
-                
-                // 次のイベント（配列の次の要素）を取得
-                const nextEvent = events[index + 1];
-                const nextDisplay = nextEvent ? nextEvent.display : '未定';
-
-                let nextPracticeText = '';
-                if (isPast) {
-                    nextPracticeText = nextEvent
-                        ? `この練習会は${ev.display}に終了しました。次回は${nextDisplay}です。`
-                        : `この練習会は${ev.display}に終了しました。`;
-                } else {
-                    nextPracticeText = nextEvent
-                        ? `この練習会は${ev.display}に開催予定。次回は${nextDisplay}です。`
-                        : `この練習会は${ev.display}に開催予定。`;
-                }
-
-                const item = document.createElement('div');
-                item.className = `event-item ${isPast ? 'past' : ''}`;
-                item.innerHTML = `
-                    <h3>${ev.display} バレーボール練習会${isPast ? ' <small style="color:#999;">（終了）</small>' : ''}</h3>
-                    <p><strong>開催時間→</strong> ${ev.time}</p>
-                    <p><strong>場所→</strong> ${ev.venue}</p>
-                    <p>${nextPracticeText}</p>
-                    <img src="${ev.img}" alt="${ev.display}練習会登録ボタン" loading="lazy"
-                         ${isPast ? '' : `onclick="openStatus('${ev.display}')" style="cursor:pointer;"`}
-                         onerror="this.src='https://via.placeholder.com/300x200?text=画像読み込み中'">
-                `;
-                
-                if (isPast) {
-                    pastList.appendChild(item);
-                } else {
-                    mainList.appendChild(item);
-                }
-            });
-
-            // ギャラリー描画
-            renderGallery();
-
-            // 規約モーダル初期化
-            const termsModal = document.querySelector('#terms-modal-agreement .agreement-modal-body');
-            termsModal.innerHTML = document.getElementById('terms').innerHTML;
+【重要】
+このメール送信後、自動返信メールが届きますので、必ず「参加同意」の返信をお願いします。
+返信がない場合は参加登録が完了しません。`;
+            const subject = encodeURIComponent(`【参加申込】${eventDate} - ${name}`);
+            document.getElementById('manualSubject').textContent = `【参加申込】${eventDate} - ${name}`;
+            document.getElementById('manualBody').value = body;
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+            window.location.href = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=${subject}&body=${encodeURIComponent(body)}`;
+            setTimeout(() => {
+                document.getElementById('manualEmailArea').classList.add('show');
+            }, 1000);
+            setTimeout(() => successMsg.classList.remove('show'), 4000);
         });
+        window.copyManualBody = function() {
+            const body = document.getElementById('manualBody');
+            body.select();
+            document.execCommand('copy');
+            alert('本文をコピーしました。メールアプリに貼り付けて送信してください。\n送信後、必ず自動返信メールに「参加同意」の返信をお願いします。');
+        };
+        window.sendContactMail = function() {
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+            const errorDiv = document.getElementById('contact-error');
+            if (!name || !email || !message) {
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = '全ての項目を入力してください。';
+                return;
+            }
+            errorDiv.style.display = 'none';
+            const body = `名前: ${name}\nメール: ${email}\nメッセージ: ${message}`;
+            window.location.href = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=チームマーメイド問い合わせ&body=${encodeURIComponent(body)}`;
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+            alert('お問い合わせメールを作成しました。送信してください。');
+        };
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('modal-name').value.trim();
+            const address = document.getElementById('modal-address').value.trim();
+            const email = document.getElementById('modal-email').value.trim();
+            const phone = document.getElementById('modal-phone').value.trim();
+            const emergency = document.getElementById('modal-emergency').value.trim();
+            const birth = document.getElementById('modal-birth').value.trim();
+            const status = document.getElementById('modal-status').value;
+            const eventDate = document.getElementById('modal-event-date').value;
+            if (!name || !address || !email || !phone || !emergency || !birth) {
+                alert('全ての必須項目を入力してください。');
+                return;
+            }
+            const body = `【チームマーメイド参加申込（イベント用）】
+━━━━━━━━━━━━━━━━
+■ 参加状況: ${status}
+■ 参加希望日: ${eventDate}
+■ 氏名: ${name}
+■ 住所: ${address}
+■ メール: ${email}
+■ 電話: ${phone}
+■ 緊急連絡先: ${emergency}
+■ 生年月日: ${birth}
+━━━━━━━━━━━━━━━━
 
-        // ========== 規約モーダル表示 ==========
+【誓約】
+私は上記情報が真実であることを誓約します。
+虚偽申告が発覚した場合、即時参加禁止となることを理解し同意します。
+
+【重要】
+このメール送信後、自動返信メールが届きますので、必ず「参加同意」の返信をお願いします。
+返信がない場合は参加登録が完了しません。`;
+            window.location.href = `mailto:mermaidnomail1125@gmail.com?bcc=zznjip@gmail.com&subject=【参加申込】${eventDate} - ${name}&body=${encodeURIComponent(body)}`;
+            alert('メールアプリが開きます。内容をご確認の上、送信してください。\n送信後、必ず自動返信メールに「参加同意」の返信をお願いします。');
+            document.getElementById('form-modal').style.display = 'none';
+        });
+        document.querySelectorAll('.status-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.getElementById('modal-status').value = this.dataset.status;
+                document.getElementById('form-modal').style.display = 'block';
+                document.getElementById('status-modal').style.display = 'none';
+            });
+        });
+        window.closeModal = function(type) {
+            document.getElementById(`${type}-modal`).style.display = 'none';
+        };
+        window.openStatus = function(date) {
+            document.getElementById('status-title').textContent = `${date}練習会参加状況を選択`;
+            document.getElementById('modal-event-date').value = date;
+            document.getElementById('status-modal').style.display = 'block';
+        };
         window.openAgreementModal = function(type) {
             document.getElementById(`${type}-modal-agreement`).classList.add('active');
         };
         window.closeAgreementModal = function(type) {
             document.getElementById(`${type}-modal-agreement`).classList.remove('active');
         };
-
-        // イベントデリゲーション
-        document.addEventListener('click', function(e) {
-            const docBtn = e.target.closest('.doc-btn');
-            if (docBtn) {
-                e.preventDefault();
-                e.stopPropagation();
-                const type = docBtn.dataset.type;
-                if (docBtn.classList.contains('view')) {
-                    openAgreementModal(type);
-                } else if (docBtn.classList.contains('pdf')) {
-                    showPDF(type);
-                }
-                return;
-            }
-            const closeBtn = e.target.closest('.agreement-close-btn');
-            if (closeBtn) {
-                const modalType = closeBtn.dataset.close;
-                closeAgreementModal(modalType);
-                return;
-            }
-        });
-
-        // PDF関連機能（簡略化）
-        window.showPDF = function(type) {
-            alert('PDF機能は開発中です。');
-        };
+        window.showPDF = function(type) { alert('PDF機能は開発中です。'); };
         window.closePDF = function() {
             document.getElementById('pdf-container').classList.remove('active');
             document.getElementById('mobile-pdf-actions').classList.remove('active');
             showAgreementPage();
         };
-        window.printPDF = function() {
-            window.print();
-        };
-        window.downloadPDF = function() {
-            alert('ダウンロード機能は開発中です。');
-        };
+        window.printPDF = function() { window.print(); };
+        window.downloadPDF = function() { alert('ダウンロード機能は開発中です。'); };
 
-        // モーダル外クリック / ESCキー
+        document.addEventListener('click', function(e) {
+            const docBtn = e.target.closest('.doc-btn');
+            if (docBtn) {
+                e.preventDefault();
+                const type = docBtn.dataset.type;
+                if (docBtn.classList.contains('view')) openAgreementModal(type);
+                else if (docBtn.classList.contains('pdf')) showPDF(type);
+                return;
+            }
+            const closeBtn = e.target.closest('.agreement-close-btn');
+            if (closeBtn) closeAgreementModal(closeBtn.dataset.close);
+        });
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('modal')) e.target.style.display = 'none';
             if (e.target.classList.contains('agreement-modal')) e.target.classList.remove('active');
@@ -2078,6 +1954,12 @@
             }
         });
         document.addEventListener('touchstart', function() {}, {passive: true});
+
+        // 初期化
+        loadEventsFromSheet();
+        renderGallery();
+        const termsModal = document.querySelector('#terms-modal-agreement .agreement-modal-body');
+        if (termsModal) termsModal.innerHTML = document.getElementById('terms').innerHTML;
     </script>
 </body>
 </html>
