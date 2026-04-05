@@ -1593,46 +1593,80 @@
         const SPREADSHEET_ID = '1GZFw_bDHW-0S3210Nu5KsFZZIR1n4489tGrmm_gIcoA';  // 
 
         // ======================== イベント読み込み（Googleスプレッドシート） ========================
-        async function loadEventsFromSheet() {
-            const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv`;
-            try {
-                const res = await fetch(url);
-                const csvText = await res.text();
-                const lines = csvText.trim().split('\n');
-                if (lines.length < 2) {
-                    console.warn('スプレッドシートにデータがありません');
-                    return;
-                }
-                const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, ''));
-                const events = lines.slice(1).map(line => {
-                    // 簡易的なCSVパース（引用符内のカンマには非対応だが、実用上問題ない）
-                    const values = [];
-                    let inQuote = false;
-                    let current = '';
-                    for (let ch of line) {
-                        if (ch === '"') {
-                            inQuote = !inQuote;
-                        } else if (ch === ',' && !inQuote) {
-                            values.push(current);
-                            current = '';
-                        } else {
-                            current += ch;
-                        }
-                    }
-                    values.push(current);
-                    // 各列の値をトリムしてオブジェクトに
-                    const ev = {};
-                    headers.forEach((h, x) => {
-                        ev[h] = values[x] ? values[x].replace(/^"|"$/g, '').trim() : '';
-                    });
-                    return ev;
-                });
-                renderEvents(events);
-            } catch (err) {
-                console.error('スプレッドシート読み込みエラー:', err);
-                document.getElementBy('event-list').innerHTML = '<p style="color:red;">イベント情報の読み込みに失敗しました。</p>';
-            }
+       async function loadEventsFromSheet() {
+    const url = `https://docs.google.com/spreadsheets/d/${1GZFw_bDHW-0S3210Nu5KsFZZIR1n4489tGrmm_gIcoA}/gviz/tq?tqx=out:csv`;
+    const eventList = document.getElementById('event-list');
+    const pastList = document.getElementById('past-events');
+
+    if (!eventList || !pastList) return;
+
+    try {
+        const res = await fetch(url, { 
+            mode: 'cors'  // 明示的にcorsを指定
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
         }
+
+        const csvText = await res.text();
+        
+        if (!csvText || csvText.trim() === '') {
+            throw new Error('CSVデータが空です');
+        }
+
+        const lines = csvText.trim().split('\n');
+        if (lines.length < 2) {
+            eventList.innerHTML = '<p style="color:orange;">イベントデータがまだ登録されていません。</p>';
+            return;
+        }
+
+        // ヘッダー取得（引用符を除去）
+        let headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim());
+
+        const events = [];
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i].trim()) continue;
+
+            // 簡易CSVパース（改善版）
+            const values = parseCSVLine(lines[i]);
+            const ev = {};
+            headers.forEach((h, idx) => {
+                ev[h] = values[idx] ? values[idx].replace(/^"|"$/g, '').trim() : '';
+            });
+            events.push(ev);
+        }
+
+        renderEvents(events);
+
+    } catch (err) {
+        console.error('スプレッドシート読み込みエラー:', err);
+        eventList.innerHTML = `
+            <p style="color:red; padding:1rem; background:#ffebee; border-radius:8px;">
+                イベント情報の読み込みに失敗しました。<br>
+                スプレッドシートの「ウェブに公開」設定を確認してください。
+            </p>`;
+    }
+}
+
+// より安定したCSV1行パース関数
+function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuote = false;
+    for (let char of line) {
+        if (char === '"') {
+            inQuote = !inQuote;
+        } else if (char === ',' && !inQuote) {
+            result.push(current);
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    result.push(current);
+    return result;
+}
 
         function renderEvents(events) {
             const today = new Date();
