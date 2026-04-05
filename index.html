@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="ozKChrwYqsm9qCT3xc_rgDiR2n6mNEYIPU0ClVJObZg" />
+    <meta name="google-site-verification" content="ozKChrwYqsm9qCT3xc_rgDiR2n6mNEYIPU0ClVObZg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>チームマーメイド｜千葉県 千葉市・八千代市・勝田台のインクルーシブソフトバレーボールチーム</title>
     <meta name="description" content="千葉県八千代市勝田台で活動するソフトバレーボールチームマーメイド。障がい者と健常者が一緒に楽しむインクルーシブな練習会を毎月開催。見学・参加随時受付中！">
@@ -1654,9 +1654,9 @@
 
     <script>
         // ========== スプレッドシート設定 ==========
-        const SPREADSHEET_ID = '1GZFw_bDHW-0S3210Nu5KsFZZIR1n4489tGrmm_gIcoA';  // あなたのID
+        const SPREADSHEET_ID = '1GZFw_bDHW-0S3210Nu5KsFZZIR1n4489tGrmm_gIcoA';
 
-        // フォールバックデータ（画像URLが有効なもののみ。画像がない場合はボタン表示される）
+        // フォールバックデータ（画像URLが有効なもののみ）
         const fallbackEvents = [
             { date: '2025-10-04', display: '10/04', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day.jpg', notes: '' },
             { date: '2025-10-18', display: '10/18', venue: '勝田台中央小体育館', time: '13:00～15:00', img: 'https://raw.githubusercontent.com/fri3789/marmaid/main/images/day10_18.jpg', notes: '' },
@@ -1676,7 +1676,7 @@
 
         async function loadEvents() {
             try {
-                const url = `https://docs.google.com/spreadsheets/d/${1GZFw_bDHW-0S3210Nu5KsFZZIR1n4489tGrmm_gIcoA}/gviz/tq?tqx=out:csv`;
+                const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv`;
                 const res = await fetch(url);
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const csvText = await res.text();
@@ -1728,7 +1728,6 @@
                 const eventDate = new Date(ev.date + 'T00:00:00+09:00');
                 const isPast = eventDate < today;
                 
-                // 次回予告テキスト（「この練習会は」を削除）
                 const nextEvent = events[idx+1];
                 const nextDisplay = nextEvent ? nextEvent.display : '未定';
                 let nextPracticeText = '';
@@ -1742,23 +1741,20 @@
                         : `${ev.display}に開催予定。`;
                 }
 
-                // notes（スプレッドシートの任意コメント）
                 const notesHtml = ev.notes && ev.notes.trim() !== '' ? `<div class="event-notes">${ev.notes}</div>` : '';
 
                 const item = document.createElement('div');
                 item.className = `event-item ${isPast ? 'past' : ''}`;
                 
-                // 画像の有効性判定（空またはhttpで始まらない場合は無効）
                 const hasValidImage = ev.img && ev.img.trim() !== '' && (ev.img.trim().startsWith('http://') || ev.img.trim().startsWith('https://'));
                 
                 let mediaHtml = '';
                 if (hasValidImage) {
-                    // 画像表示
+                    // 画像表示 - 修正版：正しい文字列連結を使用
                     mediaHtml = `<img src="${ev.img}" alt="${ev.display}練習会" loading="lazy"
                                  ${isPast ? '' : `onclick="openStatus('${ev.display}')" style="cursor:pointer;"`}
-                                 onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<button class=\"event-button\" onclick=\"openStatus(\'${ev.display}\')\">📝 参加申込</button>'); this.remove();">`;
+                                 onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<button class=\'event-button\' onclick=\'openStatus(&quot;${ev.display}&quot;)\'>📝 参加申込</button>'); this.remove();">`;
                 } else {
-                    // 画像がない場合はボタン表示
                     mediaHtml = `<button class="event-button" onclick="openStatus('${ev.display}')">📝 参加申込</button>`;
                 }
                 
@@ -1846,7 +1842,7 @@
             document.getElementById('lightbox-counter').textContent = `${currentIndex+1} / ${galleryImages.length}`;
         }
 
-        // ========== その他の関数（ナビゲーション・フォームなど） ==========
+        // ========== その他の関数 ==========
         window.showHome = function() {
             document.getElementById('agreement-page').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
